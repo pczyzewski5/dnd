@@ -23,7 +23,7 @@ class OriginValidator extends AbstractCharacterDataValidator
         if (false === Origin::isValid($data)) {
             // @todo change me
             throw new \Exception(
-                'Provided race is not supported. Supported are: ' . \implode(', ', Origin::toArray()) . '.'
+                'Provided origin is not supported. Supported are: ' . \implode(', ', Origin::toArray()) . '.'
             );
         }
     }
