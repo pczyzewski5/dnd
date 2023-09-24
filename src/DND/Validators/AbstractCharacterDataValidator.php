@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DND;
+namespace DND\Validators;
 
 abstract class AbstractCharacterDataValidator
 {

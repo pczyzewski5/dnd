@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DND;
+namespace DND\Validators;
 
-use DND\Domain\Enum\Origin;
+use DND\Domain\Enum\Race;
 
-class OriginValidator extends AbstractCharacterDataValidator
+class RaceValidator extends AbstractCharacterDataValidator
 {
-    protected static string $supportedData = 'origin';
+    protected static string $supportedData = 'race';
 
     public function validate(array|string $data): void
     {
@@ -20,10 +20,10 @@ class OriginValidator extends AbstractCharacterDataValidator
             // @todo change me
             throw new \Exception(static::$supportedData . ' cannot be empty.');
         }
-        if (false === Origin::isValid($data)) {
+        if (false === Race::isValid($data)) {
             // @todo change me
             throw new \Exception(
-                'Provided race is not supported. Supported are: ' . \implode(', ', Origin::toArray()) . '.'
+                'Provided race is not supported. Supported are: ' . \implode(', ', Race::toArray()) . '.'
             );
         }
     }

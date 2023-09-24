@@ -2,6 +2,8 @@
 
 namespace DND;
 
+use DND\Validators\AbstractCharacterDataValidator;
+
 class CharacterDataValidator
 {
     private const REQUIRED_KEYS = [

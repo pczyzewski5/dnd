@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DND;
+namespace DND\Validators;
 
-use DND\Domain\Enum\Race;
+use DND\Domain\Enum\Alignment;
 
-class RaceValidator extends AbstractCharacterDataValidator
+class AlignmentValidator extends AbstractCharacterDataValidator
 {
-    protected static string $supportedData = 'race';
+    protected static string $supportedData = 'alignment';
 
     public function validate(array|string $data): void
     {
@@ -20,10 +20,10 @@ class RaceValidator extends AbstractCharacterDataValidator
             // @todo change me
             throw new \Exception(static::$supportedData . ' cannot be empty.');
         }
-        if (false === Race::isValid($data)) {
+        if (false === Alignment::isValid($data)) {
             // @todo change me
             throw new \Exception(
-                'Provided race is not supported. Supported are: ' . \implode(', ', Race::toArray()) . '.'
+                'Provided alignment is not supported. Supported are: ' . \implode(', ', Alignment::toArray()) . '.'
             );
         }
     }

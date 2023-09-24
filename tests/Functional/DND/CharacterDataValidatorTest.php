@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Tests\Functional\DND;
 
 
-use DND\AlignmentValidator;
 use DND\CharacterDataValidator;
-use DND\CharacterNameValidator;
-use DND\PlayerNameValidator;
-use DND\RaceValidator;
-use DND\StartingStatsValidator;
+use DND\Validators\AlignmentValidator;
+use DND\Validators\CharacterNameValidator;
+use DND\Validators\PlayerNameValidator;
+use DND\Validators\RaceValidator;
+use DND\Validators\StartingStatsValidator;
 use PHPUnit\Framework\TestCase;
 
 class RemoveUserGdprDataTest extends TestCase
