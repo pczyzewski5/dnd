@@ -1,3 +1,4 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+character_create_ability_scores:
+    path: /test
+    controller: App\Controller\IndexController::test
+    methods: [ GET ]
