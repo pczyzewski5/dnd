@@ -10,7 +10,7 @@ namespace DND\Domain\Enum;
  * @method static WIS()
  * @method static CHA()
  */
-class Ability extends BaseEnum
+class AbilityEnum extends BaseEnum
 {
     const STR = 'str';
     const DEX = 'dex';

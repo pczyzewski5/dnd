@@ -22,7 +22,7 @@ namespace DND\Domain\Enum;
  * @method static INTIMIDATION()
  * @method static SLEIGHT_OF_HANDS()
  */
-class Skill extends BaseEnum
+class SkillEnum extends BaseEnum
 {
     const ACROBATICS = 'acrobatics';
     const ATHLETICS = 'athletics';

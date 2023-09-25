@@ -6,7 +6,7 @@ class Level
 {
     public function getLevel(): int
     {
-        return 8;
+        return 11;
     }
 
     public function getClass(): string

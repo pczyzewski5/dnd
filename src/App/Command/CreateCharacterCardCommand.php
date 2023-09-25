@@ -2,6 +2,8 @@
 
 namespace App\Command;
 
+use DND\Calculators\ArmorClassCalculator;
+use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Character\CharacterFactory;
 use DND\Calculators\HpCalculator;
@@ -33,12 +35,25 @@ class CreateCharacterCardCommand extends Command
         $data = [
             '$characterName' => $character->getCharacterName(),
             '$playerName' => $character->getPlayerName(),
-            '$race' => $character->getRace(),
+            '$race' => $character->getRace()->getName(),
             '$alignment' => $character->getAlignment(),
             '$origin' => $character->getOrigin(),
             '$classLevel' => $character->getLevel()->getClass() . ' ' .$character->getLevel()->getLevel(),
             '$hp' => HpCalculator::calculate($character),
-            '$proficiencyBonus' => ProficiencyBonusCalculator::calculate($character->getLevel()->getLevel())
+            '$proficiencyBonus' => ProficiencyBonusCalculator::calculate($character->getLevel()->getLevel()),
+            '$nightvision' => $character->getRace()->getNightvision(),
+            '$speed' => $character->getRace()->getSpeed(),
+            '$hitDiceType' => $character->getCharacterClass()->getHitDice(),
+            '$hitDiceCount' => $character->getLevel()->getLevel(),
+            '$asStr' => $character->getAbilities()->getStr()->getValue(),
+            '$initiative' => InitiativeCalculator::calculate($character->getAbilities()),
+            '$acWithoutArmor' => ArmorClassCalculator::calculate($character->getAbilities()),
+            '$savingThrows' => $character->getSavingThrows()->getStr()->getValue(),
+            '$skills' => $character->getSkills()->getAcrobatics()->getValue(),
+            '$proficiencies' => \implode(', ', $character->getProficiencies()),
+            '$languages' => \implode(', ', $character->getLanguages()),
+            '$resistances' => \implode(', ', $character->getResistances()),
+            '$immunities' => \implode(', ', $character->getImmunities()),
         ];
 
         $content = \str_replace(

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Validators;
 
-use DND\Domain\Enum\Ability;
+use DND\Domain\Enum\AbilityEnum;
 
 class StartingStatsValidator extends AbstractCharacterDataValidator
 {
@@ -21,7 +21,7 @@ class StartingStatsValidator extends AbstractCharacterDataValidator
             throw new \Exception(static::$supportedData . ' cannot be empty.');
         }
 
-        $requiredKeys = Ability::toArray();
+        $requiredKeys = AbilityEnum::toArray();
 
         $diff = \array_diff($requiredKeys, \array_keys($data));
         if (false === empty($diff)) {
