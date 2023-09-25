@@ -44,3 +44,10 @@ quick-tests:
 
 dev-quick-tests:
 	docker-compose run --rm php-upstream ./bin/phpunit --group=dev
+
+##################################################################################################################
+# COMMANDS
+##################################################################################################################
+
+create-character-card:
+	docker-compose run --rm php-upstream php ./bin/console dnd:create-character-card

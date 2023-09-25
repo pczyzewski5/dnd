@@ -8,6 +8,7 @@ namespace Tests\Functional\DND;
 use DND\CharacterDataValidator;
 use DND\Validators\AlignmentValidator;
 use DND\Validators\CharacterNameValidator;
+use DND\Validators\LanguageValidator;
 use DND\Validators\PlayerNameValidator;
 use DND\Validators\ProficiencyValidator;
 use DND\Validators\RaceValidator;
@@ -47,7 +48,8 @@ class RemoveUserGdprDataTest extends TestCase
         $characterDataValidator->addValidator($alignmentValidator);
         $characterDataValidator->addValidator($startingStatsValidator);
         $characterDataValidator->addValidator($originValidator);
-        $characterDataValidator->addValidator(new ProficiencyValidator());
+//        $characterDataValidator->addValidator(new ProficiencyValidator());
+        $characterDataValidator->addValidator(new LanguageValidator());
 
         $characterDataValidator->validate($this->characterData);
     }

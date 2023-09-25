@@ -12,6 +12,7 @@ services:
 imports:
     - { resource: 'infrastructure/services.yaml' }
     - { resource: 'repositories.yaml' }
+    - { resource: 'cli_commands.yaml' }
     - { resource: 'controllers.yaml' }
     - { resource: 'persisters.yaml' }
     - { resource: 'commands.yaml' }

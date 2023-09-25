@@ -1,0 +1,4 @@
+services:
+  app.command.create_character_card_command:
+    class: App\Command\CreateCharacterCardCommand
+    tags: ['console.command']
