@@ -7,6 +7,7 @@ use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Character\CharacterFactory;
 use DND\Calculators\HpCalculator;
+use DND\CharacterCard\CharacterCardDirector;
 use DND\CharacterDataValidator;
 use DND\Validators\AlignmentValidator;
 use DND\Validators\CharacterNameValidator;
@@ -23,9 +24,13 @@ class CreateCharacterCardCommand extends Command
 {
     private const COMMAND_NAME = 'dnd:create-character-card';
 
-    protected function configure(): void
+    private CharacterCardDirector $characterCardDirector;
+
+    public function __construct(CharacterCardDirector $characterCardDirector)
     {
-        $this->setName(self::COMMAND_NAME);
+        parent::__construct(self::COMMAND_NAME);
+
+        $this->characterCardDirector = $characterCardDirector;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -62,7 +67,7 @@ class CreateCharacterCardCommand extends Command
             $content
         );
 
-        \file_put_contents('character_card.html', $content);
+        \file_put_contents('character_card.html', $this->characterCardDirector->buildSavingThrowsSection());
 
         return Command::SUCCESS;
     }

@@ -9,6 +9,26 @@ services:
     App\CommandBus\CommandBus:
         alias: DND\Infrastructure\Tactician\CommandBus
 
+    DND\CharacterCard\Builder\AbstractBuilder:
+        class: DND\CharacterCard\Builder\AbstractBuilder
+        arguments:
+            - '@twig'
+
+    DND\CharacterCard\Builder\SavingThrowsBuilder:
+        parent: DND\CharacterCard\Builder\AbstractBuilder
+
+    DND\CharacterCard\CharacterCardDirector:
+        class: DND\CharacterCard\CharacterCardDirector
+        arguments:
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+
 imports:
     - { resource: 'infrastructure/services.yaml' }
     - { resource: 'repositories.yaml' }
