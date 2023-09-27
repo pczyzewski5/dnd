@@ -9,12 +9,6 @@ services:
     App\CommandBus\CommandBus:
         alias: DND\Infrastructure\Tactician\CommandBus
 
-    DND\CharacterCard\SectionBuilder\AbstractSectionBuilder:
-        class: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-        arguments:
-            - '@twig'
-            - 'public/css/styles.css'
-
     App\Twig\ProficiencyDot:
         class: App\Twig\ProficiencyDot
         arguments:
@@ -25,32 +19,11 @@ services:
         class: App\Twig\ValueDecorator
         tags: [ 'twig.extension' ]
 
-    DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder:
-        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-
-    DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder:
-        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-
-    DND\CharacterCard\SectionBuilder\TitleSectionBuilder:
-        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-
-    DND\CharacterCard\SectionBuilder\SkillsSectionBuilder:
-        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-
-    DND\CharacterCard\SectionBuilder\StatsSectionBuilder:
-        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
-
-    DND\CharacterCard\CharacterCardDirector:
-        class: DND\CharacterCard\CharacterCardDirector
+    DND\CharacterCard\CharacterCardBuilder:
+        class: DND\CharacterCard\CharacterCardBuilder
         arguments:
-            - '@DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\SkillsSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\TitleSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\StatsSectionBuilder'
+            - 'public/css/styles.css'
+            - '@twig'
 
 imports:
     - { resource: 'infrastructure/services.yaml' }

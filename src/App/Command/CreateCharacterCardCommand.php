@@ -2,12 +2,8 @@
 
 namespace App\Command;
 
-use DND\Calculators\ArmorClassCalculator;
-use DND\Calculators\InitiativeCalculator;
-use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Character\CharacterFactory;
-use DND\Calculators\HpCalculator;
-use DND\CharacterCard\CharacterCardDirector;
+use DND\CharacterCard\CharacterCardBuilder;
 use DND\CharacterDataValidator;
 use DND\Validators\AlignmentValidator;
 use DND\Validators\CharacterNameValidator;
@@ -24,54 +20,25 @@ class CreateCharacterCardCommand extends Command
 {
     private const COMMAND_NAME = 'dnd:create-character-card';
 
-    private CharacterCardDirector $characterCardDirector;
+    private CharacterCardBuilder $characterCardBuilder;
 
-    public function __construct(CharacterCardDirector $characterCardDirector)
+    public function __construct(CharacterCardBuilder $characterCardBuilder)
     {
         parent::__construct(self::COMMAND_NAME);
 
-        $this->characterCardDirector = $characterCardDirector;
+        $this->characterCardBuilder = $characterCardBuilder;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $character = CharacterFactory::createFromArray($this->getValidData());
-        $content = \file_get_contents('template.html');
-        $data = [
-            '$characterName' => $character->getCharacterName(),
-            '$playerName' => $character->getPlayerName(),
-            '$race' => $character->getRace()->getName(),
-            '$alignment' => $character->getAlignment(),
-            '$origin' => $character->getOrigin(),
-            '$classLevel' => $character->getLevel()->getClass() . ' ' .$character->getLevel()->getLevel(),
-            '$hp' => HpCalculator::calculate($character),
-            '$proficiencyBonus' => ProficiencyBonusCalculator::calculate($character->getLevel()->getLevel()),
-            '$nightvision' => $character->getRace()->getNightvision(),
-            '$speed' => $character->getRace()->getSpeed(),
-            '$hitDiceType' => $character->getCharacterClass()->getHitDice(),
-            '$hitDiceCount' => $character->getLevel()->getLevel(),
-            '$asStr' => $character->getAbilities()->getStr()->getValue(),
-            '$initiative' => InitiativeCalculator::calculate($character->getAbilities()),
-            '$acWithoutArmor' => ArmorClassCalculator::calculate($character->getAbilities()),
-            '$savingThrows' => $character->getSavingThrows()->getStr()->getValue(),
-            '$skills' => $character->getSkills()->getAcrobatics()->getValue(),
-            '$proficiencies' => \implode(', ', $character->getProficiencies()),
-            '$languages' => \implode(', ', $character->getLanguages()),
-            '$resistances' => \implode(', ', $character->getResistances()),
-            '$immunities' => \implode(', ', $character->getImmunities()),
-        ];
-
-        $content = \str_replace(
-            \array_keys($data),
-            \array_values($data),
-            $content
+        $character = CharacterFactory::createFromArray(
+            $this->getValidData()
         );
 
-//        \file_put_contents('character_card.html', $this->characterCardDirector->buildAbilitiesSection($character));
-//        \file_put_contents('character_card.html', $this->characterCardDirector->buildSavingThrowsSection($character));
-//        \file_put_contents('character_card.html', $this->characterCardDirector->buildTitleSection($character));
-//        \file_put_contents('character_card.html', $this->characterCardDirector->buildSkillsSection($character));
-        \file_put_contents('character_card.html', $this->characterCardDirector->buildStatsSection($character));
+        \file_put_contents(
+            'character_card.html',
+            $this->characterCardBuilder->build($character)
+        );
 
         return Command::SUCCESS;
     }

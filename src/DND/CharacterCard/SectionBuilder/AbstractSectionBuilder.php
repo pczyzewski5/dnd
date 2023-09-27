@@ -7,14 +7,14 @@ use Twig\Environment;
 
 abstract class AbstractSectionBuilder
 {
+    protected Character $character;
     protected Environment $twig;
-    protected string $stylesPath;
 
-    public function __construct(Environment $twig, string $stylesPath)
+    public function __construct(Character $character, Environment $twig)
     {
+        $this->character = $character;
         $this->twig = $twig;
-        $this->stylesPath = $stylesPath;
     }
 
-    abstract public function build(Character $character): string;
+    abstract public function build(): string;
 }

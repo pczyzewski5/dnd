@@ -1,70 +1,68 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-   <style>
-      #saving-throws-background {
-         background-image: url("/public/images/saving_throws.jpg");
-         background-position: center;
-         background-repeat: no-repeat;
-         background-size: contain;
-         width: 43mm;
-         height: 37mm;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-      }
-      #saving-throws-container {
-         width: 36mm;
-         height: 30mm;
-         font-size: 10px;
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: space-evenly;
-         align-items: center;
-      }
-      .saving-throw {
-         width: 16mm;
-         height: 9mm;
-         display: flex;
-         flex-wrap: wrap;
-      }
-      .saving-throw div {
-         display: flex;
-         align-items:center;
-         justify-content:center;
+<style>
+   #saving-throws-background {
+      background-image: url("/public/images/saving_throws.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 43mm;
+      height: 37mm;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   #saving-throws-container {
+      width: 36mm;
+      height: 30mm;
+      font-size: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+   }
+   .saving-throw {
+      width: 16mm;
+      height: 9mm;
+      display: flex;
+      flex-wrap: wrap;
+   }
+   .saving-throw div {
+      display: flex;
+      align-items:center;
+      justify-content:center;
 
-      }
-      .saving-throw div:nth-child(1) {
-         background-color: rgba(10, 20, 30, 0.3);
-         width: 16mm;
-      }
-      .saving-throw div:nth-child(2) {
-         background-color: rgba(40, 50, 60, 0.3);
-         width: 4mm;
-      }
-      .saving-throw div:nth-child(3) {
-         background-color: rgba(70, 80, 90, 0.3);
-         width: 4mm;
-      }
-      .saving-throw div:nth-child(4) {
-         background-color: rgba(100, 110, 120, 0.3);
-         width: 4mm;
-      }
-      .saving-throw div:nth-child(5) {
-         background-color: rgba(130, 140, 150, 0.3);
-         width: 4mm;
-      }
-   </style>
-   <div id="saving-throws-background" class="section">
-      <div id="saving-throws-container">
-         {% for key, savingThrow in savingThrows.toArray() %}
-            <div class="saving-throw">
-               <div>{{ key|upper }}</div>
-               <div>{{ savingThrow.hasProficiency()|dot }}</div>
-               <div class="opaque">{{ savingThrow.getValue()|value }}</div>
-               <div class="opaque">+</div>
-               <div><span class="rectangle"/></div>
-            </div>
-         {% endfor %}
-      </div>
+   }
+   .saving-throw div:nth-child(1) {
+      background-color: rgba(10, 20, 30, 0.3);
+      width: 16mm;
+   }
+   .saving-throw div:nth-child(2) {
+      background-color: rgba(40, 50, 60, 0.3);
+      width: 4mm;
+   }
+   .saving-throw div:nth-child(3) {
+      background-color: rgba(70, 80, 90, 0.3);
+      width: 4mm;
+   }
+   .saving-throw div:nth-child(4) {
+      background-color: rgba(100, 110, 120, 0.3);
+      width: 4mm;
+   }
+   .saving-throw div:nth-child(5) {
+      background-color: rgba(130, 140, 150, 0.3);
+      width: 4mm;
+   }
+</style>
+
+<div id="saving-throws-background" class="section">
+   <div id="saving-throws-container">
+      {% for key, savingThrow in savingThrows.toArray() %}
+         <div class="saving-throw">
+            <div>{{ key|upper }}</div>
+            <div>{{ savingThrow.hasProficiency()|dot }}</div>
+            <div class="opaque">{{ savingThrow.getValue()|value }}</div>
+            <div class="opaque">+</div>
+            <div><span class="rectangle"/></div>
+         </div>
+      {% endfor %}
    </div>
-{% endblock %}
+</div>

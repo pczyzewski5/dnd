@@ -2,15 +2,12 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
-use DND\Character\Character;
-
 class AbilitiesSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(Character $character): string
+    public function build(): string
     {
         $context =  [
-            'abilities' => $character->getAbilities(),
-            'styles' => \file_get_contents($this->stylesPath)
+            'abilities' => $this->character->getAbilities(),
         ];
 
         return $this->twig->render(

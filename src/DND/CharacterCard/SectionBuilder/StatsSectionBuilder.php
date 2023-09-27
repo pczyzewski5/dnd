@@ -2,16 +2,10 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
-use DND\Character\Character;
-
 class StatsSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(Character $character): string
+    public function build(): string
     {
-        $context = [
-            'styles' => \file_get_contents($this->stylesPath)
-        ];
-
         $context['stats'] = [
             'hp' => 77,
             'proficiency bonus' => 3,

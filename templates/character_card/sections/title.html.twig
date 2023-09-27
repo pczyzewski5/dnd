@@ -1,78 +1,76 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-   <style>
-      #title-background {
-         background-image: url("/public/images/title.jpg");
-         background-position: center;
-         background-repeat: no-repeat;
-         background-size: contain;
-         width: 177mm;
-         height: 25mm;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-      }
-      #character-name {
-         position: absolute;
-         left: 32px;
-         top: 32px;
-         /*background-color: red;*/
-         width: 240px;
-         height: 33px;
-      }
-      #common-data-container {
-         /*background-color: red;*/
-         width: 393px;
-         height: 55px;
-         left: 279px;
-         top: 28px;
-         position: absolute;
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: space-around;
-         align-items: center;
-      }
-      .common-data {
-         width: 376px;
-         height: 25px;
-         font-size: 8px;
-         display: flex;
-         flex-wrap: wrap;
-      }
-      .common-data div {
-         width: 33.33%;
-         display: flex;
-         align-items:center;
-      }
-      .common-data div:nth-child(1) {
-         border-bottom: 1px solid grey;
-      }
-      .common-data div:nth-child(2) {
-         border-bottom: 1px solid grey;
-      }
-      .common-data div:nth-child(3) {
-         border-bottom: 1px solid grey;
-      }
-   </style>
-   <div id="title-background" class="section">
-      <div id="character-name" class="uc">Sydda</div>
-      <div id="common-data-container">
-         <div class="common-data">
-            <div>bereserker 7</div>
-            <div>ludowy bohater</div>
-            <div>Bartek J</div>
-            <div>KLASA I RASA</div>
-            <div>POCHODZENIE</div>
-            <div>IMIĘ GRACZA</div>
-         </div>
-         <div class="common-data">
-            <div>człowiek</div>
-            <div>chaotyczny dobry</div>
-            <div>klątwa strada</div>
-            <div>RASA</div>
-            <div>CHARAKTER</div>
-            <div>KAMPANIA</div>
-         </div>
+<style>
+   #title-background {
+      background-image: url("/public/images/title.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 177mm;
+      height: 25mm;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   #character-name {
+      position: absolute;
+      left: 32px;
+      top: 32px;
+      /*background-color: red;*/
+      width: 240px;
+      height: 33px;
+   }
+   #common-data-container {
+      /*background-color: red;*/
+      width: 393px;
+      height: 55px;
+      left: 279px;
+      top: 28px;
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+   }
+   .common-data {
+      width: 376px;
+      height: 25px;
+      font-size: 8px;
+      display: flex;
+      flex-wrap: wrap;
+   }
+   .common-data div {
+      width: 33.33%;
+      display: flex;
+      align-items:center;
+   }
+   .common-data div:nth-child(1) {
+      border-bottom: 1px solid grey;
+   }
+   .common-data div:nth-child(2) {
+      border-bottom: 1px solid grey;
+   }
+   .common-data div:nth-child(3) {
+      border-bottom: 1px solid grey;
+   }
+</style>
+
+<div id="title-background" class="section">
+   <div id="character-name" class="uc">Sydda</div>
+   <div id="common-data-container">
+      <div class="common-data">
+         <div>bereserker 7</div>
+         <div>ludowy bohater</div>
+         <div>Bartek J</div>
+         <div>KLASA I RASA</div>
+         <div>POCHODZENIE</div>
+         <div>IMIĘ GRACZA</div>
+      </div>
+      <div class="common-data">
+         <div>człowiek</div>
+         <div>chaotyczny dobry</div>
+         <div>klątwa strada</div>
+         <div>RASA</div>
+         <div>CHARAKTER</div>
+         <div>KAMPANIA</div>
       </div>
    </div>
-{% endblock %}
+</div>
