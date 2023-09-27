@@ -2,8 +2,6 @@
 
 namespace DND\Domain\SavingThrows;
 
-use DND\Domain\Ability\Ability;
-
 class SavingThrows
 {
     private SavingThrow $str;
@@ -50,5 +48,17 @@ class SavingThrows
     public function getCha(): SavingThrow
     {
         return $this->cha;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'str' => $this->str,
+            'dex' => $this->dex,
+            'con' => $this->con,
+            'int' => $this->int,
+            'wis' => $this->wis,
+            'cha' => $this->cha,
+        ];
     }
 }
