@@ -3,6 +3,7 @@
 namespace DND\CharacterCard;
 
 use DND\CharacterCard\Builder\AbstractBuilder;
+use DND\Domain\Ability\Abilities;
 use DND\Domain\SavingThrows\SavingThrows;
 
 class CharacterCardDirector
@@ -43,9 +44,11 @@ class CharacterCardDirector
         return $this->savingThrowsBuilder->build();
     }
 
-    public function buildAbilitiesSection(): string
+    public function buildAbilitiesSection(Abilities $abilities): string
     {
+        $this->abilitiesBuilder->setAbilities($abilities);
 
+        return $this->abilitiesBuilder->build();
     }
 
     public function buildSkillsSection(): string

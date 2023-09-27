@@ -28,11 +28,14 @@ services:
     DND\CharacterCard\Builder\SavingThrowsBuilder:
         parent: DND\CharacterCard\Builder\AbstractBuilder
 
+    DND\CharacterCard\Builder\AbilitiesBuilder:
+        parent: DND\CharacterCard\Builder\AbstractBuilder
+
     DND\CharacterCard\CharacterCardDirector:
         class: DND\CharacterCard\CharacterCardDirector
         arguments:
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
-            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\AbilitiesBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'

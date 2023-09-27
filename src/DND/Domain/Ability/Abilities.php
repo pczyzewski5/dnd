@@ -56,4 +56,16 @@ class Abilities
     {
         return $this->cha;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'str' => $this->str,
+            'dex' => $this->dex,
+            'con' => $this->con,
+            'int' => $this->int,
+            'wis' => $this->wis,
+            'cha' => $this->cha,
+        ];
+    }
 }

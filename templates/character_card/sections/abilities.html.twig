@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        #abilities {
+            width: 11mm;
+            height: 153mm;
+        }
+        .ability-background {
+            background-image: url("/public/images/ability.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 16mm;
+            height: 23mm;
+        }
+        .ability {
+            flex-direction: column;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .ability div {
+            display: flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .ability div:nth-child(1) {
+            background-color: rgba(10, 10, 10, 0.3);
+        }
+        .ability div:nth-child(2) {
+            background-color: rgba(100, 100, 100, 0.3);
+            height: 37px;
+        }
+        .ability div:nth-child(3) {
+            background-color: rgba(200, 200, 200, 0.3);
+            height: 26px;
+        }
+    </style>
+
+    <div id="abilities" class="section">
+        {% for key, ability in abilities.toArray() %}
+            <div class="ability-background ability">
+                <div>{{ key|upper }}</div>
+                <div>{{ ability.getValue() }}</div>
+                <div>{{ ability.getModifier()|value }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
