@@ -2,6 +2,7 @@
 
 namespace DND\CharacterCard\Builder;
 
+use DND\Character\Character;
 use Twig\Environment;
 
 abstract class AbstractBuilder
@@ -15,5 +16,5 @@ abstract class AbstractBuilder
         $this->stylesPath = $stylesPath;
     }
 
-    abstract public function build(): string;
+    abstract public function build(Character $character): string;
 }

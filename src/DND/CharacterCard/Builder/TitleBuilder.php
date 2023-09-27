@@ -6,17 +6,10 @@ use DND\Character\Character;
 
 class TitleBuilder extends AbstractBuilder
 {
-    private Character $character;
-
-    public function setCharacter(Character $character): void
-    {
-        $this->character = $character;
-    }
-
-    public function build(): string
+    public function build(Character $character): string
     {
         $context =  [
-            'character' => $this->character,
+            'character' => $character,
             'styles' => \file_get_contents($this->stylesPath)
         ];
 

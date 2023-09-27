@@ -38,45 +38,39 @@ class CharacterCardDirector
         $this->statsBuilder = $statsBuilder;
     }
 
-    public function buildSavingThrowsSection(SavingThrows $savingThrows): string
+    public function buildSavingThrowsSection(Character $character): string
     {
-        $this->savingThrowsBuilder->setSavingThrows($savingThrows);
-
-        return $this->savingThrowsBuilder->build();
+        return $this->savingThrowsBuilder->build($character);
     }
 
-    public function buildAbilitiesSection(Abilities $abilities): string
+    public function buildAbilitiesSection(Character $character): string
     {
-        $this->abilitiesBuilder->setAbilities($abilities);
-
-        return $this->abilitiesBuilder->build();
+        return $this->abilitiesBuilder->build($character);
     }
 
-    public function buildSkillsSection(): string
+    public function buildSkillsSection(Character $character): string
     {
 
     }
 
-    public function buildProficienciesAndLanguagesSection(): string
+    public function buildProficienciesAndLanguagesSection(Character $character): string
     {
 
     }
 
-    public function buildResistancesSection(): string
+    public function buildResistancesSection(Character $character): string
     {
 
     }
 
-    public function buildHitDiceSection(): string
+    public function buildHitDiceSection(Character $character): string
     {
 
     }
 
     public function buildTitleSection(Character $character): string
     {
-        $this->titleBuilder->setCharacter($character);
-
-        return $this->titleBuilder->build();
+        return $this->titleBuilder->build($character);
     }
 
     public function buildStatsSection(): string

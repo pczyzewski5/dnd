@@ -2,21 +2,14 @@
 
 namespace DND\CharacterCard\Builder;
 
-use DND\Domain\Ability\Abilities;
+use DND\Character\Character;
 
 class AbilitiesBuilder extends AbstractBuilder
 {
-    private Abilities $abilities;
-
-    public function setAbilities(Abilities $abilities): void
-    {
-        $this->abilities = $abilities;
-    }
-
-    public function build(): string
+    public function build(Character $character): string
     {
         $context =  [
-            'abilities' => $this->abilities,
+            'abilities' => $character->getAbilities(),
             'styles' => \file_get_contents($this->stylesPath)
         ];
 

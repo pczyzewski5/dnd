@@ -2,21 +2,14 @@
 
 namespace DND\CharacterCard\Builder;
 
-use DND\Domain\SavingThrows\SavingThrows;
+use DND\Character\Character;
 
 class SavingThrowsBuilder extends AbstractBuilder
 {
-    private SavingThrows $savingThrows;
-
-    public function setSavingThrows(SavingThrows $savingThrows): void
-    {
-        $this->savingThrows = $savingThrows;
-    }
-
-    public function build(): string
+    public function build(Character $character): string
     {
         $context =  [
-            'savingThrows' => $this->savingThrows,
+            'savingThrows' => $character->getSavingThrows(),
             'styles' => \file_get_contents($this->stylesPath)
         ];
 
