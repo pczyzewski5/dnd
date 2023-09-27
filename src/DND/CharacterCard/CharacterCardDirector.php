@@ -2,6 +2,7 @@
 
 namespace DND\CharacterCard;
 
+use DND\Character\Character;
 use DND\CharacterCard\Builder\AbstractBuilder;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\SavingThrows\SavingThrows;
@@ -71,9 +72,11 @@ class CharacterCardDirector
 
     }
 
-    public function buildTitleSection(): string
+    public function buildTitleSection(Character $character): string
     {
+        $this->titleBuilder->setCharacter($character);
 
+        return $this->titleBuilder->build();
     }
 
     public function buildStatsSection(): string

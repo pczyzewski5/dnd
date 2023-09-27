@@ -31,6 +31,9 @@ services:
     DND\CharacterCard\Builder\AbilitiesBuilder:
         parent: DND\CharacterCard\Builder\AbstractBuilder
 
+    DND\CharacterCard\Builder\TitleBuilder:
+        parent: DND\CharacterCard\Builder\AbstractBuilder
+
     DND\CharacterCard\CharacterCardDirector:
         class: DND\CharacterCard\CharacterCardDirector
         arguments:
@@ -40,7 +43,7 @@ services:
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
-            - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
+            - '@DND\CharacterCard\Builder\TitleBuilder'
             - '@DND\CharacterCard\Builder\SavingThrowsBuilder'
 
 imports:

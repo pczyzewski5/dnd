@@ -1,3 +1,6 @@
+body {
+    font-family: Arial;
+}
 .section {
     background-color: rgba(0, 255, 255, 0.5);
 }
@@ -29,4 +32,15 @@
 }
 .tar {
     text-align: right;
+}
+/* ultimate center vertically and horizontally */
+.uc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* center vertical */
+.cv {
+    display: flex;
+    align-items:center;
 }
