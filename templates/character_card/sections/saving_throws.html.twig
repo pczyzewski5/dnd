@@ -4,8 +4,8 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-      width: 43mm;
-      height: 37mm;
+      width: inherit;
+      height: inherit;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -53,16 +53,18 @@
    }
 </style>
 
-<div id="saving-throws-background" class="section">
-   <div id="saving-throws-container">
-      {% for key, savingThrow in savingThrows.toArray() %}
-         <div class="saving-throw">
-            <div>{{ key|upper }}</div>
-            <div>{{ savingThrow.hasProficiency()|dot }}</div>
-            <div class="opaque">{{ savingThrow.getValue()|value }}</div>
-            <div class="opaque">+</div>
-            <div><span class="rectangle"/></div>
-         </div>
-      {% endfor %}
+<div id="saving-throws-section" class="section">
+   <div id="saving-throws-background">
+      <div id="saving-throws-container">
+         {% for key, savingThrow in savingThrows.toArray() %}
+            <div class="saving-throw">
+               <div>{{ key|upper }}</div>
+               <div>{{ savingThrow.hasProficiency()|dot }}</div>
+               <div class="opaque">{{ savingThrow.getValue()|value }}</div>
+               <div class="opaque">+</div>
+               <div><span class="rectangle"/></div>
+            </div>
+         {% endfor %}
+      </div>
    </div>
 </div>

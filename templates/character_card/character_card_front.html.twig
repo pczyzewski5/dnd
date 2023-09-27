@@ -20,6 +20,18 @@
             width: 16mm;
             height: 153mm;
         }
+        #saving-throws-section {
+            left: 72px;
+            top: 96px;
+            width: 43mm;
+            height: 37mm;
+        }
+        #stats-section {
+            left: 243px;
+            top: 95px;
+            width: 50mm;
+            height: 41mm;
+        }
         .section {
             background-color: rgba(0, 255, 255, 0.5);
             position: absolute;
@@ -28,5 +40,7 @@
     <div id="character-card-front">
         {{ titleSection|raw }}
         {{ abilitiesSection|raw }}
+        {{ savingThrowsSection|raw }}
+        {{ statsSection|raw }}
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 <style>
-    #stats {
-        width: 50mm;
-        height: 41mm;
+    #stats-container {
+        width: inherit;
+        height: inherit;
         display: flex;
         flex-wrap: wrap;
         align-content: space-between;
@@ -39,11 +39,13 @@
     }
 </style>
 
-<div id="stats" class="section">
-    {% for key, stat in stats %}
-        <div class="stat-background stat">
-            <div class="tac">{{ key|upper }}</div>
-            <div>{{ stat }}</div>
-        </div>
-    {% endfor %}
+<div id="stats-section" class="section">
+    <div id="stats-container">
+        {% for key, stat in stats %}
+            <div class="stat-background stat">
+                <div class="tac">{{ key|upper }}</div>
+                <div>{{ stat }}</div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
