@@ -134,4 +134,28 @@ class Skills
     {
         return $this->sleightOfHands;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'acrobatics' => $this->acrobatics,
+            'athletics' => $this->athletics,
+            'history' => $this->history,
+            'insight' => $this->insight,
+            'medicine' => $this->medicine,
+            'animalHandling' => $this->animalHandling,
+            'deception' => $this->deception,
+            'perception' => $this->perception,
+            'persuasion' => $this->persuasion,
+            'nature' => $this->nature,
+            'religion' => $this->religion,
+            'stealth' => $this->stealth,
+            'survival' => $this->survival,
+            'investigation' => $this->investigation,
+            'arcana' => $this->arcana,
+            'performance' => $this->performance,
+            'intimidation' => $this->intimidation,
+            'sleightOfHands' => $this->sleightOfHands,
+        ];
+    }
 }
