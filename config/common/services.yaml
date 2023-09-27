@@ -37,6 +37,9 @@ services:
     DND\CharacterCard\SectionBuilder\SkillsSectionBuilder:
         parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
 
+    DND\CharacterCard\SectionBuilder\StatsSectionBuilder:
+        parent: DND\CharacterCard\SectionBuilder\AbstractSectionBuilder
+
     DND\CharacterCard\CharacterCardDirector:
         class: DND\CharacterCard\CharacterCardDirector
         arguments:
@@ -47,7 +50,7 @@ services:
             - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
             - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
             - '@DND\CharacterCard\SectionBuilder\TitleSectionBuilder'
-            - '@DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder'
+            - '@DND\CharacterCard\SectionBuilder\StatsSectionBuilder'
 
 imports:
     - { resource: 'infrastructure/services.yaml' }

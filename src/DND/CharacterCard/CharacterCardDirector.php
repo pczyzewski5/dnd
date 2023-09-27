@@ -71,8 +71,8 @@ class CharacterCardDirector
         return $this->titleBuilder->build($character);
     }
 
-    public function buildStatsSection(): string
+    public function buildStatsSection(Character $character): string
     {
-
+        return $this->statsBuilder->build($character);
     }
 }

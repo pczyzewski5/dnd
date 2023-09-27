@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        #stats {
+            width: 50mm;
+            height: 41mm;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+            justify-content: space-between;
+        }
+        .stat-background {
+            background-image: url("/public/images/stat.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 16mm;
+            height: 23mm;
+        }
+        .stat {
+            width: 16mm;
+            height: 20mm;
+            display: flex;
+            flex-direction: column;
+        }
+        .stat div {
+            display: flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .stat div:nth-child(1) {
+            background-color: rgba(10, 10, 10, 0.3);
+            font-size: 6px;
+            margin-top: 9px;
+            height: 14px;
+        }
+        .stat div:nth-child(2) {
+            background-color: rgba(100, 100, 100, 0.3);
+            height: 44px;
+            font-size: 10px;
+        }
+    </style>
+
+    <div id="stats" class="section">
+        {% for key, stat in stats %}
+            <div class="stat-background stat">
+                <div class="tac">{{ key|upper }}</div>
+                <div>{{ stat }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
