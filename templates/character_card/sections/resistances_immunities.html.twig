@@ -1,0 +1,30 @@
+<style>
+   #resistances-immunities-background {
+      background-image: url("/public/images/resistances_immunities.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: inherit;
+      height: inherit;
+   }
+   #resistances-immunities-container {
+      position: absolute;
+      top: 8px;
+      left: 5px;
+      height: 51px;
+      width: 141px;
+      font-size: 8px;
+   }
+   #resistances-immunities-container div {
+      height: 50%;
+   }
+</style>
+
+<div id="resistances-immunities-section" class="section">
+   <div id="resistances-immunities-background">
+      <div id="resistances-immunities-container">
+         <div><b>Odporności:</b> {{ resistances }}</div>
+         <div><b>Niewrażliwości:</b> {{ immunities }}</div>
+      </div>
+   </div>
+</div>

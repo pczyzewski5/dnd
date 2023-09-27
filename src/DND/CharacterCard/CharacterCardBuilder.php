@@ -4,6 +4,7 @@ namespace DND\CharacterCard;
 
 use DND\Character\Character;
 use DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder;
+use DND\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\SkillsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\StatsSectionBuilder;
@@ -29,6 +30,7 @@ class CharacterCardBuilder
             'skillsSection' => (new SkillsSectionBuilder($character, $this->twig))->build(),
             'titleSection' => (new TitleSectionBuilder($character, $this->twig))->build(),
             'statsSection' => (new StatsSectionBuilder($character, $this->twig))->build(),
+            'resistancesImmunitiesSection' => (new ResistancesImmunitiesSectionBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);
