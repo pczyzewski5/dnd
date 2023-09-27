@@ -13,6 +13,17 @@ services:
         class: DND\CharacterCard\Builder\AbstractBuilder
         arguments:
             - '@twig'
+            - 'public/css/styles.css'
+
+    App\Twig\ProficiencyDot:
+        class: App\Twig\ProficiencyDot
+        arguments:
+            - '@twig'
+        tags: [ 'twig.extension' ]
+
+    App\Twig\ValueDecorator:
+        class: App\Twig\ValueDecorator
+        tags: [ 'twig.extension' ]
 
     DND\CharacterCard\Builder\SavingThrowsBuilder:
         parent: DND\CharacterCard\Builder\AbstractBuilder

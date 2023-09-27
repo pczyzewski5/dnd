@@ -3,6 +3,7 @@
 namespace DND\CharacterCard;
 
 use DND\CharacterCard\Builder\AbstractBuilder;
+use DND\Domain\SavingThrows\SavingThrows;
 
 class CharacterCardDirector
 {
@@ -35,8 +36,10 @@ class CharacterCardDirector
         $this->statsBuilder = $statsBuilder;
     }
 
-    public function buildSavingThrowsSection(): string
+    public function buildSavingThrowsSection(SavingThrows $savingThrows): string
     {
+        $this->savingThrowsBuilder->setSavingThrows($savingThrows);
+
         return $this->savingThrowsBuilder->build();
     }
 

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+   <div id="saving-throws" class="section">
+      <table>
+         <tr>
+            <td colspan="4" class="tac">STR</td>
+            <td></td>
+            <td colspan="4" class="tac">INT</td>
+         </tr>
+         <tr>
+            <td>{{ savingThrows.getStr().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getStr().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+            <td></td>
+            <td>{{ savingThrows.getInt().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getInt().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+         </tr>
+         <tr>
+            <td colspan="4" class="tac">DEX</td>
+            <td></td>
+            <td colspan="4" class="tac">WIS</td>
+         </tr>
+         <tr>
+            <td>{{ savingThrows.getDex().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getDex().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+            <td></td>
+            <td>{{ savingThrows.getWis().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getWis().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+         </tr>
+         <tr>
+            <td colspan="4" class="tac">CON</td>
+            <td></td>
+            <td colspan="4" class="tac">CHA</td>
+         </tr>
+         <tr>
+            <td>{{ savingThrows.getCon().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getCon().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+            <td></td>
+            <td>{{ savingThrows.getCha().hasProficiency()|dot }}</td>
+            <td class="opaque">{{ savingThrows.getCha().getValue()|value }}</td>
+            <td class="opaque tar">&nbsp;+</td>
+            <td><span class="rectangle"/></td>
+         </tr>
+      </table>
+   </div>
+{% endblock %}
