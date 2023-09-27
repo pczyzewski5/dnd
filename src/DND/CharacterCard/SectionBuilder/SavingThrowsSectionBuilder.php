@@ -1,20 +1,20 @@
 <?php
 
-namespace DND\CharacterCard\Builder;
+namespace DND\CharacterCard\SectionBuilder;
 
 use DND\Character\Character;
 
-class TitleBuilder extends AbstractBuilder
+class SavingThrowsSectionBuilder extends AbstractSectionBuilder
 {
     public function build(Character $character): string
     {
         $context =  [
-            'character' => $character,
+            'savingThrows' => $character->getSavingThrows(),
             'styles' => \file_get_contents($this->stylesPath)
         ];
 
         return $this->twig->render(
-            'character_card/sections/title.html.twig',
+            'character_card/sections/saving_throws.html.twig',
             $context
         );
     }

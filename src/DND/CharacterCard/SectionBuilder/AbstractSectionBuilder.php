@@ -1,11 +1,11 @@
 <?php
 
-namespace DND\CharacterCard\Builder;
+namespace DND\CharacterCard\SectionBuilder;
 
 use DND\Character\Character;
 use Twig\Environment;
 
-abstract class AbstractBuilder
+abstract class AbstractSectionBuilder
 {
     protected Environment $twig;
     protected string $stylesPath;

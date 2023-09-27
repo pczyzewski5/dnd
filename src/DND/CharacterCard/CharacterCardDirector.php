@@ -3,30 +3,28 @@
 namespace DND\CharacterCard;
 
 use DND\Character\Character;
-use DND\CharacterCard\Builder\AbstractBuilder;
-use DND\Domain\Ability\Abilities;
-use DND\Domain\SavingThrows\SavingThrows;
+use DND\CharacterCard\SectionBuilder\AbstractSectionBuilder;
 
 class CharacterCardDirector
 {
-    private AbstractBuilder $savingThrowsBuilder;
-    private AbstractBuilder $abilitiesBuilder;
-    private AbstractBuilder $skillsBuilder;
-    private AbstractBuilder $proficienciesAndLanguagesBuilder;
-    private AbstractBuilder $resistancesBuilder;
-    private AbstractBuilder $hitDiceBuilder;
-    private AbstractBuilder $titleBuilder;
-    private AbstractBuilder $statsBuilder;
+    private AbstractSectionBuilder $savingThrowsBuilder;
+    private AbstractSectionBuilder $abilitiesBuilder;
+    private AbstractSectionBuilder $skillsBuilder;
+    private AbstractSectionBuilder $proficienciesAndLanguagesBuilder;
+    private AbstractSectionBuilder $resistancesBuilder;
+    private AbstractSectionBuilder $hitDiceBuilder;
+    private AbstractSectionBuilder $titleBuilder;
+    private AbstractSectionBuilder $statsBuilder;
 
     public function __construct(
-        AbstractBuilder $savingThrowsBuilder,
-        AbstractBuilder $abilitiesBuilder,
-        AbstractBuilder $skillsBuilder,
-        AbstractBuilder $proficienciesAndLanguagesBuilder,
-        AbstractBuilder $resistancesBuilder,
-        AbstractBuilder $hitDiceBuilder,
-        AbstractBuilder $titleBuilder,
-        AbstractBuilder $statsBuilder,
+        AbstractSectionBuilder $savingThrowsBuilder,
+        AbstractSectionBuilder $abilitiesBuilder,
+        AbstractSectionBuilder $skillsBuilder,
+        AbstractSectionBuilder $proficienciesAndLanguagesBuilder,
+        AbstractSectionBuilder $resistancesBuilder,
+        AbstractSectionBuilder $hitDiceBuilder,
+        AbstractSectionBuilder $titleBuilder,
+        AbstractSectionBuilder $statsBuilder,
     ) {
         $this->savingThrowsBuilder = $savingThrowsBuilder;
         $this->abilitiesBuilder = $abilitiesBuilder;
@@ -50,7 +48,7 @@ class CharacterCardDirector
 
     public function buildSkillsSection(Character $character): string
     {
-
+        return $this->skillsBuilder->build($character);
     }
 
     public function buildProficienciesAndLanguagesSection(Character $character): string

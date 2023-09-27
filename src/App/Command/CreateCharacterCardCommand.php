@@ -70,6 +70,7 @@ class CreateCharacterCardCommand extends Command
 //        \file_put_contents('character_card.html', $this->characterCardDirector->buildAbilitiesSection($character));
 //        \file_put_contents('character_card.html', $this->characterCardDirector->buildSavingThrowsSection($character));
         \file_put_contents('character_card.html', $this->characterCardDirector->buildTitleSection($character));
+        \file_put_contents('character_card.html', $this->characterCardDirector->buildSkillsSection($character));
 
         return Command::SUCCESS;
     }
