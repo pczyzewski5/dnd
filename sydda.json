@@ -44,30 +44,24 @@
       "str",
       "con"
     ],
-    "other": [
-      "narzędzia majsterkowicza",
-      "pojazdy lądowe",
-      "light_armors",
-      "medium_armors",
-      "shields",
-      "simple_weapons",
-      "soldier_weapons"
+    "ability_skills": [
+      "survival",
+      "animal handling",
+      "athletics",
+      "perception",
+      "stealth"
     ]
   },
 
 
-
-
-
-
-
-
-  "skills": [
-    "survival",
-    "animal handling",
-    "athletics",
-    "perception",
-    "stealth"
+  "other_profi": [
+    "narzędzia majsterkowicza",
+    "pojazdy lądowe",
+    "light_armors",
+    "medium_armors",
+    "shields",
+    "simple_weapons",
+    "soldier_weapons"
   ],
   "personality": {
     "trait": "Cieszy mnie moja siła i lubię niszczyć rzeczy.",

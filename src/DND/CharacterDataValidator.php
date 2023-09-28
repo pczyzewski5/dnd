@@ -15,7 +15,6 @@ class CharacterDataValidator
         'levels',
         'starting_abilities',
         'proficiencies',
-        'skills',
         'languages',
         // @todo nie ma validacji zagniezdzoncyh pól
         'proficiencies'

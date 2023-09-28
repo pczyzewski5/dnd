@@ -4,13 +4,14 @@ namespace DND\Character;
 
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
+use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
 use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\SavingThrows\SavingThrows;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
-use DND\Domain\Skills\AbilitySkills;
+use DND\Domain\AbilitySkills\AbilitySkills;
 
 class Character
 {
@@ -22,7 +23,6 @@ class Character
     private AlignmentEnum $alignment;
     private Levels $levels;
     private Abilities $abilities;
-    private AbilitySkills $skills;
     private Proficiencies $proficiencies;
     private array $languages;
     private array $resistances;
@@ -37,7 +37,6 @@ class Character
         AlignmentEnum  $alignment,
         Levels         $levels,
         Abilities      $abilities,
-        AbilitySkills  $skills,
         Proficiencies  $proficiencies,
         array          $languages,
         array          $resistances,
@@ -51,7 +50,6 @@ class Character
         $this->alignment = $alignment;
         $this->levels = $levels;
         $this->abilities = $abilities;
-        $this->skills = $skills;
         $this->proficiencies = $proficiencies;
         $this->languages = $languages;
         $this->resistances = $resistances;
@@ -125,7 +123,7 @@ class Character
 
     public function getAbilitySkills(): AbilitySkills
     {
-        return $this->skills;
+        return AbilitySkillsFactory::create($this->abilities, $this->proficiencies, $this->getProficiencyBonus());
     }
 
     public function getProficiencyBonus(): int

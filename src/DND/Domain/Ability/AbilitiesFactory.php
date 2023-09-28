@@ -6,7 +6,7 @@ use DND\Domain\Enum\AbilityEnum;
 
 class AbilitiesFactory
 {
-    public static function create(array $startingAbilities): Abilities
+    public static function fromArray(array $startingAbilities): Abilities
     {
         return new Abilities(
             new Ability($startingAbilities[AbilityEnum::STR]),

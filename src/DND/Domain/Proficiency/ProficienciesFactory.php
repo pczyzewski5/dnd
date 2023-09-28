@@ -6,14 +6,16 @@ use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficienciesFactory
 {
-   public static function create(array $proficiencies): Proficiencies
+   public static function fromArray(array $proficiencies): Proficiencies
    {
        $result = new Proficiencies();
 
-       foreach ($proficiencies['saving_throws'] as $proficiency) {
-           $result->addSavingThrowProficiency(
-               ProficiencyEnum::from($proficiency)
-           );
+       foreach ($proficiencies as $data) {
+           foreach ($data as $proficiency) {
+               $result->addProficiency(
+                   ProficiencyEnum::from($proficiency)
+               );
+           }
        }
 
        return $result;

@@ -2,27 +2,7 @@
 
 namespace DND\Domain\Enum;
 
-/**
- * @method static ACROBATICS()
- * @method static ATHLETICS()
- * @method static HISTORY()
- * @method static INSIGHT()
- * @method static MEDICINE()
- * @method static ANIMAL_HANDLING()
- * @method static DECEPTION()
- * @method static PERCEPTION()
- * @method static PERSUASION()
- * @method static NATURE()
- * @method static RELIGION()
- * @method static STEALTH()
- * @method static SURVIVAL()
- * @method static INVESTIGATION()
- * @method static ARCANA()
- * @method static PERFORMANCE()
- * @method static INTIMIDATION()
- * @method static SLEIGHT_OF_HANDS()
- */
-class SkillEnum extends BaseEnum
+class AbilitySkillEnum extends BaseEnum
 {
     const ACROBATICS = 'acrobatics';
     const ATHLETICS = 'athletics';

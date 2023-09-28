@@ -7,15 +7,15 @@ use DND\Domain\Enum\ProficiencyEnum;
 class Proficiencies
 {
     /** @var ProficiencyEnum[] $proficiencies */
-    private array $savingThrowsProficiencies = [];
+    private array $proficiencies = [];
 
     public function hasProficiency(ProficiencyEnum $proficiencyEnum): bool
     {
-        return \in_array($proficiencyEnum, $this->savingThrowsProficiencies);
+        return \in_array($proficiencyEnum, $this->proficiencies);
     }
 
-    public function addSavingThrowProficiency(ProficiencyEnum $proficiency): void
+    public function addProficiency(ProficiencyEnum $proficiency): void
     {
-        $this->savingThrowsProficiencies[] = $proficiency;
+        $this->proficiencies[] = $proficiency;
     }
 }
