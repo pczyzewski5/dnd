@@ -31,6 +31,7 @@ class CharacterCardBuilder
             'titleSection' => (new TitleSectionBuilder($character, $this->twig))->build(),
             'statsSection' => (new StatsSectionBuilder($character, $this->twig))->build(),
             'resistancesImmunitiesSection' => (new ResistancesImmunitiesSectionBuilder($character, $this->twig))->build(),
+            'abilitySkills' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);

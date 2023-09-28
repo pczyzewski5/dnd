@@ -1,53 +1,55 @@
 <style>
-   #skills-background {
-      background-image: url("/public/images/skills.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 43mm;
-      height: 96mm;
-   }
-   #skills-container {
-      /*background-color: red;*/
-      width: 37mm;
-      height: 90mm;
-      font-size: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: absolute;
-      left: 20px;
-      top: 19px;
-   }
-   .skill {
-      display: flex;
-      flex-wrap: wrap;
-   }
-   .skill div {
-      display: flex;
-      align-items:center;
-      justify-content:center;
+    #ability-skills-background {
+        background-image: url("/public/images/ability_skills.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #ability-skills-container {
+        /*background-color: red;*/
+        width: 37mm;
+        height: 90mm;
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        left: 20px;
+        top: 19px;
+    }
+    .ability-skill {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ability-skill div {
+        display: flex;
+        align-items:center;
+        justify-content:center;
 
-   }
-   .skill div:nth-child(1) {
-      background-color: rgba(10, 20, 30, 0.3);
-   }
-   .skill div:nth-child(2) {
-      background-color: rgba(40, 50, 60, 0.3);
-   }
-   .skill div:nth-child(3) {
-      background-color: rgba(70, 80, 90, 0.3);
-   }
+    }
+    .ability-skill div:nth-child(1) {
+        background-color: rgba(10, 20, 30, 0.3);
+    }
+    .ability-skill div:nth-child(2) {
+        background-color: rgba(40, 50, 60, 0.3);
+    }
+    .ability-skill div:nth-child(3) {
+        background-color: rgba(70, 80, 90, 0.3);
+    }
 </style>
 
-<div id="skills-background" class="section">
-   <div id="skills-container">
-      {% for key, skill in skills.toArray() %}
-         <div class="skill">
-            <div>{{ skill.hasProficiency()|dot }}</div>
-            <div class="opaque">&nbsp;&nbsp;{{ skill.getValue()|value }}&nbsp;&nbsp;</div>
-            <div>{{ key|capitalize }} (zrc)</div>
-         </div>
-      {% endfor %}
-   </div>
+<div id="ability-skills-section" class="section">
+    <div id="ability-skills-background">
+        <div id="ability-skills-container">
+            {% for key, abilitySkill in abilitySkills.toArray() %}
+                <div class="ability-skill">
+                    <div>{{ abilitySkill.hasProficiency()|dot }}</div>
+                    <div class="opaque">&nbsp;&nbsp;{{ abilitySkill.getValue()|value }}&nbsp;&nbsp;</div>
+                    <div>{{ key|capitalize }} (zrc)</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
