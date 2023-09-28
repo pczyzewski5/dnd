@@ -7,6 +7,23 @@
         align-content: space-between;
         justify-content: space-between;
     }
+    #armor-class {
+    }
+    #armor-class div:nth-child(odd) {
+    {{ backgroundColor() }}
+        font-size: 6px;
+        margin-top: 5px;
+        height: 10px;
+    }
+    #armor-class div:nth-child(even) {
+    {{ backgroundColor() }}
+        font-size: 14px;
+        height: 23px;
+        padding: 0 !important;
+    }
+    #armor-class div:nth-child(3) {
+        margin: 0 !important;
+    }
     .stat-background {
         background-image: url("/public/images/stat.jpg");
         background-position: center;
@@ -28,24 +45,52 @@
     }
     .stat div:nth-child(1) {
     {{ backgroundColor() }}
-        font-size: 8px;
+        font-size: 6px;
         margin-top: 9px;
         height: 14px;
     }
     .stat div:nth-child(2) {
     {{ backgroundColor() }}
-        font-size: 18px;
+        font-size: 16px;
         height: 44px;
+        padding-bottom: 20px;
+    }
+    .wide-rectangle {
+        height: 4mm;
+        width: 10mm;
+        border: 1px solid black;
+        display: inline-block;
+        opacity: 0.3;
     }
 </style>
 
 <div id="stats-section" class="section">
     <div id="stats-container">
-        {% for key, stat in stats %}
-            <div class="stat-background stat">
-                <div class="tac"><b>{{ key|upper }}</b></div>
-                <div>{{ stat }}</div>
-            </div>
-        {% endfor %}
+        <div class="stat-background stat">
+            <div class="tac"><b>PW</b></div>
+            <div>{{ hp }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>PROFICIENCY BONUS</b></div>
+            <div>{{ proficiencyBonus|value }}</div>
+        </div>
+        <div id="armor-class" class="stat-background stat">
+            <div class="tac"><b>KP BEZ ZBROI</b></div>
+            <div>{{ acWithoutArmor }}</div>
+            <div class="tac"><b>KP W ZBROI</b></div>
+            <div><span class="wide-rectangle"></span></div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>INICJATYWA</b></div>
+            <div>{{ initiative|value }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>WIDZENIE W CIEMNOŚCI</b></div>
+            <div>{{ nightvision == 0 ? 'n/d' : nightvision ~ ' hex' }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>SZYBKOŚĆ</b></div>
+            <div>{{ speed }} hex</div>
+        </div>
     </div>
 </div>

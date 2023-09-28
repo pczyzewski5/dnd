@@ -6,13 +6,13 @@ class StatsSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
-        $context['stats'] = [
+        $context = [
+            'proficiencyBonus' => 3,
+            'acWithoutArmor' => 15,
             'hp' => 77,
-            'proficiency bonus' => 3,
-            'ac without armor' => 15,
             'initiative' => 2,
-            'nightvision' => 'n/a',
-            'speed' => '8 hex',
+            'nightvision' => 0,
+            'speed' => 8,
         ];
 
         return $this->twig->render(
