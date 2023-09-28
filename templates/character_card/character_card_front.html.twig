@@ -50,6 +50,18 @@
             width: 60mm;
             height: 20mm;
         }
+        #hp-section {
+            left: 243px;
+            top: 255px;
+            width: 50mm;
+            height: 20mm;
+        }
+        #hit-dice-section {
+            left: 243px;
+            top: 255px;
+            width: 50mm;
+            height: 19mm;
+        }
         .section {
             background-color: rgba(0, 255, 255, 0.5);
             position: absolute;
@@ -63,5 +75,7 @@
         {{ resistancesImmunitiesSection|raw }}
         {{ abilitySkillsSection|raw }}
         {{ passivePerceptionIntuitionSection|raw }}
+        {{ hpSection|raw }}
+        {{ hitDiceSection|raw }}
     </div>
 {% endblock %}
