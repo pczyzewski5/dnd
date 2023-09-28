@@ -2,13 +2,11 @@
 
 namespace DND\Character;
 
-use DND\CharacterClass\CharacterClass;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
 use DND\Domain\SavingThrows\SavingThrows;
-use DND\Race\Race;
 use DND\Domain\Skills\AbilitySkills;
 
 class Character
@@ -20,7 +18,6 @@ class Character
     private OriginEnum $origin;
     private AlignmentEnum $alignment;
     private Levels $levels;
-    private CharacterClass $characterClass;
     private Abilities $abilities;
     private SavingThrows $savingThrows;
     private AbilitySkills $skills;
@@ -37,7 +34,6 @@ class Character
         OriginEnum     $origin,
         AlignmentEnum  $alignment,
         Levels         $levels,
-        CharacterClass $characterClass,
         Abilities      $abilities,
         SavingThrows   $savingThrows,
         AbilitySkills  $skills,
@@ -53,7 +49,6 @@ class Character
         $this->origin = $origin;
         $this->alignment = $alignment;
         $this->levels = $levels;
-        $this->characterClass = $characterClass;
         $this->abilities = $abilities;
         $this->savingThrows = $savingThrows;
         $this->skills = $skills;
@@ -86,11 +81,6 @@ class Character
     public function getLanguages(): array
     {
         return $this->languages;
-    }
-
-    public function getCharacterClass(): CharacterClass
-    {
-        return $this->characterClass;
     }
 
     public function getCharacterName(): string
@@ -133,7 +123,7 @@ class Character
         return $this->savingThrows;
     }
 
-    public function getSkills(): AbilitySkills
+    public function getAbilitySkills(): AbilitySkills
     {
         return $this->skills;
     }

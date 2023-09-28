@@ -6,22 +6,35 @@ use DND\Domain\Enum\CharacterClassEnum;
 
 class Levels
 {
-    private array $levels;
+    /** @var Level[] $levels */
+    private array $levels = [];
 
-    public function __construct(array $levels)
+    public function addLevel(Level $level): void
     {
-        $this->levels = $levels;
+        if (\array_key_exists($level->getLevel(), $this->levels)) {
+            // @todo changeme
+            throw new \Exception('level already exists');
+        }
+
+        $this->levels[] = $level;
     }
 
     public function getLevel(): int
     {
-        return \max(\array_keys($this->levels));
+        return \count($this->levels);
     }
 
-    public function getCharacterClass(): CharacterClassEnum
+    /**
+     * @return CharacterClassEnum[]
+     */
+    public function getCharacterClasses(): array
     {
-        return CharacterClassEnum::from(
-            \end($this->levels)['class']
-        );
+        $result = [];
+
+        foreach ($this->levels as $level) {
+            $result[] = $level->getCharacterClass();
+        }
+
+        return \array_unique($result);
     }
 }

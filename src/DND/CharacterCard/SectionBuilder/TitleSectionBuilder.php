@@ -2,12 +2,14 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
+use DND\Character\Character;
+
 class TitleSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
         $context =  [
-            'class' => $this->character->getLevels()->getCharacterClass()->getValue(),
+            'class' => $this->getClass($this->character),
             'level' => $this->character->getLevels()->getLevel(),
             'origin' => $this->character->getOrigin()->getValue(),
             'characterName' => $this->character->getCharacterName(),
@@ -21,5 +23,12 @@ class TitleSectionBuilder extends AbstractSectionBuilder
             'character_card/sections/title.html.twig',
             $context
         );
+    }
+
+    private function getClass(Character $character): string
+    {
+        $classes = \array_map('ucfirst', $this->character->getLevels()->getCharacterClasses());
+
+        return \implode('-', $classes);
     }
 }
