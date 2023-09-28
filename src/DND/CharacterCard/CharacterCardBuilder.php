@@ -8,6 +8,7 @@ use DND\CharacterCard\SectionBuilder\DealtDmgBuilder;
 use DND\CharacterCard\SectionBuilder\HitDiceSectionBuilder;
 use DND\CharacterCard\SectionBuilder\HpSectionBuilder;
 use DND\CharacterCard\SectionBuilder\PassivePerceptionIntuitionSectionBuilder;
+use DND\CharacterCard\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\AbilitySkillsSectionBuilder;
@@ -40,6 +41,7 @@ class CharacterCardBuilder
             'hpSection' => (new HpSectionBuilder($character, $this->twig))->build(),
             'hitDiceSection' => (new HitDiceSectionBuilder($character, $this->twig))->build(),
             'dealtDmgSection' => (new DealtDmgBuilder($character, $this->twig))->build(),
+            'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);

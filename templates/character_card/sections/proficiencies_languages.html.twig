@@ -1,0 +1,31 @@
+<style>
+   #proficiencies-languages-background {
+      background-image: url("/public/images/proficiencies_languages.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: inherit;
+      height: inherit;
+   }
+   #proficiencies-languages-container {
+      position: absolute;
+      top: 8px;
+      left: 5px;
+      height: 154px;
+      width: 179px;
+      font-size: 8px;
+   }
+   #proficiencies-languages-container div {
+   {{ backgroundColor() }}
+      height: 50%;
+   }
+</style>
+
+<div id="proficiencies-languages-section" class="section">
+   <div id="proficiencies-languages-background">
+      <div id="proficiencies-languages-container">
+         <div><b>Biegłości:</b> {{ proficiencies }}</div>
+         <div><b>Języki:</b> {{ languages }}</div>
+      </div>
+   </div>
+</div>
