@@ -1,0 +1,79 @@
+<style>
+    #skills-counter-background {
+        background-image: url("/public/images/skills_counter.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #skills-counter-container {
+    {{ backgroundColor() }}
+        width: 221px;
+        height: 288px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        left: 7px;
+        top: 10px;
+    }
+    #skills-counter-container div {
+        display: flex;
+        justify-content: space-between;
+    }
+    #skill-counter-header div {
+        font-size: 8px;
+    }
+    #skill-counter-header div:nth-child(1) {
+    {{ backgroundColor() }}
+        width: 33mm;
+    }
+    #skill-counter-header div:nth-child(2) {
+    {{ backgroundColor() }}
+        width: 8mm;
+    }
+    #skill-counter-header div:nth-child(3) {
+    {{ backgroundColor() }}
+        width: 13mm;
+    }
+    .skill-counter div {
+        font-size: 10px;
+        height: 6mm;
+        border-radius: 3px 0 3px 0;
+        border-color: grey;
+        border-width: 1px;
+        border-style: solid;
+    }
+    .skill-counter div:nth-child(1) {
+    {{ backgroundColor() }}
+        width: 33mm;
+    }
+    .skill-counter div:nth-child(2) {
+    {{ backgroundColor() }}
+        width: 8mm;
+    }
+    .skill-counter div:nth-child(3) {
+    {{ backgroundColor() }}
+        width: 13mm;
+    }
+</style>
+
+<div id="skills-counter-section" class="section">
+    <div id="skills-counter-background">
+        <div id="skills-counter-container">
+            <div id="skill-counter-header">
+                <div class="uc">NAZWA</div>
+                <div class="uc">MAKS</div>
+                <div class="uc">UŻYTE</div>
+            </div>
+            {% for i in 0..9 %}
+                <div class="skill-counter">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

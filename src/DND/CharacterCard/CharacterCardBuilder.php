@@ -12,6 +12,7 @@ use DND\CharacterCard\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\AbilitySkillsSectionBuilder;
+use DND\CharacterCard\SectionBuilder\SkillsCounterSectionBuilder;
 use DND\CharacterCard\SectionBuilder\StatsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
@@ -42,6 +43,7 @@ class CharacterCardBuilder
             'hitDiceSection' => (new HitDiceSectionBuilder($character, $this->twig))->build(),
             'dealtDmgSection' => (new DealtDmgBuilder($character, $this->twig))->build(),
             'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
+            'skillsCounterSection' => (new SkillsCounterSectionBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);
