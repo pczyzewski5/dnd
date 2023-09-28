@@ -19,6 +19,12 @@ services:
         class: App\Twig\ValueDecorator
         tags: [ 'twig.extension' ]
 
+    App\Twig\BackgroundColorCss:
+        class: App\Twig\BackgroundColorCss
+        arguments:
+            - '@twig'
+        tags: [ 'twig.extension' ]
+
     DND\CharacterCard\CharacterCardBuilder:
         class: DND\CharacterCard\CharacterCardBuilder
         arguments:
