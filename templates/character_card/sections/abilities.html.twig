@@ -30,12 +30,12 @@
     }
     .ability div:nth-child(2) {
     {{ backgroundColor() }}
-        font-size: 12px;
+        font-size: 20px;
         height: 47px;
     }
     .ability div:nth-child(3) {
     {{ backgroundColor() }}
-        font-size: 8px;
+        font-size: 14px;
         height: 25px;
     }
 </style>
@@ -44,9 +44,9 @@
     <div id="abilities-container">
         {% for key, ability in abilities.toArray() %}
             <div class="ability-background ability">
-                <div>{{ key|upper }}</div>
-                <div>{{ ability.getModifier()|value }}</div>
-                <div>{{ ability.getValue() }}</div>
+                <div><b>{{ key|upper }}</b></div>
+                <div class="opaque">{{ ability.getModifier()|value }}</div>
+                <div class="opaque">{{ ability.getValue() }}</div>
             </div>
         {% endfor %}
     </div>

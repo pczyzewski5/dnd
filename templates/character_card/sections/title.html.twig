@@ -11,12 +11,13 @@
       align-items: center;
    }
    #character-name {
+   {{ backgroundColor() }}
       position: absolute;
       left: 24px;
       top: 24px;
-   {{ backgroundColor() }}
       width: 240px;
       height: 33px;
+      font-size: 20px;
    }
    #common-data-container {
    {{ backgroundColor() }}
@@ -33,7 +34,7 @@
    .common-data {
       width: 376px;
       height: 25px;
-      font-size: 8px;
+      font-size: 12px;
       display: flex;
       flex-wrap: wrap;
    }
@@ -42,14 +43,11 @@
       display: flex;
       align-items:center;
    }
-   .common-data div:nth-child(1) {
+   .common-data div:nth-child(-n+3) {
       border-bottom: 1px solid grey;
    }
-   .common-data div:nth-child(2) {
-      border-bottom: 1px solid grey;
-   }
-   .common-data div:nth-child(3) {
-      border-bottom: 1px solid grey;
+   .common-data div:nth-child(n+4) {
+      font-size: 7px;
    }
 </style>
 

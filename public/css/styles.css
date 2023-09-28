@@ -18,13 +18,14 @@ body {
     display: inline-block;
 }
 .rectangle {
-    height: 10px;
-    width: 5px;
+    height: 5mm;
+    width: 5mm;
     border: 1px solid black;
     display: inline-block;
+    opacity: 0.3;
 }
 .opaque {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 .tac {
     text-align: center;

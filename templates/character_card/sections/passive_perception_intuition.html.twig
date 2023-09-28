@@ -8,7 +8,7 @@
       height: inherit;
    }
    #passive-perception-intuition-background div {
-      font-size: 12px;
+      font-size: 16px;
       position: absolute;
       width: 26px;
       height: 26px;
@@ -16,18 +16,18 @@
    #passive-perception-intuition-background div:nth-child(1) {
    {{ backgroundColor() }}
       left: 6px;
-      top: 5px;
+      top: 6px;
    }
    #passive-perception-intuition-background div:nth-child(2) {
    {{ backgroundColor() }}
       left: 6px;
-      top: 45px;
+      top: 46px;
    }
 </style>
 
 <div id="passive-perception-intuition-section" class="section">
    <div id="passive-perception-intuition-background">
-      <div class="uc">{{ passive_perception }}</div>
-      <div class="uc">{{ passive_intuition }}</div>
+      <div class="uc opaque">{{ passive_perception }}</div>
+      <div class="uc opaque">{{ passive_intuition }}</div>
    </div>
 </div>

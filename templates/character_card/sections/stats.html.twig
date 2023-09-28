@@ -28,14 +28,14 @@
     }
     .stat div:nth-child(1) {
     {{ backgroundColor() }}
-        font-size: 6px;
+        font-size: 8px;
         margin-top: 9px;
         height: 14px;
     }
     .stat div:nth-child(2) {
     {{ backgroundColor() }}
+        font-size: 18px;
         height: 44px;
-        font-size: 10px;
     }
 </style>
 
@@ -43,7 +43,7 @@
     <div id="stats-container">
         {% for key, stat in stats %}
             <div class="stat-background stat">
-                <div class="tac">{{ key|upper }}</div>
+                <div class="tac"><b>{{ key|upper }}</b></div>
                 <div>{{ stat }}</div>
             </div>
         {% endfor %}
