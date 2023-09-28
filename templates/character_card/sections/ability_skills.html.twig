@@ -8,16 +8,16 @@
         height: inherit;
     }
     #ability-skills-container {
-        /*background-color: red;*/
-        width: 37mm;
-        height: 90mm;
+    {{ backgroundColor() }}
+        width: 139px;
+        height: 340px;
         font-size: 10px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         position: absolute;
-        left: 20px;
-        top: 19px;
+        left: 12px;
+        top: 12px;
     }
     .ability-skill {
         display: flex;
@@ -30,13 +30,13 @@
 
     }
     .ability-skill div:nth-child(1) {
-        background-color: rgba(10, 20, 30, 0.3);
+    {{ backgroundColor() }}
     }
     .ability-skill div:nth-child(2) {
-        background-color: rgba(40, 50, 60, 0.3);
+    {{ backgroundColor() }}
     }
     .ability-skill div:nth-child(3) {
-        background-color: rgba(70, 80, 90, 0.3);
+    {{ backgroundColor() }}
     }
 </style>
 
