@@ -4,6 +4,7 @@ namespace DND\CharacterCard;
 
 use DND\Character\Character;
 use DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder;
+use DND\CharacterCard\SectionBuilder\AttacksTricksSectionBuilder;
 use DND\CharacterCard\SectionBuilder\DealtDmgBuilder;
 use DND\CharacterCard\SectionBuilder\HitDiceSectionBuilder;
 use DND\CharacterCard\SectionBuilder\HpSectionBuilder;
@@ -44,6 +45,7 @@ class CharacterCardBuilder
             'dealtDmgSection' => (new DealtDmgBuilder($character, $this->twig))->build(),
             'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
             'skillsCounterSection' => (new SkillsCounterSectionBuilder($character, $this->twig))->build(),
+            'attacksTricksSection' => (new AttacksTricksSectionBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);

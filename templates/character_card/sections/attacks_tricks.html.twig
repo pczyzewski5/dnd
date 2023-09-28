@@ -1,0 +1,95 @@
+<style>
+    #attacks-tricks-background {
+        background-image: url("/public/images/attacks_tricks.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #attacks-tricks-container {
+    {{ backgroundColor() }}
+        width: 221px;
+        height: 288px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        left: 7px;
+        top: 10px;
+    }
+    #attacks-tricks-container div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    #attack-trick-header div {
+        font-size: 8px;
+    }
+    #attack-trick-header div:nth-child(1) {
+    {{ backgroundColor() }}
+        width: 33mm;
+    }
+    #attack-trick-header div:nth-child(2) {
+    {{ backgroundColor() }}
+        width: 8mm;
+    }
+    #attack-trick-header div:nth-child(3) {
+    {{ backgroundColor() }}
+        width: 13mm;
+    }
+    #attacks-count {
+        font-size: 10px;
+        position: absolute;
+        top: 300px;
+        left: 7px;
+    }
+    .attack-trick div {
+        font-size: 10px;
+        height: 6mm;
+        border-radius: 3px 0 3px 0;
+        border-color: grey;
+        border-width: 1px;
+        border-style: solid;
+    }
+    .attack-trick div:nth-child(1) {
+    {{ backgroundColor() }}
+        width: 33mm;
+        margin-bottom: 2px;
+    }
+    .attack-trick div:nth-child(2) {
+    {{ backgroundColor() }}
+        width: 8mm;
+    }
+    .attack-trick div:nth-child(3) {
+    {{ backgroundColor() }}
+        width: 13mm;
+    }
+    .attack-trick div:nth-child(4) {
+    {{ backgroundColor() }}
+        width: 221px;
+    }
+</style>
+
+<div id="attacks-tricks-section" class="section">
+    <div id="attacks-tricks-background">
+        <div id="attacks-tricks-container">
+            <div id="attack-trick-header">
+                <div class="uc">NAZWA</div>
+                <div class="uc">PREMIA DO ATK</div>
+                <div class="uc">OBRAŻENIA</div>
+            </div>
+            {% for i in 0..4 %}
+                <div class="attack-trick">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="attacks-count">
+            <b>Liczba ataków bronią: </b><span class="opaque">2</span>
+        </div>
+    </div>
+</div>
