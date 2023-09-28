@@ -2,17 +2,19 @@
 
 namespace DND\Domain\Ability;
 
+use DND\Domain\Enum\AbilityEnum;
+
 class AbilitiesFactory
 {
-    public static function create(): Abilities
+    public static function create(array $startingAbilities): Abilities
     {
         return new Abilities(
-            10,
-            11,
-            12,
-            13,
-            14,
-            15
+            new Ability($startingAbilities[AbilityEnum::STR]),
+            new Ability($startingAbilities[AbilityEnum::DEX]),
+            new Ability($startingAbilities[AbilityEnum::CON]),
+            new Ability($startingAbilities[AbilityEnum::INT]),
+            new Ability($startingAbilities[AbilityEnum::WIS]),
+            new Ability($startingAbilities[AbilityEnum::CHA]),
         );
     }
 }

@@ -18,7 +18,7 @@ class ValueDecorator extends AbstractExtension
 
     public function decorate(int $value): string
     {
-        $prefix = '-';
+        $prefix = '';
         if ($value >= 0) {
             $prefix = '+';
         }

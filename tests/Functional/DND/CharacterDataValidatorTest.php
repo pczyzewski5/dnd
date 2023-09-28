@@ -12,7 +12,7 @@ use DND\Validators\LanguageValidator;
 use DND\Validators\PlayerNameValidator;
 use DND\Validators\ProficiencyValidator;
 use DND\Validators\RaceValidator;
-use DND\Validators\StartingStatsValidator;
+use DND\Validators\StartingAbilitiesValidator;
 use PHPUnit\Framework\TestCase;
 
 class RemoveUserGdprDataTest extends TestCase
@@ -39,7 +39,7 @@ class RemoveUserGdprDataTest extends TestCase
         $raceValidator = new RaceValidator();
         $alignmentValidator = new AlignmentValidator();
         $originValidator = new AlignmentValidator();
-        $startingStatsValidator = new StartingStatsValidator();
+        $startingStatsValidator = new StartingAbilitiesValidator();
 
         $characterDataValidator = new CharacterDataValidator();
         $characterDataValidator->addValidator($playerNameValidator);

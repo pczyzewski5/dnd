@@ -6,9 +6,9 @@ namespace DND\Validators;
 
 use DND\Domain\Enum\AbilityEnum;
 
-class StartingStatsValidator extends AbstractCharacterDataValidator
+class StartingAbilitiesValidator extends AbstractCharacterDataValidator
 {
-    protected static string $supportedData = 'starting_stats';
+    protected static string $supportedData = 'starting_abilities';
 
     public function validate(array|string $data): void
     {

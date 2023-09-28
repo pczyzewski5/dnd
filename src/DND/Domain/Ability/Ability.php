@@ -2,17 +2,24 @@
 
 namespace DND\Domain\Ability;
 
-use DND\Domain\MergerTrait;
-
 class Ability
 {
+    private int $value;
+    private int $modifier;
+
+    public function __construct(int $value)
+    {
+        $this->value = $value;
+        $this->modifier = AbilityScoresModCalculator::calculate($value);
+    }
+
     public function getValue(): int
     {
-        return 10;
+        return $this->value;
     }
 
     public function getModifier(): int
     {
-        return 2;
+        return $this->modifier;
     }
 }

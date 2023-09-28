@@ -24,7 +24,7 @@ class CharacterFactory
             OriginEnum::from($data['origin']),
             AlignmentEnum::from($data['alignment']),
             LevelsFactory::fromArray($data['levels']),
-            AbilitiesFactory::create(),
+            AbilitiesFactory::create($data['starting_abilities']),
             SavingThrowsFactory::create(),
             AbilitySkillsFactory::create(),
             ['pojazdy lądowe', 'lekkie pancerze'],

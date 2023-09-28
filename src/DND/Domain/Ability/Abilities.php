@@ -2,6 +2,8 @@
 
 namespace DND\Domain\Ability;
 
+use DND\Domain\Enum\AbilityEnum;
+
 class Abilities
 {
     private Ability $str;
@@ -12,19 +14,19 @@ class Abilities
     private Ability $cha;
 
     public function __construct(
-        int $str,
-        int $dex,
-        int $con,
-        int $int,
-        int $wis,
-        int $cha
+        Ability $str,
+        Ability $dex,
+        Ability $con,
+        Ability $int,
+        Ability $wis,
+        Ability $cha
     ) {
-        $this->str = new Ability($str);
-        $this->dex = new Ability($dex);
-        $this->con = new Ability($con);
-        $this->int = new Ability($int);
-        $this->wis = new Ability($wis);
-        $this->cha = new Ability($cha);
+        $this->str = $str;
+        $this->dex = $dex;
+        $this->con = $con;
+        $this->int = $int;
+        $this->wis = $wis;
+        $this->cha = $cha;
     }
 
     public function getStr(): Ability
@@ -60,12 +62,12 @@ class Abilities
     public function toArray(): array
     {
         return [
-            'str' => $this->str,
-            'dex' => $this->dex,
-            'con' => $this->con,
-            'int' => $this->int,
-            'wis' => $this->wis,
-            'cha' => $this->cha,
+            AbilityEnum::STR => $this->str,
+            AbilityEnum::DEX => $this->dex,
+            AbilityEnum::CON => $this->con,
+            AbilityEnum::INT => $this->int,
+            AbilityEnum::WIS => $this->wis,
+            AbilityEnum::CHA => $this->cha,
         ];
     }
 }

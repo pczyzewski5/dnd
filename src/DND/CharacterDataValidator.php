@@ -13,7 +13,7 @@ class CharacterDataValidator
         'alignment',
         'origin',
         'levels',
-        'starting_stats',
+        'starting_abilities',
         'proficiencies',
         'skills',
         'languages'

@@ -31,6 +31,14 @@
   "player_name": "Bartek J",
   "race": "human",
   "alignment": "chaotic good",
+  "starting_abilities": {
+    "str": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 10
+  },
 
 
 
@@ -45,15 +53,7 @@
   ],
   "hit_dice": 12,
   "darkvision": 0,
-  "starting_stats": {
-    "str": 16,
-    "dex": 14,
-    "con": 14,
-    "int": 8,
-    "wis": 12,
-    "cha": 10,
-    "pox": 11
-  },
+
   "saving_throws": [
     "str",
     "con"

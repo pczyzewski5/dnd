@@ -11,7 +11,7 @@ use DND\Validators\LanguageValidator;
 use DND\Validators\OriginValidator;
 use DND\Validators\PlayerNameValidator;
 use DND\Validators\RaceValidator;
-use DND\Validators\StartingStatsValidator;
+use DND\Validators\StartingAbilitiesValidator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -58,7 +58,7 @@ class CreateCharacterCardCommand extends Command
         $characterDataValidator->addValidator(new CharacterNameValidator());
         $characterDataValidator->addValidator(new RaceValidator());
         $characterDataValidator->addValidator(new AlignmentValidator());
-        $characterDataValidator->addValidator(new StartingStatsValidator());
+        $characterDataValidator->addValidator(new StartingAbilitiesValidator());
         $characterDataValidator->addValidator(new OriginValidator());
         $characterDataValidator->addValidator(new LanguageValidator());
 
