@@ -6,7 +6,7 @@ use DND\Character\Character;
 use DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use DND\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder;
-use DND\CharacterCard\SectionBuilder\SkillsSectionBuilder;
+use DND\CharacterCard\SectionBuilder\AbilitySkillsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\StatsSectionBuilder;
 use DND\CharacterCard\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
@@ -27,7 +27,7 @@ class CharacterCardBuilder
         $context = [
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
             'abilitiesSection' => (new AbilitiesSectionBuilder($character, $this->twig))->build(),
-            'skillsSection' => (new SkillsSectionBuilder($character, $this->twig))->build(),
+            'skillsSection' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
             'titleSection' => (new TitleSectionBuilder($character, $this->twig))->build(),
             'statsSection' => (new StatsSectionBuilder($character, $this->twig))->build(),
             'resistancesImmunitiesSection' => (new ResistancesImmunitiesSectionBuilder($character, $this->twig))->build(),

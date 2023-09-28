@@ -8,7 +8,7 @@ use DND\Domain\Enum\Alignment;
 use DND\Domain\Enum\Origin;
 use DND\Domain\SavingThrows\SavingThrows;
 use DND\Race\Race;
-use DND\Domain\Skills\Skills;
+use DND\Domain\Skills\AbilitySkills;
 
 class Character
 {
@@ -21,27 +21,27 @@ class Character
     private CharacterClass $characterClass;
     private Abilities $abilities;
     private SavingThrows $savingThrows;
-    private Skills $skills;
+    private AbilitySkills $skills;
     private array $proficiencies;
     private array $languages;
 private array $resistances;
 private array $immunities;
 
     public function __construct(
-        string $characterName,
-        string $playerName,
-        Race $race,
-        Origin $origin,
-        Alignment $alignment,
-        Level $level,
+        string         $characterName,
+        string         $playerName,
+        Race           $race,
+        Origin         $origin,
+        Alignment      $alignment,
+        Level          $level,
         CharacterClass $characterClass,
-        Abilities $abilities,
-        SavingThrows $savingThrows,
-        Skills $skills,
-        array $proficiencies,
-        array $languages,
-        array $resistances,
-        array $immunities,
+        Abilities      $abilities,
+        SavingThrows   $savingThrows,
+        AbilitySkills  $skills,
+        array          $proficiencies,
+        array          $languages,
+        array          $resistances,
+        array          $immunities,
     ) {
         $this->characterName = $characterName;
         $this->playerName = $playerName;
@@ -124,7 +124,7 @@ private array $immunities;
         return $this->savingThrows;
     }
 
-    public function getSkills(): Skills
+    public function getSkills(): AbilitySkills
     {
         return $this->skills;
     }

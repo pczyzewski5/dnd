@@ -2,7 +2,7 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
-class SkillsSectionBuilder extends AbstractSectionBuilder
+class AbilitySkillsSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
@@ -11,7 +11,7 @@ class SkillsSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/sections/skills.html.twig',
+            'character_card/sections/ability_skills.html.twig',
             $context
         );
     }

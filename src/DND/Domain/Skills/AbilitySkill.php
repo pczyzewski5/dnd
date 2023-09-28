@@ -2,7 +2,7 @@
 
 namespace DND\Domain\Skills;
 
-class Skill
+class AbilitySkill
 {
     public function getValue(): int
     {

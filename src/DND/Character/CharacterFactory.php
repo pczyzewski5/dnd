@@ -9,7 +9,7 @@ use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\Origin;
 use DND\Domain\Enum\RaceEnum;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
-use DND\Domain\Skills\SkillFactory;
+use DND\Domain\Skills\AbilitySkillsFactory;
 use DND\Race\RaceFactory;
 
 class CharacterFactory
@@ -26,7 +26,7 @@ class CharacterFactory
             CharacterClassFactory::create(CharacterClassEnum::from('barbarian')),
             AbilitiesFactory::create(),
             SavingThrowsFactory::create(),
-            SkillFactory::create(),
+            AbilitySkillsFactory::create(),
             ['pojazdy lądowe', 'lekkie pancerze'],
             ['orczy', 'ludzki'],
             ['ogień'],
