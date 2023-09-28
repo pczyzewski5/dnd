@@ -2,7 +2,7 @@
 
 namespace DND\Domain\Enum;
 
-class Alignment extends BaseEnum
+class AlignmentEnum extends BaseEnum
 {
     const LAWFUL_GOOD = 'lawful good';
     const CHAOTIC_GOOD = 'chaotic good';

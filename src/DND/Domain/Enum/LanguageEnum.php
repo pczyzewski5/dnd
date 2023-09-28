@@ -2,7 +2,7 @@
 
 namespace DND\Domain\Enum;
 
-class Language extends BaseEnum
+class LanguageEnum extends BaseEnum
 {
     const GNOLL = 'gnoll';
     const ORC = 'orc';

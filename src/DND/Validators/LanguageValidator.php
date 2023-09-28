@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Validators;
 
-use DND\Domain\Enum\Language;
+use DND\Domain\Enum\LanguageEnum;
 
 class LanguageValidator extends AbstractCharacterDataValidator
 {
@@ -23,7 +23,7 @@ class LanguageValidator extends AbstractCharacterDataValidator
 
         $notSupportedLanguages = [];
         foreach ($data as $language) {
-            if (false === Language::isValid($language)) {
+            if (false === LanguageEnum::isValid($language)) {
                 $notSupportedLanguages[] = $language;
             }
         }

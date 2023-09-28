@@ -19,6 +19,10 @@ services:
         class: App\Twig\ValueDecorator
         tags: [ 'twig.extension' ]
 
+    App\Twig\UcWords:
+        class: App\Twig\UcWords
+        tags: [ 'twig.extension' ]
+
     App\Twig\BackgroundColorCss:
         class: App\Twig\BackgroundColorCss
         arguments:

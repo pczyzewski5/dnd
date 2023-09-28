@@ -4,9 +4,9 @@ namespace DND\Character;
 
 use DND\CharacterClass\CharacterClassFactory;
 use DND\Domain\Ability\AbilitiesFactory;
-use DND\Domain\Enum\Alignment;
+use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\CharacterClassEnum;
-use DND\Domain\Enum\Origin;
+use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\Skills\AbilitySkillsFactory;
@@ -19,10 +19,11 @@ class CharacterFactory
         return new Character(
             $data['character_name'],
             $data['player_name'],
-            RaceFactory::create(RaceEnum::from($data['race'])),
-            Origin::from($data['origin']),
-            Alignment::from($data['alignment']),
-            new Level(),
+            $data['campaign_name'],
+            RaceEnum::from($data['race']),
+            OriginEnum::from($data['origin']),
+            AlignmentEnum::from($data['alignment']),
+            LevelFactory::fromArray($data['levels']),
             CharacterClassFactory::create(CharacterClassEnum::from('barbarian')),
             AbilitiesFactory::create(),
             SavingThrowsFactory::create(),

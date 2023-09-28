@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Validators;
 
-use DND\Domain\Enum\Origin;
+use DND\Domain\Enum\OriginEnum;
 
 class OriginValidator extends AbstractCharacterDataValidator
 {
@@ -20,10 +20,10 @@ class OriginValidator extends AbstractCharacterDataValidator
             // @todo change me
             throw new \Exception(static::$supportedData . ' cannot be empty.');
         }
-        if (false === Origin::isValid($data)) {
+        if (false === OriginEnum::isValid($data)) {
             // @todo change me
             throw new \Exception(
-                'Provided origin is not supported. Supported are: ' . \implode(', ', Origin::toArray()) . '.'
+                'Provided origin is not supported. Supported are: ' . \implode(', ', OriginEnum::toArray()) . '.'
             );
         }
     }

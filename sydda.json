@@ -1,10 +1,7 @@
 {
-  "character_name": "sydda",
-  "character_class": "berserker",
-  "class_level": {
-    "assassin": 8
-  },
-  "level": {
+  "character_name": "Sydda",
+  "campaign_name": "Klątwa Sthrada",
+  "levels": {
     "1": {
       "class": "barbarian"
     },
@@ -15,7 +12,7 @@
       "class": "barbarian"
     },
     "4": {
-      "class": "barbarian"
+      "class": "rouge"
     },
     "5": {
       "class": "barbarian"
@@ -34,6 +31,10 @@
   "player_name": "Bartek J",
   "race": "human",
   "alignment": "chaotic good",
+
+
+
+
   "img_url": "",
   "armor_class": 14,
   "speed_in_meters": {

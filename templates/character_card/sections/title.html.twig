@@ -17,7 +17,7 @@
       top: 24px;
       width: 240px;
       height: 33px;
-      font-size: 20px;
+      font-size: 18px;
    }
    #common-data-container {
    {{ backgroundColor() }}
@@ -53,20 +53,20 @@
 
 <div id="title-section" class="section">
    <div id="title-background">
-      <div id="character-name" class="uc">Sydda</div>
+      <div id="character-name" class="uc">{{ characterName }}</div>
       <div id="common-data-container">
          <div class="common-data">
-            <div>bereserker 7</div>
-            <div>ludowy bohater</div>
-            <div>Bartek J</div>
-            <div>KLASA I RASA</div>
+            <div>{{ class|ucWords }} {{ level }}</div>
+            <div>{{ origin|ucWords }}</div>
+            <div>{{ playerName|ucWords }}</div>
+            <div>KLASA I POZIOM</div>
             <div>POCHODZENIE</div>
             <div>IMIĘ GRACZA</div>
          </div>
          <div class="common-data">
-            <div>człowiek</div>
-            <div>chaotyczny dobry</div>
-            <div>klątwa strada</div>
+            <div>{{ race|ucWords }}</div>
+            <div>{{ alignment|ucWords }}</div>
+            <div>{{ campaign|ucWords }}</div>
             <div>RASA</div>
             <div>CHARAKTER</div>
             <div>KAMPANIA</div>

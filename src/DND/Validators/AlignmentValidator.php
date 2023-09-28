@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Validators;
 
-use DND\Domain\Enum\Alignment;
+use DND\Domain\Enum\AlignmentEnum;
 
 class AlignmentValidator extends AbstractCharacterDataValidator
 {
@@ -20,10 +20,10 @@ class AlignmentValidator extends AbstractCharacterDataValidator
             // @todo change me
             throw new \Exception(static::$supportedData . ' cannot be empty.');
         }
-        if (false === Alignment::isValid($data)) {
+        if (false === AlignmentEnum::isValid($data)) {
             // @todo change me
             throw new \Exception(
-                'Provided alignment is not supported. Supported are: ' . \implode(', ', Alignment::toArray()) . '.'
+                'Provided alignment is not supported. Supported are: ' . \implode(', ', AlignmentEnum::toArray()) . '.'
             );
         }
     }
