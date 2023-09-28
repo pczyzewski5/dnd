@@ -1,0 +1,33 @@
+<style>
+   #passive-perception-intuition-background {
+      background-image: url("/public/images/passive_perception_intuition.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: inherit;
+      height: inherit;
+   }
+   #passive-perception-intuition-background div {
+      font-size: 12px;
+      position: absolute;
+      width: 26px;
+      height: 26px;
+   }
+   #passive-perception-intuition-background div:nth-child(1) {
+      background-color: rgba(234, 192, 100, 0.3);
+      left: 6px;
+      top: 6px;
+   }
+   #passive-perception-intuition-background div:nth-child(2) {
+      background-color: rgba(234, 192, 200, 0.3);
+      left: 6px;
+      top: 45px;
+   }
+</style>
+
+<div id="passive-perception-intuition-section" class="section">
+   <div id="passive-perception-intuition-background">
+      <div class="uc">{{ passive_perception }}</div>
+      <div class="uc">{{ passive_intuition }}</div>
+   </div>
+</div>
