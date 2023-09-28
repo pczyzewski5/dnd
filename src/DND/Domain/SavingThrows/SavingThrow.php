@@ -2,15 +2,37 @@
 
 namespace DND\Domain\SavingThrows;
 
+use DND\Domain\Ability\Ability;
+
 class SavingThrow
 {
+    private Ability $ability;
+    private bool $hasProficiency;
+    private int $proficiencyBonus;
+
+    public function __construct(
+        Ability $ability,
+        bool $hasProficiency,
+        int $proficiencyBonus
+    ) {
+        $this->ability = $ability;
+        $this->hasProficiency = $hasProficiency;
+        $this->proficiencyBonus = $proficiencyBonus;
+    }
+
     public function getValue(): int
     {
-        return 3;
+        $value = $this->ability->getModifier();
+
+        if ($this->hasProficiency) {
+            $value += $this->proficiencyBonus;
+        }
+
+        return $value;
     }
 
     public function hasProficiency(): bool
     {
-        return true;
+        return $this->hasProficiency;
     }
 }

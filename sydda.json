@@ -1,5 +1,6 @@
 {
   "character_name": "Sydda",
+  "player_name": "Bartek J",
   "campaign_name": "Klątwa Sthrada",
   "levels": {
     "1": {
@@ -28,7 +29,6 @@
     }
   },
   "origin": "acolyte",
-  "player_name": "Bartek J",
   "race": "human",
   "alignment": "chaotic good",
   "starting_abilities": {
@@ -39,34 +39,29 @@
     "wis": 12,
     "cha": 10
   },
-
-
-
-
-  "img_url": "",
-  "armor_class": 14,
-  "speed_in_meters": {
-    "on_foot": 12
+  "proficiencies": {
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "other": [
+      "narzędzia majsterkowicza",
+      "pojazdy lądowe",
+      "light_armors",
+      "medium_armors",
+      "shields",
+      "simple_weapons",
+      "soldier_weapons"
+    ]
   },
-  "special": [
 
-  ],
-  "hit_dice": 12,
-  "darkvision": 0,
 
-  "saving_throws": [
-    "str",
-    "con"
-  ],
-  "proficiencies": [
-    "narzędzia majsterkowicza",
-    "pojazdy lądowe",
-    "light_armors",
-    "medium_armors",
-    "shields",
-    "simple_weapons",
-    "soldier_weapons"
-  ],
+
+
+
+
+
+
   "skills": [
     "survival",
     "animal handling",

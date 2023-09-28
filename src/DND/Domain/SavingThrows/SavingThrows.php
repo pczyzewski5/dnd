@@ -2,6 +2,8 @@
 
 namespace DND\Domain\SavingThrows;
 
+use DND\Domain\Enum\AbilityEnum;
+
 class SavingThrows
 {
     private SavingThrow $str;
@@ -11,54 +13,31 @@ class SavingThrows
     private SavingThrow $wis;
     private SavingThrow $cha;
 
-    public function __construct()
-    {
-        $this->str = new SavingThrow();
-        $this->dex = new SavingThrow();
-        $this->con = new SavingThrow();
-        $this->int = new SavingThrow();
-        $this->wis = new SavingThrow();
-        $this->cha = new SavingThrow();
-    }
-
-    public function getStr(): SavingThrow
-    {
-        return $this->str;
-    }
-
-    public function getDex(): SavingThrow
-    {
-        return $this->dex;
-    }
-
-    public function getCon(): SavingThrow
-    {
-        return $this->con;
-    }
-
-    public function getInt(): SavingThrow
-    {
-        return $this->int;
-    }
-
-    public function getWis(): SavingThrow
-    {
-        return $this->wis;
-    }
-    public function getCha(): SavingThrow
-    {
-        return $this->cha;
+    public function __construct(
+        SavingThrow $str,
+        SavingThrow $dex,
+        SavingThrow $con,
+        SavingThrow $int,
+        SavingThrow $wis,
+        SavingThrow $cha,
+    ) {
+        $this->str = $str;
+        $this->dex = $dex;
+        $this->con = $con;
+        $this->int = $int;
+        $this->wis = $wis;
+        $this->cha = $cha;
     }
 
     public function toArray(): array
     {
         return [
-            'str' => $this->str,
-            'dex' => $this->dex,
-            'con' => $this->con,
-            'int' => $this->int,
-            'wis' => $this->wis,
-            'cha' => $this->cha,
+            AbilityEnum::STR => $this->str,
+            AbilityEnum::DEX => $this->dex,
+            AbilityEnum::CON => $this->con,
+            AbilityEnum::INT => $this->int,
+            AbilityEnum::WIS => $this->wis,
+            AbilityEnum::CHA => $this->cha,
         ];
     }
 }

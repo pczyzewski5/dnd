@@ -8,6 +8,8 @@ use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
+use DND\Domain\Proficiency\Proficiencies;
+use DND\Domain\Proficiency\ProficienciesFactory;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\Skills\AbilitySkillsFactory;
 use DND\Race\RaceFactory;
@@ -25,9 +27,8 @@ class CharacterFactory
             AlignmentEnum::from($data['alignment']),
             LevelsFactory::fromArray($data['levels']),
             AbilitiesFactory::create($data['starting_abilities']),
-            SavingThrowsFactory::create(),
             AbilitySkillsFactory::create(),
-            ['pojazdy lądowe', 'lekkie pancerze'],
+            ProficienciesFactory::create($data['proficiencies']),
             ['orczy', 'ludzki'],
             ['ogień'],
             ['woda'],

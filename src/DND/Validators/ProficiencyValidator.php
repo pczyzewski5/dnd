@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Validators;
 
-use DND\Domain\Enum\Proficiency;
+use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficiencyValidator extends AbstractCharacterDataValidator
 {
@@ -23,7 +23,7 @@ class ProficiencyValidator extends AbstractCharacterDataValidator
 
         $notSupportedProficiencies = [];
         foreach ($data as $proficiency) {
-            if (false === Proficiency::isValid($proficiency)) {
+            if (false === ProficiencyEnum::isValid($proficiency)) {
                 $notSupportedProficiencies[] = $proficiency;
             }
         }

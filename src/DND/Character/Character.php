@@ -2,11 +2,14 @@
 
 namespace DND\Character;
 
+use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
+use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\SavingThrows\SavingThrows;
+use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\Skills\AbilitySkills;
 
 class Character
@@ -19,9 +22,8 @@ class Character
     private AlignmentEnum $alignment;
     private Levels $levels;
     private Abilities $abilities;
-    private SavingThrows $savingThrows;
     private AbilitySkills $skills;
-    private array $proficiencies;
+    private Proficiencies $proficiencies;
     private array $languages;
     private array $resistances;
     private array $immunities;
@@ -35,9 +37,8 @@ class Character
         AlignmentEnum  $alignment,
         Levels         $levels,
         Abilities      $abilities,
-        SavingThrows   $savingThrows,
         AbilitySkills  $skills,
-        array          $proficiencies,
+        Proficiencies  $proficiencies,
         array          $languages,
         array          $resistances,
         array          $immunities,
@@ -50,7 +51,6 @@ class Character
         $this->alignment = $alignment;
         $this->levels = $levels;
         $this->abilities = $abilities;
-        $this->savingThrows = $savingThrows;
         $this->skills = $skills;
         $this->proficiencies = $proficiencies;
         $this->languages = $languages;
@@ -73,7 +73,7 @@ class Character
         return $this->immunities;
     }
 
-    public function getProficiencies(): array
+    public function getProficiencies(): Proficiencies
     {
         return $this->proficiencies;
     }
@@ -120,11 +120,16 @@ class Character
 
     public function getSavingThrows(): SavingThrows
     {
-        return $this->savingThrows;
+        return SavingThrowsFactory::create($this->abilities, $this->proficiencies, $this->getProficiencyBonus());
     }
 
     public function getAbilitySkills(): AbilitySkills
     {
         return $this->skills;
+    }
+
+    public function getProficiencyBonus(): int
+    {
+        return ProficiencyBonusCalculator::calculate($this->getLevels()->getLevel());
     }
 }

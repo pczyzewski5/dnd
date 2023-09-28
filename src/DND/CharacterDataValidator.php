@@ -16,7 +16,9 @@ class CharacterDataValidator
         'starting_abilities',
         'proficiencies',
         'skills',
-        'languages'
+        'languages',
+        // @todo nie ma validacji zagniezdzoncyh pól
+        'proficiencies'
     ];
 
     /** @var AbstractCharacterDataValidator[] $validators */
