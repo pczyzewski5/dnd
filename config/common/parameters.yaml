@@ -1,1 +1,2 @@
-services:
+parameters:
+  is_dev_mode: false

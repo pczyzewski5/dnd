@@ -22,7 +22,7 @@ services:
     App\Twig\BackgroundColorCss:
         class: App\Twig\BackgroundColorCss
         arguments:
-            - '@twig'
+            - '%is_dev_mode%'
         tags: [ 'twig.extension' ]
 
     DND\CharacterCard\CharacterCardBuilder:
