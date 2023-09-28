@@ -4,6 +4,7 @@ namespace DND\CharacterCard;
 
 use DND\Character\Character;
 use DND\CharacterCard\SectionBuilder\AbilitiesSectionBuilder;
+use DND\CharacterCard\SectionBuilder\DealtDmgBuilder;
 use DND\CharacterCard\SectionBuilder\HitDiceSectionBuilder;
 use DND\CharacterCard\SectionBuilder\HpSectionBuilder;
 use DND\CharacterCard\SectionBuilder\PassivePerceptionIntuitionSectionBuilder;
@@ -38,6 +39,7 @@ class CharacterCardBuilder
             'passivePerceptionIntuitionSection' => (new PassivePerceptionIntuitionSectionBuilder($character, $this->twig))->build(),
             'hpSection' => (new HpSectionBuilder($character, $this->twig))->build(),
             'hitDiceSection' => (new HitDiceSectionBuilder($character, $this->twig))->build(),
+            'dealtDmgSection' => (new DealtDmgBuilder($character, $this->twig))->build(),
         ];
 
         $context['styles'] = \file_get_contents($this->stylesPath);
