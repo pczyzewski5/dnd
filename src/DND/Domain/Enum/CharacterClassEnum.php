@@ -6,4 +6,5 @@ class CharacterClassEnum extends BaseEnum
 {
     const BARBARIAN = 'barbarian';
     const ROUGE = 'rouge';
+    const ASSASSIN = 'assassin';
 }
