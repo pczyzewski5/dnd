@@ -25,6 +25,14 @@ class Levels
     }
 
     /**
+     * @return Level[]
+     */
+    public function getLevels(): array
+    {
+        return $this->levels;
+    }
+
+    /**
      * @return CharacterClassEnum[]
      */
     public function getCharacterClasses(): array

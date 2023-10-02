@@ -6,11 +6,23 @@ class HitDiceSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
+        $hitDices = $this->character->getHitDices()->toArray();
+
+        $classHitDiceType = 'D' . $hitDices[0]['type'];
+        $classHitDiceCount = $hitDices[0]['count'];
+
+        $subclassHitDiceCount = null;
+        $subclassHitDiceType = null;
+        if (\count($hitDices) === 2) {
+            $subclassHitDiceType = 'D' . $hitDices[1]['type'];
+            $subclassHitDiceCount = $hitDices[1]['count'];
+        }
+
         $context =  [
-            'classHitDiceCount' => 8,
-            'classHitDiceType' => 'D12',
-            'subclassHitDiceCount' => 1,
-            'subclassHitDiceType' => 'D8'
+            'classHitDiceCount' => $classHitDiceCount,
+            'classHitDiceType' => $classHitDiceType,
+            'subclassHitDiceCount' => $subclassHitDiceCount,
+            'subclassHitDiceType' => $subclassHitDiceType,
         ];
 
         return $this->twig->render(

@@ -4,6 +4,7 @@ namespace DND\Character;
 
 use DND\Calculators\ArmorClassCalculator;
 use DND\Calculators\DistanceCalculator;
+use DND\Calculators\HitDiceCalculator;
 use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
@@ -156,5 +157,10 @@ class Character
     public function getProficiencyBonus(): int
     {
         return ProficiencyBonusCalculator::calculate($this->getLevels()->getLevel());
+    }
+
+    public function getHitDices(): HitDices
+    {
+        return HitDiceCalculator::calculate($this->levels);
     }
 }
