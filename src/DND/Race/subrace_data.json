@@ -1,0 +1,11 @@
+{
+  "lightfoot halfling": {
+    "main_race": "halfling",
+    "ASI": {
+      "cha": 1
+    },
+    "skills": [
+      "naturally stealthy"
+    ]
+  }
+}

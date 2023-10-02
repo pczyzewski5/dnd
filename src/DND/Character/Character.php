@@ -7,6 +7,7 @@ use DND\Calculators\DistanceCalculator;
 use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
+use DND\Domain\Ability\AbilityMerger;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
@@ -52,15 +53,12 @@ class Character
         $this->origin = $origin;
         $this->alignment = $alignment;
         $this->levels = $levels;
-        $this->abilities = $abilities;
         $this->proficiencies = $proficiencies;
         $this->languages = $languages;
         $this->resistances = $resistances;
         $this->immunities = $immunities;
 
-        $this->abilities->addASI(
-            $this->race->getASI()
-        );
+        $this->abilities = AbilityMerger::merge($abilities, $race);
     }
 
     public function getCampaignName(): string

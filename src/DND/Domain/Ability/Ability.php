@@ -22,11 +22,4 @@ class Ability
     {
         return $this->modifier;
     }
-
-    public function increaseValue(int $value): void
-    {
-        $this->value += $value;
-
-        $this->modifier = AbilityScoresModCalculator::calculate($this->value);
-    }
 }
