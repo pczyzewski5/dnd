@@ -10,7 +10,8 @@ use DND\Domain\Enum\HitDiceEnum;
 class HitDiceCalculator
 {
     private const HIT_DICE_MAPPING = [
-        CharacterClassEnum::ROUGE => HitDiceEnum::D8
+        CharacterClassEnum::ROUGE => HitDiceEnum::D8,
+        CharacterClassEnum::ASSASSIN => HitDiceEnum::D8
     ];
 
     public static function calculate(Levels $levels): HitDices
@@ -26,8 +27,10 @@ class HitDiceCalculator
         foreach ($levels->getLevels() as $level) {
             foreach ($characterClasses as $characterClass) {
                 if ($level->getCharacterClass()->equals($characterClass)) {
-                    $hitDice = HitDiceEnum::from(self::HIT_DICE_MAPPING[$characterClass->getValue()]);
-                    $hitDices->increaseDiceCount($hitDice);
+                    $hitDice = self::HIT_DICE_MAPPING[$characterClass->getValue()];
+                    $hitDices->increaseDiceCount(
+                        HitDiceEnum::from($hitDice)
+                    );
                 }
             }
         }
