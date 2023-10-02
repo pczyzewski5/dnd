@@ -23,7 +23,7 @@ class CharacterFactory
             LevelsFactory::fromArray($data['levels']),
             AbilitiesFactory::fromArray($data['starting_abilities']),
             ProficienciesFactory::fromArray($data['proficiencies']),
-            ['orczy', 'ludzki'],
+            $data['languages'],
             ['ogień'],
             ['woda'],
         );

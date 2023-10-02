@@ -31,6 +31,10 @@
       "stealth"
     ]
   },
+  "languages": [
+    "common",
+    "elf"
+  ],
 
 
   "other_profi": [
@@ -94,10 +98,6 @@
     }
   ],
   "passive_abilities": [
-  ],
-  "languages": [
-    "common",
-    "elf"
   ],
   "equipment": [
     "Zestaw odkrywcy."

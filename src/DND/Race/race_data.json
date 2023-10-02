@@ -4,7 +4,7 @@
       "dex": 2
     },
     "skills": ["lucky", "brave", "nimble"],
-    "languages": ["common, halfling"],
+    "languages": ["common", "halfling"],
     "speed_in_meters": 7.5,
     "nightvision": 0
   }

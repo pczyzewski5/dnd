@@ -8,7 +8,7 @@ class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
     {
         $context = [
             'proficiencies' => 'fire, lightning.',
-            'languages' => 'poison, mental.',
+            'languages' => \implode(', ', $this->character->getLanguages()),
         ];
 
         return $this->twig->render(

@@ -9,6 +9,7 @@ class Race
     private RaceEnum $enum;
     private float $speed;
     private float $nightvision;
+    private array $languages;
     private array $ASI;
 
     public function __construct(RaceEnum $raceEnum, array $data)
@@ -17,6 +18,7 @@ class Race
 
         $this->speed = $data['speed_in_meters'];
         $this->nightvision = $data['nightvision'];
+        $this->languages = $data['languages'];
         $this->ASI = $data['ASI'];
     }
 
@@ -33,6 +35,11 @@ class Race
     public function getNightvision(): int
     {
         return $this->nightvision;
+    }
+
+    public function getLanguages(): array
+    {
+        return $this->languages;
     }
 
     public function getASI(): array

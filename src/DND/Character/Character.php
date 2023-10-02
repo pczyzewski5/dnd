@@ -83,7 +83,9 @@ class Character
 
     public function getLanguages(): array
     {
-        return $this->languages;
+        return \array_unique(
+            \array_merge($this->race->getLanguages(), $this->languages)
+        );
     }
 
     public function getCharacterName(): string
