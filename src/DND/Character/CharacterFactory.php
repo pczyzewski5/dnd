@@ -7,6 +7,7 @@ use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Enum\RaceEnum;
 use DND\Domain\Proficiency\ProficienciesFactory;
+use DND\Race\RaceFactory;
 
 class CharacterFactory
 {
@@ -16,7 +17,7 @@ class CharacterFactory
             $data['character_name'],
             $data['player_name'],
             $data['campaign_name'],
-            RaceEnum::from($data['race']),
+            RaceFactory::create(RaceEnum::from($data['race'])),
             OriginEnum::from($data['origin']),
             AlignmentEnum::from($data['alignment']),
             LevelsFactory::fromArray($data['levels']),

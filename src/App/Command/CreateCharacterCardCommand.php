@@ -46,7 +46,7 @@ class CreateCharacterCardCommand extends Command
     private function getValidData(): array
     {
         $data = \json_decode(
-            \file_get_contents('sydda.json'),
+            \file_get_contents('mordimer.json'),
             true
         );
         if (json_last_error() !== JSON_ERROR_NONE) {

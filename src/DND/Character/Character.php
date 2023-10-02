@@ -2,23 +2,26 @@
 
 namespace DND\Character;
 
+use DND\Calculators\ArmorClassCalculator;
+use DND\Calculators\DistanceCalculator;
+use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
-use DND\Domain\Enum\RaceEnum;
 use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\SavingThrows\SavingThrows;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\AbilitySkills\AbilitySkills;
+use DND\Race\Race;
 
 class Character
 {
     private string $characterName;
     private string $playerName;
     private string $campaignName;
-    private RaceEnum $race;
+    private Race $race;
     private OriginEnum $origin;
     private AlignmentEnum $alignment;
     private Levels $levels;
@@ -32,7 +35,7 @@ class Character
         string         $characterName,
         string         $playerName,
         string         $campaignName,
-        RaceEnum       $race,
+        Race       $race,
         OriginEnum     $origin,
         AlignmentEnum  $alignment,
         Levels         $levels,
@@ -54,6 +57,10 @@ class Character
         $this->languages = $languages;
         $this->resistances = $resistances;
         $this->immunities = $immunities;
+
+        $this->abilities->addASI(
+            $this->race->getASI()
+        );
     }
 
     public function getCampaignName(): string
@@ -91,9 +98,29 @@ class Character
         return $this->playerName;
     }
 
-    public function getRace(): RaceEnum
+    public function getRace(): Race
     {
         return $this->race;
+    }
+
+    public function getSpeed(): float
+    {
+        return DistanceCalculator::metersToHex($this->race->getSpeed());
+    }
+
+    public function getNightvision(): float
+    {
+        return DistanceCalculator::metersToHex($this->race->getNightvision());
+    }
+
+    public function getInitiative(): int
+    {
+        return InitiativeCalculator::calculate($this->abilities);
+    }
+
+    public function getArmorClassWithoutArmor(): int
+    {
+        return ArmorClassCalculator::calculate($this->abilities);
     }
 
     public function getOrigin(): OriginEnum

@@ -14,7 +14,7 @@ class TitleSectionBuilder extends AbstractSectionBuilder
             'origin' => $this->character->getOrigin()->getValue(),
             'characterName' => $this->character->getCharacterName(),
             'playerName' => $this->character->getPlayerName(),
-            'race' => $this->character->getRace()->getValue(),
+            'race' => $this->character->getRace()->getName(),
             'alignment' => $this->character->getAlignment()->getValue(),
             'campaign' => $this->character->getCampaignName(),
         ];

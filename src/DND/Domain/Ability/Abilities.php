@@ -59,6 +59,18 @@ class Abilities
         return $this->cha;
     }
 
+    public function addASI(array $ASI): void
+    {
+        foreach ($ASI as $ability => $value) {
+            if (false === AbilityEnum::isValid($ability)) {
+                // @todo change me
+                throw new \Exception($ability . ' ability does not exists.');
+            }
+
+            $this->$ability->increaseValue($value);
+        }
+    }
+
     public function toArray(): array
     {
         return [

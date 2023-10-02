@@ -7,12 +7,12 @@ class StatsSectionBuilder extends AbstractSectionBuilder
     public function build(): string
     {
         $context = [
-            'proficiencyBonus' => 3,
-            'acWithoutArmor' => 15,
+            'proficiencyBonus' => $this->character->getProficiencyBonus(),
+            'acWithoutArmor' => $this->character->getArmorClassWithoutArmor(),
             'hp' => 77,
-            'initiative' => 2,
-            'nightvision' => 0,
-            'speed' => 8,
+            'initiative' => $this->character->getInitiative(),
+            'nightvision' => $this->character->getNightvision(),
+            'speed' => $this->character->getSpeed(),
         ];
 
         return $this->twig->render(

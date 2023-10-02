@@ -1,0 +1,123 @@
+{
+  "character_name": "Mordimer Madderdin",
+  "player_name": "Paweł",
+  "campaign_name": "Klątwa Sthrada",
+  "levels": {
+    "1": {
+      "class": "rouge"
+    }
+  },
+  "origin": "acolyte",
+  "race": "lightfoot halfling",
+  "alignment": "neutral evil",
+  "starting_abilities": {
+    "str":10,
+    "dex": 10,
+    "con": 10,
+    "int": 10,
+    "wis": 10,
+    "cha": 10
+  },
+  "proficiencies": {
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "ability_skills": [
+      "survival",
+      "animal handling",
+      "athletics",
+      "perception",
+      "stealth"
+    ]
+  },
+
+
+  "other_profi": [
+    "narzędzia majsterkowicza",
+    "pojazdy lądowe",
+    "light_armors",
+    "medium_armors",
+    "shields",
+    "simple_weapons",
+    "soldier_weapons"
+  ],
+  "personality": {
+    "trait": "Cieszy mnie moja siła i lubię niszczyć rzeczy.",
+    "ideal": "Niezależność. Ślepe wypełnianie rozkazów to zgoda na pewien rodzaj tyranii.",
+    "bound": "Warto umierać za tych którzy walczą u mojego boku.",
+    "weakness": "Nie mam szacunku dla nikogo, kto nie udowodni, że jest wojownikiem."
+  },
+  "origin_benefits": "Wywodzisz się spośród zwykłych ludzi, którzy z chęcią Ci pomogą, możesz u nich znaleźć kryjówkę, schronienie, miejsce odpoczynku, lub powrotu do zdrowia. Ludzie Cię ukryją przed prawem, lub szukającymi Cię osobami, ale nie będą ryzykować swojego życia.",
+  "abilities": [
+    {
+      "name": "Szał",
+      "count": 4,
+      "show_desc": false,
+      "desc": ""
+    },
+    {
+      "name": "Wyczerpanie",
+      "count": 6,
+      "show_desc": false,
+      "desc": ""
+    },
+    {
+      "name": "Szał",
+      "desc": "zużyj akcję dodatkową by wejść w szał, który trwa 1 minutę, zyskujesz:<ul><li>+2 obrażeń do broni opartych na sile</li><li>otrzymujesz połowę obrażeń: siecznych, obuchowych, przebijających</li><li>rzuty obronne na siłę i testy siły wykonujesz z ułatwieniem</li></ul><p>Szał kończy się jeśli stracisz przytomność albo jeśli twoja tura skończy się, a ty nie zaatakowałaś wrogiej istoty albo nie otrzymałaś obrażeń w ciągu ostatniej tury. Możesz także zakończyć szał akcją dodatkową. Zdolność wraca po odbyciu długiego odpoczynku.</p>"
+    },
+    {
+      "name": "Furia",
+      "desc": "możesz na początku szału wpaść w furię. Kiedy to zrobisz, w każdej swojej następnej turze w trakcie trwania szału możesz w ramach akcji dodatkowej wykonać atak wręcz. Po zakończeniu szału otrzymujesz 1 poziom wyczerpania."
+    },
+    {
+      "name": "Szaleńczy atak",
+      "desc": "przy pierwszym ataku w swojej turze możesz zdecydować się na szaleńczy atak. Daje ci on do końca tej tury ułatwienie w testach ataku wręcz bronią opartą na Sile, lecz do twojej następnej tury ataki przeciw tobie również są wykonywane z ułatwieniem."
+    },
+    {
+      "name": "Szczęściarz",
+      "count": 3,
+      "desc": "ilekroć wykonujesz test ataku, test cechy lub rzut obronny możesz wydać jeden rzut szczęścia by rzucić dodatkową K20, musisz się na to zdecydować przed pierwszym rzutem. Możesz takżę wydać punkt szczęścia aby bronić się przed wymierzonym w Ciebie atakiem, rzuć K20 a następnie wybierz czy atakujący korzysta z Twojego rzutu czy ze swojego. Punkty szczęścia odzyskujesz po długim odpoczynku."
+    },
+    {
+      "name": "Bezmyślny szał",
+      "desc": "podczas szału nie możesz zostać zauroczony ani przerażony. Jeśli jesteś zauroczony lub przerażony w momencie wpadania w szał, ten efekt zostaje zawieszony do czasu zakończenia szału."
+    },
+    {
+      "name": "Mistrz broni dwuręcznej",
+      "desc": "gdy korzystasz z broni dwuręcznej: <ul><li>gdy w swojej turze uzyskasz trafienie krytyczne lub sprowadzisz przeciwnika do 0 PW w ramach akcji dodatkowej możesz wykonać atak wręcz bronią białą,</li><li>przed wykonaniem ataku ciężką bronią w której masz biegłość możesz zdecydować się przyjąć karę -5 do testu ataku, jeśli trafisz otrzymasz premię +10 do obrażeń.</li></ul>"
+    },
+    {
+      "name": "Dodatkowy atak",
+      "count": 1,
+      "desc": "raz dziennie możesz zaśpiewać pieśn o tym jak twoja postać pokonała Bel'Quatha, zyskujesz dzięki temu dodatkowy atak."
+    }
+  ],
+  "passive_abilities": [
+  ],
+  "languages": [
+    "common",
+    "elf"
+  ],
+  "equipment": [
+    "Zestaw odkrywcy."
+  ],
+  "backstory": "Wysłuchajcie teraz sagi o Syddzie, potężnej wojowniczce z północy! No dobrze, nie ma jeszcze takiej sagi. Ani pieśni. Wiersza nawet. Ale będą! Gdy Sydda wreszcie pokona smoka! Tak jest, tak go zdzieli, że mu się trąbka zwinie. Czy smoki mają trąbki? Sprawdzi się. W praniu. Ale najpierw takiego smoka trzeba znaleźć. Podobno w lasach się kryją. O, i jesteśmy w lesie, co Zielony Bór zwie się. I mamy początek pieśni. Wiadomo, że najpierw trzeba się trochę rozgrzać. Na przykład walką z czymś małym i parchatym. Gobliny to dobra rozgrzewka. No i przydaliby się jacyś świadkowie, coby Syddę podziwiali i potem jej imię sławili. O, tam są! Poklepiemy przyjacielsko po plecach i naprzód!",
+  "organizations_and_allies": [
+  ],
+  "notes": [
+    "<b>Obrona bez pancerza</b> - jeśli nie nosisz zbroi, twoja KP to: 10 + mod ze zrc + mod z kon.",
+    "<b>Wyczucie zagrożenia</b> - masz ułatwienie w rzutach obronnych na zrc przeciw zagrożeniom, które jesteś w stanie zaobserwować, takim jak pułapki i zaklęcia. Aby zmysł działał, nie możesz być oślepiony, ogłuchły ani obezwładniony.",
+    "<b>Zwierzęcy instynkt (rawr)</b> - zyskujesz ułatwienie w testach inicjatywy. Co więcej, jeśli jesteś zaskoczony, ale nie obezwładniony to możesz normalnie działać w swojej turze, o ile zaczniesz od wpadnięcia w szał.",
+    "<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość jest zwiększona o 2 hex.",
+    "<table><tr><td colspan='2' style='text-align: center;'><b>Wyczerpanie</b></td></tr><tr><td>Poziom</td><td style='text-align: center;'>Efekt</td></tr><tr><td>1</td><td>Utrudnienie w testach cech</td></tr><tr><td>2</td><td>Szybkość zmniejszona o połowę</td></tr><tr><td>3</td><td>Utrudnienie w testach ataku i rzutach obronnych</td></tr><tr><td>4</td><td>Maksymalne PW zmniejszone o połowę</td></tr><tr><td>5</td><td>Szybkość zmniejszona do 0</td></tr><tr><td>6</td><td>Śmierć</td></tr></table>",
+    "<b>ASI za poziom 8</b> - +2 con."
+  ],
+  "damage_resistances": [
+
+  ],
+  "spell_slots": {},
+  "spells": {
+    "spells": {}
+  }
+}
