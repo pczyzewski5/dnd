@@ -17,7 +17,7 @@ class Race
         $this->enum = $raceEnum;
 
         $this->speed = $data['speed_in_meters'];
-        $this->nightvision = $data['nightvision'];
+        $this->nightvision = $data['nightvision_in_meters'];
         $this->languages = $data['languages'];
         $this->ASI = $data['ASI'];
     }

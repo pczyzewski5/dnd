@@ -16,10 +16,6 @@ class LanguageValidator extends AbstractCharacterDataValidator
             // @todo change me
             throw new \Exception(static::$supportedData . ' must be an array.');
         }
-        if (empty($data)) {
-            // @todo change me
-            throw new \Exception(static::$supportedData . ' cannot be empty.');
-        }
 
         $notSupportedLanguages = [];
         foreach ($data as $language) {

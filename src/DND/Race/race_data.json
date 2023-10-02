@@ -6,6 +6,6 @@
     "skills": ["lucky", "brave", "nimble"],
     "languages": ["common", "halfling"],
     "speed_in_meters": 7.5,
-    "nightvision": 0
+    "nightvision_in_meters": 0
   }
 }
