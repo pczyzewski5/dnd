@@ -120,9 +120,7 @@
   ],
   "passive_abilities": [
   ],
-  "equipment": [
-    "Zestaw odkrywcy."
-  ],
+
   "backstory": "Wysłuchajcie teraz sagi o Syddzie, potężnej wojowniczce z północy! No dobrze, nie ma jeszcze takiej sagi. Ani pieśni. Wiersza nawet. Ale będą! Gdy Sydda wreszcie pokona smoka! Tak jest, tak go zdzieli, że mu się trąbka zwinie. Czy smoki mają trąbki? Sprawdzi się. W praniu. Ale najpierw takiego smoka trzeba znaleźć. Podobno w lasach się kryją. O, i jesteśmy w lesie, co Zielony Bór zwie się. I mamy początek pieśni. Wiadomo, że najpierw trzeba się trochę rozgrzać. Na przykład walką z czymś małym i parchatym. Gobliny to dobra rozgrzewka. No i przydaliby się jacyś świadkowie, coby Syddę podziwiali i potem jej imię sławili. O, tam są! Poklepiemy przyjacielsko po plecach i naprzód!",
   "organizations_and_allies": [
   ],
@@ -133,12 +131,5 @@
     "<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość jest zwiększona o 2 hex.",
     "<table><tr><td colspan='2' style='text-align: center;'><b>Wyczerpanie</b></td></tr><tr><td>Poziom</td><td style='text-align: center;'>Efekt</td></tr><tr><td>1</td><td>Utrudnienie w testach cech</td></tr><tr><td>2</td><td>Szybkość zmniejszona o połowę</td></tr><tr><td>3</td><td>Utrudnienie w testach ataku i rzutach obronnych</td></tr><tr><td>4</td><td>Maksymalne PW zmniejszone o połowę</td></tr><tr><td>5</td><td>Szybkość zmniejszona do 0</td></tr><tr><td>6</td><td>Śmierć</td></tr></table>",
     "<b>ASI za poziom 8</b> - +2 con."
-  ],
-  "damage_resistances": [
-
-  ],
-  "spell_slots": {},
-  "spells": {
-    "spells": {}
-  }
+  ]
 }

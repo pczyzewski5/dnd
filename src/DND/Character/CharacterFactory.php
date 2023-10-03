@@ -24,8 +24,8 @@ class CharacterFactory
             AbilitiesFactory::fromArray($data['starting_abilities']),
             ProficienciesFactory::fromArray($data['proficiencies'], $data['expert_proficiencies']),
             $data['languages'],
-            ['ogień'],
-            ['woda'],
+            [],
+            [],
         );
     }
 }

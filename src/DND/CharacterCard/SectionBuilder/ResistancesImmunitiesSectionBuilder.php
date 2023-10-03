@@ -7,8 +7,8 @@ class ResistancesImmunitiesSectionBuilder extends AbstractSectionBuilder
     public function build(): string
     {
         $context = [
-            'resistances' => 'fire, lightning.',
-            'immunities' => 'poison, mental.',
+            'resistances' => \implode(', ', $this->character->getResistances()),
+            'immunities' => \implode(', ', $this->character->getImmunities())
         ];
 
         return $this->twig->render(
