@@ -3,21 +3,26 @@
 namespace DND\Domain\SavingThrows;
 
 use DND\Domain\Ability\Ability;
+use DND\Domain\Enum\ProficiencyEnum;
+use DND\Domain\Proficiency\Proficiencies;
 
 class SavingThrow
 {
     private Ability $ability;
-    private bool $hasProficiency;
     private int $proficiencyBonus;
+    private bool $hasProficiency;
 
     public function __construct(
         Ability $ability,
-        bool $hasProficiency,
+        Proficiencies $proficiencies,
         int $proficiencyBonus
     ) {
         $this->ability = $ability;
-        $this->hasProficiency = $hasProficiency;
         $this->proficiencyBonus = $proficiencyBonus;
+
+        $this->hasProficiency = $proficiencies->hasProficiency(
+            ProficiencyEnum::from($ability->getAbilityEnum()->getValue())
+        );
     }
 
     public function getValue(): int
