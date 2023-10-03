@@ -40,16 +40,14 @@
     "cha": 15
   },
   "proficiencies": {
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": [],
     "ability_skills": [
-      "survival",
-      "animal handling",
-      "athletics",
+      "persuasion",
+      "stealth",
+      "deception",
       "perception",
-      "stealth"
+      "acrobatics",
+      "performance"
     ]
   },
   "languages": [],

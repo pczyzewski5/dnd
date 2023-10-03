@@ -1,5 +1,6 @@
 {
   "rouge": {
-    "hit_dice": 8
+    "hit_dice": 8,
+    "proficiencies": ["dex", "int"]
   }
 }

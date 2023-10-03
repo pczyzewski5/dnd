@@ -35,18 +35,18 @@ class Character
     private array $immunities;
 
     public function __construct(
-        string         $characterName,
-        string         $playerName,
-        string         $campaignName,
-        Race       $race,
-        OriginEnum     $origin,
-        AlignmentEnum  $alignment,
-        Levels         $levels,
-        Abilities      $abilities,
-        Proficiencies  $proficiencies,
-        array          $languages,
-        array          $resistances,
-        array          $immunities,
+        string $characterName,
+        string $playerName,
+        string $campaignName,
+        Race $race,
+        OriginEnum $origin,
+        AlignmentEnum $alignment,
+        Levels $levels,
+        Abilities $abilities,
+        Proficiencies $proficiencies,
+        array $languages,
+        array $resistances,
+        array $immunities,
     ) {
         $this->campaignName = $campaignName;
         $this->characterName = $characterName;
@@ -59,8 +59,11 @@ class Character
         $this->languages = $languages;
         $this->resistances = $resistances;
         $this->immunities = $immunities;
-
         $this->abilities = AbilityMerger::merge($abilities, $race);
+
+        $this->proficiencies->addProficiencies(
+            $levels->getMainCharacterClass()->getProficiencies()
+        );
     }
 
     public function getCampaignName(): string

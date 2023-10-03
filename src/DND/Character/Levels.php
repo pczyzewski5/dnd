@@ -32,6 +32,11 @@ class Levels
         return $this->levels;
     }
 
+    public function getMainCharacterClass(): CharacterClass
+    {
+        return \reset($this->levels)->getCharacterClass();
+    }
+
     /**
      * @return CharacterClass[]
      */
