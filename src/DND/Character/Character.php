@@ -5,6 +5,7 @@ namespace DND\Character;
 use DND\Calculators\ArmorClassCalculator;
 use DND\Calculators\DistanceCalculator;
 use DND\Calculators\HitDiceCalculator;
+use DND\Calculators\HitPointsCalculator;
 use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
 use DND\Domain\Ability\Abilities;
@@ -162,5 +163,10 @@ class Character
     public function getHitDices(): HitDices
     {
         return HitDiceCalculator::calculate($this->levels);
+    }
+
+    public function getHitPoints(): int
+    {
+        return HitPointsCalculator::calculate($this->abilities, $this->levels);
     }
 }

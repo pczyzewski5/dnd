@@ -7,13 +7,28 @@ use DND\Domain\Enum\HitDiceEnum;
 
 class CharacterClass
 {
-    public function getName(): string
+    private CharacterClassEnum $characterClassEnum;
+    private HitDiceEnum $hitDiceEnum;
+
+    public function __construct(CharacterClassEnum $characterClassEnum, array $data)
     {
-        return CharacterClassEnum::BARBARIAN;
+        $this->characterClassEnum = $characterClassEnum;
+
+        $this->hitDiceEnum = HitDiceEnum::from($data['hit_dice']);
     }
 
-    public function getHitDice(): int
+    public function getName(): string
     {
-        return HitDiceEnum::D8;
+        return $this->characterClassEnum->getValue();
+    }
+
+    public function getHitDiceEnum(): HitDiceEnum
+    {
+        return $this->hitDiceEnum;
+    }
+
+    public function equals(CharacterClass $characterClass): bool
+    {
+        return $this->getName() === $characterClass->getName();
     }
 }

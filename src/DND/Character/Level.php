@@ -2,14 +2,14 @@
 
 namespace DND\Character;
 
-use DND\Domain\Enum\CharacterClassEnum;
+use DND\CharacterClass\CharacterClass;
 
 class Level
 {
     private int $level;
-    private CharacterClassEnum $characterClass;
+    private CharacterClass $characterClass;
 
-    public function __construct(int $level, CharacterClassEnum $characterClass)
+    public function __construct(int $level, CharacterClass $characterClass)
     {
         $this->level = $level;
         $this->characterClass = $characterClass;
@@ -20,7 +20,7 @@ class Level
         return $this->level;
     }
 
-    public function getCharacterClass(): CharacterClassEnum
+    public function getCharacterClass(): CharacterClass
     {
         return $this->characterClass;
     }

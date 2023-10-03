@@ -3,12 +3,21 @@
 namespace DND\CharacterClass;
 
 use DND\Domain\Enum\CharacterClassEnum;
-use DND\Domain\Enum\HitDiceEnum;
 
 class CharacterClassFactory
 {
-    public static function create(CharacterClassEnum $classEnum): CharacterClass
+    public static function createFromString(string $characterClass): CharacterClass
     {
-        return new CharacterClass();
+        if (false === CharacterClassEnum::isValid($characterClass)) {
+            // @todo change me
+            throw new \Exception('Invalid class: ' . $characterClass);
+        }
+
+        $characterClassEnum = CharacterClassEnum::from($characterClass);
+
+        return new CharacterClass(
+            $characterClassEnum,
+            CharacterClassRepository::getByCharacterClass($characterClassEnum)
+        );
     }
 }

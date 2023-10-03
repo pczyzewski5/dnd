@@ -2,7 +2,7 @@
 
 namespace DND\Character;
 
-use DND\Domain\Enum\CharacterClassEnum;
+use DND\CharacterClass\CharacterClass;
 
 class Levels
 {
@@ -33,7 +33,7 @@ class Levels
     }
 
     /**
-     * @return CharacterClassEnum[]
+     * @return CharacterClass[]
      */
     public function getCharacterClasses(): array
     {
@@ -43,6 +43,6 @@ class Levels
             $result[] = $level->getCharacterClass();
         }
 
-        return \array_unique($result);
+        return \array_unique($result, SORT_REGULAR);
     }
 }

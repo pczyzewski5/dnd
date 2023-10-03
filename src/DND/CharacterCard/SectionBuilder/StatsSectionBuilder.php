@@ -9,7 +9,7 @@ class StatsSectionBuilder extends AbstractSectionBuilder
         $context = [
             'proficiencyBonus' => $this->character->getProficiencyBonus(),
             'acWithoutArmor' => $this->character->getArmorClassWithoutArmor(),
-            'hp' => 77,
+            'hp' => $this->character->getHitPoints(),
             'initiative' => $this->character->getInitiative(),
             'nightvision' => $this->character->getNightvision(),
             'speed' => $this->character->getSpeed(),
