@@ -27,8 +27,17 @@ class TitleSectionBuilder extends AbstractSectionBuilder
 
     private function getClass(Character $character): string
     {
-        $classes = \array_map('ucfirst', $this->character->getLevels()->getCharacterClasses());
+        $classes = [];
 
-        return \implode('-', $classes);
+        foreach ($character->getLevels()->getCharacterClasses() as $characterClass) {
+            $mainCharacterClass = $characterClass->getMainCharacterClassEnum();
+            if (null === $mainCharacterClass) {
+                $classes[] = $characterClass->getName();
+            } else {
+                $classes[] = $mainCharacterClass->getValue();
+            }
+        }
+
+        return \implode('-', \array_unique($classes));
     }
 }
