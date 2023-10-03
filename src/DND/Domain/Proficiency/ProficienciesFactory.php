@@ -6,18 +6,17 @@ use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficienciesFactory
 {
-   public static function fromArray(array $proficiencies): Proficiencies
-   {
-       $result = new Proficiencies();
+    public static function fromArray(array $proficiencies, array $expertProficiencies): Proficiencies
+    {
+        $result = new Proficiencies();
 
-       foreach ($proficiencies as $data) {
-           foreach ($data as $proficiency) {
-               $result->addProficiency(
-                   ProficiencyEnum::from($proficiency)
-               );
-           }
-       }
+        foreach ($proficiencies as $proficiency) {
+            $result->addProficiency(ProficiencyEnum::from($proficiency));
+        }
+        foreach ($expertProficiencies as $expertProficiency) {
+            $result->addExpertProficiency(ProficiencyEnum::from($expertProficiency));
+        }
 
-       return $result;
-   }
+        return $result;
+    }
 }

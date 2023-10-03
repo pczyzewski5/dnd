@@ -3,21 +3,37 @@
 namespace DND\Domain\AbilitySkills;
 
 use DND\Domain\Ability\Ability;
+use DND\Domain\Enum\AbilityEnum;
+use DND\Domain\Enum\AbilitySkillEnum;
+use DND\Domain\Enum\ProficiencyEnum;
+use DND\Domain\Proficiency\Proficiencies;
 
 class AbilitySkill
 {
+    private AbilitySkillEnum $abilitySkillEnum;
     private Ability $ability;
-    private bool $hasProficiency;
     private int $proficiencyBonus;
+    private bool $hasProficiency;
+    private bool $hasExpertise;
 
     public function __construct(
+        AbilitySkillEnum $abilitySkillEnum,
+        Proficiencies $proficiencies,
         Ability $ability,
-        bool $hasProficiency,
         int $proficiencyBonus
     ) {
+        $this->abilitySkillEnum = $abilitySkillEnum;
         $this->ability = $ability;
-        $this->hasProficiency = $hasProficiency;
         $this->proficiencyBonus = $proficiencyBonus;
+
+        $proficiencyEnum = ProficiencyEnum::from($abilitySkillEnum->getValue());
+        $this->hasProficiency = $proficiencies->hasProficiency($proficiencyEnum);
+        $this->hasExpertise = $proficiencies->hasExpertise($proficiencyEnum);
+    }
+
+    public function getAbilityEnum(): AbilityEnum
+    {
+        return $this->ability->getAbilityEnum();
     }
 
     public function getValue(): int
@@ -26,6 +42,9 @@ class AbilitySkill
 
         if ($this->hasProficiency) {
             $value += $this->proficiencyBonus;
+            if ($this->hasExpertise) {
+                $value += $this->proficiencyBonus;
+            }
         }
 
         return $value;
@@ -33,6 +52,6 @@ class AbilitySkill
 
     public function hasProficiency(): bool
     {
-        return $this->hasProficiency;
+        return $this->hasProficiency || $this->hasExpertise;
     }
 }

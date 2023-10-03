@@ -47,7 +47,7 @@
                 <div class="ability-skill">
                     <div>{{ abilitySkill.hasProficiency()|dot }}</div>
                     <div class="opaque">&nbsp;&nbsp;{{ abilitySkill.getValue()|value }}&nbsp;&nbsp;</div>
-                    <div>{{ key|capitalize }} (zrc)</div>
+                    <div>{{ key|capitalize }} ({{ abilitySkill.getAbilityEnum().getValue() }})</div>
                 </div>
             {% endfor %}
         </div>

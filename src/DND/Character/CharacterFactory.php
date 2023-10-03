@@ -22,7 +22,7 @@ class CharacterFactory
             AlignmentEnum::from($data['alignment']),
             LevelsFactory::fromArray($data['levels']),
             AbilitiesFactory::fromArray($data['starting_abilities']),
-            ProficienciesFactory::fromArray($data['proficiencies']),
+            ProficienciesFactory::fromArray($data['proficiencies'], $data['expert_proficiencies']),
             $data['languages'],
             ['ogień'],
             ['woda'],

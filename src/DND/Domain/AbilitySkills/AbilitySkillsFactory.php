@@ -3,7 +3,7 @@
 namespace DND\Domain\AbilitySkills;
 
 use DND\Domain\Ability\Abilities;
-use DND\Domain\Enum\ProficiencyEnum;
+use DND\Domain\Enum\AbilitySkillEnum;
 use DND\Domain\Proficiency\Proficiencies;
 
 class AbilitySkillsFactory
@@ -14,24 +14,24 @@ class AbilitySkillsFactory
         int $proficiencyBonus
     ): AbilitySkills {
         return new AbilitySkills(
-            new AbilitySkill($abilities->getDex(), $proficiencies->hasProficiency(ProficiencyEnum::ACROBATICS()), $proficiencyBonus),
-            new AbilitySkill($abilities->getStr(), $proficiencies->hasProficiency(ProficiencyEnum::ATHLETICS()), $proficiencyBonus),
-            new AbilitySkill($abilities->getInt(), $proficiencies->hasProficiency(ProficiencyEnum::HISTORY()), $proficiencyBonus),
-            new AbilitySkill($abilities->getWis(), $proficiencies->hasProficiency(ProficiencyEnum::INSIGHT()), $proficiencyBonus),
-            new AbilitySkill($abilities->getWis(), $proficiencies->hasProficiency(ProficiencyEnum::MEDICINE()), $proficiencyBonus),
-            new AbilitySkill($abilities->getWis(), $proficiencies->hasProficiency(ProficiencyEnum::ANIMAL_HANDLING()), $proficiencyBonus),
-            new AbilitySkill($abilities->getCha(), $proficiencies->hasProficiency(ProficiencyEnum::DECEPTION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getWis(), $proficiencies->hasProficiency(ProficiencyEnum::PERCEPTION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getCha(), $proficiencies->hasProficiency(ProficiencyEnum::PERSUASION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getInt(), $proficiencies->hasProficiency(ProficiencyEnum::NATURE()), $proficiencyBonus),
-            new AbilitySkill($abilities->getInt(), $proficiencies->hasProficiency(ProficiencyEnum::RELIGION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getDex(), $proficiencies->hasProficiency(ProficiencyEnum::STEALTH()), $proficiencyBonus),
-            new AbilitySkill($abilities->getWis(), $proficiencies->hasProficiency(ProficiencyEnum::SURVIVAL()), $proficiencyBonus),
-            new AbilitySkill($abilities->getInt(), $proficiencies->hasProficiency(ProficiencyEnum::INVESTIGATION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getInt(), $proficiencies->hasProficiency(ProficiencyEnum::ARCANA()), $proficiencyBonus),
-            new AbilitySkill($abilities->getCha(), $proficiencies->hasProficiency(ProficiencyEnum::PERFORMANCE()), $proficiencyBonus),
-            new AbilitySkill($abilities->getCha(), $proficiencies->hasProficiency(ProficiencyEnum::INTIMIDATION()), $proficiencyBonus),
-            new AbilitySkill($abilities->getDex(), $proficiencies->hasProficiency(ProficiencyEnum::SLEIGHT_OF_HANDS()), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::ACROBATICS(), $proficiencies, $abilities->getDex(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::ATHLETICS(), $proficiencies, $abilities->getStr(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::HISTORY(), $proficiencies, $abilities->getInt(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::INSIGHT(), $proficiencies, $abilities->getWis(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::MEDICINE(), $proficiencies, $abilities->getWis(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::ANIMAL_HANDLING(), $proficiencies, $abilities->getWis(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::DECEPTION(), $proficiencies, $abilities->getCha(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::PERCEPTION(), $proficiencies, $abilities->getWis(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::PERSUASION(), $proficiencies, $abilities->getCha(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::NATURE(), $proficiencies, $abilities->getInt(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::RELIGION(), $proficiencies, $abilities->getInt(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::STEALTH(), $proficiencies, $abilities->getDex(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::SURVIVAL(), $proficiencies, $abilities->getWis(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::INVESTIGATION(), $proficiencies, $abilities->getInt(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::ARCANA(), $proficiencies, $abilities->getInt(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::PERFORMANCE(), $proficiencies, $abilities->getCha(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::INTIMIDATION(), $proficiencies, $abilities->getCha(), $proficiencyBonus),
+            new AbilitySkill(AbilitySkillEnum::SLEIGHT_OF_HANDS(), $proficiencies, $abilities->getDex(), $proficiencyBonus),
         );
     }
 }
