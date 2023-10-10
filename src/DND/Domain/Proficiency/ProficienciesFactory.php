@@ -6,7 +6,7 @@ use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficienciesFactory
 {
-    public static function fromArray(array $proficiencies, array $expertProficiencies): Proficiencies
+    public static function fromArray(array $proficiencies, ?array $expertProficiencies = []): Proficiencies
     {
         $result = new Proficiencies();
 

@@ -12,7 +12,7 @@ class PassivePerceptionCalculator
     {
         $baseValue = 10;
 
-        if ($proficiencies->hasProficiency(ProficiencyEnum::PERCEPTION())) {
+        if ($proficiencies->hasProficiency(ProficiencyEnum::PERCEPTION)) {
             $baseValue += $proficiencyBonus;
         }
 

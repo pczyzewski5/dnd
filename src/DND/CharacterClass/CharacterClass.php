@@ -4,14 +4,14 @@ namespace DND\CharacterClass;
 
 use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\HitDiceEnum;
-use DND\Domain\Enum\ProficiencyEnum;
+use DND\Domain\Proficiency\Proficiencies;
+use DND\Domain\Proficiency\ProficienciesFactory;
 
 class CharacterClass
 {
     private CharacterClassEnum $characterClassEnum;
     private HitDiceEnum $hitDiceEnum;
-    /** @var ProficiencyEnum[] $proficiencies */
-    private array $proficiencies;
+    private Proficiencies $proficiencies;
     private ?CharacterClassEnum $mainCharacterClassEnum;
 
     public function __construct(CharacterClassEnum $characterClassEnum, array $data)
@@ -20,9 +20,7 @@ class CharacterClass
         $this->characterClassEnum = $characterClassEnum;
 
         $this->hitDiceEnum = HitDiceEnum::from($data['hit_dice']);
-        foreach ($data['proficiencies'] as $proficiency) {
-            $this->proficiencies[] = ProficiencyEnum::from($proficiency);
-        }
+        $this->proficiencies = ProficienciesFactory::fromArray($data['proficiencies']);
         $this->mainCharacterClassEnum = \array_key_exists('main_class', $data)
             ? CharacterClassEnum::from($data['main_class'])
             : null;
@@ -38,7 +36,7 @@ class CharacterClass
         return $this->hitDiceEnum;
     }
 
-    public function getProficiencies(): array
+    public function getProficiencies(): Proficiencies
     {
         return $this->proficiencies;
     }

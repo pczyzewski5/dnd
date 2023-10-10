@@ -12,7 +12,7 @@ class PassiveInsightCalculator
     {
         $baseValue = 10;
 
-        if ($proficiencies->hasProficiency(ProficiencyEnum::INSIGHT())) {
+        if ($proficiencies->hasProficiency(ProficiencyEnum::INSIGHT)) {
             $baseValue += $proficiencyBonus;
         }
 

@@ -61,9 +61,7 @@ class Character
         $this->immunities = $immunities;
         $this->abilities = AbilityMerger::merge($abilities, $race);
 
-        $this->proficiencies->addProficiencies(
-            $levels->getMainCharacterClass()->getProficiencies()
-        );
+        $this->proficiencies->merge($levels->getMainCharacterClass()->getProficiencies());
     }
 
     public function getCampaignName(): string

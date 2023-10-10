@@ -31,4 +31,17 @@ class ProficiencyEnum extends BaseEnum
     const PERFORMANCE = 'performance';
     const INTIMIDATION = 'intimidation';
     const SLEIGHT_OF_HANDS = 'sleight of hands';
+
+    // armors
+    const LIGHT_ARMORS = 'light armors';
+
+    // weapons
+    const SIMPLE_WEAPONS = 'simple weapons';
+    const LONGSWORD = 'longsword';
+    const SHORTSWORD = 'shortsword';
+    const RAPIER = 'rapier';
+    const HAND_CROSSBOW = 'hand crossbow';
+
+    // tools
+    const THIEF_TOOLS = 'thief tools';
 }

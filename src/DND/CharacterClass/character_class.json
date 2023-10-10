@@ -1,6 +1,6 @@
 {
   "rouge": {
     "hit_dice": 8,
-    "proficiencies": ["dex", "int"]
+    "proficiencies": ["dex", "int", "performance", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"]
   }
 }

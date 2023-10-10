@@ -9,14 +9,27 @@ class Proficiencies
     private array $proficiencies = [];
     private array $expertProficiencies = [];
 
-    public function hasProficiency(ProficiencyEnum $proficiencyEnum): bool
+    public function getProficiencies(): array
     {
-        return \in_array($proficiencyEnum->getValue(), $this->proficiencies);
+        return $this->proficiencies;
     }
 
-    public function hasExpertise(ProficiencyEnum $proficiencyEnum): bool
+    public function hasProficiency(ProficiencyEnum|string $proficiency): bool
     {
-        return \in_array($proficiencyEnum->getValue(), $this->expertProficiencies);
+        if ($proficiency instanceof ProficiencyEnum) {
+            $proficiency = $proficiency->getValue();
+        }
+
+        return \in_array($proficiency, $this->proficiencies);
+    }
+
+    public function hasExpertise(ProficiencyEnum|string $proficiency): bool
+    {
+        if ($proficiency instanceof ProficiencyEnum) {
+            $proficiency = $proficiency->getValue();
+        }
+
+        return \in_array($proficiency, $this->expertProficiencies);
     }
 
     public function addProficiency(ProficiencyEnum $proficiency): void
@@ -24,15 +37,13 @@ class Proficiencies
         $this->proficiencies[] = $proficiency->getValue();
     }
 
-    public function addProficiencies(array $proficiencies): void
-    {
-        foreach ($proficiencies as $proficiency) {
-            $this->addProficiency($proficiency);
-        }
-    }
-
     public function addExpertProficiency(ProficiencyEnum $proficiency): void
     {
         $this->expertProficiencies[] = $proficiency->getValue();
+    }
+
+    public function merge(Proficiencies $proficiencies): void
+    {
+        $this->proficiencies = \array_merge($this->proficiencies, $proficiencies->getProficiencies());
     }
 }

@@ -26,9 +26,8 @@ class AbilitySkill
         $this->ability = $ability;
         $this->proficiencyBonus = $proficiencyBonus;
 
-        $proficiencyEnum = ProficiencyEnum::from($abilitySkillEnum->getValue());
-        $this->hasProficiency = $proficiencies->hasProficiency($proficiencyEnum);
-        $this->hasExpertise = $proficiencies->hasExpertise($proficiencyEnum);
+        $this->hasProficiency = $proficiencies->hasProficiency($abilitySkillEnum->getValue());
+        $this->hasExpertise = $proficiencies->hasExpertise($abilitySkillEnum->getValue());
     }
 
     public function getAbilityEnum(): AbilityEnum

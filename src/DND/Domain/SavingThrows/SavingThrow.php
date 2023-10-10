@@ -21,7 +21,7 @@ class SavingThrow
         $this->proficiencyBonus = $proficiencyBonus;
 
         $this->hasProficiency = $proficiencies->hasProficiency(
-            ProficiencyEnum::from($ability->getAbilityEnum()->getValue())
+            $ability->getAbilityEnum()->getValue()
         );
     }
 

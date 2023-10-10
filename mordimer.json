@@ -40,18 +40,17 @@
     "cha": 15
   },
   "proficiencies": [
-      "persuasion",
-      "stealth",
-      "deception",
-      "perception",
-      "acrobatics",
-      "performance"
+    "persuasion",
+    "stealth",
+    "deception",
+    "perception",
+    "acrobatics"
   ],
   "expert_proficiencies": [
-      "stealth",
-      "deception",
-      "performance",
-      "persuasion"
+    "stealth",
+    "deception",
+    "performance",
+    "persuasion"
   ],
   "languages": [],
 
