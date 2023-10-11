@@ -3,7 +3,7 @@
     "hit_dice": 8,
     "proficiencies": ["dex", "int", "performance", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"],
     "skills": {
-      "1": ["expertise"],
+      "1": ["sneak attack"],
       "2": ["expertise"],
       "3": ["expertise"]
     }

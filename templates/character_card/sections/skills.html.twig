@@ -22,7 +22,7 @@
    <div id="skills-background">
       <div id="skills-container">
          {% for skill in skills %}
-            <div>{{ skill.getName() }} - {{ skill.getDescription() }}</div>
+            <div>{{ skill|raw }}</div>
          {% endfor %}
       </div>
    </div>
