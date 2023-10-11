@@ -2,8 +2,6 @@
 
 namespace DND\Character;
 
-use DND\CharacterClass\CharacterClass;
-
 class Levels
 {
     /** @var Level[] $levels */
@@ -19,9 +17,28 @@ class Levels
         $this->levels[] = $level;
     }
 
-    public function getLevel(): int
+    public function getActualLevel(): int
     {
         return \count($this->levels);
+    }
+
+    public function getFirstLevel(): Level
+    {
+        $result = null;
+
+        foreach ($this->levels as $level) {
+            if (1 === $level->getLevel()) {
+                $result = $level;
+                break;
+            }
+        }
+
+        if (null === $result) {
+            // @todo changeme
+            throw new \Exception('Cannot find first level!');
+        }
+
+        return $result;
     }
 
     /**
@@ -30,24 +47,5 @@ class Levels
     public function getLevels(): array
     {
         return $this->levels;
-    }
-
-    public function getMainCharacterClass(): CharacterClass
-    {
-        return \reset($this->levels)->getCharacterClass();
-    }
-
-    /**
-     * @return CharacterClass[]
-     */
-    public function getCharacterClasses(): array
-    {
-        $result = [];
-
-        foreach ($this->levels as $level) {
-            $result[] = $level->getCharacterClass();
-        }
-
-        return \array_unique($result, SORT_REGULAR);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DND\Character;
 
-use DND\CharacterClass\CharacterClassFactory;
+use DND\Domain\Enum\CharacterClassEnum;
 
 class LevelsFactory
 {
@@ -11,11 +11,13 @@ class LevelsFactory
         $result = new Levels();
 
         foreach ($levels as $level => $data) {
+            if (false === CharacterClassEnum::isValid($data['class'])) {
+                // @todo change me
+                throw new \Exception('Cannot level, invalid class: ' . $data['class']);
+            }
+
             $result->addLevel(
-                new Level(
-                    $level,
-                    CharacterClassFactory::createFromString($data['class'])
-                )
+                new Level(CharacterClassEnum::from($data['class']), $level)
             );
         }
 

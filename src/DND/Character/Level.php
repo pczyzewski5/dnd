@@ -2,26 +2,26 @@
 
 namespace DND\Character;
 
-use DND\CharacterClass\CharacterClass;
+use DND\Domain\Enum\CharacterClassEnum;
 
 class Level
 {
+    private CharacterClassEnum $characterClass;
     private int $level;
-    private CharacterClass $characterClass;
 
-    public function __construct(int $level, CharacterClass $characterClass)
+    public function __construct(CharacterClassEnum $characterClass, int $level)
     {
-        $this->level = $level;
         $this->characterClass = $characterClass;
+        $this->level = $level;
+    }
+
+    public function getCharacterClassEnum(): CharacterClassEnum
+    {
+        return $this->characterClass;
     }
 
     public function getLevel(): int
     {
         return $this->level;
-    }
-
-    public function getCharacterClass(): CharacterClass
-    {
-        return $this->characterClass;
     }
 }
