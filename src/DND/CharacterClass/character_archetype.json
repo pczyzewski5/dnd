@@ -2,9 +2,7 @@
   "assassin": {
     "parent": "rouge",
     "skills": {
-      "3": ["expertise"],
-      "4": ["expertise"],
-      "5": ["expertise"]
+      "3": ["assassination", "assassin proficiencies"]
     }
   },
   "berserker": {
