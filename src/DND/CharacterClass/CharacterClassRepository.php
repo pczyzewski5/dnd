@@ -6,7 +6,7 @@ use DND\Domain\Enum\CharacterClassEnum;
 
 class CharacterClassRepository
 {
-    public static function getByCharacterClass(CharacterClassEnum $characterClassEnum): array
+    public static function getByCharacterClass(CharacterClassEnum $characterClassEnum): CharacterClass
     {
         $characterClass = $characterClassEnum->getValue();
 
@@ -19,17 +19,31 @@ class CharacterClassRepository
             true
         );
 
-        if (\array_key_exists($characterClass, $characterClassData)) {
-            return $characterClassData[$characterClass];
-        }
+        $archetypeData = [];
+        $classData = [];
+        $skills = [];
+
         if (\array_key_exists($characterClass, $characterArchetypeData)) {
-            $characterArchetypeData = $characterArchetypeData[$characterClass];
-            $characterClassData = $characterClassData[$characterArchetypeData['main_class']];
-
-            return \array_merge_recursive($characterClassData, $characterArchetypeData);
+            $archetypeData = $characterArchetypeData[$characterClass];
+            $skills = $archetypeData['skills'];
+            $characterClass = $archetypeData['parent_class'];
         }
 
-        // @todo change me
-        throw new \Exception('Class: ' . $characterClass . ', not found.');
+        if (\array_key_exists($characterClass, $characterClassData)) {
+            $classData = $characterClassData[$characterClass];
+            foreach ($classData['skills'] as $level => $classSkills) {
+                $skills[$level] = \array_merge($classSkills, $skills[$level] ?? []);
+            }
+        }
+
+        if (empty($classData) && empty($archetypeData)) {
+            // @todo chageme
+            throw new \Exception('Cannot find class data for: ' . $characterClass);
+        }
+
+        $data = \array_merge_recursive($archetypeData, $classData);
+        $data['skills'] = $skills;
+
+        return new CharacterClass($characterClassEnum, $data);
     }
 }

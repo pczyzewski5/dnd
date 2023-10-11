@@ -12,17 +12,20 @@ class CharacterClass
     private CharacterClassEnum $characterClassEnum;
     private HitDiceEnum $hitDiceEnum;
     private Proficiencies $proficiencies;
-    private ?CharacterClassEnum $mainCharacterClassEnum;
+    private array $skills;
+
+    private ?CharacterClassEnum $parentCharacterClassEnum;
 
     public function __construct(CharacterClassEnum $characterClassEnum, array $data)
     {
         // @todo create factory for this
         $this->characterClassEnum = $characterClassEnum;
-
         $this->hitDiceEnum = HitDiceEnum::from($data['hit_dice']);
         $this->proficiencies = ProficienciesFactory::fromArray($data['proficiencies']);
-        $this->mainCharacterClassEnum = \array_key_exists('main_class', $data)
-            ? CharacterClassEnum::from($data['main_class'])
+        $this->skills = $data['skills'];
+
+        $this->parentCharacterClassEnum = \array_key_exists('parent_class', $data)
+            ? CharacterClassEnum::from($data['parent_class'])
             : null;
     }
 
@@ -41,13 +44,23 @@ class CharacterClass
         return $this->proficiencies;
     }
 
-    public function getMainCharacterClassEnum(): ?CharacterClassEnum
-    {
-        return $this->mainCharacterClassEnum;
-    }
-
     public function equals(CharacterClass $characterClass): bool
     {
-        return $this->getName() === $characterClass->getName();
+        return $this->characterClassEnum->equals($characterClass->getCharacterClassEnum());
+    }
+
+    public function getSkills(): array
+    {
+        return $this->skills;
+    }
+
+    public function getCharacterClassEnum(): CharacterClassEnum
+    {
+        return $this->characterClassEnum;
+    }
+
+    public function getParentCharacterClassEnum(): ?CharacterClassEnum
+    {
+        return $this->parentCharacterClassEnum;
     }
 }

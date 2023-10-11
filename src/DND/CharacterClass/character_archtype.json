@@ -1,5 +1,16 @@
 {
   "assassin": {
-    "main_class": "rouge"
+    "parent_class": "rouge",
+    "skills": {
+      "3": ["bonus proficiencies"],
+      "4": ["blahu"]
+    }
+  },
+  "berserker": {
+    "parent_class": "barbarian",
+    "skills": {
+      "3": ["barb skill x"],
+      "4": ["barb skill yyy"]
+    }
   }
 }
