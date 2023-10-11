@@ -21,7 +21,9 @@
 <div id="skills-section" class="section">
    <div id="skills-background">
       <div id="skills-container">
-         <div>Lorem ipsum</div>
+         {% for skill in skills %}
+            <div>{{ skill.getName() }} - {{ skill.getDescription() }}</div>
+         {% endfor %}
       </div>
    </div>
 </div>
