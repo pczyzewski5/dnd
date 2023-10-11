@@ -8,7 +8,7 @@ class CharacterClassResolver
 {
     public static function getCharacterClass(Levels $levels): CharacterClass
     {
-        $result = CharacterClassRepository::getByCharacterClass(
+        $result = CharacterClassRepository::get(
             $levels->getFirstLevel()->getCharacterClassEnum()
         );
 
@@ -59,7 +59,7 @@ class CharacterClassResolver
                 return true;
             }
 
-            $characterClassToRemove = CharacterClassRepository::getByCharacterClass(
+            $characterClassToRemove = CharacterClassRepository::get(
                 $characterClassToRemove->getParentCharacterClassEnum()
             );
 
@@ -79,12 +79,12 @@ class CharacterClassResolver
 
         // sort to character classes and archetypes
         foreach ($levels->getLevels() as $level) {
-            $characterClass = CharacterClassRepository::getByCharacterClass(
+            $characterClass = CharacterClassRepository::get(
                 $level->getCharacterClassEnum()
             );
 
             if (null !== $characterClass->getParentCharacterClassEnum()) {
-                $characterClasses[] = CharacterClassRepository::getByCharacterClass(
+                $characterClasses[] = CharacterClassRepository::get(
                     $characterClass->getParentCharacterClassEnum()
                 );
                 $characterArchetypes[] = $characterClass;

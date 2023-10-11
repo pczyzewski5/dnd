@@ -3,8 +3,9 @@
     "hit_dice": 8,
     "proficiencies": ["dex", "int", "performance", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"],
     "skills": {
-      "1": ["expertise"],
-      "3": ["test"]
+      "1": ["skill 1"],
+      "2": ["skill 2"],
+      "3": ["skill 3"]
     }
   },
   "barbarian": {

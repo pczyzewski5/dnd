@@ -6,44 +6,63 @@ use DND\Domain\Enum\CharacterClassEnum;
 
 class CharacterClassRepository
 {
-    public static function getByCharacterClass(CharacterClassEnum $characterClassEnum): CharacterClass
+    private const CHARACTER_DATA_FILEPATH = __DIR__ . '/character_class.json';
+    private const ARCHETYPE_DATA_FILEPATH = __DIR__ . '/character_archetype.json';
+
+    public static function get(CharacterClassEnum $characterClassEnum): CharacterClass
     {
-        $characterClass = $characterClassEnum->getValue();
-
-        $characterClassData = \json_decode(
-            \file_get_contents(__DIR__ . '/character_class.json'),
-            true
-        );
-        $characterArchetypeData = \json_decode(
-            \file_get_contents(__DIR__ . '/character_archtype.json'),
-            true
-        );
-
-        $archetypeData = [];
-        $classData = [];
-        $skills = [];
-
-        if (\array_key_exists($characterClass, $characterArchetypeData)) {
-            $archetypeData = $characterArchetypeData[$characterClass];
-            $skills = $archetypeData['skills'];
-            $characterClass = $archetypeData['parent_class'];
+        $characterData = self::findCharacterClassData($characterClassEnum, self::CHARACTER_DATA_FILEPATH);
+        if (null !== $characterData) {
+            return new CharacterClass($characterClassEnum, $characterData);
         }
 
-        if (\array_key_exists($characterClass, $characterClassData)) {
-            $classData = $characterClassData[$characterClass];
-            foreach ($classData['skills'] as $level => $classSkills) {
-                $skills[$level] = \array_merge($classSkills, $skills[$level] ?? []);
-            }
+        $archetypeData = self::findCharacterClassData($characterClassEnum, self::ARCHETYPE_DATA_FILEPATH);
+        if (null !== $archetypeData) {
+            $data = self::mergeCharacterClassData(
+                self::findCharacterClassData($archetypeData['parent'], self::CHARACTER_DATA_FILEPATH),
+                $archetypeData
+            );
+
+            return new CharacterClass($characterClassEnum, $data);
         }
 
-        if (empty($classData) && empty($archetypeData)) {
-            // @todo chageme
-            throw new \Exception('Cannot find class data for: ' . $characterClass);
+        // @todo changeme
+        throw new \Exception('Class: ' . $characterClassEnum->getValue() . ', does not exists.');
+    }
+
+    private static function mergeCharacterClassData(array $firstData, array $secondData): array
+    {
+        $firstDataSkills = $firstData['skills'];
+        $secondDataSkills = $secondData['skills'];
+        $mergedSkills = [];
+
+        foreach (\array_keys($firstDataSkills + $secondDataSkills) as $level) {
+            $mergedSkills[$level] = \array_merge($firstDataSkills[$level] ?? [], $secondDataSkills[$level] ?? []);
         }
 
-        $data = \array_merge_recursive($archetypeData, $classData);
-        $data['skills'] = $skills;
+        $data = \array_merge_recursive($firstData, $secondData);
+        $data['skills'] = $mergedSkills;
 
-        return new CharacterClass($characterClassEnum, $data);
+        return $data;
+    }
+
+    private static function findCharacterClassData(
+        CharacterClassEnum|string $characterClass,
+        string $filepath
+    ): ?array {
+        if ($characterClass instanceof CharacterClassEnum) {
+            $characterClass = $characterClass->getValue();
+        }
+
+        $data = \file_get_contents($filepath);
+        $data = \json_decode($data, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            // @todo changeme
+            throw new \Exception('Invalid json in: ' . $filepath);
+        }
+
+        return \array_key_exists($characterClass, $data)
+            ? $data[$characterClass]
+            : null;
     }
 }

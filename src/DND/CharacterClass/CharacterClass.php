@@ -24,8 +24,8 @@ class CharacterClass
         $this->proficiencies = ProficienciesFactory::fromArray($data['proficiencies']);
         $this->skills = $data['skills'];
 
-        $this->parentCharacterClassEnum = \array_key_exists('parent_class', $data)
-            ? CharacterClassEnum::from($data['parent_class'])
+        $this->parentCharacterClassEnum = \array_key_exists('parent', $data)
+            ? CharacterClassEnum::from($data['parent'])
             : null;
     }
 
