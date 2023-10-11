@@ -8,6 +8,8 @@ use DND\Calculators\HitDiceCalculator;
 use DND\Calculators\HitPointsCalculator;
 use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
+use DND\CharacterClass\CharacterClass;
+use DND\CharacterClass\CharacterClassHelper;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Ability\AbilityMerger;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
@@ -18,6 +20,8 @@ use DND\Domain\SavingThrows\SavingThrows;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\AbilitySkills\AbilitySkills;
 use DND\Race\Race;
+use DND\Skill\Skills;
+use DND\Skill\SkillsFactory;
 
 class Character
 {
@@ -33,6 +37,9 @@ class Character
     private array $languages;
     private array $resistances;
     private array $immunities;
+    private HitDices $hitDices;
+    private CharacterClass $characterClass;
+    private ?CharacterClass $characterSubclass;
 
     public function __construct(
         string $characterName,
@@ -59,9 +66,15 @@ class Character
         $this->languages = $languages;
         $this->resistances = $resistances;
         $this->immunities = $immunities;
-        $this->abilities = AbilityMerger::merge($abilities, $race);
 
-        $this->proficiencies->merge($levels->getMainCharacterClass()->getProficiencies());
+        $characterClassHelper = new CharacterClassHelper($levels);
+
+        $this->hitDices = $characterClassHelper->getHitDices();
+        $this->characterClass = $characterClassHelper->getCharacterClass();
+        $this->characterSubclass = $characterClassHelper->getCharacterSubclass();
+
+        $this->abilities = AbilityMerger::merge($abilities, $race);
+        $this->proficiencies->merge($characterClassHelper->getProficiencies());
     }
 
     public function getCampaignName(): string
@@ -94,6 +107,16 @@ class Character
     public function getCharacterName(): string
     {
         return $this->characterName;
+    }
+
+    public function getCharacterClass(): CharacterClass
+    {
+        return $this->characterClass;
+    }
+
+    public function getCharacterSubclass(): ?CharacterClass
+    {
+        return $this->characterSubclass;
     }
 
     public function getPlayerName(): string
@@ -158,16 +181,16 @@ class Character
 
     public function getProficiencyBonus(): int
     {
-        return ProficiencyBonusCalculator::calculate($this->getLevels()->getLevel());
+        return ProficiencyBonusCalculator::calculate($this->getLevels()->getActualLevel());
     }
 
     public function getHitDices(): HitDices
     {
-        return HitDiceCalculator::calculate($this->levels);
+        return $this->hitDices;
     }
 
     public function getHitPoints(): int
     {
-        return HitPointsCalculator::calculate($this->abilities, $this->levels);
+        return HitPointsCalculator::calculate($this->characterClass, $this->hitDices, $this->abilities);
     }
 }
