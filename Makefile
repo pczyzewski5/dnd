@@ -43,7 +43,7 @@ quick-tests:
 	docker-compose run --rm php-upstream php ./bin/phpunit
 
 dev-quick-tests:
-	docker-compose run --rm php-upstream ./bin/phpunit --group=dev
+	docker-compose run --rm php-upstream php ./bin/phpunit --group=dev
 
 ##################################################################################################################
 # COMMANDS
