@@ -4,7 +4,6 @@ namespace DND\Character;
 
 use DND\Calculators\ArmorClassCalculator;
 use DND\Calculators\DistanceCalculator;
-use DND\Calculators\HitDiceCalculator;
 use DND\Calculators\HitPointsCalculator;
 use DND\Calculators\InitiativeCalculator;
 use DND\Calculators\ProficiencyBonusCalculator;
@@ -21,7 +20,6 @@ use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Domain\AbilitySkills\AbilitySkills;
 use DND\Race\Race;
 use DND\Skill\Skills;
-use DND\Skill\SkillsFactory;
 
 class Character
 {
@@ -37,6 +35,7 @@ class Character
     private array $languages;
     private array $resistances;
     private array $immunities;
+    private Skills $skills;
     private HitDices $hitDices;
     private CharacterClass $characterClass;
     private ?CharacterClass $characterSubclass;
@@ -69,6 +68,7 @@ class Character
 
         $characterClassHelper = new CharacterClassHelper($levels);
 
+        $this->skills = $characterClassHelper->getSkills();
         $this->hitDices = $characterClassHelper->getHitDices();
         $this->characterClass = $characterClassHelper->getCharacterClass();
         $this->characterSubclass = $characterClassHelper->getCharacterSubclass();
@@ -159,9 +159,9 @@ class Character
         return $this->alignment;
     }
 
-    public function getLevels(): Levels
+    public function getActualLevel(): int
     {
-        return $this->levels;
+        return \count($this->levels->getLevels());
     }
 
     public function getAbilities(): Abilities
@@ -179,9 +179,14 @@ class Character
         return AbilitySkillsFactory::create($this->abilities, $this->proficiencies, $this->getProficiencyBonus());
     }
 
+    public function getSkills(): array
+    {
+        return $this->skills->getSkills($this);
+    }
+
     public function getProficiencyBonus(): int
     {
-        return ProficiencyBonusCalculator::calculate($this->getLevels()->getActualLevel());
+        return ProficiencyBonusCalculator::calculate($this->getActualLevel());
     }
 
     public function getHitDices(): HitDices
