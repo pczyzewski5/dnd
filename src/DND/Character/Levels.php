@@ -17,11 +17,6 @@ class Levels
         $this->levels[] = $level;
     }
 
-    public function getActualLevel(): int
-    {
-        return \count($this->levels);
-    }
-
     public function getFirstLevel(): Level
     {
         $result = null;

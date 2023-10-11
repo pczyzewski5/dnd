@@ -5,6 +5,7 @@ namespace DND\CharacterClass;
 use DND\Character\HitDices;
 use DND\Character\Levels;
 use DND\Domain\Proficiency\Proficiencies;
+use DND\Skill\Skills;
 
 class CharacterClassHelper
 {
@@ -34,9 +35,21 @@ class CharacterClassHelper
         return $this->characterClass->getProficiencies();
     }
 
-    public function getSkills()
+    public function getSkills(): Skills
     {
+        if (null === $this->characterSubclass) {
+            return new Skills($this->characterClass->getSkills());
+        }
 
+        $mergedSkills = [];
+        $skills = $this->characterClass->getSkills();
+        $subclassSkills = $this->characterSubclass->getSkills();
+
+        foreach (\array_keys($skills + $subclassSkills) as $level) {
+            $mergedSkills[$level] = \array_merge($skills[$level] ?? [], $subclassSkills[$level] ?? []);
+        }
+
+        return new Skills($mergedSkills);
     }
 
     public function getHitDices(): HitDices
@@ -46,6 +59,7 @@ class CharacterClassHelper
         foreach ($this->levels->getLevels() as $level) {
             $levelCharacterClassEnum = $level->getCharacterClassEnum();
 
+            // add for character class
             if ($this->characterClass->getCharacterClassEnum()->equals($levelCharacterClassEnum)) {
                 $hitDices->increaseDiceCount($this->characterClass->getHitDiceEnum());
             }
@@ -55,6 +69,7 @@ class CharacterClassHelper
                 $hitDices->increaseDiceCount($this->characterClass->getHitDiceEnum());
             }
 
+            // add for character subclass
             if (null !== $this->characterSubclass) {
                 if ($this->characterSubclass->getCharacterClassEnum()->equals($levelCharacterClassEnum)) {
                     $hitDices->increaseDiceCount($this->characterSubclass->getHitDiceEnum());

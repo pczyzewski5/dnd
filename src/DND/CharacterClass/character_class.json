@@ -3,17 +3,17 @@
     "hit_dice": 8,
     "proficiencies": ["dex", "int", "performance", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"],
     "skills": {
-      "1": ["skill 1"],
-      "2": ["skill 2"],
-      "3": ["skill 3"]
+      "1": ["expertise"],
+      "2": ["expertise"],
+      "3": ["expertise"]
     }
   },
   "barbarian": {
     "hit_dice": 12,
     "proficiencies": ["str", "con"],
     "skills": {
-      "4": ["barb skill1"],
-      "5": ["barb skill2"]
+      "4": ["expertise"],
+      "5": ["expertise"]
     }
   },
   "druid": {
