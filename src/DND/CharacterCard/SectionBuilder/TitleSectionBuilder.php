@@ -8,9 +8,14 @@ class TitleSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
+        $className = \ucfirst($this->character->getCharacterClass()->getName());
+        if (null !== $characterSubclass = $this->character->getCharacterSubclass()) {
+            $className .= '-' . \ucfirst($characterSubclass->getName());
+        }
+
         $context =  [
-            'class' => $this->getClass($this->character),
-            'level' => $this->character->getLevels()->getLevel(),
+            'className' => $className,
+            'level' => $this->character->getLevels()->getActualLevel(),
             'origin' => $this->character->getOrigin()->getValue(),
             'characterName' => $this->character->getCharacterName(),
             'playerName' => $this->character->getPlayerName(),
@@ -23,21 +28,5 @@ class TitleSectionBuilder extends AbstractSectionBuilder
             'character_card/sections/title.html.twig',
             $context
         );
-    }
-
-    private function getClass(Character $character): string
-    {
-        $classes = [];
-
-        foreach ($character->getLevels()->getCharacterClasses() as $characterClass) {
-            $mainCharacterClass = $characterClass->getMainCharacterClassEnum();
-            if (null === $mainCharacterClass) {
-                $classes[] = $characterClass->getName();
-            } else {
-                $classes[] = $mainCharacterClass->getValue();
-            }
-        }
-
-        return \implode('-', \array_unique($classes));
     }
 }
