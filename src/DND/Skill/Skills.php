@@ -8,11 +8,13 @@ use DND\Skill\Skills\AbstractSkill;
 
 class Skills
 {
+    private const SKILLS_NAMESPACE = 'DND\Skill\Skills\\';
+
     private array $skills;
 
-    public function __construct(array $skills)
+    public function addSkills(array $skills): void
     {
-        $this->skills = $skills;
+       \array_walk($skills,[$this, 'addSkill']);
     }
 
     /**
@@ -22,21 +24,27 @@ class Skills
     {
         $result = [];
 
-        foreach (\range(1, $character->getActualLevel()) as $level) {
-            if (\array_key_exists($level, $this->skills)) {
-                foreach ($this->skills[$level] as $skill) {
-                    $class = 'DND\Skill\Skills\\' . CaseConverter::normalToUpperCamel($skill);
-
-                    if (false === \class_exists($class)) {
-                        // @todo changeme
-                        throw new \Exception('Skill class: ' . $class . ', does not exists.');
-                    }
-
-                    $result[] = new $class($character);
-                }
+        foreach (\range(0, $character->getActualLevel()) as $level) {
+            foreach ($this->skills[$level] ?? [] as $skill) {
+                $result[] = new ($this->getSkillClass($skill))($character);
             }
         }
 
         return $result;
+    }
+
+    private function addSkill(Skill $skill): void
+    {
+        if (false === \class_exists($this->getSkillClass($skill))) {
+            // @todo changeme
+            throw new \Exception('Skill: ' . $skill->getName() . ', has no implementation.');
+        }
+
+        $this->skills[$skill->getLevel() ?? 0][] = $skill;
+    }
+
+    private function getSkillClass(Skill $skill): string
+    {
+        return self::SKILLS_NAMESPACE . CaseConverter::normalToUpperCamel($skill->getName());
     }
 }

@@ -5,7 +5,6 @@ namespace DND\CharacterClass;
 use DND\Character\HitDices;
 use DND\Character\Levels;
 use DND\Domain\Proficiency\Proficiencies;
-use DND\Skill\Skills;
 
 class CharacterClassHelper
 {
@@ -35,21 +34,18 @@ class CharacterClassHelper
         return $this->characterClass->getProficiencies();
     }
 
-    public function getSkills(): Skills
+    public function getSkills(): array
     {
-        if (null === $this->characterSubclass) {
-            return new Skills($this->characterClass->getSkills());
-        }
-
-        $mergedSkills = [];
         $skills = $this->characterClass->getSkills();
-        $subclassSkills = $this->characterSubclass->getSkills();
 
-        foreach (\array_keys($skills + $subclassSkills) as $level) {
-            $mergedSkills[$level] = \array_merge($skills[$level] ?? [], $subclassSkills[$level] ?? []);
+        if (null !== $this->characterSubclass) {
+            $skills = \array_merge(
+                $this->characterSubclass->getSkills(),
+                $skills
+            );
         }
 
-        return new Skills($mergedSkills);
+        return $skills;
     }
 
     public function getHitDices(): HitDices

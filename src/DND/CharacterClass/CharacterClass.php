@@ -6,6 +6,7 @@ use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\HitDiceEnum;
 use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\Proficiency\ProficienciesFactory;
+use DND\Skill\SkillFactory;
 
 class CharacterClass
 {
@@ -16,17 +17,24 @@ class CharacterClass
 
     private ?CharacterClassEnum $parentCharacterClassEnum;
 
-    public function __construct(CharacterClassEnum $characterClassEnum, array $data)
-    {
+    public function __construct(
+        CharacterClassEnum $characterClassEnum,
+        array $classData,
+        ?array $archetypeData
+    ) {
         // @todo create factory for this
         $this->characterClassEnum = $characterClassEnum;
-        $this->hitDiceEnum = HitDiceEnum::from($data['hit_dice']);
-        $this->proficiencies = ProficienciesFactory::fromArray($data['proficiencies']);
-        $this->skills = $data['skills'];
+        $this->hitDiceEnum = HitDiceEnum::from($classData['hit_dice']);
+        $this->proficiencies = ProficienciesFactory::fromArray($classData['proficiencies']);
+        $this->skills = SkillFactory::createManyWithLevels($classData['skills']);
 
-        $this->parentCharacterClassEnum = \array_key_exists('parent', $data)
-            ? CharacterClassEnum::from($data['parent'])
-            : null;
+        if (null !== $archetypeData) {
+            $this->parentCharacterClassEnum = CharacterClassEnum::from($archetypeData['parent']);
+            $this->skills = \array_merge(
+                SkillFactory::createManyWithLevels($archetypeData['skills']),
+                $this->skills
+            );
+        }
     }
 
     public function getName(): string
@@ -44,14 +52,14 @@ class CharacterClass
         return $this->proficiencies;
     }
 
-    public function equals(CharacterClass $characterClass): bool
-    {
-        return $this->characterClassEnum->equals($characterClass->getCharacterClassEnum());
-    }
-
     public function getSkills(): array
     {
         return $this->skills;
+    }
+
+    public function equals(CharacterClass $characterClass): bool
+    {
+        return $this->characterClassEnum->equals($characterClass->getCharacterClassEnum());
     }
 
     public function getCharacterClassEnum(): CharacterClassEnum
@@ -61,6 +69,6 @@ class CharacterClass
 
     public function getParentCharacterClassEnum(): ?CharacterClassEnum
     {
-        return $this->parentCharacterClassEnum;
+        return $this->parentCharacterClassEnum ?? null;
     }
 }

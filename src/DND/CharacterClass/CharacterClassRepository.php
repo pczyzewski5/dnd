@@ -11,39 +11,18 @@ class CharacterClassRepository
 
     public static function get(CharacterClassEnum $characterClassEnum): CharacterClass
     {
-        $characterData = self::findCharacterClassData($characterClassEnum, self::CHARACTER_DATA_FILEPATH);
-        if (null !== $characterData) {
-            return new CharacterClass($characterClassEnum, $characterData);
-        }
-
         $archetypeData = self::findCharacterClassData($characterClassEnum, self::ARCHETYPE_DATA_FILEPATH);
         if (null !== $archetypeData) {
-            $data = self::mergeCharacterClassData(
-                self::findCharacterClassData($archetypeData['parent'], self::CHARACTER_DATA_FILEPATH),
-                $archetypeData
-            );
+            $characterClassEnum = CharacterClassEnum::from($archetypeData['parent']);
+        }
+        $characterData = self::findCharacterClassData($characterClassEnum, self::CHARACTER_DATA_FILEPATH);
 
-            return new CharacterClass($characterClassEnum, $data);
+        if (null === $characterData && null === $archetypeData) {
+            // @todo changeme
+            throw new \Exception('Class: ' . $characterClassEnum->getValue() . ', does not exists.');
         }
 
-        // @todo changeme
-        throw new \Exception('Class: ' . $characterClassEnum->getValue() . ', does not exists.');
-    }
-
-    private static function mergeCharacterClassData(array $firstData, array $secondData): array
-    {
-        $firstDataSkills = $firstData['skills'];
-        $secondDataSkills = $secondData['skills'];
-        $mergedSkills = [];
-
-        foreach (\array_keys($firstDataSkills + $secondDataSkills) as $level) {
-            $mergedSkills[$level] = \array_merge($firstDataSkills[$level] ?? [], $secondDataSkills[$level] ?? []);
-        }
-
-        $data = \array_merge_recursive($firstData, $secondData);
-        $data['skills'] = $mergedSkills;
-
-        return $data;
+        return new CharacterClass($characterClassEnum, $characterData, $archetypeData);
     }
 
     private static function findCharacterClassData(

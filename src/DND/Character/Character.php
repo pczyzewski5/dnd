@@ -67,11 +67,13 @@ class Character
         $this->immunities = $immunities;
 
         $characterClassHelper = new CharacterClassHelper($levels);
-
-        $this->skills = $characterClassHelper->getSkills();
         $this->hitDices = $characterClassHelper->getHitDices();
         $this->characterClass = $characterClassHelper->getCharacterClass();
         $this->characterSubclass = $characterClassHelper->getCharacterSubclass();
+
+        $this->skills = new Skills();
+        $this->skills->addSkills($race->getSkills());
+        $this->skills->addSkills($characterClassHelper->getSkills());
 
         $this->abilities = AbilityMerger::merge($abilities, $race);
         $this->proficiencies->merge($characterClassHelper->getProficiencies());
