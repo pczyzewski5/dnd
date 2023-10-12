@@ -3,7 +3,6 @@
 namespace DND\Race;
 
 use DND\Domain\Enum\RaceEnum;
-use DND\Skill\SkillFactory;
 
 class Race
 {
@@ -14,14 +13,20 @@ class Race
     private array $ASI;
     private array $skills;
 
-    public function __construct(RaceEnum $raceEnum, array $data)
-    {
+    public function __construct(
+        RaceEnum $raceEnum,
+        float $speed,
+        float $nightvision,
+        array $languages,
+        array $ASI,
+        array $skills,
+    ) {
         $this->enum = $raceEnum;
-        $this->speed = $data['speed_in_meters'];
-        $this->nightvision = $data['nightvision_in_meters'];
-        $this->languages = $data['languages'];
-        $this->ASI = $data['ASI'];
-        $this->skills = SkillFactory::createManyOnlyNames($data['skills']);
+        $this->speed = $speed;
+        $this->nightvision = $nightvision;
+        $this->languages = $languages;
+        $this->ASI = $ASI;
+        $this->skills = $skills;
     }
 
     public function getName(): string
