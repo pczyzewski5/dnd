@@ -19,21 +19,11 @@ class Levels
 
     public function getFirstLevel(): Level
     {
-        $result = null;
-
         foreach ($this->levels as $level) {
-            if (1 === $level->getLevel()) {
-                $result = $level;
-                break;
-            }
+           if (1 === $level->getLevel()) {
+               return $level;
+           }
         }
-
-        if (null === $result) {
-            // @todo changeme
-            throw new \Exception('Cannot find first level!');
-        }
-
-        return $result;
     }
 
     /**
@@ -42,5 +32,10 @@ class Levels
     public function getLevels(): array
     {
         return $this->levels;
+    }
+
+    public function getProficiencyBonus(): int
+    {
+       return \ceil(1 + (count($this->levels) / 4));
     }
 }

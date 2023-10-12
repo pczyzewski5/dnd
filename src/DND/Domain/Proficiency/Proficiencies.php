@@ -41,9 +41,4 @@ class Proficiencies
     {
         $this->expertProficiencies[] = $proficiency->getValue();
     }
-
-    public function merge(Proficiencies $proficiencies): void
-    {
-        $this->proficiencies = \array_merge($this->proficiencies, $proficiencies->getProficiencies());
-    }
 }

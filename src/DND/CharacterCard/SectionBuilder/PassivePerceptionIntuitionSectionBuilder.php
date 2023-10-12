@@ -9,7 +9,7 @@ class PassivePerceptionIntuitionSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
-        $abilities =$this->character->getAbilities();
+        $abilities = $this->character->getAbilities();
         $proficiencies = $this->character->getProficiencies();
         $proficiencyBonus = $this->character->getProficiencyBonus();
 

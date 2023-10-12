@@ -2,6 +2,7 @@
 
 namespace DND\Domain\AbilitySkills;
 
+use DND\Character\Levels;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Enum\AbilitySkillEnum;
 use DND\Domain\Proficiency\Proficiencies;
@@ -11,8 +12,10 @@ class AbilitySkillsFactory
     public static function create(
         Abilities $abilities,
         Proficiencies $proficiencies,
-        int $proficiencyBonus
+        Levels $levels
     ): AbilitySkills {
+        $proficiencyBonus = $levels->getProficiencyBonus();
+
         return new AbilitySkills(
             new AbilitySkill(AbilitySkillEnum::ACROBATICS(), $proficiencies, $abilities->getDex(), $proficiencyBonus),
             new AbilitySkill(AbilitySkillEnum::ATHLETICS(), $proficiencies, $abilities->getStr(), $proficiencyBonus),
