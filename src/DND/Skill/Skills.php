@@ -12,9 +12,14 @@ class Skills
 
     private array $skills;
 
-    public function addSkills(array $skills): void
+    public function addSkill(Skill $skill): void
     {
-       \array_walk($skills,[$this, 'addSkill']);
+        if (false === \class_exists($this->getSkillClass($skill))) {
+            // @todo changeme
+            throw new \Exception('Skill: ' . $skill->getName() . ', has no implementation.');
+        }
+
+        $this->skills[$skill->getLevel() ?? 0][] = $skill;
     }
 
     /**
@@ -31,16 +36,6 @@ class Skills
         }
 
         return $result;
-    }
-
-    private function addSkill(Skill $skill): void
-    {
-        if (false === \class_exists($this->getSkillClass($skill))) {
-            // @todo changeme
-            throw new \Exception('Skill: ' . $skill->getName() . ', has no implementation.');
-        }
-
-        $this->skills[$skill->getLevel() ?? 0][] = $skill;
     }
 
     private function getSkillClass(Skill $skill): string
