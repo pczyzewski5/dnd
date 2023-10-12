@@ -2,12 +2,17 @@
 
 namespace DND\CharacterClass;
 
-use DND\Character\HitDices;
 use DND\Character\Levels;
+use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Proficiency\Proficiencies;
 
 class CharacterClassHelper
 {
+    private const CLASS_TO_ARCHETYPE = [
+        CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
+        CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],
+    ];
+
     public Levels $levels;
     public CharacterClass $characterClass;
     public ?CharacterClass $characterSubclass;
@@ -19,14 +24,26 @@ class CharacterClassHelper
         $this->characterSubclass = CharacterClassResolver::getCharacterSubclass($levels);
     }
 
-    public function getCharacterClass(): CharacterClass
+    public static function isBaseClass(CharacterClassEnum $characterClassEnum): bool
     {
-        return $this->characterClass;
+        return \in_array(
+            $characterClassEnum->getValue(),
+            \array_keys(self::CLASS_TO_ARCHETYPE)
+        );
     }
 
-    public function getCharacterSubclass(): ?CharacterClass
+    public static function isArchetype(CharacterClassEnum $characterClassEnum): bool
     {
-        return $this->characterSubclass;
+        return false === self::isBaseClass($characterClassEnum);
+    }
+
+    public static function getBaseClass(CharacterClassEnum $characterClassEnum): CharacterClassEnum
+    {
+        foreach (self::CLASS_TO_ARCHETYPE as $baseClass => $archetypes) {
+            if (\in_array($characterClassEnum->getValue(), $archetypes)) {
+                return CharacterClassEnum::from($baseClass);
+            }
+        }
     }
 
     public function getProficiencies(): Proficiencies
@@ -46,38 +63,5 @@ class CharacterClassHelper
         }
 
         return $skills;
-    }
-
-    public function getHitDices(): HitDices
-    {
-        $hitDices = new HitDices();
-
-        foreach ($this->levels->getLevels() as $level) {
-            $levelCharacterClassEnum = $level->getCharacterClassEnum();
-
-            // add for character class
-            if ($this->characterClass->getCharacterClassEnum()->equals($levelCharacterClassEnum)) {
-                $hitDices->increaseDiceCount($this->characterClass->getHitDiceEnum());
-            }
-            if (null !== $this->characterClass->getParentCharacterClassEnum()
-                && $this->characterClass->getParentCharacterClassEnum()->equals($levelCharacterClassEnum)
-            ) {
-                $hitDices->increaseDiceCount($this->characterClass->getHitDiceEnum());
-            }
-
-            // add for character subclass
-            if (null !== $this->characterSubclass) {
-                if ($this->characterSubclass->getCharacterClassEnum()->equals($levelCharacterClassEnum)) {
-                    $hitDices->increaseDiceCount($this->characterSubclass->getHitDiceEnum());
-                }
-                if (null !== $this->characterSubclass->getParentCharacterClassEnum()
-                    && $this->characterSubclass->getParentCharacterClassEnum()->equals($levelCharacterClassEnum)
-                ) {
-                    $hitDices->increaseDiceCount($this->characterSubclass->getHitDiceEnum());
-                }
-            }
-        }
-
-        return $hitDices;
     }
 }

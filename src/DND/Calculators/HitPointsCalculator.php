@@ -2,35 +2,26 @@
 
 namespace DND\Calculators;
 
-use DND\Character\HitDices;
-use DND\CharacterClass\CharacterClass;
+use DND\Character\HitDiceMapper;
+use DND\Character\Levels;
 use DND\Domain\Ability\Abilities;
 
 class HitPointsCalculator
 {
-    public static function calculate(
-        CharacterClass $characterClass,
-        HitDices $hitDices,
-        Abilities $abilities
-    ): int {
+    public static function calculate(Abilities $abilities, Levels $levels): int
+    {
+        $hitPoints = 0;
+        $levels = $levels->getLevels();
+        $firstLevel = \array_shift($levels);
         $conModifier = $abilities->getCon()->getModifier();
-        $characterHitDice = $characterClass->getHitDiceEnum();
 
-        // hit point for 1st level
-        $hitPoints = $characterClass->getHitDiceEnum()->getValue() + $conModifier;
+        $hitPoints += HitDiceMapper::getHitDice($firstLevel->getCharacterClassEnum())->getValue();
+        $hitPoints += $conModifier;
 
-        foreach ($hitDices->toArray() as $data) {
-            $count = $data['count'];
-            $hitDice = $data['type'];
+        foreach ($levels as $level) {
+            $hitDice = HitDiceMapper::getHitDice($level->getCharacterClassEnum())->getValue();
             // hit dice average is (side count + 1) / 2
-            $hitDiceAverage = ($hitDice->getValue() + 1) / 2;
-
-            // coz one dice was used for 1st level hp
-            if ($hitDice->equals($characterHitDice)) {
-                $count--;
-            }
-
-            $hitPoints+= $count * \ceil($hitDiceAverage + $conModifier);
+            $hitPoints+= \ceil(($hitDice+1)/2) + $conModifier;
         }
 
         return $hitPoints;

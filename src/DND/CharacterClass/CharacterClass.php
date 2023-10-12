@@ -15,8 +15,6 @@ class CharacterClass
     private Proficiencies $proficiencies;
     private array $skills;
 
-    private ?CharacterClassEnum $parentCharacterClassEnum;
-
     public function __construct(
         CharacterClassEnum $characterClassEnum,
         array $classData,
@@ -26,15 +24,9 @@ class CharacterClass
         $this->characterClassEnum = $characterClassEnum;
         $this->hitDiceEnum = HitDiceEnum::from($classData['hit_dice']);
         $this->proficiencies = ProficienciesFactory::fromArray($classData['proficiencies']);
-        $this->skills = SkillFactory::createManyWithLevels($classData['skills']);
-
-        if (null !== $archetypeData) {
-            $this->parentCharacterClassEnum = CharacterClassEnum::from($archetypeData['parent']);
-            $this->skills = \array_merge(
-                SkillFactory::createManyWithLevels($archetypeData['skills']),
-                $this->skills
-            );
-        }
+        $this->skills = SkillFactory::createManyWithLevels(
+            \array_merge($classData['skills'], $archetypeData['skills'] ?? [])
+        );
     }
 
     public function getName(): string
@@ -69,6 +61,8 @@ class CharacterClass
 
     public function getParentCharacterClassEnum(): ?CharacterClassEnum
     {
-        return $this->parentCharacterClassEnum ?? null;
+        return CharacterClassHelper::isBaseClass($this->characterClassEnum)
+            ? null
+            : CharacterClassHelper::getBaseClass($this->characterClassEnum);
     }
 }

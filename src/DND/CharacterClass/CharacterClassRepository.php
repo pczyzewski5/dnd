@@ -2,7 +2,6 @@
 
 namespace DND\CharacterClass;
 
-use DND\Character\CharacterClassMapper;
 use DND\Domain\Enum\CharacterClassEnum;
 
 class CharacterClassRepository
@@ -12,14 +11,14 @@ class CharacterClassRepository
 
     public static function get(CharacterClassEnum $characterClassEnum): CharacterClass
     {
-        $archetypeData = CharacterClassMapper::isArchetype($characterClassEnum)
+        $archetypeData = CharacterClassHelper::isArchetype($characterClassEnum)
             ? self::findCharacterClassData($characterClassEnum)
             : null;
 
         $characterData = self::findCharacterClassData(
-            CharacterClassMapper::isBaseClass($characterClassEnum)
+            CharacterClassHelper::isBaseClass($characterClassEnum)
                 ? $characterClassEnum
-                : CharacterClassMapper::getBaseClass($characterClassEnum)
+                : CharacterClassHelper::getBaseClass($characterClassEnum)
         );
 
         if (null === $characterData && null === $archetypeData) {
