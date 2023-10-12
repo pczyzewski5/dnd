@@ -20,28 +20,23 @@ class CharacterFactory
     {
         $levels = LevelsFactory::fromArray($data['levels']);
         $characterClass = CharacterClassResolver::getCharacterClass($levels);
-        $proficiencies = \array_merge(
-            $data['proficiencies'],
-            $data['expert_proficiencies'],
-            $characterClass->getProficiencies()
+        $proficiencies = ProficienciesFactory::fromArray(
+            \array_merge($data['proficiencies'], $characterClass->getProficiencies()),
+            $data['expert_proficiencies']
         );
-        $proficiencies = ProficienciesFactory::fromArray($proficiencies);
-        $characterSubclass = CharacterClassResolver::getCharacterSubclass($levels);
         $race = RaceFactory::create(RaceEnum::from($data['race']));
         $abilities = AbilitiesFactory::fromArray($data['starting_abilities']);
         $abilities = AbilityMerger::merge($abilities, $race);
-        $abilitySkills = AbilitySkillsFactory::create($abilities, $proficiencies, $levels);
-        $skills = SkillsFactory::create($characterClass, $race);
 
         return new Character(
             $characterClass,
-            $abilitySkills,
+            AbilitySkillsFactory::create($abilities, $proficiencies, $levels),
             $proficiencies,
             SavingThrowsFactory::create($abilities, $proficiencies, $levels),
             AlignmentEnum::from($data['alignment']),
             $abilities,
             OriginEnum::from($data['origin']),
-            $skills,
+            SkillsFactory::create($characterClass, $race),
             $levels,
             $race,
             $data['character_name'],
@@ -50,7 +45,7 @@ class CharacterFactory
             [],
             [],
             $data['languages'],
-            $characterSubclass
+            CharacterClassResolver::getCharacterSubclass($levels)
         );
     }
 }
