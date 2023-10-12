@@ -3,19 +3,18 @@
 namespace DND\CharacterClass;
 
 use DND\Character\Levels;
+use DND\Domain\Enum\CharacterClassEnum;
 
 class CharacterClassResolver
 {
-    public static function getCharacterClass(Levels $levels): CharacterClass
+    public static function getCharacterClass(Levels $levels): CharacterClassEnum
     {
-        $result = CharacterClassRepository::get(
-            $levels->getFirstLevel()->getCharacterClassEnum()
-        );
+        $result = $levels->getFirstLevel()->getCharacterClassEnum();
 
-        foreach (self::extractCharacterClasses($levels) as $characterClass) {
-            if (null !== $characterClass->getParentCharacterClassEnum()) {
-                if ($characterClass->getParentCharacterClassEnum()->equals($result->getCharacterClassEnum())) {
-                    $result = $characterClass;
+        foreach (self::extractCharacterClasses($levels) as $characterClassEnum) {
+            if (CharacterClassHelper::isArchetype($characterClassEnum)) {
+                if (CharacterClassHelper::getBaseClass($characterClassEnum)->equals($result)) {
+                    $result = $characterClassEnum;
                     break;
                 }
             }
@@ -24,7 +23,7 @@ class CharacterClassResolver
         return $result;
     }
 
-    public static function getCharacterSubclass(Levels $levels): ?CharacterClass
+    public static function getCharacterSubclass(Levels $levels): ?CharacterClassEnum
     {
         $characterClass = null;
         $characterSubclass = null;
@@ -35,10 +34,10 @@ class CharacterClassResolver
         );
 
         foreach ($characterClasses as $item) {
-            if (null === $item->getParentCharacterClassEnum()) {
+            if (CharacterClassHelper::isBaseClass($item)) {
                 $characterClass = $item;
             }
-            if (null !== $item->getParentCharacterClassEnum()) {
+            if (CharacterClassHelper::isArchetype($item)) {
                 $characterSubclass = $item;
             }
         }
@@ -47,30 +46,26 @@ class CharacterClassResolver
     }
 
     /**
-     * @return CharacterClass[]
+     * @return CharacterClassEnum[]
      */
-    private static function removeCharacterClass(CharacterClass $characterClassToRemove, array $characterClasses): array
+    private static function removeCharacterClass(CharacterClassEnum $characterClassEnumToRemove, array $characterClasses): array
     {
-        $characterClasses = \array_filter($characterClasses, static function (CharacterClass $characterClass) use ($characterClassToRemove): bool {
-            return false === $characterClass->equals($characterClassToRemove);
+        $characterClasses = \array_filter($characterClasses, static function (CharacterClassEnum $characterClassEnum) use ($characterClassEnumToRemove): bool {
+            return false === $characterClassEnum->equals($characterClassEnumToRemove);
         });
-        $characterClasses = \array_filter($characterClasses, static function (CharacterClass $characterClass) use ($characterClassToRemove): bool {
-            if (null === $characterClassToRemove->getParentCharacterClassEnum()) {
+        $characterClasses = \array_filter($characterClasses, static function (CharacterClassEnum $characterClassEnum) use ($characterClassEnumToRemove): bool {
+            if (CharacterClassHelper::isBaseClass($characterClassEnumToRemove)) {
                 return true;
             }
 
-            $characterClassToRemove = CharacterClassRepository::get(
-                $characterClassToRemove->getParentCharacterClassEnum()
-            );
-
-            return false === $characterClass->equals($characterClassToRemove);
+            return false === $characterClassEnum->equals(CharacterClassHelper::getBaseClass($characterClassEnumToRemove));
         });
 
         return $characterClasses;
     }
 
     /**
-     * @return CharacterClass[]
+     * @return CharacterClassEnum[]
      */
     private static function extractCharacterClasses(Levels $levels): array
     {
@@ -79,17 +74,13 @@ class CharacterClassResolver
 
         // sort to character classes and archetypes
         foreach ($levels->getLevels() as $level) {
-            $characterClass = CharacterClassRepository::get(
-                $level->getCharacterClassEnum()
-            );
+            $characterClassEnum = $level->getCharacterClassEnum();
 
-            if (null !== $characterClass->getParentCharacterClassEnum()) {
-                $characterClasses[] = CharacterClassRepository::get(
-                    $characterClass->getParentCharacterClassEnum()
-                );
-                $characterArchetypes[] = $characterClass;
+            if (CharacterClassHelper::isArchetype($characterClassEnum)) {
+                $characterClasses[] = CharacterClassHelper::getBaseClass($characterClassEnum);
+                $characterArchetypes[] = $characterClassEnum;
             } else {
-                $characterClasses[] = $characterClass;
+                $characterClasses[] = $characterClassEnum;
             }
         }
 
@@ -103,12 +94,10 @@ class CharacterClassResolver
         }
 
         // remove archetype parent classes
-        $characterClasses = \array_filter($characterClasses, static function (CharacterClass $characterClass) use ($characterArchetypes): bool {
-            /** @var CharacterClass $characterArchetype */
+        $characterClasses = \array_filter($characterClasses, static function (CharacterClassEnum $characterClassEnum) use ($characterArchetypes): bool {
+            /** @var CharacterClassEnum $characterArchetype */
             foreach ($characterArchetypes as $characterArchetype) {
-                return false === $characterArchetype->getParentCharacterClassEnum()->equals(
-                    $characterClass->getCharacterClassEnum()
-                );
+                return false === CharacterClassHelper::getBaseClass($characterArchetype)->equals($characterClassEnum);
             }
 
             return true;

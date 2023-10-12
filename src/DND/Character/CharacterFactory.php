@@ -2,13 +2,12 @@
 
 namespace DND\Character;
 
+use DND\CharacterClass\CharacterClassFactory;
 use DND\CharacterClass\CharacterClassResolver;
 use DND\Domain\Ability\AbilitiesFactory;
-use DND\Domain\Ability\AbilityMerger;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Enum\OriginEnum;
-use DND\Domain\Enum\RaceEnum;
 use DND\Domain\Proficiency\ProficienciesFactory;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Race\RaceFactory;
@@ -19,9 +18,16 @@ class CharacterFactory
     public static function createFromArray(array $data): Character
     {
         $levels = LevelsFactory::fromArray($data['levels']);
-        $characterClass = CharacterClassResolver::getCharacterClass($levels);
-        $proficiencies = ProficienciesFactory::fromArray(
-            \array_merge($data['proficiencies'], $characterClass->getProficiencies()),
+        $characterClass = CharacterClassFactory::create(
+            CharacterClassResolver::getCharacterClass($levels)
+        );
+        $characterSubclass = CharacterClassResolver::getCharacterSubclass($levels);
+        if (null !== $characterSubclass) {
+            $characterSubclass = CharacterClassFactory::create($characterSubclass);
+        }
+        $proficiencies = ProficienciesFactory::create(
+            $characterClass,
+            $data['proficiencies'],
             $data['expert_proficiencies']
         );
         $race = RaceFactory::create($data['race']);
@@ -44,7 +50,7 @@ class CharacterFactory
             [],
             [],
             $data['languages'],
-            CharacterClassResolver::getCharacterSubclass($levels)
+            $characterSubclass
         );
     }
 }

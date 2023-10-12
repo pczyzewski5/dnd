@@ -46,10 +46,10 @@ class CharacterClassResolverTest extends TestCase
         $characterClass = CharacterClassResolver::getCharacterClass($levels);
         $characterSubclass = CharacterClassResolver::getCharacterSubclass($levels);
 
-        $this->assertSame($expectedCharacterClassName, $characterClass->getName());
+        $this->assertSame($expectedCharacterClassName, $characterClass->getValue());
         null === $expectedCharacterSubclassName
             ? $this->assertNull($characterSubclass)
-            : $this->assertSame($expectedCharacterSubclassName, $characterSubclass->getName());
+            : $this->assertSame($expectedCharacterSubclassName, $characterSubclass->getValue());
     }
 
     public function levelsProvider(): array
