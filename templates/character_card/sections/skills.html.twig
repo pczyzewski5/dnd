@@ -16,13 +16,23 @@
       width: 383px;
       font-size: 8px;
    }
+   #skills-container ul {
+       margin: 0;
+       padding-left: 15px;
+       font-size: x-small;
+   }
+   #skills-container p {
+       font-size: x-small;
+       margin-top: 0;
+       margin-bottom: 2px;
+   }
 </style>
 
 <div id="skills-section" class="section">
    <div id="skills-background">
       <div id="skills-container">
          {% for skill in skills %}
-            <div>{{ skill|raw }}</div>
+            <p>{{ skill|raw }}</p>
          {% endfor %}
       </div>
    </div>
