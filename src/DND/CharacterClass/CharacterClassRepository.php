@@ -25,7 +25,12 @@ class CharacterClassRepository
             throw new \Exception('Data for class: ' . $characterClassEnum->getValue() . ', does not exists.');
         }
 
-        return new CharacterClass($characterClassEnum, $characterData, $archetypeData);
+        return new CharacterClass(
+            $characterClassEnum,
+            $characterData['proficiencies'],
+            $characterData['skills'],
+            $archetypeData['skills'] ?? []
+        );
     }
 
     private static function findCharacterClassData(CharacterClassEnum $characterClassEnum): ?array

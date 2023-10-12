@@ -46,11 +46,6 @@ class CharacterClassHelper
         }
     }
 
-    public function getProficiencies(): Proficiencies
-    {
-        return $this->characterClass->getProficiencies();
-    }
-
     public function getSkills(): array
     {
         $skills = $this->characterClass->getSkills();
