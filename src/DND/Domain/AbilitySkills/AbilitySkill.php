@@ -5,12 +5,10 @@ namespace DND\Domain\AbilitySkills;
 use DND\Domain\Ability\Ability;
 use DND\Domain\Enum\AbilityEnum;
 use DND\Domain\Enum\AbilitySkillEnum;
-use DND\Domain\Enum\ProficiencyEnum;
 use DND\Domain\Proficiency\Proficiencies;
 
 class AbilitySkill
 {
-    private AbilitySkillEnum $abilitySkillEnum;
     private Ability $ability;
     private int $proficiencyBonus;
     private bool $hasProficiency;
@@ -22,7 +20,6 @@ class AbilitySkill
         Ability $ability,
         int $proficiencyBonus
     ) {
-        $this->abilitySkillEnum = $abilitySkillEnum;
         $this->ability = $ability;
         $this->proficiencyBonus = $proficiencyBonus;
 
