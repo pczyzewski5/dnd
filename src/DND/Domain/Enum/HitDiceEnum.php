@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class HitDiceEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class HitDiceEnum extends Enum
 {
     const D8 = 8;
     const D12 = 12;

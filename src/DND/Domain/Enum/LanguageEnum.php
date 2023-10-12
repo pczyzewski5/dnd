@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class LanguageEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class LanguageEnum extends Enum
 {
     const GNOLL = 'gnoll';
     const ORC = 'orc';

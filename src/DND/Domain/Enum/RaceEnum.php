@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class RaceEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class RaceEnum extends Enum
 {
     const HUMAN = 'human';
     const LIGHTFOOT_HALFLING = 'lightfoot halfling';

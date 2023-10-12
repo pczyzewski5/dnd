@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class AbilitySkillEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class AbilitySkillEnum extends Enum
 {
     const ACROBATICS = 'acrobatics';
     const ATHLETICS = 'athletics';

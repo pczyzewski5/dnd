@@ -2,15 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-/**
- * @method static STR()
- * @method static DEX()
- * @method static CON()
- * @method static INT()
- * @method static WIS()
- * @method static CHA()
- */
-class AbilityEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class AbilityEnum extends Enum
 {
     const STR = 'str';
     const DEX = 'dex';

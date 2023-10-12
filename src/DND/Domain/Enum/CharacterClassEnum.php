@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class CharacterClassEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class CharacterClassEnum extends Enum
 {
     const BARBARIAN = 'barbarian';
     const BERSERKER = 'berserker';

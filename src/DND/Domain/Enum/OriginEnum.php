@@ -2,10 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-/**
- * @method static ACOLYTE()
- */
-class OriginEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class OriginEnum extends Enum
 {
     // @todo czy ta klasa nie powinna nazywać się background?
     const ACOLYTE = 'acolyte';

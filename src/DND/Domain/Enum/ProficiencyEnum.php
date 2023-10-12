@@ -2,7 +2,9 @@
 
 namespace DND\Domain\Enum;
 
-class ProficiencyEnum extends BaseEnum
+use MyCLabs\Enum\Enum;
+
+class ProficiencyEnum extends Enum
 {
     // saving throws
     const STR = 'str';
