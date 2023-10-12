@@ -24,9 +24,8 @@ class CharacterFactory
             \array_merge($data['proficiencies'], $characterClass->getProficiencies()),
             $data['expert_proficiencies']
         );
-        $race = RaceFactory::create(RaceEnum::from($data['race']));
-        $abilities = AbilitiesFactory::fromArray($data['starting_abilities']);
-        $abilities = AbilityMerger::merge($abilities, $race);
+        $race = RaceFactory::create($data['race']);
+        $abilities = AbilitiesFactory::create($race, $data['starting_abilities']);
 
         return new Character(
             $characterClass,

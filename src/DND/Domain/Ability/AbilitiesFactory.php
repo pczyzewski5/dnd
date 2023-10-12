@@ -3,18 +3,26 @@
 namespace DND\Domain\Ability;
 
 use DND\Domain\Enum\AbilityEnum;
+use DND\Race\Race;
 
 class AbilitiesFactory
 {
-    public static function fromArray(array $startingAbilities): Abilities
+    public static function create(Race $race, array $startingAbilities): Abilities
     {
+        $abilities = [];
+        $raceAsi = $race->getASI();
+
+        foreach ($startingAbilities as $ability => $value) {
+            $abilities[$ability] = $value + ($raceAsi[$ability] ?? 0);
+        }
+
         return new Abilities(
-            new Ability(AbilityEnum::STR(), $startingAbilities[AbilityEnum::STR]),
-            new Ability(AbilityEnum::DEX(), $startingAbilities[AbilityEnum::DEX]),
-            new Ability(AbilityEnum::CON(), $startingAbilities[AbilityEnum::CON]),
-            new Ability(AbilityEnum::INT(), $startingAbilities[AbilityEnum::INT]),
-            new Ability(AbilityEnum::WIS(), $startingAbilities[AbilityEnum::WIS]),
-            new Ability(AbilityEnum::CHA(), $startingAbilities[AbilityEnum::CHA]),
+            new Ability(AbilityEnum::STR(), $abilities[AbilityEnum::STR]),
+            new Ability(AbilityEnum::DEX(), $abilities[AbilityEnum::DEX]),
+            new Ability(AbilityEnum::CON(), $abilities[AbilityEnum::CON]),
+            new Ability(AbilityEnum::INT(), $abilities[AbilityEnum::INT]),
+            new Ability(AbilityEnum::WIS(), $abilities[AbilityEnum::WIS]),
+            new Ability(AbilityEnum::CHA(), $abilities[AbilityEnum::CHA]),
         );
     }
 }
