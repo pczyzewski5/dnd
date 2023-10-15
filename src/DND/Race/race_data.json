@@ -7,5 +7,12 @@
     "languages": ["common", "halfling"],
     "speed_in_meters": 7.5,
     "nightvision_in_meters": 0
+  },
+  "human": {
+    "ASI": {},
+    "skills": [],
+    "languages": ["common"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
   }
 }
