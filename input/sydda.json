@@ -1,0 +1,51 @@
+{
+  "character_name": "Sydda",
+  "player_name": "Bartek J",
+  "campaign_name": "Klątwa Sthrada",
+  "origin": "folk hero",
+  "race": "human",
+  "alignment": "chaotic good",
+  "levels": {
+    "1": {
+      "class": "barbarian"
+    },
+    "2": {
+      "class": "barbarian"
+    },
+    "3": {
+      "class": "berserker"
+    },
+    "4": {
+      "class": "berserker"
+    },
+    "5": {
+      "class": "berserker"
+    },
+    "6": {
+      "class": "berserker"
+    },
+    "7": {
+      "class": "berserker"
+    },
+    "8": {
+      "class": "berserker"
+    }
+  },
+  "starting_abilities": {
+    "str": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 10
+  },
+  "proficiencies": [
+    "survival",
+    "animal handling",
+    "athletics",
+    "perception",
+    "stealth"
+  ],
+  "expert_proficiencies": [],
+  "languages": ["elf"]
+}
