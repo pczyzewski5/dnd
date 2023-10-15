@@ -2,6 +2,8 @@
 
 namespace App\Command;
 
+use App\CaseConverter;
+use DND\Character\Character;
 use DND\Character\CharacterFactory;
 use DND\CharacterCard\CharacterCardBuilder;
 use DND\CharacterDataValidator;
@@ -19,6 +21,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CreateCharacterCardCommand extends Command
 {
     private const COMMAND_NAME = 'dnd:create-character-card';
+    private const CHARACTER_JSON_DIR = 'input/';
+    private const OUTPUT_DIR = 'output/';
 
     private CharacterCardBuilder $characterCardBuilder;
 
@@ -31,28 +35,32 @@ class CreateCharacterCardCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $character = CharacterFactory::createFromArray(
-            $this->getValidData()
-        );
+        foreach (\glob(self::CHARACTER_JSON_DIR . '*.json') as $filepath) {
+            $data = $this->getDataFromFile($filepath);
 
-        \file_put_contents(
-            'character_card.html',
-            $this->characterCardBuilder->build($character)
-        );
+            $this->validate($data);
+
+            $this->createHtmlFile(CharacterFactory::createFromArray($data));
+        }
 
         return Command::SUCCESS;
     }
 
-    private function getValidData(): array
+    private function getDataFromFile(string $filepath): array
     {
-        $data = \json_decode(
-            \file_get_contents('mordimer.json'),
-            true
-        );
+        $data =  \file_get_contents($filepath);
+        $data = \json_decode($data, true);
+
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \Exception('invalid character data json');
+            // @todo changeme
+            throw new \Exception('Invalid character data json.');
         }
 
+        return $data;
+    }
+
+    private function validate(array $characterData): void
+    {
         $characterDataValidator = new CharacterDataValidator();
         $characterDataValidator->addValidator(new PlayerNameValidator());
         $characterDataValidator->addValidator(new CharacterNameValidator());
@@ -62,8 +70,25 @@ class CreateCharacterCardCommand extends Command
         $characterDataValidator->addValidator(new OriginValidator());
         $characterDataValidator->addValidator(new LanguageValidator());
 
-        $characterDataValidator->validate($data);
+        $characterDataValidator->validate($characterData);
+    }
 
-        return $data;
+    private function createHtmlFile(Character $character): void
+    {
+        $campaignName = CaseConverter::normalToSnake($character->getCampaignName());
+        $outputDir = self::OUTPUT_DIR . $campaignName;
+
+        if (false === \is_dir($outputDir)) {
+            \mkdir($outputDir);
+        }
+
+        $filepath = \sprintf(
+            '%s/%s_%s.html',
+            $outputDir,
+            \date('Y-m-d'),
+            CaseConverter::normalToSnake($character->getCharacterName())
+        );
+
+        \file_put_contents($filepath, $this->characterCardBuilder->build($character));
     }
 }

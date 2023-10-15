@@ -162,7 +162,7 @@ class Character
 
     public function getCampaignName(): string
     {
-        return $this->campaignName;
+        return \strtolower($this->campaignName);
     }
 
     public function getPlayerName(): string
