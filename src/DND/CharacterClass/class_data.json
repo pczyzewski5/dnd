@@ -13,16 +13,11 @@
     "hit_dice": 12,
     "proficiencies": ["str", "con"],
     "skills": {
-      "4": ["expertise"],
-      "5": ["expertise"]
-    }
-  },
-  "druid": {
-    "hit_dice": 8,
-    "proficiencies": ["wis", "int"],
-    "skills": {
-      "4": ["druid skill1"],
-      "5": ["druid skill2"]
+      "1": ["rage", "unarmored defense"],
+      "2": ["reckless attack", "danger sense"],
+      "5": ["fast movement"],
+      "7": ["feral instinct"],
+      "9": ["brutal critical"]
     }
   }
 }

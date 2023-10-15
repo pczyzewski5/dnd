@@ -6,8 +6,8 @@
   },
   "berserker": {
     "skills": {
-      "3": ["expertise"],
-      "4": ["expertise"]
+      "3": ["frenzy"],
+      "6": ["mindless rage"]
     }
   }
 }
