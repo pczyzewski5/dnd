@@ -17,8 +17,7 @@ class Skills
     public function addSkill(Skill $skill): void
     {
         if (false === \class_exists($this->getSkillClass($skill))) {
-            // @todo changeme
-            throw new \Exception('Skill: ' . $skill->getName() . ', has no implementation.');
+           SkillFilesGenerator::generateFiles($skill);
         }
 
         $this->skills[$skill->getLevel() ?? 0][] = $skill;
