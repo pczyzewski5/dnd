@@ -31,9 +31,13 @@
 <div id="skills-section" class="section">
    <div id="skills-background">
       <div id="skills-container">
-         {% for skill in skills %}
+         {% for skill in activeSkills %}
             <p>{{ skill|raw }}</p>
          {% endfor %}
+          <hr>
+          {% for skill in passiveSkills %}
+              <p>{{ skill|raw }}</p>
+          {% endfor %}
       </div>
    </div>
 </div>

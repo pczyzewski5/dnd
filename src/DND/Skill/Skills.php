@@ -8,6 +8,8 @@ use DND\Skill\Skills\AbstractSkill;
 
 class Skills
 {
+    private const SKILL_TYPE_ACTIVE = 'active';
+    private const SKILL_TYPE_PASSIVE = 'passive';
     private const SKILLS_NAMESPACE = 'DND\Skill\Skills\\';
 
     private array $skills;
@@ -25,15 +27,38 @@ class Skills
     /**
      * @return AbstractSkill[]
      */
-    public function getSkills(Character $character): array
+    public function getActiveSkills(Character $character): array
+    {
+        return $this->getSkills($character, self::SKILL_TYPE_ACTIVE);
+    }
+
+    /**
+     * @return AbstractSkill[]
+     */
+    public function getPassiveSkills(Character $character): array
+    {
+        return $this->getSkills($character, self::SKILL_TYPE_PASSIVE);
+    }
+
+    /**
+     * @return AbstractSkill[]
+     */
+    private function getSkills(Character $character, string $type): array
     {
         $result = [];
 
         foreach (\range(0, $character->getActualLevel()) as $level) {
             foreach ($this->skills[$level] ?? [] as $skill) {
-                $result[] = new ($this->getSkillClass($skill))($character);
+                $class = $this->getSkillClass($skill);
+                if ($class::TYPE === $type) {
+                    $result[] = new $class($character);
+                }
             }
         }
+
+        \usort($result, static function (AbstractSkill $skill, AbstractSkill $anotherSkill) {
+            return $skill::ORDER > $anotherSkill::ORDER ? 1 : -1;
+        });
 
         return $result;
     }

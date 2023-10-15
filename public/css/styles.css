@@ -3,6 +3,10 @@ body {
     margin: 0;
     font-family: Arial;
 }
+hr {
+    border: none;
+    border-top: 1px dashed lightgray;
+}
 .black-dot {
     height: 9px;
     width: 9px;

@@ -2,21 +2,22 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
+use DND\Skill\Skills\AbstractSkill;
+
 class SkillsSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
-        $skills = [];
-
-        foreach ($this->character->getSkills() as $skill) {
-            $skills[] = $this->twig->render(
+        $render = function (AbstractSkill $skill) {
+            return $this->twig->render(
                 $skill->getTemplate(),
                 $skill->getContext()
             );
-        }
+        };
 
         $context = [
-            'skills' => $skills
+            'activeSkills' => \array_map($render, $this->character->getActiveSkills()),
+            'passiveSkills' => \array_map($render, $this->character->getPassiveSkills())
         ];
 
         return $this->twig->render(

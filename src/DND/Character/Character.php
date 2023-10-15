@@ -140,9 +140,14 @@ class Character
         return $this->origin;
     }
 
-    public function getSkills(): array
+    public function getActiveSkills(): array
     {
-        return $this->skills->getSkills($this);
+        return $this->skills->getActiveSkills($this);
+    }
+
+    public function getPassiveSkills(): array
+    {
+        return $this->skills->getPassiveSkills($this);
     }
 
     public function getRace(): Race
