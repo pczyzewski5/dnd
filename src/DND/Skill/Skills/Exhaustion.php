@@ -2,9 +2,10 @@
 
 namespace DND\Skill\Skills;
 
-class Frenzy extends AbstractSkill
+class Exhaustion extends AbstractSkill
 {
-    public const TYPE = 'active';
+    public const ORDER = 1100;
+    public const TYPE = 'passive';
 
     public function getContext(): array
     {

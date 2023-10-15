@@ -1,43 +1,50 @@
 <style>
-   #skills-background {
-      background-image: url("/public/images/skills.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: inherit;
-      height: inherit;
-   }
-   #skills-container {
-   {{ backgroundColor() }}
-      position: absolute;
-      top: 8px;
-      left: 5px;
-      height: 725px;
-      width: 383px;
-      font-size: 8px;
-   }
-   #skills-container ul {
-       margin: 0;
-       padding-left: 15px;
-       font-size: x-small;
-   }
-   #skills-container p {
-       font-size: x-small;
-       margin-top: 0;
-       margin-bottom: 2px;
-   }
+    #skills-background {
+        background-image: url("/public/images/skills.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #skills-container {
+    {{ backgroundColor() }}
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        height: 725px;
+        width: 383px;
+        font-size: 8px;
+    }
+    #skills-container ul {
+        margin: 0;
+        padding-left: 15px;
+        font-size: x-small;
+    }
+    #skills-container p {
+        font-size: x-small;
+        margin-top: 0;
+        margin-bottom: 2px;
+    }
+    #skills-container table {
+        font-size: x-small;
+        border-collapse: collapse;
+    }
+    #skills-container table tr td {
+        border: 1px solid black;
+    }
 </style>
 
 <div id="skills-section" class="section">
-   <div id="skills-background">
-      <div id="skills-container">
-         {% for skill in activeSkills %}
-            <p>{{ skill|raw }}</p>
-         {% endfor %}
-          <hr>
-          {% for skill in passiveSkills %}
-              <p>{{ skill|raw }}</p>
-          {% endfor %}
-      </div>
-   </div>
+    <div id="skills-background">
+        <div id="skills-container">
+            {% for skill in activeSkills %}
+                <p>{{ skill|raw }}</p>
+            {% endfor %}
+            <hr>
+            {% for skill in passiveSkills %}
+                <p>{{ skill|raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
