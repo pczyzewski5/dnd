@@ -8,4 +8,5 @@ class OriginEnum extends Enum
 {
     // @todo czy ta klasa nie powinna nazywać się background?
     const ACOLYTE = 'acolyte';
+    const FOLK_HERO = 'folk hero';
 }
