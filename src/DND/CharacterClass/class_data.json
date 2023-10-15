@@ -11,7 +11,7 @@
   },
   "barbarian": {
     "hit_dice": 12,
-    "proficiencies": ["str", "con"],
+    "proficiencies": ["str", "con", "light armors", "medium armors", "shields", "simple weapons", "martial weapons"],
     "skills": {
       "1": ["rage", "unarmored defense"],
       "2": ["reckless attack", "danger sense"],
