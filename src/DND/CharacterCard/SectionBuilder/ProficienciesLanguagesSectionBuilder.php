@@ -9,12 +9,15 @@ class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
     private const PROFICIENCIES = [
         // weapons
         ProficiencyEnum::SIMPLE_WEAPONS,
+        ProficiencyEnum::MARTIAL_WEAPONS,
         ProficiencyEnum::LONGSWORD,
         ProficiencyEnum::SHORTSWORD,
         ProficiencyEnum::RAPIER,
         ProficiencyEnum::HAND_CROSSBOW,
         // armors
         ProficiencyEnum::LIGHT_ARMORS,
+        ProficiencyEnum::MEDIUM_ARMORS,
+        ProficiencyEnum::SHIELDS,
         // tools
         ProficiencyEnum::THIEF_TOOLS
     ];

@@ -36,9 +36,12 @@ class ProficiencyEnum extends Enum
 
     // armors
     const LIGHT_ARMORS = 'light armors';
+    const MEDIUM_ARMORS = 'medium armors';
+    const SHIELDS = 'shields';
 
     // weapons
     const SIMPLE_WEAPONS = 'simple weapons';
+    const MARTIAL_WEAPONS = 'martial weapons';
     const LONGSWORD = 'longsword';
     const SHORTSWORD = 'shortsword';
     const RAPIER = 'rapier';
