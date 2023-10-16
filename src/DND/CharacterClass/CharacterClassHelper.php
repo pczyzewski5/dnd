@@ -8,6 +8,7 @@ use DND\Domain\Enum\CharacterClassEnum;
 class CharacterClassHelper
 {
     private const CLASS_TO_ARCHETYPE = [
+        CharacterClassEnum::RANGER => [],
         CharacterClassEnum::DRUID => [],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],

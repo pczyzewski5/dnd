@@ -10,7 +10,8 @@ class ProficienciesFactory
     public static function create(
         CharacterClass $characterClass,
         array $proficiencies,
-        ?array $expertProficiencies = []
+        ?array $expertProficiencies = [],
+        ?CharacterClass $characterSubclass
     ): Proficiencies {
         $result = new Proficiencies();
 
@@ -22,6 +23,11 @@ class ProficienciesFactory
         }
         foreach ($expertProficiencies as $expertProficiency) {
             $result->addExpertProficiency(ProficiencyEnum::from($expertProficiency));
+        }
+        if (null !== $characterSubclass) {
+            foreach ($characterSubclass->getMulticlassProficiencies() as $proficiency) {
+                $result->addProficiency(ProficiencyEnum::from($proficiency));
+            }
         }
 
         return $result;

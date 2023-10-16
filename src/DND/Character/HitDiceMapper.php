@@ -10,6 +10,7 @@ class HitDiceMapper
 {
     private const CLASS_TO_DICE = [
         CharacterClassEnum::ROUGE => HitDiceEnum::D8,
+        CharacterClassEnum::RANGER => HitDiceEnum::D10,
         CharacterClassEnum::BARBARIAN => HitDiceEnum::D12,
     ];
 

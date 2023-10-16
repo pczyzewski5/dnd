@@ -13,4 +13,5 @@ class CharacterClassEnum extends Enum
     const ASSASSIN = 'assassin';
 
     const DRUID = 'druid';
+    const RANGER = 'ranger';
 }

@@ -34,7 +34,9 @@ class Proficiencies
 
     public function addProficiency(ProficiencyEnum $proficiency): void
     {
-        $this->proficiencies[] = $proficiency->getValue();
+        if (false === $this->hasProficiency($proficiency)) {
+            $this->proficiencies[] = $proficiency->getValue();
+        }
     }
 
     public function addExpertProficiency(ProficiencyEnum $proficiency): void

@@ -28,7 +28,8 @@ class CharacterFactory
         $proficiencies = ProficienciesFactory::create(
             $characterClass,
             $data['proficiencies'],
-            $data['expert_proficiencies']
+            $data['expert_proficiencies'],
+            $characterSubclass
         );
         $race = RaceFactory::create($data['race']);
         $abilities = AbilitiesFactory::create($race, $data['starting_abilities'], $data['asi']);
@@ -45,7 +46,7 @@ class CharacterFactory
             AlignmentEnum::from($data['alignment']),
             $abilities,
             OriginEnum::from($data['origin']),
-            SkillsFactory::create($characterClass, $race, $skills),
+            SkillsFactory::create($characterClass, $race, $skills, $characterSubclass),
             $levels,
             $race,
             $data['character_name'],

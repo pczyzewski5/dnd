@@ -21,6 +21,7 @@ class CharacterClassFactory
         return new CharacterClass(
             $characterClassEnum,
             $characterClassData['proficiencies'],
+            $characterClassData['multiclass_proficiencies'],
             $characterClassData['skills'],
             $characterArchetypeData['skills'] ?? []
         );

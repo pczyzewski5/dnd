@@ -8,17 +8,20 @@ class CharacterClass
 {
     private CharacterClassEnum $characterClassEnum;
     private array $proficiencies;
+    private array $multiclassProficiencies;
     private array $skills;
     private array $archetypeSkills;
 
     public function __construct(
         CharacterClassEnum $characterClassEnum,
         array $proficiencies,
+        array $multiclassProficiencies,
         array $skills,
         array $archetypeSkills
     ) {
         $this->characterClassEnum = $characterClassEnum;
         $this->proficiencies = $proficiencies;
+        $this->multiclassProficiencies = $multiclassProficiencies;
         $this->skills = $skills;
         $this->archetypeSkills = $archetypeSkills;
     }
@@ -31,6 +34,11 @@ class CharacterClass
     public function getProficiencies(): array
     {
         return $this->proficiencies;
+    }
+
+    public function getMulticlassProficiencies(): array
+    {
+        return $this->multiclassProficiencies;
     }
 
     public function getSkills(): array
