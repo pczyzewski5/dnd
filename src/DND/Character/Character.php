@@ -7,6 +7,7 @@ use DND\Calculators\DistanceCalculator;
 use DND\Calculators\HitDiceCalculator;
 use DND\Calculators\HitPointsCalculator;
 use DND\Calculators\InitiativeCalculator;
+use DND\Calculators\SpeedCalculator;
 use DND\CharacterClass\CharacterClass;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Enum\AlignmentEnum;
@@ -77,7 +78,10 @@ class Character
 
     public function getSpeed(): float
     {
-        return DistanceCalculator::metersToHex($this->race->getSpeed());
+        return SpeedCalculator::calculate(
+            $this->race,
+            $this->skills->getPassiveSkills($this)
+        );
     }
 
     public function getNightvision(): float
@@ -92,7 +96,10 @@ class Character
 
     public function getArmorClassWithoutArmor(): int
     {
-        return ArmorClassCalculator::calculate($this->abilities);
+        return ArmorClassCalculator::calculate(
+            $this->abilities,
+            $this->skills->getPassiveSkills($this)
+        );
     }
 
     public function getHitDices(): array

@@ -3,11 +3,21 @@
 namespace DND\Calculators;
 
 use DND\Domain\Ability\Abilities;
+use DND\Skill\Skills\UnarmoredDefense;
 
 class ArmorClassCalculator
 {
-    public static function calculate(Abilities $abilities): int
+    public static function calculate(Abilities $abilities, array $skills): int
     {
-       return $abilities->getDex()->getModifier() + 10;
+        $ac = $abilities->getDex()->getModifier() + 10;
+
+        foreach ($skills as $skill) {
+            if ($skill instanceof UnarmoredDefense) {
+                $ac += $abilities->getCon()->getModifier();
+                break;
+            }
+        }
+
+        return $ac;
     }
 }
