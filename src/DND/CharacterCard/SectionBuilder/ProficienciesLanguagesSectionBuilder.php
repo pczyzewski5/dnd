@@ -2,38 +2,22 @@
 
 namespace DND\CharacterCard\SectionBuilder;
 
-use DND\Domain\Enum\ProficiencyEnum;
+use DND\Domain\Enum\AbilityEnum;
+use DND\Domain\Enum\AbilitySkillEnum;
 
 class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
 {
-    private const PROFICIENCIES = [
-        // weapons
-        ProficiencyEnum::SIMPLE_WEAPONS,
-        ProficiencyEnum::MARTIAL_WEAPONS,
-        ProficiencyEnum::LONGSWORD,
-        ProficiencyEnum::SHORTSWORD,
-        ProficiencyEnum::RAPIER,
-        ProficiencyEnum::HAND_CROSSBOW,
-        // armors
-        ProficiencyEnum::LIGHT_ARMORS,
-        ProficiencyEnum::MEDIUM_ARMORS,
-        ProficiencyEnum::SHIELDS,
-        // tools
-        ProficiencyEnum::THIEF_TOOLS,
-        ProficiencyEnum::TINKER_TOOLS,
-        // vehicles
-        ProficiencyEnum::LAND_VEHICLES,
-    ];
-
     public function build(): string
     {
-        $allCharacterProficiencies = $this->character->getProficiencies();
         $proficienciesToRender = [];
 
-        foreach (self::PROFICIENCIES as $proficiency) {
-            if ($allCharacterProficiencies->hasProficiency($proficiency)) {
-                $proficienciesToRender[] = $proficiency;
+        foreach ($this->character->getProficiencies()->getAll() as $proficiency) {
+            if (AbilityEnum::isValid($proficiency)
+                || AbilitySkillEnum::isValid($proficiency)
+            ) {
+                continue;
             }
+            $proficienciesToRender[] = $proficiency;
         }
 
         $context = [

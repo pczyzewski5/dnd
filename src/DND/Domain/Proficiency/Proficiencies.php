@@ -9,7 +9,7 @@ class Proficiencies
     private array $proficiencies = [];
     private array $expertProficiencies = [];
 
-    public function getProficiencies(): array
+    public function getAll(): array
     {
         return $this->proficiencies;
     }
