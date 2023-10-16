@@ -7,7 +7,7 @@ class AttacksTricksSectionBuilder extends AbstractSectionBuilder
     public function build(): string
     {
         $context =  [
-            'abilitySkills' => $this->character->getAbilitySkills(),
+            'attackCount' => $this->character->getAttackCount(),
         ];
 
         return $this->twig->render(

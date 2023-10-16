@@ -3,6 +3,7 @@
 namespace DND\Character;
 
 use DND\Calculators\ArmorClassCalculator;
+use DND\Calculators\AttackCountCalculator;
 use DND\Calculators\DistanceCalculator;
 use DND\Calculators\HitDiceCalculator;
 use DND\Calculators\HitPointsCalculator;
@@ -212,5 +213,10 @@ class Character
     public function getActualLevel(): int
     {
         return \count($this->levels->getLevels());
+    }
+
+    public function getAttackCount(): int
+    {
+        return AttackCountCalculator::calculate($this->skills->getPassiveSkills($this));
     }
 }

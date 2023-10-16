@@ -49,4 +49,8 @@ class ProficiencyEnum extends Enum
 
     // tools
     const THIEF_TOOLS = 'thief tools';
+    const TINKER_TOOLS = 'tinker tools';
+
+    // vehicles
+    const LAND_VEHICLES = 'land vehicles';
 }

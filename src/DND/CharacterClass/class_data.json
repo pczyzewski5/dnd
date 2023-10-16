@@ -15,7 +15,7 @@
     "skills": {
       "1": ["rage", "unarmored defense", "exhaustion"],
       "2": ["reckless attack", "danger sense"],
-      "5": ["fast movement"],
+      "5": ["fast movement", "bonus attack"],
       "7": ["feral instinct"],
       "9": ["brutal critical"]
     }

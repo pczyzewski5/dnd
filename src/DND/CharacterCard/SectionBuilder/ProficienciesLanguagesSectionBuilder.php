@@ -19,7 +19,10 @@ class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
         ProficiencyEnum::MEDIUM_ARMORS,
         ProficiencyEnum::SHIELDS,
         // tools
-        ProficiencyEnum::THIEF_TOOLS
+        ProficiencyEnum::THIEF_TOOLS,
+        ProficiencyEnum::TINKER_TOOLS,
+        // vehicles
+        ProficiencyEnum::LAND_VEHICLES,
     ];
 
     public function build(): string

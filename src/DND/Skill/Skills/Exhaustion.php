@@ -6,7 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class Exhaustion extends AbstractSkill
 {
-    public const ORDER = 1100;
+    public const ORDER = 10000;
 
     protected int $count = 6;
     protected array $tags = [
