@@ -8,6 +8,7 @@ use DND\Skill\Skill;
 
 class Rage extends AbstractSkill
 {
+    public const ORDER = 100;
     private const RAGE_LEVELS = [
         1 => ['count' => 2, 'damage' => 2],
         2 => ['count' => 2, 'damage' => 2],

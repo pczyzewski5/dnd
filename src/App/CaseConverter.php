@@ -6,6 +6,7 @@ class CaseConverter
 {
    public static function normalToSnake(string $string): string
    {
+       $string = self::cleanup($string);
        $string = \explode(' ', $string);
        $string = \array_map('strtolower', $string);
 
@@ -14,16 +15,15 @@ class CaseConverter
 
    public static function normalToUpperCamel(string $string): string
    {
+       $string = self::cleanup($string);
        $string = \explode(' ', $string);
        $string = \array_map('ucfirst', $string);
 
        return \implode('', $string);
    }
 
-   public static function upperCamelToSnake(string $string): string
+   private static function cleanup(string $string): string
    {
-       \preg_match_all('/[A-Z][a-z]+/', $string, $matches);
-
-       return self::normalToSnake(\implode(' ', $matches[0]));
+       return \preg_replace('/[^A-Za-z ąśćźżńłęó]/', '', $string);
    }
 }

@@ -6,6 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class MindlessRage extends AbstractSkill
 {
+    public const ORDER = 400;
     protected array $tags = [
         SkillTagEnum::ACTIVE,
     ];

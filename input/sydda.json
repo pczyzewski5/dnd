@@ -47,5 +47,6 @@
     "stealth"
   ],
   "expert_proficiencies": [],
-  "languages": ["elf"]
+  "languages": ["elf"],
+  "skills": ["Bel'Quath Song"]
 }

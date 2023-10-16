@@ -41,7 +41,7 @@ class CharacterFactory
             AlignmentEnum::from($data['alignment']),
             $abilities,
             OriginEnum::from($data['origin']),
-            SkillsFactory::create($characterClass, $race),
+            SkillsFactory::create($characterClass, $race, $data['skills']),
             $levels,
             $race,
             $data['character_name'],
