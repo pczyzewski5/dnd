@@ -39,6 +39,9 @@
     "wis": 12,
     "cha": 10
   },
+  "asi": {
+    "con": 2
+  },
   "proficiencies": [
     "survival",
     "animal handling",

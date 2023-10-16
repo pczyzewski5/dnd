@@ -31,7 +31,7 @@ class CharacterFactory
             $data['expert_proficiencies']
         );
         $race = RaceFactory::create($data['race']);
-        $abilities = AbilitiesFactory::create($race, $data['starting_abilities']);
+        $abilities = AbilitiesFactory::create($race, $data['starting_abilities'], $data['asi']);
         $skills = \array_merge(
           \array_map(static function(string $feat) { return 'feat ' . $feat; }, $data['feats']),
           $data['skills']

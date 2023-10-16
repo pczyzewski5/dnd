@@ -7,13 +7,19 @@ use DND\Race\Race;
 
 class AbilitiesFactory
 {
-    public static function create(Race $race, array $startingAbilities): Abilities
-    {
+    public static function create(
+        Race $race,
+        array $startingAbilities,
+        array $asi
+    ): Abilities {
         $abilities = [];
-        $raceAsi = $race->getASI();
 
+        $raceAsi = $race->getASI();
         foreach ($startingAbilities as $ability => $value) {
-            $abilities[$ability] = $value + ($raceAsi[$ability] ?? 0);
+            $value += $raceAsi[$ability] ?? 0;
+            $value += $asi[$ability] ?? 0;
+
+            $abilities[$ability] = $value;
         }
 
         return new Abilities(
