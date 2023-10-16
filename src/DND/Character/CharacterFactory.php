@@ -32,6 +32,10 @@ class CharacterFactory
         );
         $race = RaceFactory::create($data['race']);
         $abilities = AbilitiesFactory::create($race, $data['starting_abilities']);
+        $skills = \array_merge(
+          \array_map(static function(string $feat) { return 'feat ' . $feat; }, $data['feats']),
+          $data['skills']
+        );
 
         return new Character(
             $characterClass,
@@ -41,7 +45,7 @@ class CharacterFactory
             AlignmentEnum::from($data['alignment']),
             $abilities,
             OriginEnum::from($data['origin']),
-            SkillsFactory::create($characterClass, $race, $data['skills']),
+            SkillsFactory::create($characterClass, $race, $skills),
             $levels,
             $race,
             $data['character_name'],

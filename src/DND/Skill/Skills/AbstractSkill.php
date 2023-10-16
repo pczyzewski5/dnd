@@ -26,7 +26,7 @@ abstract class AbstractSkill
 
     public function getName(): string
     {
-        return $this->skill->getName();
+        return \str_replace('feat ', '', $this->skill->getName());
     }
 
     public function getCount(): int
