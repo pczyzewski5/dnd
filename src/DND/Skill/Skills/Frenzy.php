@@ -6,7 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class Frenzy extends AbstractSkill
 {
-    public const ORDER = 200;
+    public const ORDER = 2;
     protected array $tags = [
         SkillTagEnum::ACTIVE,
     ];

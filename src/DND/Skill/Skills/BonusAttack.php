@@ -9,7 +9,7 @@ class BonusAttack extends AbstractSkill
     public function getContext(): array
     {
         return [
-            'level' => $this->character->getActualLevel()
+            'level' => $this->skill->getLevel()
         ];
     }
 }

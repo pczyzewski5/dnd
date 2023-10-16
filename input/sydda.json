@@ -29,6 +29,9 @@
     },
     "8": {
       "class": "berserker"
+    },
+    "9": {
+      "class": "berserker"
     }
   },
   "starting_abilities": {
