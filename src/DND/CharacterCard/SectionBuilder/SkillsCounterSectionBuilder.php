@@ -6,8 +6,8 @@ class SkillsCounterSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
-        $context =  [
-            'abilitySkills' => $this->character->getAbilitySkills(),
+      $context =  [
+            'skills' => $this->character->getSkillsWithUseCount(),
         ];
 
         return $this->twig->render(

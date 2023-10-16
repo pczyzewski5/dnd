@@ -48,6 +48,7 @@
     .skill-counter div:nth-child(1) {
     {{ backgroundColor() }}
         width: 33mm;
+        padding-left: 5px;
     }
     .skill-counter div:nth-child(2) {
     {{ backgroundColor() }}
@@ -69,8 +70,13 @@
             </div>
             {% for i in 0..9 %}
                 <div class="skill-counter">
-                    <div></div>
-                    <div></div>
+                    {% if skills[i] is defined %}
+                        <div class="cv">{{ skills[i].getName()|capitalize }}</div>
+                        <div class="uc">{{ skills[i].getCount() }}</div>
+                    {% else %}
+                        <div></div>
+                        <div></div>
+                    {% endif %}
                     <div></div>
                 </div>
             {% endfor %}

@@ -2,9 +2,13 @@
 
 namespace DND\Skill\Skills;
 
+use DND\Domain\Enum\SkillTagEnum;
+
 class MindlessRage extends AbstractSkill
 {
-    public const TYPE = 'active';
+    protected array $tags = [
+        SkillTagEnum::ACTIVE,
+    ];
 
     public function getContext(): array
     {

@@ -150,6 +150,11 @@ class Character
         return $this->skills->getPassiveSkills($this);
     }
 
+    public function getSkillsWithUseCount(): array
+    {
+        return $this->skills->getSkillsWithUseCount($this);
+    }
+
     public function getRace(): Race
     {
         return $this->race;

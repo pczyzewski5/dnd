@@ -4,12 +4,11 @@ namespace DND\Skill;
 
 use App\CaseConverter;
 use DND\Character\Character;
+use DND\Domain\Enum\SkillTagEnum;
 use DND\Skill\Skills\AbstractSkill;
 
 class Skills
 {
-    private const SKILL_TYPE_ACTIVE = 'active';
-    private const SKILL_TYPE_PASSIVE = 'passive';
     private const SKILLS_NAMESPACE = 'DND\Skill\Skills\\';
 
     private array $skills;
@@ -28,7 +27,7 @@ class Skills
      */
     public function getActiveSkills(Character $character): array
     {
-        return $this->getSkills($character, self::SKILL_TYPE_ACTIVE);
+        return $this->getSkills($character, SkillTagEnum::ACTIVE());
     }
 
     /**
@@ -36,21 +35,30 @@ class Skills
      */
     public function getPassiveSkills(Character $character): array
     {
-        return $this->getSkills($character, self::SKILL_TYPE_PASSIVE);
+        return $this->getSkills($character, SkillTagEnum::PASSIVE());
     }
 
     /**
      * @return AbstractSkill[]
      */
-    private function getSkills(Character $character, string $type): array
+    public function getSkillsWithUseCount(Character $character): array
+    {
+        return $this->getSkills($character, SkillTagEnum::USE_COUNT());
+    }
+
+    /**
+     * @return AbstractSkill[]
+     */
+    private function getSkills(Character $character, SkillTagEnum $skillTagEnum): array
     {
         $result = [];
 
         foreach (\range(0, $character->getActualLevel()) as $level) {
             foreach ($this->skills[$level] ?? [] as $skill) {
                 $class = $this->getSkillClass($skill);
-                if ($class::TYPE === $type) {
-                    $result[] = new $class($character);
+                $class = new $class($character, $skill);
+                if ($class->hasTag($skillTagEnum)) {
+                    $result[] = $class;
                 }
             }
         }
