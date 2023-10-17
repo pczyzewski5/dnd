@@ -15,5 +15,11 @@
       "3": ["nature wrath", "turn the faithless"],
       "7": ["aura of warding"]
     }
+  },
+  "wild magic sorcerer": {
+    "skills": {
+      "1": ["wild magic surge", "tides of chaos"],
+      "6": ["bend luck"]
+    }
   }
 }

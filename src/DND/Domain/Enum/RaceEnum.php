@@ -11,4 +11,5 @@ class RaceEnum extends Enum
     const ORC = 'orc';
     const DRAGONBORN = 'dragonborn';
     const COPPER_DRAGONBORN = 'copper dragonborn';
+    const TIEFLING = 'tiefling';
 }

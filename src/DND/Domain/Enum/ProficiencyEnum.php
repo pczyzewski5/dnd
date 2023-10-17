@@ -47,6 +47,11 @@ class ProficiencyEnum extends Enum
     const SHORTSWORD = 'shortsword';
     const RAPIER = 'rapier';
     const HAND_CROSSBOW = 'hand crossbow';
+    const LIGHT_CROSSBOW = 'light crossbow';
+    const DAGGER = 'dagger';
+    const DART = 'dart';
+    const ROD = 'rod';
+    const SLING = 'sling';
 
     // tools
     const THIEF_TOOLS = 'thief tools';

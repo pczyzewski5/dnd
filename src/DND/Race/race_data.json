@@ -24,5 +24,15 @@
     "languages": ["common", "draconic"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
+  },
+  "tiefling": {
+    "ASI": {
+      "int": 1,
+      "cha": 2
+    },
+    "skills": ["infernal legacy", "hellish resistance"],
+    "languages": ["common", "infernal"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 18
   }
 }

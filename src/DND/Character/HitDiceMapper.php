@@ -9,6 +9,7 @@ use DND\Domain\Enum\HitDiceEnum;
 class HitDiceMapper
 {
     private const CLASS_TO_DICE = [
+        CharacterClassEnum::SORCERER => HitDiceEnum::D6,
         CharacterClassEnum::ROUGE => HitDiceEnum::D8,
         CharacterClassEnum::RANGER => HitDiceEnum::D10,
         CharacterClassEnum::PALADIN => HitDiceEnum::D10,
