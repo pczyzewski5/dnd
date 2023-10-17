@@ -27,7 +27,7 @@ class Character
     private SavingThrows $savingThrows;
     private AlignmentEnum $alignment;
     private Abilities $abilities;
-    private OriginEnum $origin;
+    private string $origin;
     private Skills $skills;
     private Levels $levels;
     private Race $race;
@@ -46,7 +46,7 @@ class Character
         SavingThrows $savingThrows,
         AlignmentEnum $alignment,
         Abilities $abilities,
-        OriginEnum $origin,
+        string $origin,
         Skills $skills,
         Levels $levels,
         Race $race,
@@ -143,7 +143,7 @@ class Character
         return $this->abilities;
     }
 
-    public function getOrigin(): OriginEnum
+    public function getOrigin(): string
     {
         return $this->origin;
     }

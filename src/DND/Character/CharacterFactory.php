@@ -45,7 +45,7 @@ class CharacterFactory
             SavingThrowsFactory::create($abilities, $proficiencies, $levels),
             AlignmentEnum::from($data['alignment']),
             $abilities,
-            OriginEnum::from($data['origin']),
+           $data['origin'],
             SkillsFactory::create($characterClass, $race, $skills, $characterSubclass),
             $levels,
             $race,

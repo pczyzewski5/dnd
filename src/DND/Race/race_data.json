@@ -14,5 +14,15 @@
     "languages": ["common"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
+  },
+  "dragonborn": {
+    "ASI": {
+      "str": 2,
+      "cha": 1
+    },
+    "skills": [],
+    "languages": ["common", "draconic"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
   }
 }

@@ -12,6 +12,7 @@ class CharacterClassHelper
         CharacterClassEnum::DRUID => [],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],
+        CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS],
     ];
 
     public Levels $levels;

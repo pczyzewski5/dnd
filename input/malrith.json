@@ -1,0 +1,56 @@
+{
+  "character_name": "Malrith",
+  "player_name": "Bartek N",
+  "campaign_name": "Klątwa Sthrada",
+  "origin": "mroczna przeszłość",
+  "race": "copper dragonborn",
+  "alignment": "lawful good",
+  "levels": {
+    "1": {
+      "class": "paladin"
+    },
+    "2": {
+      "class": "paladin"
+    },
+    "3": {
+      "class": "oath of the ancients"
+    },
+    "4": {
+      "class": "oath of the ancients"
+    },
+    "5": {
+      "class": "oath of the ancients"
+    },
+    "6": {
+      "class": "oath of the ancients"
+    },
+    "7": {
+      "class": "oath of the ancients"
+    },
+    "8": {
+      "class": "oath of the ancients"
+    },
+    "9": {
+      "class": "oath of the ancients"
+    }
+  },
+  "starting_abilities": {
+    "str": 17,
+    "dex": 8,
+    "con": 13,
+    "int": 10,
+    "wis": 12,
+    "cha": 16
+  },
+  "asi": {},
+  "proficiencies": [
+    "insight",
+    "persuasion",
+    "survival",
+    "arcana"
+  ],
+  "expert_proficiencies": [],
+  "languages": [],
+  "skills": [],
+  "feats": []
+}

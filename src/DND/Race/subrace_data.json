@@ -9,6 +9,16 @@
     ]
   },
   "variant human": {
-    "main_race": "human"
+    "main_race": "human",
+    "ASI": {},
+    "skills": []
+  },
+  "copper dragonborn": {
+    "main_race": "dragonborn",
+    "ASI": {},
+    "skills": [
+      "acid breath",
+      "acid resistance"
+    ]
   }
 }

@@ -29,5 +29,17 @@
     "skills": {
       "1": ["favored enemy", "natural explorer"]
     }
+  },
+  "paladin": {
+    "hit_dice": 10,
+    "proficiencies": ["wis", "cha", "light armors", "medium armors", "heavy armors", "shields", "simple weapons", "martial weapons"],
+    "multiclass_proficiencies": [],
+    "skills": {
+      "1": ["divine sense", "lay on hands"],
+      "2": ["fighting style", "divine smite"],
+      "3": ["divine health", "divine smite"],
+      "4": ["bonus attack"],
+      "5": ["aura of protection"]
+    }
   }
 }

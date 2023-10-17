@@ -16,7 +16,7 @@ class TitleSectionBuilder extends AbstractSectionBuilder
         $context =  [
             'className' => $className,
             'level' => $this->character->getActualLevel(),
-            'origin' => $this->character->getOrigin()->getValue(),
+            'origin' => $this->character->getOrigin(),
             'characterName' => $this->character->getCharacterName(),
             'playerName' => $this->character->getPlayerName(),
             'race' => $this->character->getRace()->getName(),

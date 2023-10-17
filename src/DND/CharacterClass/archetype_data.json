@@ -9,5 +9,11 @@
       "3": ["frenzy"],
       "6": ["mindless rage"]
     }
+  },
+  "oath of the ancients": {
+    "skills": {
+      "3": ["nature wrath", "turn the faithless"],
+      "7": ["aura of warding"]
+    }
   }
 }

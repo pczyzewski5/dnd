@@ -67,7 +67,6 @@ class CreateCharacterCardCommand extends Command
         $characterDataValidator->addValidator(new RaceValidator());
         $characterDataValidator->addValidator(new AlignmentValidator());
         $characterDataValidator->addValidator(new StartingAbilitiesValidator());
-        $characterDataValidator->addValidator(new OriginValidator());
         $characterDataValidator->addValidator(new LanguageValidator());
 
         $characterDataValidator->validate($characterData);
