@@ -1,6 +1,5 @@
 {
   "rouge": {
-    "hit_dice": 8,
     "proficiencies": ["dex", "int", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"],
     "multiclass_proficiencies": [],
     "skills": {
@@ -11,7 +10,6 @@
     }
   },
   "barbarian": {
-    "hit_dice": 12,
     "proficiencies": ["str", "con", "light armors", "medium armors", "shields", "simple weapons", "martial weapons"],
     "multiclass_proficiencies": [],
     "skills": {
@@ -23,7 +21,6 @@
     }
   },
   "ranger": {
-    "hit_dice": 10,
     "proficiencies": [],
     "multiclass_proficiencies": ["light armors", "medium armors", "shields", "simple weapons", "martial weapons"],
     "skills": {
@@ -31,7 +28,6 @@
     }
   },
   "paladin": {
-    "hit_dice": 10,
     "proficiencies": ["wis", "cha", "light armors", "medium armors", "heavy armors", "shields", "simple weapons", "martial weapons"],
     "multiclass_proficiencies": [],
     "skills": {
@@ -43,7 +39,6 @@
     }
   },
   "sorcerer": {
-    "hit_dice": 6,
     "proficiencies": ["con", "cha", "rod", "light crossbow", "sling", "dart", "dagger"],
     "multiclass_proficiencies": [],
     "skills": {
@@ -53,7 +48,6 @@
     }
   },
   "druid": {
-    "hit_dice": 8,
     "proficiencies": ["int", "wis", "rod", "light crossbow", "sling", "dart", "dagger"],
     "multiclass_proficiencies": [],
     "skills": {
