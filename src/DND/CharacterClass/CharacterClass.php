@@ -54,18 +54,11 @@ class CharacterClass
         return $this->characterClassEnum;
     }
 
-    public function getParentCharacterClassEnum(): ?CharacterClassEnum
-    {
-        return CharacterClassHelper::isBaseClass($this->characterClassEnum)
-            ? null
-            : CharacterClassHelper::getBaseClass($this->characterClassEnum);
-    }
-
     private function mergeSkills(array $skillsA, array $skillsB): array
     {
         $result = [];
-        $levels = \range(1, 20);
 
+        $levels = \range(1, 20);
         foreach ($levels as $level) {
             $skills = \array_merge(
                 $skillsA[$level] ?? [],

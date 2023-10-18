@@ -33,10 +33,8 @@ class CharacterClassDataRepository
         return $data;
     }
 
-    private static function findData(
-        CharacterClassEnum $characterClassEnum,
-        string $dataFilepath
-    ): ?array {
+    private static function findData(CharacterClassEnum $characterClassEnum, string $dataFilepath): ?array
+    {
         $data = \file_get_contents($dataFilepath);
         $data = \json_decode($data, true);
         if (json_last_error() !== JSON_ERROR_NONE) {

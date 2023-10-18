@@ -43,5 +43,8 @@ class CharacterClassHelper
                 return CharacterClassEnum::from($baseClass);
             }
         }
+
+        // @todo changeme
+        throw new \Exception('Base class not found');
     }
 }

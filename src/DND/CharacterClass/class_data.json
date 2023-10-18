@@ -42,7 +42,6 @@
     "proficiencies": ["con", "cha", "rod", "light crossbow", "sling", "dart", "dagger"],
     "multiclass_proficiencies": [],
     "skills": {
-      "1": [],
       "2": ["font of magic", "elastic spellcasting"],
       "3": ["metamagic", "divine smite"]
     }
