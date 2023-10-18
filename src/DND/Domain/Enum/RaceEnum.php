@@ -7,9 +7,14 @@ use MyCLabs\Enum\Enum;
 class RaceEnum extends Enum
 {
     const HUMAN = 'human';
-    const LIGHTFOOT_HALFLING = 'lightfoot halfling';
+    const TIEFLING = 'tiefling';
     const ORC = 'orc';
+
+    const LIGHTFOOT_HALFLING = 'lightfoot halfling';
+
     const DRAGONBORN = 'dragonborn';
     const COPPER_DRAGONBORN = 'copper dragonborn';
-    const TIEFLING = 'tiefling';
+
+    const ELF = 'elf';
+    const HIGH_ELF = 'high elf';
 }

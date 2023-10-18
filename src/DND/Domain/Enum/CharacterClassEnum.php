@@ -13,6 +13,7 @@ class CharacterClassEnum extends Enum
     const ASSASSIN = 'assassin';
 
     const DRUID = 'druid';
+    const CIRCLE_OF_MOON_DRUID = 'circle of moon druid';
     const RANGER = 'ranger';
 
     const PALADIN = 'paladin';

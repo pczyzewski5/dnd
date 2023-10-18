@@ -34,5 +34,15 @@
     "languages": ["common", "infernal"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18
+  },
+  "elf": {
+    "ASI": {
+      "dex": 2,
+      "cha": 2
+    },
+    "skills": ["fey ancestry", "trance", "keen senses"],
+    "languages": ["common", "elven"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 18
   }
 }

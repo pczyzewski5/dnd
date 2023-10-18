@@ -51,5 +51,14 @@
       "2": ["font of magic", "elastic spell casting"],
       "3": ["metamagic", "divine smite"]
     }
+  },
+  "druid": {
+    "hit_dice": 8,
+    "proficiencies": ["int", "wis", "rod", "light crossbow", "sling", "dart", "dagger"],
+    "multiclass_proficiencies": [],
+    "skills": {
+      "1": ["druidic"],
+      "2": ["wild shape"]
+    }
   }
 }

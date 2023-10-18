@@ -20,5 +20,16 @@
       "acid breath",
       "acid resistance"
     ]
+  },
+  "high elf": {
+    "main_race": "elf",
+    "ASI": {
+      "int": 1
+    },
+    "skills": [
+      "elf weapon training",
+      "elf cantrip",
+      "extra language"
+    ]
   }
 }

@@ -9,11 +9,11 @@ class CharacterClassHelper
 {
     private const CLASS_TO_ARCHETYPE = [
         CharacterClassEnum::RANGER => [],
-        CharacterClassEnum::DRUID => [],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],
         CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS],
         CharacterClassEnum::SORCERER => [CharacterClassEnum::WILD_MAGIC_SORCERER],
+        CharacterClassEnum::DRUID => [CharacterClassEnum::CIRCLE_OF_MOON_DRUID],
     ];
 
     public Levels $levels;

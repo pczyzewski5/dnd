@@ -1,0 +1,61 @@
+{
+  "character_name": "Anwen",
+  "player_name": "Kasia",
+  "campaign_name": "Klątwa Sthrada",
+  "origin": "mędrzec",
+  "race": "high elf",
+  "alignment": "neutral good",
+  "levels": {
+    "1": {
+      "class": "druid"
+    },
+    "2": {
+      "class": "druid"
+    },
+    "3": {
+      "class": "circle of moon druid"
+    },
+    "4": {
+      "class": "circle of moon druid"
+    },
+    "5": {
+      "class": "circle of moon druid"
+    },
+    "6": {
+      "class": "circle of moon druid"
+    },
+    "7": {
+      "class": "circle of moon druid"
+    },
+    "8": {
+      "class": "circle of moon druid"
+    },
+    "9": {
+      "class": "circle of moon druid"
+    }
+  },
+  "starting_abilities": {
+    "str": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 10
+  },
+  "asi": {
+    "con": 2
+  },
+  "proficiencies": [
+    "survival",
+    "animal handling",
+    "athletics",
+    "perception",
+    "stealth",
+    "tinker tools",
+    "land vehicles"
+  ],
+  "expert_proficiencies": [],
+  "languages": ["elf"],
+  "skills": ["Bel'Quath Song"],
+  "feats": ["lucky", "great weapon master"]
+}

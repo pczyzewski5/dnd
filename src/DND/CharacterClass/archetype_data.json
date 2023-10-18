@@ -21,5 +21,11 @@
       "1": ["wild magic surge", "tides of chaos"],
       "6": ["bend luck"]
     }
+  },
+  "circle of moon druid": {
+    "skills": {
+      "2": ["combat wild shape"],
+      "6": ["primal strike"]
+    }
   }
 }
