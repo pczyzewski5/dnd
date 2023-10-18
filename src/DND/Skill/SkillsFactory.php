@@ -10,30 +10,54 @@ class SkillsFactory
     {
         $result = new Skills();
 
-        foreach ($character->getCharacterClass()->getSkills() as $grantLevel => $skills) {
-            foreach ($skills as $skillName) {
-                $result->addSkill(
-                    SkillFactory::create($character, $skillName, $grantLevel)
-                );
-            }
-        }
+        self::addSkillsWithGrantLevel(
+            $character,
+            $result,
+            $character->getCharacterClass()->getSkills()
+        );
+        self::addSkillsWithGrantLevel(
+            $character,
+            $result,
+            $character->getRace()->getSkills()
+        );
+        self::addSkillWithNoGrantLevel(
+            $character,
+            $result,
+            $extraSkills
+        );
         if (null !== $character->getCharacterSubclass()) {
-            foreach ($character->getCharacterSubclass()->getSkills() as $grantLevel => $skills) {
-                foreach ($skills as $skillName) {
-                    $result->addSkill(
-                        SkillFactory::create($character, $skillName, $grantLevel)
-                    );
-                }
-            }
+            self::addSkillsWithGrantLevel(
+                $character,
+                $result,
+                $character->getCharacterSubclass()->getSkills()
+            );
         }
-        foreach ($character->getRace()->getSkills() as $grantLevel => $skills) {
+
+        return $result;
+    }
+
+    private static function addSkillsWithGrantLevel(
+        Character $character,
+        Skills $result,
+        array $skillsWithGrantLevel
+    ): Skills {
+        foreach ($skillsWithGrantLevel as $grantLevel => $skills) {
             foreach ($skills as $skillName) {
                 $result->addSkill(
                     SkillFactory::create($character, $skillName, $grantLevel)
                 );
             }
         }
-        foreach ($extraSkills as $skillName) {
+
+        return $result;
+    }
+
+    private static function addSkillWithNoGrantLevel(
+        Character $character,
+        Skills $result,
+        array $skills
+    ): Skills {
+        foreach ($skills as $skillName) {
             $result->addSkill(
                 SkillFactory::create($character, $skillName, 0)
             );
