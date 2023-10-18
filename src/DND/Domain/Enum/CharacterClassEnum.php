@@ -17,7 +17,7 @@ class CharacterClassEnum extends Enum
     const RANGER = 'ranger';
 
     const PALADIN = 'paladin';
-    const OATH_OF_THE_ANCIENTS = 'oath of the ancients';
+    const OATH_OF_THE_ANCIENTS_PALADIN = 'oath of the ancients paladin';
 
     const SORCERER = 'sorcerer';
     const WILD_MAGIC_SORCERER = 'wild magic sorcerer';

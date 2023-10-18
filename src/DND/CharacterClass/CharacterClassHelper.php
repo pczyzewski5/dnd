@@ -11,7 +11,7 @@ class CharacterClassHelper
         CharacterClassEnum::RANGER => [],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],
-        CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS],
+        CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS_PALADIN],
         CharacterClassEnum::SORCERER => [CharacterClassEnum::WILD_MAGIC_SORCERER],
         CharacterClassEnum::DRUID => [CharacterClassEnum::CIRCLE_OF_MOON_DRUID],
     ];
