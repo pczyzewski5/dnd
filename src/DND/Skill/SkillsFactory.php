@@ -19,21 +19,11 @@ class SkillsFactory
                $result->addSkill(new Skill($skill, $level));
            }
        }
-       foreach ($characterClass->getArchetypeSkills() as $level => $skills) {
-           foreach ($skills as $skill) {
-               $result->addSkill(new Skill($skill, $level));
-           }
-       }
        foreach ($race->getSkills() as $skill) {
            $result->addSkill(new Skill($skill));
        }
        if (null !== $characterSubclass) {
            foreach ($characterSubclass->getSkills() as $level => $skills) {
-               foreach ($skills as $skill) {
-                   $result->addSkill(new Skill($skill, $level));
-               }
-           }
-           foreach ($characterSubclass->getArchetypeSkills() as $level => $skills) {
                foreach ($skills as $skill) {
                    $result->addSkill(new Skill($skill, $level));
                }
