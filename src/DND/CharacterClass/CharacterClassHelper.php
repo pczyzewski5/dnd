@@ -2,7 +2,6 @@
 
 namespace DND\CharacterClass;
 
-use DND\Character\Levels;
 use DND\Domain\Enum\CharacterClassEnum;
 
 class CharacterClassHelper
@@ -15,13 +14,6 @@ class CharacterClassHelper
         CharacterClassEnum::SORCERER => [CharacterClassEnum::WILD_MAGIC_SORCERER],
         CharacterClassEnum::DRUID => [CharacterClassEnum::CIRCLE_OF_MOON_DRUID],
     ];
-
-    public Levels $levels;
-
-    public function __construct(Levels $levels)
-    {
-        $this->levels = $levels;
-    }
 
     public static function isBaseClass(CharacterClassEnum $characterClassEnum): bool
     {

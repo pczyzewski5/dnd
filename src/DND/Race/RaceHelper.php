@@ -2,7 +2,6 @@
 
 namespace DND\Race;
 
-use DND\Character\Levels;
 use DND\Domain\Enum\RaceEnum;
 
 class RaceHelper
@@ -14,13 +13,6 @@ class RaceHelper
         RaceEnum::TIEFLING => [],
         RaceEnum::ELF => [RaceEnum::HIGH_ELF],
     ];
-
-    public Levels $levels;
-
-    public function __construct(Levels $levels)
-    {
-        $this->levels = $levels;
-    }
 
     public static function isBaseRace(RaceEnum $raceEnum): bool
     {
