@@ -1,35 +1,28 @@
 {
   "lightfoot halfling": {
-    "main_race": "halfling",
     "ASI": {
       "cha": 1
     },
-    "skills": [
-      "naturally stealthy"
-    ]
+    "skills": {
+      "0": ["naturally stealthy"]
+    }
   },
-  "variant human": {
-    "main_race": "human",
+  "human variant": {
     "ASI": {},
-    "skills": []
+    "skills": {}
   },
   "copper dragonborn": {
-    "main_race": "dragonborn",
     "ASI": {},
-    "skills": [
-      "acid breath",
-      "acid resistance"
-    ]
+    "skills": {
+      "0": ["acid breath", "acid resistance"]
+    }
   },
   "high elf": {
-    "main_race": "elf",
     "ASI": {
       "int": 1
     },
-    "skills": [
-      "elf weapon training",
-      "cantrip",
-      "extra language"
-    ]
+    "skills": {
+      "0": ["elf weapon training", "cantrip", "extra language"]
+    }
   }
 }

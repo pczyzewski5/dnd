@@ -3,14 +3,16 @@
     "ASI": {
       "dex": 2
     },
-    "skills": ["lucky", "brave", "nimble"],
+    "skills": {
+      "0": ["lucky", "brave", "nimble"]
+    },
     "languages": ["common", "halfling"],
     "speed_in_meters": 7.5,
     "nightvision_in_meters": 0
   },
   "human": {
     "ASI": {},
-    "skills": [],
+    "skills": {},
     "languages": ["common"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
@@ -20,7 +22,7 @@
       "str": 2,
       "cha": 1
     },
-    "skills": [],
+    "skills": {},
     "languages": ["common", "draconic"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
@@ -30,7 +32,9 @@
       "int": 1,
       "cha": 2
     },
-    "skills": ["infernal legacy", "hellish resistance"],
+    "skills": {
+      "0": ["infernal legacy", "hellish resistance"]
+    },
     "languages": ["common", "infernal"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18
@@ -40,7 +44,9 @@
       "dex": 2,
       "cha": 2
     },
-    "skills": ["fey ancestry", "trance", "keen senses"],
+    "skills": {
+      "0": ["fey ancestry", "trance", "keen senses"]
+    },
     "languages": ["common", "elven"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18

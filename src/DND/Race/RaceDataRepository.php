@@ -6,30 +6,42 @@ use DND\Domain\Enum\RaceEnum;
 
 class RaceDataRepository
 {
-    public static function get(RaceEnum $raceEnum): array
+    private const RACE_DATA_FILEPATH = __DIR__ . '/race_data.json';
+    private const SUBRACE_DATA_FILEPATH = __DIR__ . '/subrace_data.json';
+
+    public static function getRaceData(RaceEnum $raceEnum): array
     {
-        $race = $raceEnum->getValue();
+        $data = self::findData($raceEnum, self::RACE_DATA_FILEPATH);
 
-        $raceData = \json_decode(
-            \file_get_contents(__DIR__ . '/race_data.json'),
-            true
-        );
-        $subraceData = \json_decode(
-            \file_get_contents(__DIR__ . '/subrace_data.json'),
-            true
-        );
-
-        if (\array_key_exists($race, $raceData)) {
-            return $raceData[$race];
-        }
-        if (\array_key_exists($race, $subraceData)) {
-            $subraceData = $subraceData[$race];
-            $mainRaceData = $raceData[$subraceData['main_race']];
-
-            return \array_merge_recursive($mainRaceData, $subraceData);
+        if (null === $data) {
+            // @todo changeme
+            throw new \Exception('Data for race: ' . $raceEnum->getValue() . ', not found!');
         }
 
-        // @todo change me
-        throw new \Exception('Character race: ' . $race . ', not found.');
+        return $data;
+    }
+
+    public static function getSubraceData(RaceEnum $raceEnum): array
+    {
+        $data = self::findData($raceEnum, self::SUBRACE_DATA_FILEPATH);
+
+        if (null === $data) {
+            // @todo changeme
+            throw new \Exception('Data for subrace: ' . $raceEnum->getValue() . ', not found!');
+        }
+
+        return $data;
+    }
+
+    private static function findData(RaceEnum $characterClassEnum, string $dataFilepath): ?array
+    {
+        $data = \file_get_contents($dataFilepath);
+        $data = \json_decode($data, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            // @todo changeme
+            throw new \Exception('Invalid json in: ' . $dataFilepath);
+        }
+
+        return $data[$characterClassEnum->getValue()] ?? null;
     }
 }

@@ -8,16 +8,24 @@ class RaceFactory
 {
     public static function create(string $race): Race
     {
-        $race = RaceEnum::from($race);
-        $data = RaceDataRepository::get($race);
+        $raceEnum = RaceEnum::from($race);
+
+        $subraceData = RaceHelper::isSubrace($raceEnum)
+            ? RaceDataRepository::getSubraceData($raceEnum)
+            : [];
+
+        $raceData = RaceHelper::isSubrace($raceEnum)
+            ? RaceDataRepository::getRaceData(RaceHelper::getBaseRace($raceEnum))
+            : RaceDataRepository::getRaceData($raceEnum);
 
         return new Race(
-            $race,
-            $data['speed_in_meters'],
-            $data['nightvision_in_meters'],
-            $data['languages'],
-            $data['ASI'],
-            $data['skills']
+            $raceEnum,
+            $raceData['speed_in_meters'],
+            $raceData['nightvision_in_meters'],
+            $raceData['languages'],
+            $raceData['ASI'] + ($subraceData['ASI'] ?? []),
+            $raceData['skills'],
+            $subraceData['skills'] ?? []
         );
     }
 }

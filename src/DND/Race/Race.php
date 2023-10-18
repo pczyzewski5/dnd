@@ -19,14 +19,15 @@ class Race
         float $nightvision,
         array $languages,
         array $ASI,
-        array $skills,
+        array $raceSkills,
+        array $subraceSkills,
     ) {
         $this->enum = $raceEnum;
         $this->speed = $speed;
         $this->nightvision = $nightvision;
         $this->languages = $languages;
         $this->ASI = $ASI;
-        $this->skills = $skills;
+        $this->skills = $this->mergeSkills($raceSkills, $subraceSkills);
     }
 
     public function getName(): string
@@ -57,5 +58,24 @@ class Race
     public function getSkills(): array
     {
         return $this->skills;
+    }
+
+    private function mergeSkills(array $skillsA, array $skillsB): array
+    {
+        $result = [];
+
+        $levels = \range(1, 20);
+        foreach ($levels as $level) {
+            $skills = \array_merge(
+                $skillsA[$level] ?? [],
+                $skillsB[$level] ?? []
+            );
+
+            if (false === empty($skills)) {
+                $result[$level] = $skills;
+            }
+        }
+
+        return $result;
     }
 }
