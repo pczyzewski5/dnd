@@ -4,12 +4,12 @@ namespace DND\Skill\Skills;
 
 class BonusAttack extends AbstractSkill
 {
-    public const ORDER = 5000;
+    protected const ORDER = 5000;
 
     public function getContext(): array
     {
         return [
-            'level' => $this->skill->getLevel()
+            'level' => $this->grantLevel
         ];
     }
 }

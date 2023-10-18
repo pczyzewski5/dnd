@@ -6,8 +6,8 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class RecklessAttack extends AbstractSkill
 {
-    public const ORDER = 3;
-    protected array $tags = [
+    protected const ORDER = 3;
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
     ];
 

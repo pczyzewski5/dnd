@@ -6,8 +6,8 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class BrutalCritical extends AbstractSkill
 {
-    public const ORDER = 4;
-    protected array $tags = [
+    protected const ORDER = 4;
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
     ];
 

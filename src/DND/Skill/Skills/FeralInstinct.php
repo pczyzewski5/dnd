@@ -6,7 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class FeralInstinct extends AbstractSkill
 {
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
     ];
 

@@ -12,12 +12,11 @@ use DND\Calculators\SpeedCalculator;
 use DND\CharacterClass\CharacterClass;
 use DND\Domain\Ability\Abilities;
 use DND\Domain\Enum\AlignmentEnum;
-use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\SavingThrows\SavingThrows;
 use DND\Domain\AbilitySkills\AbilitySkills;
 use DND\Race\Race;
-use DND\Skill\Skills;
+use DND\Skill\SkillsFactory;
 
 class Character
 {
@@ -28,16 +27,19 @@ class Character
     private AlignmentEnum $alignment;
     private Abilities $abilities;
     private string $origin;
-    private Skills $skills;
     private Levels $levels;
     private Race $race;
     private string $characterName;
     private string $campaignName;
     private string $playerName;
-    private array $resistances;
-    private array $immunities;
     private array $languages;
     private ?CharacterClass $characterSubclass;
+
+    private int $actualLevel;
+
+    private array $activeSkills;
+    private array $passiveSkills;
+    private array $skillsWithUseCount;
 
     public function __construct(
         CharacterClass $characterClass,
@@ -47,14 +49,12 @@ class Character
         AlignmentEnum $alignment,
         Abilities $abilities,
         string $origin,
-        Skills $skills,
         Levels $levels,
         Race $race,
+        array $extraSkills,
         string $characterName,
         string $campaignName,
         string $playerName,
-        array $resistances,
-        array $immunities,
         array $languages,
         ?CharacterClass $characterSubclass
     ) {
@@ -65,24 +65,25 @@ class Character
         $this->alignment = $alignment;
         $this->abilities = $abilities;
         $this->origin = $origin;
-        $this->skills = $skills;
         $this->levels = $levels;
         $this->race = $race;
         $this->characterName = $characterName;
         $this->campaignName = $campaignName;
         $this->playerName = $playerName;
-        $this->resistances = $resistances;
-        $this->immunities = $immunities;
         $this->languages = $languages;
         $this->characterSubclass = $characterSubclass;
+
+        $this->actualLevel = \count($this->levels->getLevels());
+
+        $skills = SkillsFactory::create($this, $extraSkills);
+        $this->activeSkills = $skills->getActiveSkills($this->actualLevel);
+        $this->passiveSkills = $skills->getPassiveSkills($this->actualLevel);
+        $this->skillsWithUseCount = $skills->getSkillsWithUseCount($this->actualLevel);
     }
 
     public function getSpeed(): float
     {
-        return SpeedCalculator::calculate(
-            $this->race,
-            $this->skills->getPassiveSkills($this)
-        );
+        return SpeedCalculator::calculate($this->race, $this->passiveSkills);
     }
 
     public function getNightvision(): float
@@ -97,10 +98,7 @@ class Character
 
     public function getArmorClassWithoutArmor(): int
     {
-        return ArmorClassCalculator::calculate(
-            $this->abilities,
-            $this->skills->getPassiveSkills($this)
-        );
+        return ArmorClassCalculator::calculate($this->abilities, $this->passiveSkills);
     }
 
     public function getHitDices(): array
@@ -150,17 +148,17 @@ class Character
 
     public function getActiveSkills(): array
     {
-        return $this->skills->getActiveSkills($this);
+        return $this->activeSkills;
     }
 
     public function getPassiveSkills(): array
     {
-        return $this->skills->getPassiveSkills($this);
+        return $this->passiveSkills;
     }
 
     public function getSkillsWithUseCount(): array
     {
-        return $this->skills->getSkillsWithUseCount($this);
+        return $this->skillsWithUseCount;
     }
 
     public function getRace(): Race
@@ -185,12 +183,12 @@ class Character
 
     public function getResistances(): array
     {
-        return $this->resistances;
+        return [];
     }
 
     public function getImmunities(): array
     {
-        return $this->immunities;
+        return [];
     }
 
     public function getLanguages(): array
@@ -212,11 +210,11 @@ class Character
 
     public function getActualLevel(): int
     {
-        return \count($this->levels->getLevels());
+        return $this->actualLevel;
     }
 
     public function getAttackCount(): int
     {
-        return AttackCountCalculator::calculate($this->skills->getPassiveSkills($this));
+        return AttackCountCalculator::calculate($this->passiveSkills);
     }
 }

@@ -2,13 +2,16 @@
 
 namespace DND\Skill\Skills;
 
-use DND\Character\Character;
 use DND\Domain\Enum\SkillTagEnum;
-use DND\Skill\Skill;
 
 class Rage extends AbstractSkill
 {
-    public const ORDER = 0;
+    protected const ORDER = 0;
+    protected const TAGS = [
+        SkillTagEnum::ACTIVE,
+        SkillTagEnum::USE_COUNT,
+    ];
+
     private const RAGE_LEVELS = [
         1 => ['count' => 2, 'damage' => 2],
         2 => ['count' => 2, 'damage' => 2],
@@ -22,16 +25,9 @@ class Rage extends AbstractSkill
         10 => ['count' => 4, 'damage' => 3],
     ];
 
-    protected array $tags = [
-        SkillTagEnum::ACTIVE,
-        SkillTagEnum::USE_COUNT,
-    ];
-
-    public function __construct(Character $character, Skill $skill)
+    public function getUsageCount(): int
     {
-        parent::__construct($character, $skill);
-
-        $this->count = self::RAGE_LEVELS[$this->character->getActualLevel()]['count'];
+        return self::RAGE_LEVELS[$this->character->getActualLevel()]['count'];
     }
 
     public function getContext(): array

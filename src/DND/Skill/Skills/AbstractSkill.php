@@ -5,43 +5,53 @@ namespace DND\Skill\Skills;
 use App\CaseConverter;
 use DND\Character\Character;
 use DND\Domain\Enum\SkillTagEnum;
-use DND\Skill\Skill;
 
 abstract class AbstractSkill
 {
-    public const ORDER = 1000;
-
-    protected Character $character;
-    protected Skill $skill;
-    protected int $count = 0;
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::PASSIVE
     ];
+    protected const ORDER = 1000;
 
-    public function __construct(Character $character, Skill $skill)
+    protected Character $character;
+    protected string $name;
+    protected int $grantLevel;
+
+    public function __construct(Character $character, string $skillName, int $grantLevel)
     {
         $this->character = $character;
-        $this->skill = $skill;
+        $this->name = $skillName;
+        $this->grantLevel = $grantLevel;
     }
 
     public function getName(): string
     {
-        return \str_replace('feat ', '', $this->skill->getName());
+        return \str_replace('feat ', '', $this->name);
     }
 
-    public function getCount(): int
+    public function getGrantLevel(): int
     {
-        return $this->count;
+        return $this->grantLevel;
     }
 
-    public function hasTag(SkillTagEnum $skillTagEnum): bool
+    public function getUsageCount(): int
     {
-        return \in_array($skillTagEnum->getValue(), $this->tags);
+        return 0;
+    }
+
+    public function getTags(): array
+    {
+        return self::TAGS;
+    }
+
+    public function getOrder(): int
+    {
+        return self::ORDER;
     }
 
     public function getTemplate(): string
     {
-        return 'skill_templates/' . CaseConverter::normalToSnake($this->skill->getName()) . '.html.twig';
+        return 'skill_templates/' . CaseConverter::normalToSnake($this->name) . '.html.twig';
     }
 
     abstract public function getContext(): array;

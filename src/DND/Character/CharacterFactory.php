@@ -7,11 +7,9 @@ use DND\CharacterClass\CharacterClassResolver;
 use DND\Domain\Ability\AbilitiesFactory;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\Enum\AlignmentEnum;
-use DND\Domain\Enum\OriginEnum;
 use DND\Domain\Proficiency\ProficienciesFactory;
 use DND\Domain\SavingThrows\SavingThrowsFactory;
 use DND\Race\RaceFactory;
-use DND\Skill\SkillsFactory;
 
 class CharacterFactory
 {
@@ -33,9 +31,9 @@ class CharacterFactory
         );
         $race = RaceFactory::create($data['race']);
         $abilities = AbilitiesFactory::create($race, $data['starting_abilities'], $data['asi']);
-        $skills = \array_merge(
-          \array_map(static function(string $feat) { return 'feat ' . $feat; }, $data['feats']),
-          $data['skills']
+        $extraSkills = \array_merge(
+            \array_map(static function(string $feat) { return 'feat ' . $feat; }, $data['feats']),
+            $data['extra_skills']
         );
 
         return new Character(
@@ -45,15 +43,13 @@ class CharacterFactory
             SavingThrowsFactory::create($abilities, $proficiencies, $levels),
             AlignmentEnum::from($data['alignment']),
             $abilities,
-           $data['origin'],
-            SkillsFactory::create($characterClass, $race, $skills, $characterSubclass),
+            $data['origin'],
             $levels,
             $race,
+            $extraSkills,
             $data['character_name'],
             $data['campaign_name'],
             $data['player_name'],
-            [],
-            [],
             $data['languages'],
             $characterSubclass
         );

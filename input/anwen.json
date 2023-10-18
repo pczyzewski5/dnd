@@ -56,6 +56,6 @@
   ],
   "expert_proficiencies": [],
   "languages": ["elf"],
-  "skills": ["Bel'Quath Song"],
+  "extra_skills": ["Bel'Quath Song"],
   "feats": ["lucky", "great weapon master"]
 }

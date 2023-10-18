@@ -11,7 +11,7 @@ class SkillsSectionBuilder extends AbstractSectionBuilder
         $render = function (AbstractSkill $skill) {
             return $this->twig->render(
                 $skill->getTemplate(),
-                $skill->getContext()
+                $skill->getContext($this->character)
             );
         };
 

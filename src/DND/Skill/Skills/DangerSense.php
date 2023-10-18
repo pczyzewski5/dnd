@@ -6,7 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class DangerSense extends AbstractSkill
 {
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
     ];
 

@@ -6,10 +6,9 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class FeatGreatWeaponMaster extends AbstractSkill
 {
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
     ];
-
 
     public function getContext(): array
     {

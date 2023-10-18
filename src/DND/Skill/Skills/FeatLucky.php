@@ -6,8 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class FeatLucky extends AbstractSkill
 {
-    protected int $count = 3;
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
         SkillTagEnum::USE_COUNT,
     ];

@@ -4,7 +4,7 @@ namespace DND\Skill\Skills;
 
 class SneakAttack extends AbstractSkill
 {
-    public const ORDER = 0;
+    protected const ORDER = 0;
 
     public function getContext(): array
     {

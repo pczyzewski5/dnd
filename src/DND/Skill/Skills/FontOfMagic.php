@@ -2,29 +2,24 @@
 
 namespace DND\Skill\Skills;
 
-use DND\Character\Character;
 use DND\Domain\Enum\SkillTagEnum;
-use DND\Skill\Skill;
 
 class FontOfMagic extends AbstractSkill
 {
-    protected int $count = 1;
-    protected array $tags = [
+    protected const TAGS = [
         SkillTagEnum::ACTIVE,
         SkillTagEnum::USE_COUNT,
     ];
 
-    public function __construct(Character $character, Skill $skill)
+    public function getUsageCount(): int
     {
-        parent::__construct($character, $skill);
-
-        $this->count = $this->character->getActualLevel();
+        return $this->character->getActualLevel();
     }
 
     public function getContext(): array
     {
         return [
-            'pointsCount' => $this->count
+            'pointsCount' => $this->getUsageCount()
         ];
     }
 }

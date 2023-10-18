@@ -35,12 +35,12 @@
     }
   },
   "starting_abilities": {
-    "str": 17,
+    "str": 15,
     "dex": 8,
     "con": 13,
     "int": 10,
     "wis": 12,
-    "cha": 16
+    "cha": 15
   },
   "asi": {},
   "proficiencies": [
@@ -51,6 +51,6 @@
   ],
   "expert_proficiencies": [],
   "languages": [],
-  "skills": [],
+  "extra_skills": [],
   "feats": []
 }

@@ -2,32 +2,39 @@
 
 namespace DND\Skill;
 
-use DND\CharacterClass\CharacterClass;
-use DND\Race\Race;
+use DND\Character\Character;
 
 class SkillsFactory
 {
-   public static function create(CharacterClass $characterClass, Race $race, array $skills, ?CharacterClass $characterSubclass): Skills
+   public static function create(Character $character, array $extraSkills): Skills
    {
        $result = new Skills();
 
-       foreach ($skills as $skill) {
-           $result->addSkill(new Skill($skill));
-       }
-       foreach ($characterClass->getSkills() as $level => $skills) {
-           foreach ($skills as $skill) {
-               $result->addSkill(new Skill($skill, $level));
+       foreach ($character->getCharacterClass()->getSkills() as $grantLevel => $skills) {
+           foreach ($skills as $skillName) {
+               $result->addSkill(
+                   SkillFactory::create($character, $skillName, $grantLevel)
+               );
            }
        }
-       foreach ($race->getSkills() as $skill) {
-           $result->addSkill(new Skill($skill));
-       }
-       if (null !== $characterSubclass) {
-           foreach ($characterSubclass->getSkills() as $level => $skills) {
-               foreach ($skills as $skill) {
-                   $result->addSkill(new Skill($skill, $level));
+       if (null !== $character->getCharacterSubclass()) {
+           foreach ($character->getCharacterSubclass()->getSkills() as $grantLevel => $skills) {
+               foreach ($skills as $skillName) {
+                   $result->addSkill(
+                       SkillFactory::create($character, $skillName, $grantLevel)
+                   );
                }
            }
+       }
+       foreach ($character->getRace()->getSkills() as $skillName) {
+           $result->addSkill(
+               SkillFactory::create($character, $skillName, 0)
+           );
+       }
+       foreach ($extraSkills as $skillName) {
+           $result->addSkill(
+               SkillFactory::create($character, $skillName, 0)
+           );
        }
 
        return $result;

@@ -6,10 +6,8 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class Exhaustion extends AbstractSkill
 {
-    public const ORDER = 10000;
-
-    protected int $count = 6;
-    protected array $tags = [
+    protected const ORDER = 10000;
+    protected const TAGS = [
         SkillTagEnum::PASSIVE,
         SkillTagEnum::USE_COUNT,
     ];
