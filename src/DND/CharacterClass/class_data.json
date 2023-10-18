@@ -43,7 +43,7 @@
     "multiclass_proficiencies": [],
     "skills": {
       "1": [],
-      "2": ["font of magic", "elastic spell casting"],
+      "2": ["font of magic", "elastic spellcasting"],
       "3": ["metamagic", "divine smite"]
     }
   },
