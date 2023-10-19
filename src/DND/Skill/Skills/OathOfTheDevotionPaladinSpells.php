@@ -2,12 +2,12 @@
 
 namespace DND\Skill\Skills;
 
-class OathOfTheAncientsPaladinSpells extends AbstractSkill
+class OathOfTheDevotionPaladinSpells extends AbstractSkill
 {
     private const LEVEL_TO_SPELLS = [
-        9 => ['ochrona przed energią', 'rozrost roślin'],
-        5 => ['krok przez mgłę', 'księżycowy promień'],
-        3 => ['pętające uderzenie', 'rozmawianie ze zwierzętami'],
+        9 => ['promień nadziei', 'rozproszenie magii'],
+        5 => ['mniejsze przywrócenie', 'strefa prawdy'],
+        3 => ['ochrona przed dobrem i złem', 'sanktuarium'],
     ];
 
     public function getContext(): array
