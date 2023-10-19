@@ -4,23 +4,26 @@ namespace DND\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class LayOnHands extends AbstractSkill
+class OathOfTheAncientsPaladinChannelDivinity extends AbstractSkill
 {
-    protected const ORDER = 4;
+    protected const ORDER = 2;
     protected const TAGS = [
         SkillTagEnum::ACTIVE,
         SkillTagEnum::USE_COUNT,
     ];
 
+    public function getName(): string
+    {
+        return 'Akt wiary';
+    }
+
     public function getUsageCount(): int
     {
-        return $this->character->getActualLevel() * 5;
+        return 1;
     }
 
     public function getContext(): array
     {
-        return [
-            'pointsCount' => $this->getUsageCount()
-        ];
+        return [];
     }
 }

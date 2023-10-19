@@ -6,6 +6,7 @@ use DND\Domain\Enum\SkillTagEnum;
 
 class AcidBreath extends AbstractSkill
 {
+    protected const ORDER = 0;
     protected const TAGS = [
         SkillTagEnum::ACTIVE,
         SkillTagEnum::USE_COUNT,
@@ -16,6 +17,11 @@ class AcidBreath extends AbstractSkill
         6 => '3k6',
         1 => '2k6',
     ];
+
+    public function getUsageCount(): int
+    {
+        return 1;
+    }
 
     public function getContext(): array
     {

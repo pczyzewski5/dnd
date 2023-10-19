@@ -12,7 +12,7 @@
   },
   "oath of the ancients paladin": {
     "skills": {
-      "3": ["nature wrath", "turn the faithless"],
+      "3": ["oath of the ancients paladin spells", "oath of the ancients paladin channel divinity"],
       "7": ["aura of warding"]
     }
   },

@@ -35,7 +35,7 @@ class CreateCharacterCardCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach (\glob(self::CHARACTER_JSON_DIR . '*.json') as $filepath) {
+        foreach (\glob(self::CHARACTER_JSON_DIR . 'malrith.json') as $filepath) {
             $data = $this->getDataFromFile($filepath);
 
             $this->validate($data);
