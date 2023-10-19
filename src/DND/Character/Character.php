@@ -39,6 +39,7 @@ class Character
 
     private array $activeSkills;
     private array $passiveSkills;
+    private array $resistanceSkills;
     private array $skillsWithUseCount;
 
     public function __construct(
@@ -78,6 +79,7 @@ class Character
         $skills = SkillsFactory::create($this, $extraSkills);
         $this->activeSkills = $skills->getActiveSkills($this->actualLevel);
         $this->passiveSkills = $skills->getPassiveSkills($this->actualLevel);
+        $this->resistanceSkills = $skills->getResistanceSkills($this->actualLevel);
         $this->skillsWithUseCount = $skills->getSkillsWithUseCount($this->actualLevel);
     }
 
@@ -183,7 +185,7 @@ class Character
 
     public function getResistances(): array
     {
-        return [];
+        return ResistancesMapper::getResistances($this->resistanceSkills);
     }
 
     public function getImmunities(): array

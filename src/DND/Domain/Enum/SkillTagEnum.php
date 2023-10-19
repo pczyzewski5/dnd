@@ -9,4 +9,5 @@ class SkillTagEnum extends Enum
      const ACTIVE = 'active';
      const PASSIVE = 'passive';
      const USE_COUNT = 'use_count';
+     const RESISTANCE = 'resistance';
 }

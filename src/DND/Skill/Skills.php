@@ -35,6 +35,14 @@ class Skills
     /**
      * @return AbstractSkill[]
      */
+    public function getResistanceSkills(int $actualLevel): array
+    {
+        return $this->getSkills(SkillTagEnum::RESISTANCE(), $actualLevel);
+    }
+
+    /**
+     * @return AbstractSkill[]
+     */
     public function getSkillsWithUseCount(int $actualLevel): array
     {
         return $this->getSkills(SkillTagEnum::USE_COUNT(), $actualLevel);

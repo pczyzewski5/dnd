@@ -64,7 +64,7 @@ class Race
     {
         $result = [];
 
-        $levels = \range(1, 20);
+        $levels = \range(0, 20);
         foreach ($levels as $level) {
             $skills = \array_merge(
                 $skillsA[$level] ?? [],

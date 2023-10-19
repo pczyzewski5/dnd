@@ -41,12 +41,12 @@ abstract class AbstractSkill
 
     public function getTags(): array
     {
-        return self::TAGS;
+        return $this::TAGS;
     }
 
     public function getOrder(): int
     {
-        return self::ORDER;
+        return $this::ORDER;
     }
 
     public function getTemplate(): string

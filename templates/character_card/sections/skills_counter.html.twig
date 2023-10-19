@@ -72,7 +72,7 @@
                 <div class="skill-counter">
                     {% if skills[i] is defined %}
                         <div class="cv">{{ skills[i].getName()|capitalize }}</div>
-                        <div class="uc">{{ skills[i].getCount() }}</div>
+                        <div class="uc">{{ skills[i].getUsageCount() }}</div>
                     {% else %}
                         <div></div>
                         <div></div>
