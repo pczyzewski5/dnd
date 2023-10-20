@@ -10,7 +10,7 @@
     #attacks-tricks-container {
     {{ backgroundColor() }}
         width: 221px;
-        height: 288px;
+        height: 242px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -38,11 +38,23 @@
     {{ backgroundColor() }}
         width: 13mm;
     }
-    #attacks-count {
+    #attack-data {
         font-size: 10px;
         position: absolute;
-        top: 300px;
+        top: 258px;
         left: 7px;
+        width: 221px;
+    }
+    #attack-data table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #attack-data table tr td {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 2px;
+    }
+    #attack-data table tr td:first-child {
+        width: 74%;
     }
     .attack-trick div {
         font-size: 12px;
@@ -79,7 +91,7 @@
                 <div class="uc">PREMIA DO ATK</div>
                 <div class="uc">OBRAŻENIA</div>
             </div>
-            {% for i in 0..4 %}
+            {% for i in 0..3 %}
                 <div class="attack-trick">
                     <div></div>
                     <div></div>
@@ -88,8 +100,25 @@
                 </div>
             {% endfor %}
         </div>
-        <div id="attacks-count">
-            <b>Liczba ataków bronią: </b><span class="opaque">{{ attackCount }}</span>
+        <div id="attack-data">
+            <table>
+                <tr>
+                    <td>Liczba ataków bronią</td>
+                    <td><span class="opaque">{{ attackCount }}</span></td>
+                </tr>
+                <tr>
+                    <td>Premia do ataku czarem</td>
+                    <td><span class="opaque">{{ spellAttackMod ?? 'n/d' }}</span></td>
+                </tr>
+                <tr>
+                    <td>ST przeciwko twoim czarom</td>
+                    <td><span class="opaque">{{ spellDC ?? 'n/d' }}</span></td>
+                </tr>
+                <tr>
+                    <td>Maks. zapamiętanych czarów</td>
+                    <td><span class="opaque">{{ spellCount ?? 'n/d' }}</span></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

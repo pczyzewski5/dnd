@@ -57,7 +57,7 @@ class Skills
 
         foreach (\range(0, $actualLevel) as $level) {
             foreach ($this->skills[$skillTagEnum->getValue()][$level] ?? [] as $skill) {
-                    $result[] = $skill;
+                $result[] = $skill;
             }
         }
 

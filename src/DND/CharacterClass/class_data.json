@@ -32,7 +32,7 @@
     "multiclass_proficiencies": [],
     "skills": {
       "1": ["divine sense", "lay on hands"],
-      "2": ["divine smite", "paladin spellcasting"],
+      "2": ["divine smite", "spellcasting"],
       "3": ["divine health"],
       "5": ["aura of protection", "bonus attack"]
     }

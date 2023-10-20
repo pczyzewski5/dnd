@@ -1,0 +1,21 @@
+<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim odpoczynku.
+<table>
+    <tr>
+        <td></td>
+        {% for spellCircle in spellCircles %}
+            <td>{{ spellCircle['circle'] }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td>max</td>
+        {% for spellCircle in spellCircles %}
+            <td>{{ spellCircle['count'] }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td>użyte</td>
+        {% for spellCircle in spellCircles %}
+            <td></td>
+        {% endfor %}
+    </tr>
+</table>

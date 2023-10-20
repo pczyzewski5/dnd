@@ -42,6 +42,8 @@ class Character
     private array $resistanceSkills;
     private array $skillsWithUseCount;
 
+    private Spellcasting $spellcasting;
+
     public function __construct(
         CharacterClass $characterClass,
         AbilitySkills $abilitySkills,
@@ -81,6 +83,8 @@ class Character
         $this->passiveSkills = $skills->getPassiveSkills($this->actualLevel);
         $this->resistanceSkills = $skills->getResistanceSkills($this->actualLevel);
         $this->skillsWithUseCount = $skills->getSkillsWithUseCount($this->actualLevel);
+
+        $this->spellcasting = new Spellcasting();
     }
 
     public function getSpeed(): float
@@ -218,5 +222,15 @@ class Character
     public function getAttackCount(): int
     {
         return AttackCountCalculator::calculate($this->passiveSkills);
+    }
+
+    public function getSpellCircles(): array
+    {
+        return $this->spellcasting->getSpellCircles($this);
+    }
+
+    public function getSpellcastingData(): array
+    {
+        return $this->spellcasting->getSpellcastingData($this);
     }
 }
