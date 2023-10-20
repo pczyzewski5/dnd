@@ -24,7 +24,7 @@
   },
   "circle of moon druid": {
     "skills": {
-      "2": ["combat wild shape"],
+      "2": ["combat wild shape", "circle forms"],
       "6": ["primal strike"]
     }
   }

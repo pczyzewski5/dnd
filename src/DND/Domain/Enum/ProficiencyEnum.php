@@ -43,8 +43,10 @@ class ProficiencyEnum extends Enum
     // weapons
     const SIMPLE_WEAPONS = 'simple weapons';
     const MARTIAL_WEAPONS = 'martial weapons';
-    const LONGSWORD = 'longsword';
-    const SHORTSWORD = 'shortsword';
+    const LONG_SWORD = 'long sword';
+    const SHORT_SWORD = 'short sword';
+    const SHORT_BOW = 'short bow';
+    const LONG_BOW = 'long bow';
     const RAPIER = 'rapier';
     const HAND_CROSSBOW = 'hand crossbow';
     const LIGHT_CROSSBOW = 'light crossbow';
@@ -52,10 +54,19 @@ class ProficiencyEnum extends Enum
     const DART = 'dart';
     const ROD = 'rod';
     const SLING = 'sling';
+    CONST MACE = 'mace';
+    CONST JAVELIN = 'javelin';
+    CONST CLUB = 'club';
+    CONST SCIMITAR = 'scimitar';
+    CONST SICKLE = 'sickle';
+    CONST SPEAR = 'spear';
 
     // tools
     const THIEF_TOOLS = 'thief tools';
     const TINKER_TOOLS = 'tinker tools';
+
+    // kits
+    const HERBALISM_KIT = 'herbalism kit';
 
     // vehicles
     const LAND_VEHICLES = 'land vehicles';

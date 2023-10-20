@@ -41,13 +41,12 @@
   },
   "elf": {
     "ASI": {
-      "dex": 2,
-      "cha": 2
+      "dex": 2
     },
     "skills": {
       "0": ["fey ancestry", "trance", "keen senses"]
     },
-    "languages": ["common", "elven"],
+    "languages": ["common", "elf"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18
   }

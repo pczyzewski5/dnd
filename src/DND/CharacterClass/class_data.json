@@ -1,6 +1,6 @@
 {
   "rouge": {
-    "proficiencies": ["dex", "int", "light armors", "simple weapons", "hand crossbow", "longsword", "shortsword", "rapier", "thief tools"],
+    "proficiencies": ["dex", "int", "light armors", "simple weapons", "hand crossbow", "long sword", "short sword", "rapier", "thief tools"],
     "multiclass_proficiencies": [],
     "skills": {
       "1": ["expertise", "sneak attack", "thieves cant"],
@@ -46,10 +46,10 @@
     }
   },
   "druid": {
-    "proficiencies": ["int", "wis", "rod", "light crossbow", "sling", "dart", "dagger"],
+    "proficiencies": ["int", "wis", "light armors", "medium armors", "shields", "mace", "rod", "javelin", "club", "sling", "scimitar", "sickle", "dagger", "dart", "spear", "herbalism kit"],
     "multiclass_proficiencies": [],
     "skills": {
-      "1": ["druidic"],
+      "1": ["druidic", "spellcasting"],
       "2": ["wild shape"]
     }
   }

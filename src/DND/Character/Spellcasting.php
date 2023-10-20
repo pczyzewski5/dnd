@@ -30,10 +30,20 @@ class Spellcasting
             2 => [
                 ['circle' => 'I', 'count' => 2]
             ]
+        ],
+        CharacterClassEnum::DRUID => [
+            9 => [
+                ['circle' => 'I', 'count' => 4],
+                ['circle' => 'II', 'count' => 3],
+                ['circle' => 'III', 'count' => 3],
+                ['circle' => 'IV', 'count' => 3],
+                ['circle' => 'V', 'count' => 1],
+            ],
         ]
     ];
     private const CLASS_TO_SPELLCASTING_ABILITY = [
-        CharacterClassEnum::PALADIN => AbilityEnum::CHA
+        CharacterClassEnum::PALADIN => AbilityEnum::CHA,
+        CharacterClassEnum::DRUID => AbilityEnum::WIS,
     ];
 
     public function getSpellcastingData(Character $character): array
@@ -45,10 +55,22 @@ class Spellcasting
         $halvedCurrentLevel = (int)\floor($character->getActualLevel() / 2);
         $proficiencyBonus = $character->getProficiencyBonus();
 
+        // @todo changeme
+        switch ($this->getCharacterClassName($character)) {
+            case CharacterClassEnum::PALADIN:
+                $spellCount = $spellcastingAbilityMod + $halvedCurrentLevel;
+                break;
+            case CharacterClassEnum::DRUID:
+                $spellCount = $spellcastingAbilityMod + $character->getActualLevel();
+                break;
+            default:
+                $spellCount = 'n/a';
+        }
+
         return [
             'spellAttackMod' => $proficiencyBonus + $spellcastingAbilityMod,
             'spellDC' => 8 + $proficiencyBonus + $spellcastingAbilityMod,
-            'spellCount' => \max(1, $spellcastingAbilityMod + $halvedCurrentLevel)
+            'spellCount' => \max(1, $spellCount)
         ];
     }
 

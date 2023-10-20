@@ -4,7 +4,7 @@ namespace DND\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class PrimalStrike extends AbstractSkill
+class FeatWarCaster extends AbstractSkill
 {
     protected const TAGS = [
         SkillTagEnum::ACTIVE,

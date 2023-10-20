@@ -2,7 +2,7 @@
 
 namespace DND\Skill\Skills;
 
-class ExtraLanguage extends AbstractSkill
+class BonusLanguage extends AbstractSkill
 {
     public function getContext(): array
     {
