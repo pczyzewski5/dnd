@@ -12,9 +12,7 @@ class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
         $proficienciesToRender = [];
 
         foreach ($this->character->getProficiencies()->getAll() as $proficiency) {
-            if (AbilityEnum::isValid($proficiency)
-                || AbilitySkillEnum::isValid($proficiency)
-            ) {
+            if (AbilityEnum::isValid($proficiency) || AbilitySkillEnum::isValid($proficiency)) {
                 continue;
             }
             $proficienciesToRender[] = $proficiency;

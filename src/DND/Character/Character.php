@@ -87,12 +87,12 @@ class Character
         $this->spellcasting = new Spellcasting();
     }
 
-    public function getSpeed(): float
+    public function getSpeed(): int
     {
         return SpeedCalculator::calculate($this->race, $this->passiveSkills);
     }
 
-    public function getNightvision(): float
+    public function getNightvision(): int
     {
         return DistanceCalculator::metersToHex($this->race->getNightvision());
     }
@@ -179,7 +179,7 @@ class Character
 
     public function getCampaignName(): string
     {
-        return \strtolower($this->campaignName);
+        return $this->campaignName;
     }
 
     public function getPlayerName(): string

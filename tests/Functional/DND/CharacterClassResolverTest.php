@@ -8,9 +8,6 @@ use DND\Character\LevelsFactory;
 use DND\CharacterClass\CharacterClassResolver;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group dev
- */
 class CharacterClassResolverTest extends TestCase
 {
     /**
