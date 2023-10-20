@@ -8,10 +8,10 @@ use DND\Domain\Enum\SkillTagEnum;
 
 abstract class AbstractSkill
 {
+    protected const ORDER = 1000;
     protected const TAGS = [
         SkillTagEnum::PASSIVE
     ];
-    protected const ORDER = 1000;
 
     protected Character $character;
     protected string $name;
