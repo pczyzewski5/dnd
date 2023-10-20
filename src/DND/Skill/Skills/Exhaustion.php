@@ -12,6 +12,11 @@ class Exhaustion extends AbstractSkill
         SkillTagEnum::USE_COUNT,
     ];
 
+    public function getUsageCount(): int
+    {
+        return 6;
+    }
+
     public function getContext(): array
     {
         return [];

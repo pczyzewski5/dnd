@@ -11,7 +11,14 @@
     "nightvision_in_meters": 0
   },
   "human": {
-    "ASI": {},
+    "ASI": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
     "skills": {},
     "languages": ["common"],
     "speed_in_meters": 9,
