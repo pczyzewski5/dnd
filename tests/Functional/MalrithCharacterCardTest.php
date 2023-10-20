@@ -24,9 +24,6 @@ use DND\Skill\Skills\OathOfTheAncientsPaladinSpells;
 use DND\Skill\Skills\Spellcasting;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group dev
- */
 class MalrithCharacterCardTest extends TestCase
 {
     private Character $characterUnderTest;
