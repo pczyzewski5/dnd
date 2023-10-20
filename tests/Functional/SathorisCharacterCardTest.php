@@ -17,20 +17,6 @@ use DND\Skill\Skills\TidesOfChaos;
 use DND\Skill\Skills\WildMagicSurge;
 use PHPUnit\Framework\TestCase;
 use DND\Domain\Enum\ProficiencyEnum;
-use DND\Skill\Skills\AcidBreath;
-use DND\Skill\Skills\AcidResistance;
-use DND\Skill\Skills\AuraOfProtection;
-use DND\Skill\Skills\AuraOfWarding;
-use DND\Skill\Skills\BonusAttack;
-use DND\Skill\Skills\DivineHealth;
-use DND\Skill\Skills\DivineSense;
-use DND\Skill\Skills\DivineSmite;
-use DND\Skill\Skills\FeatHeavyArmorMaster;
-use DND\Skill\Skills\FeatSentinel;
-use DND\Skill\Skills\FightingStyleProtection;
-use DND\Skill\Skills\LayOnHands;
-use DND\Skill\Skills\OathOfTheAncientsPaladinChannelDivinity;
-use DND\Skill\Skills\OathOfTheAncientsPaladinSpells;
 use DND\Skill\Skills\Spellcasting;
 
 /**
