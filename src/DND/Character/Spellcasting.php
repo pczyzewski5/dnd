@@ -39,10 +39,20 @@ class Spellcasting
                 ['circle' => 'IV', 'count' => 3],
                 ['circle' => 'V', 'count' => 1],
             ],
+        ],
+        CharacterClassEnum::SORCERER => [
+            9 => [
+                ['circle' => 'I', 'count' => 4],
+                ['circle' => 'II', 'count' => 3],
+                ['circle' => 'III', 'count' => 3],
+                ['circle' => 'IV', 'count' => 3],
+                ['circle' => 'V', 'count' => 1],
+            ],
         ]
     ];
     private const CLASS_TO_SPELLCASTING_ABILITY = [
         CharacterClassEnum::PALADIN => AbilityEnum::CHA,
+        CharacterClassEnum::SORCERER => AbilityEnum::CHA,
         CharacterClassEnum::DRUID => AbilityEnum::WIS,
     ];
 
@@ -62,6 +72,9 @@ class Spellcasting
                 break;
             case CharacterClassEnum::DRUID:
                 $spellCount = $spellcastingAbilityMod + $character->getActualLevel();
+                break;
+            case CharacterClassEnum::SORCERER:
+                $spellCount = 10;
                 break;
             default:
                 $spellCount = 'n/a';

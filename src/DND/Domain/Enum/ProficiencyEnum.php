@@ -70,4 +70,7 @@ class ProficiencyEnum extends Enum
 
     // vehicles
     const LAND_VEHICLES = 'land vehicles';
+
+    // games
+    const DICE_GAME = 'dice game';
 }

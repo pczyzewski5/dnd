@@ -4,12 +4,17 @@ namespace DND\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class HellishResistance extends AbstractSkill
+class MysticWisdom extends AbstractSkill
 {
     protected const TAGS = [
-        SkillTagEnum::PASSIVE,
-        SkillTagEnum::RESISTANCE,
+        SkillTagEnum::ACTIVE,
+        SkillTagEnum::USE_COUNT,
     ];
+
+    public function getUsageCount(): int
+    {
+        return 1;
+    }
 
     public function getContext(): array
     {

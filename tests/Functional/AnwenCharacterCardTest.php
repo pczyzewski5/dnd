@@ -22,9 +22,6 @@ use DND\Skill\Skills\Trance;
 use DND\Skill\Skills\WildShape;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group dev
- */
 class AnwenCharacterCardTest extends TestCase
 {
     private Character $characterUnderTest;

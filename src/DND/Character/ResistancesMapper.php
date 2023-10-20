@@ -9,6 +9,7 @@ class ResistancesMapper
     private const SKILL_TO_RESISTANCE = [
         Skills\AcidResistance::class => 'acid',
         Skills\DivineHealth::class => 'diseases',
+        Skills\HellishResistance::class => 'fire',
     ];
 
     public static function getResistances(array $skills): array

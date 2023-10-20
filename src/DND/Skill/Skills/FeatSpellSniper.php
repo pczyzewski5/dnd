@@ -4,11 +4,10 @@ namespace DND\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class HellishResistance extends AbstractSkill
+class FeatSpellSniper extends AbstractSkill
 {
     protected const TAGS = [
-        SkillTagEnum::PASSIVE,
-        SkillTagEnum::RESISTANCE,
+        SkillTagEnum::ACTIVE,
     ];
 
     public function getContext(): array
