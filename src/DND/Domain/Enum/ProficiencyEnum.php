@@ -67,6 +67,8 @@ class ProficiencyEnum extends Enum
 
     // kits
     const HERBALISM_KIT = 'herbalism kit';
+    const MAKEUP_KIT = 'makeup kit';
+    const POISONER_KIT = 'poisoner kit';
 
     // vehicles
     const LAND_VEHICLES = 'land vehicles';

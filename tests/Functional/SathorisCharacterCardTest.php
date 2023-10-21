@@ -19,9 +19,6 @@ use PHPUnit\Framework\TestCase;
 use DND\Domain\Enum\ProficiencyEnum;
 use DND\Skill\Skills\Spellcasting;
 
-/**
- * @group dev
- */
 class SathorisCharacterCardTest extends TestCase
 {
     private Character $characterUnderTest;

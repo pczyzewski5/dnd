@@ -99,7 +99,7 @@ class Character
 
     public function getInitiative(): int
     {
-        return InitiativeCalculator::calculate($this->abilities);
+        return InitiativeCalculator::calculate($this->abilities, $this->passiveSkills);
     }
 
     public function getArmorClassWithoutArmor(): int

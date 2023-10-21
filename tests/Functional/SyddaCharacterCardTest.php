@@ -19,9 +19,6 @@ use DND\Skill\Skills\RecklessAttack;
 use DND\Skill\Skills\UnarmoredDefense;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group dev
- */
 class SyddaCharacterCardTest extends TestCase
 {
     private Character $characterUnderTest;

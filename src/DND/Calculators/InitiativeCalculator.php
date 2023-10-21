@@ -3,11 +3,21 @@
 namespace DND\Calculators;
 
 use DND\Domain\Ability\Abilities;
+use DND\Skill\Skills;
 
 class InitiativeCalculator
 {
-    public static function calculate(Abilities $abilities): int
+    public static function calculate(Abilities $abilities, array $skills): int
     {
-       return $abilities->getDex()->getModifier();
+       $initiative = $abilities->getDex()->getModifier();
+
+       foreach ($skills as $skill) {
+           if ($skill instanceof Skills\FeatAlert) {
+               $initiative += 5;
+               break;
+           }
+       }
+
+       return $initiative;
     }
 }
