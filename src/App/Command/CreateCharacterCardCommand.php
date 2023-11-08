@@ -3,17 +3,17 @@
 namespace App\Command;
 
 use App\CaseConverter;
-use DND\Character\Character;
-use DND\Character\CharacterFactory;
-use DND\CharacterCard\CharacterCardBuilder;
-use DND\CharacterDataValidator;
-use DND\Validators\AlignmentValidator;
-use DND\Validators\CharacterNameValidator;
-use DND\Validators\LanguageValidator;
+use DND\Domain\Character\Character;
+use DND\Domain\Character\CharacterFactory;
+use DND\Domain\CharacterCard\CharacterCardBuilder;
+use DND\Domain\Validator\CharacterDataValidator;
+use DND\Domain\Validator\Validators\AlignmentValidator;
+use DND\Domain\Validator\Validators\CharacterNameValidator;
+use DND\Domain\Validator\Validators\LanguageValidator;
+use DND\Domain\Validator\Validators\PlayerNameValidator;
+use DND\Domain\Validator\Validators\RaceValidator;
+use DND\Domain\Validator\Validators\StartingAbilitiesValidator;
 use DND\Validators\OriginValidator;
-use DND\Validators\PlayerNameValidator;
-use DND\Validators\RaceValidator;
-use DND\Validators\StartingAbilitiesValidator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -2,8 +2,8 @@
 
 namespace DND\Domain\SavingThrows;
 
-use DND\Character\Levels;
 use DND\Domain\Ability\Abilities;
+use DND\Domain\Level\Levels;
 use DND\Domain\Proficiency\Proficiencies;
 
 class SavingThrowsFactory

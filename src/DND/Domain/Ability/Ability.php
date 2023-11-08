@@ -2,6 +2,7 @@
 
 namespace DND\Domain\Ability;
 
+use DND\Domain\Calculators\AbilityScoresModCalculator;
 use DND\Domain\Enum\AbilityEnum;
 
 class Ability

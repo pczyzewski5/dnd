@@ -3,7 +3,7 @@
 namespace DND\Domain\Ability;
 
 use DND\Domain\Enum\AbilityEnum;
-use DND\Race\Race;
+use DND\Domain\Race\Race;
 
 class AbilitiesFactory
 {

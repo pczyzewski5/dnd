@@ -2,7 +2,7 @@
 
 namespace DND\Domain\Proficiency;
 
-use DND\CharacterClass\CharacterClass;
+use DND\Domain\CharacterClass\CharacterClass;
 use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficienciesFactory
