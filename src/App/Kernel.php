@@ -46,4 +46,11 @@ class Kernel extends BaseKernel
         $routes->import($confDir . '/{common}/{routes}' . self::CONFIG_EXTS);
         $routes->import($confDir . '/' . $this->environment . '/{routes}' . self::CONFIG_EXTS);
     }
+
+    protected function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new ControllerCompilerPass());
+    }
 }

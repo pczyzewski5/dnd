@@ -6,10 +6,9 @@ namespace App\Controller;
 
 use App\CommandBus\CommandBus;
 use App\QueryBus\QueryBus;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class IndexController extends AbstractController
+class IndexController extends BaseController
 {
     private QueryBus $queryBus;
     private CommandBus $commandBus;
@@ -22,6 +21,6 @@ class IndexController extends AbstractController
 
     public function test(): Response
     {
-        return new Response('hi');
+        return $this->render('index/index.html.twig');
     }
 }
