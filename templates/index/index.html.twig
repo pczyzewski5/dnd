@@ -1,77 +1,88 @@
-<style>
-    @font-face {
-        font-family: "Nodesto Caps Condensed";
-        src: url("/fonts/Nodesto Caps Condensed.otf") format("opentype");
-        font-weight: normal;
-    }
-    @font-face {
-        font-family: "Bookinsanity";
-        src: url("/fonts/Bookinsanity.otf") format("opentype");
-        font-weight: normal;
-    }
-    .small-card-front, .small-card-back {
-        width: 60mm !important;
-        height: 90mm !important;
-        overflow: hidden;
-        background-color: grey;
-    }
-    .title-section {
-        font-family: "Nodesto Caps Condensed";
-        justify-content: center;
-        background-color: white;
-        padding: 4px;
-        margin: 2mm;
-        border-radius: 5px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-    }
-    .description-section {
-        background-image: url("/images/dnd5e_logo_opaque_10.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: white;
-        background-size: 80%;
-        font-family: "Bookinsanity";
-        border-radius: 5px;
-        height: 265px;
-        font-size: 8px;
-        padding: 4px;
-        margin: 2mm;
-        display: flex;
-        text-align: justify;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .description-section-back {
-        background-image: url("/images/dnd5e_logo.png");
-    }
-    .item-origin {
-        height: 28px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-    }
-</style>
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        @font-face {
+            font-family: "Nodesto Caps Condensed";
+            src: url("/fonts/Nodesto Caps Condensed.otf") format("opentype");
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: "Bookinsanity";
+            src: url("/fonts/Bookinsanity.otf") format("opentype");
+            font-weight: normal;
+        }
+        .small-card-front, .small-card-back {
+            width: 60mm !important;
+            height: 90mm !important;
+            overflow: hidden;
+            background-color: grey;
+        }
+        .title-section {
+            font-family: "Nodesto Caps Condensed";
+            justify-content: center;
+            background-color: white;
+            padding: 4px;
+            margin: 2mm;
+            border-radius: 5px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+        .description-section {
+            font-family: "Bookinsanity";
+            background-image: url("/images/dnd5e_logo_opaque_10.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+            background-size: 80%;
+            border-radius: 5px;
+            height: 265px;
+            font-size: 8px;
+            padding: 4px;
+            margin: 2mm;
+            display: flex;
+            text-align: justify;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .description-section-back {
+            background-image: url("/images/dnd5e_logo.png");
+        }
+        #item-origin {
+            height: 28px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+    </style>
 
-<div class="small-card-front">
-    <div class="title-section">
-        <div>Rytualny Sierp Szalonych Druidów</div>
-    </div>
-    <div class="description-section">
-        <div class="description">Magiczny Sierp +1 do trafienia czarami i + 2 do obrażeń z czarów (obrażenia od kwasu).
-            <br><br>W ramach akcji dodatkowej możesz wykonać druidyczny rytuał:
-            <br>1. Pijawki (S,W): Zadajesz sobie 5 pkt obrażeń (ciętych) aby przywrócić 5pkt życia 3 sojusznikom w obrębie 12hex (musisz mieć ich w zasięgu wzroku)
-            <br>2. Podłe Pęta (S,W): Zadajesz sobie 10 pkt obrażeń (ciętych) aby przyzwać w wybranym punkcie pęta zasięg 8 hex. Wszystkie istoty! Znajdujące się w obrębie 2hexów od Pęt otrzymują 3k6 obrażeń (od mocy), zaczynając swoją turę w obrębie czaru muszą zrobić rzut obronny na Siłę (twoje DC) jeśli im się nie uda zostają pochwyceni. Peta utrzymują się przez 2 tury.
-            <br>3. Wynaturzenie (S8): Kradniesz esencję życiową z pobliskiej rośliny lub zwierzęcia i leczysz się o 5pkt życia. Jeśli to jest wrogie zwierzę/roślina (wilk, złe drzewo xd itp.) to muszą zrobić rzut obronny na kondycję (twoje DC).
+    {{ form(register_form) }}
+
+    <div class="small-card-front">
+        <div class="title-section">
+            <div class="item-title">
+                Rytualny Sierp Szalonych Druidów
+            </div>
         </div>
-        <div class="item-origin">
-            Przedmiot zdobyty w barovii.
+        <div class="description-section">
+            <div id="item-description">Magiczny Sierp +1 do trafienia czarami i + 2 do obrażeń z czarów (obrażenia od kwasu).
+                <br><br>W ramach akcji dodatkowej możesz wykonać druidyczny rytuał:
+                <br>1. Pijawki (S,W): Zadajesz sobie 5 pkt obrażeń (ciętych) aby przywrócić 5pkt życia 3 sojusznikom w obrębie 12hex (musisz mieć ich w zasięgu wzroku)
+                <br>2. Podłe Pęta (S,W): Zadajesz sobie 10 pkt obrażeń (ciętych) aby przyzwać w wybranym punkcie pęta zasięg 8 hex. Wszystkie istoty! Znajdujące się w obrębie 2hexów od Pęt otrzymują 3k6 obrażeń (od mocy), zaczynając swoją turę w obrębie czaru muszą zrobić rzut obronny na Siłę (twoje DC) jeśli im się nie uda zostają pochwyceni. Peta utrzymują się przez 2 tury.
+                <br>3. Wynaturzenie (S8): Kradniesz esencję życiową z pobliskiej rośliny lub zwierzęcia i leczysz się o 5pkt życia. Jeśli to jest wrogie zwierzę/roślina (wilk, złe drzewo xd itp.) to muszą zrobić rzut obronny na kondycję (twoje DC).
+            </div>
+            <div id="origin-section">
+                <div id="item-origin">
+                    Przedmiot zdobyty w barovii.
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<hr>
-<div class="small-card-back">
-    <div class="title-section">Rytualny Sierp Szalonych Druidów</div>
-    <div class="description-section description-section-back"></div>
-</div>
+    <hr>
+    <div class="small-card-back">
+        <div class="title-section">
+            <div class="item-title">Rytualny Sierp Szalonych Druidów</div>
+        </div>
+        <div class="description-section description-section-back"></div>
+    </div>
+{% endblock %}
