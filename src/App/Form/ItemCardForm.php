@@ -24,26 +24,35 @@ class ItemCardForm extends AbstractType
         $builder->add(
             self::ITEM_TITLE_FIELD,
             TextType::class,
-            ['label' => 'nazwa']
+            [
+                'label' => 'Nazwa',
+                'attr' => ['class' => 'input']
+            ]
         );
 
         $builder->add(
             self::ITEM_DESCRIPTION_FIELD,
             TextareaType::class,
-            ['label' => 'opis']
+            [
+                'label' => 'Opis',
+                'attr' => ['class' => 'textarea']
+            ]
         );
 
         $builder->add(
             self::ITEM_ORIGIN_FIELD,
             TextType::class,
-            ['label' => 'gdzie zdobyte']
+            [
+                'label' => 'Pochodzenie',
+                'attr' => ['class' => 'input']
+            ]
         );
 
         $builder->add(
             self::ITEM_IMAGE_FIELD,
             FileType::class,
             [
-                'label' => 'grafika',
+                'label' => 'Grafika',
                 'required' => false,
                 'constraints' => [
                     new File([
@@ -52,12 +61,16 @@ class ItemCardForm extends AbstractType
                         'mimeTypesMessage' => 'Please upload jpg image.',
                     ])
                 ],
+                'attr' => ['class' => 'file-input']
             ],
         );
 
         $builder->add(
             'zapisz',
-            SubmitType::class
+            SubmitType::class,
+            [
+                'attr' => ['class' => 'button is-primary is-fullwidth']
+            ]
         );
     }
 }

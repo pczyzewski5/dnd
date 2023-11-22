@@ -1,4 +1,14 @@
-character_create_ability_scores:
-    path: /test
-    controller: App\Controller\IndexController::test
+hmoe:
+    path: /
+    controller: App\Controller\IndexController::index
+    methods: [ GET ]
+
+cards:
+    path: /cards
+    controller: App\Controller\CardController::cards
+    methods: [ GET ]
+
+card:
+    path: /card
+    controller: App\Controller\CardController::card
     methods: [ GET ]

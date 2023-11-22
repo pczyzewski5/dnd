@@ -1,0 +1,51 @@
+{{ form_start(register_form) }}
+<div class="field">
+    <label class="label">{{ form_label(register_form.item_title) }}</label>
+    <div class="control">
+        {{ form_widget(register_form.item_title) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(register_form.item_title) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(register_form.item_description) }}</label>
+    <div class="control">
+        {{ form_widget(register_form.item_description) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(register_form.item_description) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(register_form.item_origin) }}</label>
+    <div class="control">
+        {{ form_widget(register_form.item_origin) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(register_form.item_origin) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(register_form.item_image) }}</label>
+    <div class="control">
+        <div class="file">
+            <label class="file-label">
+                {{ form_widget(register_form.item_image) }}
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Wybierz plik...
+                    </span>
+                </span>
+            </label>
+        </div>
+    </div>
+    <p class="help is-danger">{{ form_errors(register_form.item_image) }}</p>
+</div>
+
+<div class="field">
+    <div class="control">
+        {{ form_widget(register_form.zapisz) }}
+    </div>
+</div>
+{{ form_end(register_form) }}
