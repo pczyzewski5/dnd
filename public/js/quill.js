@@ -7,7 +7,6 @@ if ($container.length != 0 && $dataContainer.length != 0) {
         modules: {
             toolbar: [
                 ['bold', 'italic', 'underline'],
-                ['link', 'image'],
                 [{ 'align': [] }, { 'list': 'ordered'}, { 'list': 'bullet' }],
                 [{ 'color': [] }, { 'background': [] }],
                 ['clean']
