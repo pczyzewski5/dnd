@@ -1,11 +1,45 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Rejestracja{% endblock %}
 {% block body %}
-    {{ form(register_form) }}
-    {% if error_message is defined %}
-        <div class="alert alert-danger" role="alert">
-            {{ error_message }}
+    <style>
+        .mimic-background {
+            background-image: url("/images/owlbear.png");
+            background-position: 28% 0;
+            background-repeat: no-repeat;
+            background-color: white;
+            background-size: contain;
+            height: 450px;
+        }
+    </style>
+
+    <nav class="level mimic-background">
+        <div class="level-item has-text-centered">
+            {{ form_start(register_form) }}
+            <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                    {{ form_widget(register_form.email) }}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+                <p class="help is-danger">{{ form_errors(register_form.email) }}</p>
+            </div>
+
+            <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                    {{ form_widget(register_form.password) }}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-key"></i>
+                    </span>
+                </div>
+                <p class="help is-danger">{{ form_errors(register_form.password) }}</p>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    {{ form_widget(register_form.zarejestruj) }}
+                </div>
+            </div>
+            {{ form_end(register_form) }}
         </div>
-    {% endif %}
+    </nav>
 {% endblock %}

@@ -12,20 +12,32 @@
     </div>
 
     <div class="navbar-menu">
+        {% if null != app.user %}
         <div class="navbar-start">
-            <a class="navbar-item" href="{{ path('home') }}">Home</a>
             <a class="navbar-item" href="{{ path('cards') }}">Karty</a>
         </div>
 
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary" href="{{ path('register') }}">
-                        <strong>Zarejestruj</strong>
-                    </a>
-                    <a class="button is-light" href="{{ path('login') }}">Zaloguj</a>
+                    <a class="button is-light" href="{{ path('logout') }}">Wyloguj</a>
                 </div>
             </div>
         </div>
+        {% else %}
+            <div class="navbar-start">
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{{ path('register') }}">
+                            <strong>Zarejestruj</strong>
+                        </a>
+                        <a class="button is-light" href="{{ path('login') }}">Zaloguj</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </nav>

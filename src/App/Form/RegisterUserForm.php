@@ -20,17 +20,19 @@ class RegisterUserForm extends AbstractType
         $builder->add(
             self::EMAIL_FIELD,
             EmailType::class,
+            ['attr' => ['class' => 'input']]
         );
 
         $builder->add(
             self::PASSWORD_FIELD,
             PasswordType::class,
-            ['label' => 'Hasło']
+            ['attr' => ['class' => 'input']]
         );
 
         $builder->add(
-            'zapisz',
-            SubmitType::class
+            'zarejestruj',
+            SubmitType::class,
+            ['attr' => ['class' => 'button is-primary is-fullwidth']]
         );
     }
 }
