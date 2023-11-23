@@ -14,8 +14,8 @@ services:
       - '@App\QueryBus\QueryBus'
       - '@App\CommandBus\CommandBus'
     calls:
-      - [ setContainer, [ '@service_container' ] ]
-    tags: [ 'controller.service_arguments' ]
+      - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+    tags: [ 'controller.service_arguments', 'container.service_subscriber' ]
 
   App\Controller\RegistrationController:
     class: App\Controller\RegistrationController
