@@ -1,19 +1,10 @@
-{% block quill_type_label %}{% endblock %}
-{% block quill_type_errors %}
-    {% if errors|length > 0 %}
-        {% if compound %}
-            {# ... display the global form errors #}
-                {% for error in errors %}
-                    <div>{{ error.message }}</div>
-                {% endfor %}
-        {% else %}
-            {% for error in errors %}
-                <div>{{ error.message }}</div>
-            {% endfor %}
-            {# ... display the errors for a single field #}
-        {% endif %}
-    {% endif %}
+{% block quill_type_label %}
+    <label for="item_card_form_item_origin" class="required">Pochodzenie</label>
 {% endblock %}
+
+{% block quill_type_errors %}
+{% endblock %}
+
 {% block quill_type_widget %}
     <div id="quill-editor-container"></div>
     <input id="quill-data-container"
@@ -22,8 +13,7 @@
             {% if data[name] is defined %}
                 value="{{ data[name] }}"
             {% endif %}
-           class="form-control"
-           hidden
            required
+           hidden
     >
 {% endblock %}

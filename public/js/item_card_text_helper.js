@@ -4,29 +4,25 @@ class ItemCardTextHelper {
     }
 
     execute() {
-        var typingTimer;
-        var doneTypingInterval = 500;
-
-        var $inputs = $('#item_card_form_item_title, #item_card_form_item_description, #item_card_form_item_origin');
+        var $typingTimer;
+        var $doneTypingInterval = 300;
+        var $inputs = $('#item_card_form_item_title, #item_card_form_item_origin');
         var $outputMapping = {
             'item_card_form_item_title': '.item-title',
-            'item_card_form_item_description': '#item-description',
             'item_card_form_item_origin': '#item-origin'
         };
 
         $inputs.on('keyup', function() {
-            clearTimeout(typingTimer);
-            typingTimer = setTimeout(doneTyping(this), doneTypingInterval);
+            clearTimeout($typingTimer);
+            $typingTimer = setTimeout(doneTyping, $doneTypingInterval);
         });
 
         $inputs.on('keydown', function() {
-            clearTimeout(typingTimer);
+            clearTimeout($typingTimer);
         });
 
         function doneTyping($input) {
-            $($outputMapping[$input.id]).each(function() {
-                $(this).html($input.value);
-            });
+            $($outputMapping[$input.id]).html($input.value);
         }
     }
 }

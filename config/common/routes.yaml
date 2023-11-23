@@ -1,7 +1,12 @@
-hmoe:
+home:
     path: /
     controller: App\Controller\IndexController::index
     methods: [ GET ]
+
+quill:
+    path: /quill
+    controller: App\Controller\IndexController::quill
+    methods: [ POST ]
 
 cards:
     path: /cards
