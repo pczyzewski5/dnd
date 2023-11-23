@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\FormType\QuillType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
@@ -32,7 +32,7 @@ class ItemCardForm extends AbstractType
 
         $builder->add(
             self::ITEM_DESCRIPTION_FIELD,
-            TextareaType::class,
+            QuillType::class,
             [
                 'label' => 'Opis',
                 'attr' => ['class' => 'textarea']

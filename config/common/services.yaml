@@ -15,6 +15,12 @@ services:
             - '@twig'
         tags: [ 'twig.extension' ]
 
+    App\Twig\QuillDeltaParser:
+        class: App\Twig\QuillDeltaParser
+        arguments:
+            - '@twig'
+        tags: [ 'twig.extension' ]
+
     App\Twig\ValueDecorator:
         class: App\Twig\ValueDecorator
         tags: [ 'twig.extension' ]

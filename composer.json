@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.13",
         "league/tactician-bundle": "^1.4",
         "myclabs/php-enum": "^1.8",
+        "nadar/quill-delta-parser": "^3.4",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.13",
         "sensio/framework-extra-bundle": "^6.1",
