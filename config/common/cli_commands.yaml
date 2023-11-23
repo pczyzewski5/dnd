@@ -4,3 +4,9 @@ services:
     arguments:
       - '@DND\Domain\CharacterCard\CharacterCardBuilder'
     tags: ['console.command']
+
+  App\Command\ImportSQL:
+    class: App\Command\ImportSQL
+    arguments:
+      - '@doctrine.orm.entity_manager'
+    tags: [ 'console.command' ]
