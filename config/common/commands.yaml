@@ -1,1 +1,33 @@
 services:
+  DND\Domain\Command\RegisterUserHandler:
+    class: DND\Domain\Command\RegisterUserHandler
+    arguments:
+      - '@security.user_password_hasher'
+      - '@DND\Domain\User\UserPersister'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\RegisterUser, bus: command }
+
+  DND\Domain\Command\ActivateUserHandler:
+    class: DND\Domain\Command\ActivateUserHandler
+    arguments:
+      - '@DND\Domain\User\UserRepository'
+      - '@DND\Domain\User\UserPersister'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\ActivateUser, bus: command }
+
+  DND\Domain\Command\DeactivateUserHandler:
+    class: DND\Domain\Command\DeactivateUserHandler
+    arguments:
+      - '@DND\Domain\User\UserRepository'
+      - '@DND\Domain\User\UserPersister'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\DeactivateUser, bus: command }
+
+  DND\Domain\Command\DeleteUserHandler:
+    class: DND\Domain\Command\DeleteUserHandler
+    arguments:
+      - '@DND\Domain\User\UserRepository'
+      - '@DND\Domain\User\UserPersister'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\DeleteUser, bus: command }
+

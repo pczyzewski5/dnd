@@ -18,12 +18,6 @@ class LoginController extends BaseController
             ]);
         }
 
-        if ($this->isGranted('ROLE_SUPER_ADMIN')
-            || $this->isGranted('ROLE_ADMIN')
-        ) {
-            return $this->redirectToRoute('category_list');
-        }
-
-        return $this->redirectToRoute('user_category_list');
+        return $this->redirectToRoute('cards');
     }
 }

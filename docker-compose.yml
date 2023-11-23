@@ -6,7 +6,6 @@ services:
       - 9000
     volumes:
       - ./:/data/application:delegated
-      - ~/.composer:/root/.composer
     links:
       - mysql
     working_dir: /data/application

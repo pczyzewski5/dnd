@@ -1,1 +1,7 @@
 services:
+  DND\Domain\Query\GetUsersHandler:
+    class: DND\Domain\Query\GetUsersHandler
+    arguments:
+      - '@DND\Domain\User\UserRepository'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetUsers, bus: query }
