@@ -14,7 +14,7 @@ class ItemCardTextHelper {
 
         $inputs.on('keyup', function() {
             clearTimeout($typingTimer);
-            $typingTimer = setTimeout(doneTyping, $doneTypingInterval);
+            $typingTimer = setTimeout(doneTyping(this), $doneTypingInterval);
         });
 
         $inputs.on('keydown', function() {
