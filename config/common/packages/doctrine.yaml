@@ -1,0 +1,23 @@
+doctrine:
+    dbal:
+        driver: 'pdo_mysql'
+        host: '%dnd.mysql_host%'
+        port: '%dnd.mysql_port%'
+        dbname: '%dnd.mysql_database%'
+        user: '%dnd.mysql_user%'
+        password: '%dnd.mysql_password%'
+        charset: 'UTF8'
+        server_version: '8.0'
+        options:
+          {1002: "SET NAMES utf8mb4;"}
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        auto_mapping: false
+        mappings:
+            User:
+                type: xml
+                prefix: DND\Infrastructure\User
+                dir: '%kernel.project_dir%/config/common/orm/User'
+                is_bundle: false
+                alias: User

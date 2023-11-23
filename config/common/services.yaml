@@ -35,11 +35,16 @@ services:
             - '%is_dev_mode%'
         tags: [ 'twig.extension' ]
 
-    DND\CharacterCard\CharacterCardBuilder:
-        class: DND\CharacterCard\CharacterCardBuilder
+    DND\Domain\CharacterCard\CharacterCardBuilder:
+        class: DND\Domain\CharacterCard\CharacterCardBuilder
         arguments:
             - 'public/css/styles.css'
             - '@twig'
+
+    App\Security\UserProvider:
+        class: App\Security\UserProvider
+        arguments:
+            - '@DND\Domain\User\UserRepository'
 
 imports:
     - { resource: 'infrastructure/services.yaml' }

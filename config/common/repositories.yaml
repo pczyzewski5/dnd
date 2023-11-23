@@ -1,1 +1,3 @@
 services:
+  DND\Domain\User\UserRepository:
+    alias: DND\Infrastructure\User\UserRepository

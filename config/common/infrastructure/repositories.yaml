@@ -1,1 +1,5 @@
 services:
+  DND\Infrastructure\User\UserRepository:
+    class: DND\Infrastructure\User\UserRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'

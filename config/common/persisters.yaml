@@ -1,1 +1,3 @@
 services:
+  DND\Domain\User\UserPersister:
+    alias: DND\Infrastructure\User\UserPersister

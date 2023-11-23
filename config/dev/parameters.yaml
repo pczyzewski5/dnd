@@ -1,0 +1,6 @@
+parameters:
+  dnd.mysql_host: mysql
+  dnd.mysql_port: 3306
+  dnd.mysql_database: dnd
+  dnd.mysql_user: dnd_management
+  dnd.mysql_password: password123

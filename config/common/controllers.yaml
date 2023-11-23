@@ -5,7 +5,34 @@ services:
       - '@App\QueryBus\QueryBus'
       - '@App\CommandBus\CommandBus'
     calls:
-      - [setContainer, [ '@service_container' ]]
+      - [ setContainer, [ '@service_container' ]]
+    tags: [ 'controller.service_arguments' ]
+
+  App\Controller\LoginController:
+    class: App\Controller\LoginController
+    arguments:
+      - '@App\QueryBus\QueryBus'
+      - '@App\CommandBus\CommandBus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
+    tags: [ 'controller.service_arguments' ]
+
+  App\Controller\RegistrationController:
+    class: App\Controller\RegistrationController
+    arguments:
+      - '@App\QueryBus\QueryBus'
+      - '@App\CommandBus\CommandBus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
+    tags: [ 'controller.service_arguments' ]
+
+  App\Controller\AdminController:
+    class: App\Controller\AdminController
+    arguments:
+      - '@App\QueryBus\QueryBus'
+      - '@App\CommandBus\CommandBus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
     tags: [ 'controller.service_arguments' ]
 
   App\Controller\CardController:
