@@ -46,7 +46,7 @@ item_card_read:
 item_card_update:
     path: /dm/item_card/{id}/update
     controller: App\Controller\ItemCardController::update
-    methods: [ GET ]
+    methods: [ GET, POST ]
 
 item_card_delete:
     path: /dm/item_card/{id}/delete

@@ -11,7 +11,7 @@
     <input id="quill-data-container"
            type="text"
            name="{{ full_name }}"
-            {{ data[name] is defined ? 'value="' ~ data[name] ~ '"' : '' }}
+            {{ data is not null ? 'value=' ~ data }}
            required
            hidden
     >

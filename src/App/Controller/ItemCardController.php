@@ -9,8 +9,10 @@ use App\Form\ItemCardForm;
 use App\QueryBus\QueryBus;
 use DND\Domain\Command\CreateItemCard;
 use DND\Domain\Command\DeleteItemCard;
+use DND\Domain\Command\UpdateItemCard;
 use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
+use DND\Domain\ItemCard\ItemCard;
 use DND\Domain\Query\GetItemCard;
 use DND\Domain\Query\GetItemCards;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,11 +59,12 @@ class ItemCardController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $this->commandBus->handle(
-                new UploadFile($form->getData()[ItemCardForm::ITEM_IMAGE_FIELD])
-            );
+            $image = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
+            if (null !== $image) {
+                $image = $this->commandBus->handle(new UploadFile($image));
+            }
 
-            $this->commandBus->handle(
+            $id = $this->commandBus->handle(
                 new CreateItemCard(
                     $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
                     $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
@@ -72,7 +75,7 @@ class ItemCardController extends BaseController
                 )
             );
 
-            return $this->redirectToRoute('item_card_list');
+            return $this->redirectToRoute('item_card_read', ['id' => $id]);
         }
 
         return $this->renderForm('item_card/create.html.twig', [
@@ -83,42 +86,44 @@ class ItemCardController extends BaseController
 
     public function update(Request $request): Response
     {
-        $category = CategoryEnum::fromLowerKey(
-            $request->get('category')
+        /** @var ItemCard $itemCard */
+        $itemCard = $this->queryBus->handle(
+            new GetItemCard($request->get('id'),)
         );
-        /** @var QuestionWithAnswersDTO $dto */
-        $dto = $this->queryBus->handle(
-            new GetQuestionWithAnswers(
-                $request->get('questionId'),
-                $this->getUser()->getId()
-            )
-        );
-        $question = $dto->getQuestion();
-
         $form = $this->createForm(
-            QuestionForm::class,
-            [QuestionForm::QUESTION_FIELD => $question->getQuestion()]
+            ItemCardForm::class,
+            [
+                ItemCardForm::ITEM_CATEGORY_FIELD => $itemCard->getCategory()->getValue(),
+                ItemCardForm::ITEM_TITLE_FIELD => $itemCard->getTitle(),
+                ItemCardForm::ITEM_DESCRIPTION_FIELD => $itemCard->getDescription(),
+                ItemCardForm::ITEM_ORIGIN_FIELD => $itemCard->getOrigin(),
+            ]
         );
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
+            if (null !== $image) {
+                $image = $this->commandBus->handle(new UploadFile($image));
+            }
+
             $this->commandBus->handle(
-                new UpdateQuestion(
-                    $question->getId(),
-                    $form->getData()[QuestionForm::QUESTION_FIELD],
-                    $this->getUser()->getId(),
-                    $question->getSubcategory()
+                new UpdateItemCard(
+                    $itemCard,
+                    $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD],
+                    $image
                 )
             );
 
-            return $this->redirectToRoute('question_details', ['category' => $category->getLowerKey(), 'questionId' => $question->getId()]);
+            return $this->redirectToRoute('item_card_read', ['id' => $itemCard->getId()]);
         }
 
-        return $this->renderForm('admin/update_question.html.twig', [
-            'edit_question_form' => $form,
-            'question' => $question,
-            'answers' => $dto->getAnswers(),
-            'category' => $category
+        return $this->renderForm('item_card/create.html.twig', [
+            'item_card_form' => $form,
+            'itemCard' => $itemCard
         ]);
     }
 

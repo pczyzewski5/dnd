@@ -38,6 +38,14 @@ services:
     tags:
       - { name: tactician.handler, command: DND\Domain\Command\CreateItemCard, bus: command }
 
+  DND\Domain\Command\UpdateItemCardHandler:
+    class: DND\Domain\Command\UpdateItemCardHandler
+    arguments:
+      - '@DND\Domain\ItemCard\ItemCardPersister'
+      - '%item_card_images_directory%'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\UpdateItemCard, bus: command }
+
   DND\Domain\Command\UploadFileHandler:
     class: DND\Domain\Command\UploadFileHandler
     arguments:
