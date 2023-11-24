@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <a class="button is-info is-fullwidth" href="{{ path('item_card_create') }}">Dodaj kartę</a>
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>nazwa</th>
+            <th>pochodzenie</th>
+            <th>typ</th>
+            <th>autor</th>
+            <th>utworzono</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for itemCard in itemCards %}
+            <tr>
+                <th>1</th>
+                <td>{{ itemCard.getTitle() }}</td>
+                <td>{{ itemCard.getOrigin() }}</td>
+                <td>{{ itemCard.getCategory().getValue() }}</td>
+                <td>{{ itemCard.getAuthorId() }}</td>
+                <td>{{ itemCard.getCreatedAt().format('Y-m-d H:i:s') }}</td>
+                <td>
+                    <div class="buttons">
+                        <a class="button is-small is-info" href="/card">Info</a>
+                        <button class="button is-small is-success">Success</button>
+                        <button class="button is-small is-warning">Warning</button>
+                        <button class="button is-small is-danger">Danger</button>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

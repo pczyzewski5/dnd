@@ -8,17 +8,6 @@ quill:
     controller: App\Controller\IndexController::quill
     methods: [ POST ]
 
-cards:
-    path: /cards
-    controller: App\Controller\CardController::cards
-    methods: [ GET ]
-
-card:
-    path: /card
-    controller: App\Controller\CardController::card
-    methods: [ GET ]
-
-
 login:
     path: /login
     controller: App\Controller\LoginController::login
@@ -37,3 +26,14 @@ register_info:
     path: /register/info
     controller: App\Controller\RegistrationController::registerInfo
     methods: [ GET ]
+
+item_card_list:
+    path: /dm/item_card/list
+    controller: App\Controller\ItemCardController::itemCardList
+    methods: [ GET ]
+
+item_card_create:
+    path: /dm/item_card/create
+    controller: App\Controller\ItemCardController::itemCardCreate
+    methods: [ GET, POST ]
+

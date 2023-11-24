@@ -43,3 +43,12 @@ services:
     calls:
       - [ setContainer, [ '@service_container' ] ]
     tags: [ 'controller.service_arguments' ]
+
+  App\Controller\ItemCardController:
+    class: App\Controller\ItemCardController
+    arguments:
+      - '@App\QueryBus\QueryBus'
+      - '@App\CommandBus\CommandBus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
+    tags: [ 'controller.service_arguments' ]

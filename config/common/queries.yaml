@@ -5,3 +5,10 @@ services:
       - '@DND\Domain\User\UserRepository'
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetUsers, bus: query }
+
+  DND\Domain\Query\GetItemCardsHandler:
+    class: DND\Domain\Query\GetItemCardsHandler
+    arguments:
+      - '@DND\Domain\ItemCard\ItemCardRepository'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetItemCards, bus: query }
