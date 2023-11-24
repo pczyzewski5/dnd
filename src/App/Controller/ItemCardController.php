@@ -46,7 +46,7 @@ class ItemCardController extends BaseController
                     $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
                     $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
                     $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
-                    ItemCardCategoryEnum::ITEM(),
+                    ItemCardCategoryEnum::from($form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD]),
                     $this->getUser()->getId()
                 )
             );

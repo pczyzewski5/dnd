@@ -1,5 +1,15 @@
 {{ form_start(item_card_form) }}
 <div class="field">
+    <label class="label">{{ form_label(item_card_form.item_category) }}</label>
+    <div class="control">
+        <div class="select is-fullwidth">
+            {{ form_widget(item_card_form.item_category) }}
+        </div>
+    </div>
+    <p class="help is-danger">{{ form_errors(item_card_form.item_category) }}</p>
+</div>
+
+<div class="field">
     <label class="label">{{ form_label(item_card_form.item_title) }}</label>
     <div class="control">
         {{ form_widget(item_card_form.item_title) }}
