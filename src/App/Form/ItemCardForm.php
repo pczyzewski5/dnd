@@ -26,7 +26,8 @@ class ItemCardForm extends AbstractType
             TextType::class,
             [
                 'label' => 'Nazwa',
-                'attr' => ['class' => 'input']
+                'attr' => ['class' => 'input'],
+                'required' => true
             ]
         );
 
@@ -35,7 +36,8 @@ class ItemCardForm extends AbstractType
             QuillType::class,
             [
                 'label' => 'Opis',
-                'attr' => ['class' => 'textarea']
+                'attr' => ['class' => 'textarea'],
+                'required' => true
             ]
         );
 
@@ -44,7 +46,8 @@ class ItemCardForm extends AbstractType
             TextType::class,
             [
                 'label' => 'Pochodzenie',
-                'attr' => ['class' => 'input']
+                'attr' => ['class' => 'input'],
+                'required' => true
             ]
         );
 

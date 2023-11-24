@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace App\FormType;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\CallbackTransformer;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class QuillType extends AbstractType
@@ -19,31 +15,7 @@ class QuillType extends AbstractType
     {
         $resolver->setDefaults([
             'compound' => false,
-            'required' => false
         ]);
-    }
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->addModelTransformer(
-            new CallbackTransformer(
-                function ($data) use ($builder) {
-                    return 'aaaa';
-                    return [$builder->getName() => $data] ?? null;
-                    return [$builder->getName() => $data] ?? null;
-                },
-                function ($data) {
-                    \var_dump('sfsa');exit;
-                    return $data;
-                }
-            )
-        );
-
-    }
-
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['parent_name'] = $form->getParent()->getName();
     }
 
     public function getBlockPrefix()

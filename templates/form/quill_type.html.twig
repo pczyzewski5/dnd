@@ -1,18 +1,17 @@
 {% block quill_type_label %}
-    <label for="item_card_form_item_origin" class="required">Pochodzenie</label>
+    <label>{{ label }}</label>
 {% endblock %}
 
 {% block quill_type_errors %}
+    {{ errors }}
 {% endblock %}
 
 {% block quill_type_widget %}
     <div id="quill-editor-container"></div>
     <input id="quill-data-container"
            type="text"
-           name="{{ parent_name }}[{{ name }}]"
-            {% if data[name] is defined %}
-                value="{{ data[name] }}"
-            {% endif %}
+           name="{{ full_name }}"
+            {{ data[name] is defined ? 'value="' ~ data[name] ~ '"' : '' }}
            required
            hidden
     >
