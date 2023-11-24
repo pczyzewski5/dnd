@@ -27,6 +27,7 @@ register_info:
     controller: App\Controller\RegistrationController::registerInfo
     methods: [ GET ]
 
+# item_card
 item_card_list:
     path: /dm/item_card/list
     controller: App\Controller\ItemCardController::itemCardList

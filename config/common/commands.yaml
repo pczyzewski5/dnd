@@ -31,3 +31,10 @@ services:
     tags:
       - { name: tactician.handler, command: DND\Domain\Command\DeleteUser, bus: command }
 
+  DND\Domain\Command\CreateItemCardHandler:
+    class: DND\Domain\Command\CreateItemCardHandler
+    arguments:
+      - '@DND\Domain\ItemCard\ItemCardPersister'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\CreateItemCard, bus: command }
+

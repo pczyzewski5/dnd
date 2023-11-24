@@ -8,6 +8,7 @@ use App\CommandBus\CommandBus;
 use App\Form\ItemCardForm;
 use App\QueryBus\QueryBus;
 use DND\Domain\Command\CreateItemCard;
+use DND\Domain\Enum\ItemCardCategoryEnum;
 use DND\Domain\Query\GetItemCards;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,19 +41,17 @@ class ItemCardController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $questionId = $this->commandBus->handle(
+            $this->commandBus->handle(
                 new CreateItemCard(
-                    $category,
-                    $form->getData()[QuestionForm::QUESTION_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
+                    $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
+                    ItemCardCategoryEnum::ITEM(),
                     $this->getUser()->getId()
                 )
             );
 
-//            return $this->redirectToRoute(
-//                'create_answer', [
-//                'questionId' => $questionId,
-//                'category' => $category->getLowerKey()
-//            ]);
+            return $this->redirectToRoute('item_card_list');
         }
 
         return $this->renderForm('item_card/create_item_card.html.twig', [
