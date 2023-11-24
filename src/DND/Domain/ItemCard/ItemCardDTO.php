@@ -14,5 +14,6 @@ class ItemCardDTO
     public ?string $origin = null;
     public ?ItemCardCategoryEnum $category = null;
     public ?string $authorId = null;
+    public ?string $image = null;
     public ?\DateTimeImmutable $createdAt = null;
 }

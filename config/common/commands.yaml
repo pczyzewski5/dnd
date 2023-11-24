@@ -38,3 +38,11 @@ services:
     tags:
       - { name: tactician.handler, command: DND\Domain\Command\CreateItemCard, bus: command }
 
+  DND\Domain\Command\UploadFileHandler:
+    class: DND\Domain\Command\UploadFileHandler
+    arguments:
+      - '@slugger'
+      - '%item_card_images_allowed_mime%'
+      - '%item_card_images_directory%'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\UploadFile, bus: command }

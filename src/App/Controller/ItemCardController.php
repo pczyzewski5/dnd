@@ -8,6 +8,7 @@ use App\CommandBus\CommandBus;
 use App\Form\ItemCardForm;
 use App\QueryBus\QueryBus;
 use DND\Domain\Command\CreateItemCard;
+use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
 use DND\Domain\Query\GetItemCards;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,13 +42,18 @@ class ItemCardController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $this->commandBus->handle(
+                new UploadFile($form->getData()[ItemCardForm::ITEM_IMAGE_FIELD])
+            );
+
             $this->commandBus->handle(
                 new CreateItemCard(
                     $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
                     $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
                     $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
                     ItemCardCategoryEnum::from($form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD]),
-                    $this->getUser()->getId()
+                    $this->getUser()->getId(),
+                    $image
                 )
             );
 

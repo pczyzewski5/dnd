@@ -15,6 +15,7 @@ class ItemCardFactory
         string $origin,
         ItemCardCategoryEnum $category,
         string $authorId,
+        ?string $image
     ): ItemCard {
         $dto = new ItemCardDTO();
         $dto->id = Uuid::v1()->toRfc4122();
@@ -23,6 +24,7 @@ class ItemCardFactory
         $dto->origin = $origin;
         $dto->category = $category;
         $dto->authorId = $authorId;
+        $dto->image = $image;
         $dto->createdAt = new \DateTimeImmutable();
 
         return new ItemCard($dto);

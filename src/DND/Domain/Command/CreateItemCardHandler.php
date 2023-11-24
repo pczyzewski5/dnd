@@ -23,7 +23,8 @@ class CreateItemCardHandler
             $command->getDescription(),
             $command->getOrigin(),
             $command->getCategory(),
-            $command->getAuthorId()
+            $command->getAuthorId(),
+            $command->getImage(),
         );
 
         $this->persister->save($itemCard);

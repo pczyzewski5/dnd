@@ -12,6 +12,7 @@ class CreateItemCard
     private string $description;
     private string $origin;
     private ItemCardCategoryEnum $category;
+    private ?string $image;
     private string $authorId;
 
     public function __construct(
@@ -20,11 +21,13 @@ class CreateItemCard
         string $origin,
         ItemCardCategoryEnum $category,
         string $authorId,
+        ?string $image,
     ) {
         $this->title = $title;
         $this->description = $description;
         $this->origin = $origin;
         $this->category = $category;
+        $this->image = $image;
         $this->authorId = $authorId;
     }
 
@@ -46,6 +49,11 @@ class CreateItemCard
     public function getCategory(): ItemCardCategoryEnum
     {
         return $this->category;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 
     public function getAuthorId(): string

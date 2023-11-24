@@ -24,10 +24,11 @@ CREATE TABLE item_cards
 (
     id          VARCHAR(36) NOT NULL,
     title       VARCHAR(72) NOT NULL,
-    description MEDIUMTEXT NOT NULL,
+    description TEXT NOT NULL,
     origin      VARCHAR(72) NOT NULL,
     category    VARCHAR(36) NOT NULL,
     author_id   VARCHAR(36) NOT NULL,
+    image       TEXT,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)
 ) DEFAULT CHARACTER SET UTF8

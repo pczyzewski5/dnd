@@ -19,6 +19,7 @@ class ItemCard
     private string $origin;
     private ItemCardCategoryEnum $category;
     private string $authorId;
+    private ?string $image = null;
     private \DateTimeImmutable $createdAt;
 
     public function __construct(ItemCardDTO $dto)
@@ -91,6 +92,11 @@ class ItemCard
     public function getAuthorId(): string
     {
         return $this->authorId;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 
     public function getCreatedAt(): \DateTimeImmutable

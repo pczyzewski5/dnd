@@ -42,6 +42,7 @@ class ItemCardPersister implements DomainPersister
                       description = :description,
                       origin = :origin,
                       category = :category,
+                      image = :image,
                       author_id = :authorId
                   WHERE id = :id;';
 
@@ -53,6 +54,7 @@ class ItemCardPersister implements DomainPersister
                     'description' => $itemCard->getDescription(),
                     'origin' => $itemCard->getOrigin(),
                     'category' => $itemCard->getCategory()->getValue(),
+                    'image' => $itemCard->getImage(),
                     'authorId' => $itemCard->getAuthorId(),
                 ],
                 [
@@ -61,6 +63,7 @@ class ItemCardPersister implements DomainPersister
                     'description' => Types::STRING,
                     'origin' => Types::STRING,
                     'category' => Types::STRING,
+                    'image' => Types::STRING,
                     'authorId' => Types::STRING,
                 ]
             );

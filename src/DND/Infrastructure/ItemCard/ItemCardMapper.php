@@ -21,6 +21,7 @@ class ItemCardMapper
         $dto->origin = $entity->origin;
         $dto->category = ItemCardCategoryEnum::from($entity->category);
         $dto->authorId = $entity->authorId;
+        $dto->image = $entity->image;
         $dto->createdAt = DateTimeNormalizer::normalizeToImmutable(
             $entity->createdAt
         );
@@ -38,6 +39,7 @@ class ItemCardMapper
         $entity->origin = $domainEntity->getOrigin();
         $entity->category = $domainEntity->getCategory()->getValue();
         $entity->authorId = $domainEntity->getAuthorId();
+        $entity->image = $domainEntity->getImage();
         $entity->createdAt = DateTime::createFromImmutable(
             $domainEntity->getCreatedAt()
         );

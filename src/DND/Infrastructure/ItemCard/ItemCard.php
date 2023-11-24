@@ -12,5 +12,6 @@ class ItemCard
     public ?string $origin;
     public ?string $category;
     public ?string $authorId;
+    public ?string $image;
     public ?\DateTime $createdAt;
 }
