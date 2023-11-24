@@ -3,3 +3,8 @@ services:
     class: DND\Infrastructure\User\UserPersister
     arguments:
       - '@doctrine.orm.entity_manager'
+
+  DND\Infrastructure\ItemCard\ItemCardPersister:
+    class: DND\Infrastructure\ItemCard\ItemCardPersister
+    arguments:
+      - '@doctrine.orm.entity_manager'

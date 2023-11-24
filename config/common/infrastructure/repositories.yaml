@@ -3,3 +3,8 @@ services:
     class: DND\Infrastructure\User\UserRepository
     arguments:
       - '@doctrine.orm.entity_manager'
+
+  DND\Infrastructure\ItemCard\ItemCardRepository:
+    class: DND\Infrastructure\ItemCard\ItemCardRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'

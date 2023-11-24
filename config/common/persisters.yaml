@@ -1,3 +1,6 @@
 services:
   DND\Domain\User\UserPersister:
     alias: DND\Infrastructure\User\UserPersister
+
+  DND\Domain\ItemCard\ItemCardPersister:
+    alias: DND\Infrastructure\ItemCard\ItemCardPersister

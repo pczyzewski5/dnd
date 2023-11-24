@@ -21,3 +21,10 @@ doctrine:
                 dir: '%kernel.project_dir%/config/common/orm/User'
                 is_bundle: false
                 alias: User
+
+            ItemCard:
+                type: xml
+                prefix: LearnByTests\Infrastructure\ItemCard
+                dir: '%kernel.project_dir%/config/common/orm/ItemCard'
+                is_bundle: false
+                alias: ItemCard

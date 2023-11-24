@@ -20,7 +20,7 @@ final class Version20230307233512 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $sql = <<<SQL
-CREATE TABLE cards
+CREATE TABLE item_cards
 (
     id          VARCHAR(36) NOT NULL,
     title       VARCHAR(72) NOT NULL,
@@ -38,6 +38,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE cards;');
+        $this->addSql('DROP TABLE item_cards;');
     }
 }
