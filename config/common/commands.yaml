@@ -46,3 +46,12 @@ services:
       - '%item_card_images_directory%'
     tags:
       - { name: tactician.handler, command: DND\Domain\Command\UploadFile, bus: command }
+
+  DND\Domain\Command\DeleteItemCardHandler:
+    class: DND\Domain\Command\DeleteItemCardHandler
+    arguments:
+      - '@DND\Domain\ItemCard\ItemCardRepository'
+      - '@DND\Domain\ItemCard\ItemCardPersister'
+      - '%item_card_images_directory%'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Command\DeleteItemCard, bus: command }

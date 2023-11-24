@@ -12,3 +12,10 @@ services:
       - '@DND\Domain\ItemCard\ItemCardRepository'
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetItemCards, bus: query }
+
+  DND\Domain\Query\GetItemCardHandler:
+    class: DND\Domain\Query\GetItemCardHandler
+    arguments:
+      - '@DND\Domain\ItemCard\ItemCardRepository'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetItemCard, bus: query }

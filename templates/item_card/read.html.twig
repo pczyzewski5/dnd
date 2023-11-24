@@ -75,18 +75,17 @@
 
     <div class="columns">
         <div class="column">
-            {{ include('item_card/create_item_card/form.html.twig') }}
+            <div class="buttons">
+                <a class="button is-info is-fullwidth" href="">drukuj</a>
+                <a class="button is-warning is-fullwidth" href="{{ path('item_card_update', {'id': itemCard.getId()}) }}">edytuj</a>
+                <a class="button is-danger is-fullwidth" href="{{ path('item_card_delete', {'id': itemCard.getId()}) }}">kasuj</a>
+            </div>
         </div>
         <div class="column is-narrow">
-            {{ include('item_card/create_item_card/card_front.html.twig') }}
+            {{ include('item_card/item_card/front.html.twig') }}
         </div>
         <div class="column is-narrow">
-            {{ include('item_card/create_item_card/card_back.html.twig') }}
+            {{ include('item_card/item_card/back.html.twig') }}
         </div>
     </div>
-
-    <script src="{{ asset('js/quill.js') }}"></script>
-    <script src="{{ asset('js/item_card_quill_text_helper.js') }}"></script>
-    <script src="{{ asset('js/item_card_text_helper.js') }}"></script>
-    <script src="{{ asset('js/item_card_image_helper.js') }}"></script>
 {% endblock %}

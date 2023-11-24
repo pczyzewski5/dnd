@@ -10,28 +10,28 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class UploadFileHandler
 {
     private SluggerInterface $slugger;
-    private array $cardImagesAllowedMime;
-    private string $cardImagesDirectory;
+    private array $itemCardImagesAllowedMime;
+    private string $itemCardImagesDirectory;
 
     public function __construct(
         SluggerInterface $slugger,
-        array $cardImagesAllowedMime,
-        string $cardImagesDirectory
+        array            $itemCardImagesAllowedMime,
+        string $itemCardImagesDirectory
     ) {
         $this->slugger = $slugger;
-        $this->cardImagesAllowedMime = $cardImagesAllowedMime;
-        $this->cardImagesDirectory = $cardImagesDirectory;
+        $this->itemCardImagesAllowedMime = $itemCardImagesAllowedMime;
+        $this->itemCardImagesDirectory = $itemCardImagesDirectory;
     }
 
     public function handle(UploadFile $command): string
     {
         $uploadedFile = $command->getUploadedFile();
 
-        if (false === \in_array($uploadedFile->getMimeType(), $this->cardImagesAllowedMime)) {
+        if (false === \in_array($uploadedFile->getMimeType(), $this->itemCardImagesAllowedMime)) {
             $message = \sprintf(
                 'Invalid mime type: %s, allowed are: %s.',
                 $uploadedFile->getMimeType(),
-                \implode(', ', $this->cardImagesAllowedMime)
+                \implode(', ', $this->itemCardImagesAllowedMime)
             );
             throw new UploadException($message);
         }
@@ -42,7 +42,7 @@ class UploadFileHandler
             uniqid(),
             $uploadedFile->guessExtension()
         );
-        $uploadedFile->move($this->cardImagesDirectory, $newFilename);
+        $uploadedFile->move($this->itemCardImagesDirectory, $newFilename);
 
         return $newFilename;
     }

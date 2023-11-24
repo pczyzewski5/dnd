@@ -8,8 +8,10 @@ use App\CommandBus\CommandBus;
 use App\Form\ItemCardForm;
 use App\QueryBus\QueryBus;
 use DND\Domain\Command\CreateItemCard;
+use DND\Domain\Command\DeleteItemCard;
 use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
+use DND\Domain\Query\GetItemCard;
 use DND\Domain\Query\GetItemCards;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,18 +27,31 @@ class ItemCardController extends BaseController
         $this->commandBus = $commandBus;
     }
 
-    public function itemCardList(): Response
+    public function read(Request $request): Response
+    {
+        $itemCard = $this->queryBus->handle(
+            new GetItemCard(
+                $request->get('id')
+            )
+        );
+
+        return $this->renderForm('item_card/read.html.twig', [
+            'itemCard' => $itemCard,
+        ]);
+    }
+
+    public function list(): Response
     {
         $itemCards = $this->queryBus->handle(
             new GetItemCards()
         );
 
-        return $this->renderForm('item_card/item_card_list.html.twig', [
+        return $this->renderForm('item_card/list.html.twig', [
             'itemCards' => $itemCards,
         ]);
     }
 
-    public function itemCardCreate(Request $request): Response
+    public function create(Request $request): Response
     {
         $form = $this->createForm(ItemCardForm::class);
         $form->handleRequest($request);
@@ -60,13 +75,13 @@ class ItemCardController extends BaseController
             return $this->redirectToRoute('item_card_list');
         }
 
-        return $this->renderForm('item_card/create_item_card.html.twig', [
+        return $this->renderForm('item_card/create.html.twig', [
             'item_card_form' => $form
         ]);
     }
 
 
-    public function updateQuestion(Request $request): Response
+    public function update(Request $request): Response
     {
         $category = CategoryEnum::fromLowerKey(
             $request->get('category')
@@ -105,5 +120,16 @@ class ItemCardController extends BaseController
             'answers' => $dto->getAnswers(),
             'category' => $category
         ]);
+    }
+
+    public function delete(Request $request): Response
+    {
+        $this->commandBus->handle(
+            new DeleteItemCard(
+                $request->get('id')
+            )
+        );
+
+        return $this->redirectToRoute('item_card_list');
     }
 }

@@ -30,11 +30,25 @@ register_info:
 # item_card
 item_card_list:
     path: /dm/item_card/list
-    controller: App\Controller\ItemCardController::itemCardList
+    controller: App\Controller\ItemCardController::list
     methods: [ GET ]
 
 item_card_create:
     path: /dm/item_card/create
-    controller: App\Controller\ItemCardController::itemCardCreate
+    controller: App\Controller\ItemCardController::create
     methods: [ GET, POST ]
 
+item_card_read:
+    path: /dm/item_card/{id}
+    controller: App\Controller\ItemCardController::read
+    methods: [ GET ]
+
+item_card_update:
+    path: /dm/item_card/{id}/update
+    controller: App\Controller\ItemCardController::update
+    methods: [ GET ]
+
+item_card_delete:
+    path: /dm/item_card/{id}/delete
+    controller: App\Controller\ItemCardController::delete
+    methods: [ GET ]
