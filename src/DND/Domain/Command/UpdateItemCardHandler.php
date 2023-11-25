@@ -32,12 +32,14 @@ class UpdateItemCardHandler
         $dto->origin = $command->getOrigin();
 
         if (null !== $command->getImage()) {
-            $filename = $this->itemCardImagesDirectory . '/' . $originalItemCard->getImage();
-            if (false === \file_exists($filename)) {
-                throw new \Exception('Cannot delete: ' . $filename . ' file, because it is not exists.');
-            }
+            if (null !== $originalItemCard->getImage()) {
+                $filename = $this->itemCardImagesDirectory . '/' . $originalItemCard->getImage();
+                if (false === \file_exists($filename)) {
+                    throw new \Exception('Cannot delete: ' . $filename . ' file, because it is not exists.');
+                }
 
-            \unlink($filename);
+                \unlink($filename);
+            }
 
             $dto->image = $command->getImage();
         }

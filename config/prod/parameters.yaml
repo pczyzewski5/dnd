@@ -1,0 +1,6 @@
+parameters:
+  dnd.mysql_host: '%env(dnd_mysql_host)%'
+  dnd.mysql_port: '%env(dnd_mysql_port)%'
+  dnd.mysql_database: '%env(dnd_mysql_database)%'
+  dnd.mysql_user: '%env(dnd_mysql_user)%'
+  dnd.mysql_password: '%env(dnd_mysql_password)%'

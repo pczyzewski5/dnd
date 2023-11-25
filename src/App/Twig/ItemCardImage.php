@@ -27,10 +27,10 @@ class ItemCardImage extends AbstractExtension
     public function getItemCardImage(string $filename): string
     {
         $filepath = $this->itemCardImagesDirectory . '/' . $filename;
-        $filepath = \str_replace( '/data/application/public', '', $filepath);
+        $filepath = \preg_replace('/^.+(?=\/images)/i', '', $filepath);
 
         return \sprintf(
-            'style="background-image: url(%s);"',
+            'style="background-image: url(%s); background-size: contain;"',
             $filepath
         );
     }
