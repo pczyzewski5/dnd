@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item" href="{{ path('home') }}">
             <img style="max-height: 4rem;" src="{{ asset('images/dnd5e_logo_dice.jpg') }}">
         </a>
 
@@ -11,19 +11,19 @@
         </a>
     </div>
 
-    <div class="navbar-menu">
+    <div id="navbarBasicExample" class="navbar-menu">
         {% if null != app.user %}
-        <div class="navbar-start">
-            <a class="navbar-item" href="{{ path('item_card_list') }}">Karty</a>
-        </div>
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ path('item_card_list') }}">Karty</a>
+            </div>
 
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-light" href="{{ path('logout') }}">Wyloguj</a>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-light" href="{{ path('logout') }}">Wyloguj</a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% else %}
             <div class="navbar-start">
             </div>
@@ -41,3 +41,5 @@
         {% endif %}
     </div>
 </nav>
+
+<script src="{{ asset('js/navbar_burger_helper.js') }}"></script>
