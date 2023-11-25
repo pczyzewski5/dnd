@@ -6,12 +6,12 @@ services:
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetUsers, bus: query }
 
-  DND\Domain\Query\GetItemCardsHandler:
-    class: DND\Domain\Query\GetItemCardsHandler
+  DND\Domain\Query\GetItemCardsForListHandler:
+    class: DND\Domain\Query\GetItemCardsForListHandler
     arguments:
-      - '@DND\Domain\ItemCard\ItemCardRepository'
+      - '@doctrine.orm.entity_manager'
     tags:
-      - { name: tactician.handler, command: DND\Domain\Query\GetItemCards, bus: query }
+      - { name: tactician.handler, command: DND\Domain\Query\GetItemCardsForList, bus: query }
 
   DND\Domain\Query\GetItemCardHandler:
     class: DND\Domain\Query\GetItemCardHandler

@@ -19,13 +19,13 @@
         </thead>
         <tbody>
         {% for itemCard in itemCards %}
-            <tr class="table-item" href="{{ path('item_card_read', {'id': itemCard.getId()}) }}">
+            <tr class="table-item" href="{{ path('item_card_read', {'id': itemCard.id}) }}">
                 <th>1</th>
-                <td>{{ itemCard.getTitle() }}</td>
-                <td>{{ itemCard.getOrigin() }}</td>
-                <td>{{ itemCard.getCategory().getValue() }}</td>
-                <td>{{ itemCard.getAuthorId() }}</td>
-                <td>{{ itemCard.getCreatedAt().format('Y-m-d H:i:s') }}</td>
+                <td>{{ itemCard.title }}</td>
+                <td>{{ itemCard.origin }}</td>
+                <td>{{ itemCard.category }}</td>
+                <td>{{ itemCard.author }}</td>
+                <td>{{ itemCard.created_at }}</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -14,7 +14,7 @@ use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
 use DND\Domain\ItemCard\ItemCard;
 use DND\Domain\Query\GetItemCard;
-use DND\Domain\Query\GetItemCards;
+use DND\Domain\Query\GetItemCardsForList;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -45,7 +45,7 @@ class ItemCardController extends BaseController
     public function list(): Response
     {
         $itemCards = $this->queryBus->handle(
-            new GetItemCards()
+            new GetItemCardsForList()
         );
 
         return $this->renderForm('item_card/list.html.twig', [
