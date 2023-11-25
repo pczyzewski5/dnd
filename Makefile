@@ -20,7 +20,6 @@ build: build_local_clear build_docker_php
 
 build_local_clear:
 	rm -rf var/cache/*
-	echo $(CI_BUILD_REF) > .revision
 
 build_docker_php:
 	docker-compose build
