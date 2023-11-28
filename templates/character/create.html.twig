@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        @font-face {
+            font-family: "Nodesto Caps Condensed";
+            src: url("/fonts/Nodesto Caps Condensed.otf") format("opentype");
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: "Bookinsanity";
+            src: url("/fonts/Bookinsanity.otf") format("opentype");
+            font-weight: normal;
+        }
+        .small-card-front, .small-card-back {
+            width: 60mm !important;
+            height: 90mm !important;
+            overflow: hidden;
+            background-color: grey;
+            zoom: 150%;
+            display: flex;
+            flex-direction: column;
+        }
+        .title-section {
+            font-family: "Nodesto Caps Condensed";
+            justify-content: center;
+            background-color: white;
+            padding: 4px;
+            margin: 2mm;
+            border-radius: 5px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+        .description-section {
+            font-family: "Bookinsanity";
+            background-image: url("/images/dnd5e_logo_opaque_10.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+            background-size: 80%;
+            border-radius: 5px;
+            font-size: 8px;
+            padding: 4px;
+            margin: 0 2mm 2mm 2mm;
+            display: flex;
+            flex-grow: 1;
+            text-align: justify;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #item-description, #item-origin {
+            overflow: hidden;
+        }
+        #item-description.content {
+            line-height: 1.1;
+        }
+        .item-title {
+            overflow: hidden;
+            line-height: 0.8;
+            text-align: center;
+        }
+        .description-section-back {
+            background-image: url("/images/dnd5e_logo.png");
+        }
+        #item-origin {
+            height: 28px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        #quill-editor-container {
+            height: 400px;
+        }
+    </style>
+
+    <div class="columns">
+        <div class="column">
+            {{ include('item_card/form.html.twig') }}
+        </div>
+        <div class="column is-narrow">
+            {{ include('item_card/item_card/front.html.twig') }}
+        </div>
+        <div class="column is-narrow">
+            {{ include('item_card/item_card/back.html.twig') }}
+        </div>
+    </div>
+
+    <script src="{{ asset('js/quill.js') }}"></script>
+    <script src="{{ asset('js/item_card_quill_text_helper.js') }}"></script>
+    <script src="{{ asset('js/item_card_text_helper.js') }}"></script>
+    <script src="{{ asset('js/item_card_image_helper.js') }}"></script>
+{% endblock %}

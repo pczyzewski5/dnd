@@ -28,3 +28,10 @@ doctrine:
                 dir: '%kernel.project_dir%/config/common/orm/ItemCard'
                 is_bundle: false
                 alias: ItemCard
+
+            Character:
+                type: xml
+                prefix: DND\Infrastructure\Character
+                dir: '%kernel.project_dir%/config/common/orm/Character'
+                is_bundle: false
+                alias: Character

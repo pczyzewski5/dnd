@@ -27,7 +27,7 @@ register_info:
     controller: App\Controller\RegistrationController::registerInfo
     methods: [ GET ]
 
-# item_card
+# item_card_controller
 item_card_list:
     path: /dm/item_card/list
     controller: App\Controller\ItemCardController::list
@@ -51,4 +51,10 @@ item_card_update:
 item_card_delete:
     path: /dm/item_card/{id}/delete
     controller: App\Controller\ItemCardController::delete
+    methods: [ GET ]
+
+# character_controller
+character_list:
+    path: /player/character/list
+    controller: App\Controller\CharacterController::list
     methods: [ GET ]

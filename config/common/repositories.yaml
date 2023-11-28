@@ -4,3 +4,6 @@ services:
 
   DND\Domain\ItemCard\ItemCardRepository:
     alias: DND\Infrastructure\ItemCard\ItemCardRepository
+
+  DND\Domain\Character\CharacterRepository:
+    alias: DND\Infrastructure\Character\CharacterRepository

@@ -19,3 +19,10 @@ services:
       - '@DND\Domain\ItemCard\ItemCardRepository'
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetItemCard, bus: query }
+
+  DND\Domain\Query\GetCharactersByOwnerHandler:
+    class: DND\Domain\Query\GetCharactersByOwnerHandler
+    arguments:
+      - '@DND\Domain\Character\CharacterRepository'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetCharactersByOwner, bus: query }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .table-item {
+            cursor: pointer;
+        }
+    </style>
+    <a class="button is-primary is-fullwidth" href="{{ path('item_card_create') }}">Stwórz postać</a>
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>imię</th>
+            <th>utworzono</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for character in characters %}
+            <tr class="table-item" href="{{ path('item_card_read', {'id': 1}) }}">
+                <th>1</th>
+                <td>{{ character.getCharacterName() }}</td>
+                <td>utworzono</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="{{ asset('js/item_card_list_helper.js') }}"></script>
+{% endblock %}
