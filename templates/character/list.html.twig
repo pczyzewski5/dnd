@@ -23,7 +23,7 @@
             <tr class="table-item" href="{{ path('character_read', {'id': character.getId()}) }}">
                 <th>1</th>
                 <td>{{ character.getCharacterName() }}</td>
-                <td>{{ character.getRace().getName() }}</td>
+                <td>{{ character.getRace().getName()|ucWords }}</td>
                 <td>{{ character.getCharacterClassFullName() }}</td>
                 <td>{{ character.getActualLevel() }}</td>
                 <td>{{ character.getCampaignName() }}</td>
