@@ -1,4 +1,4 @@
-class ItemCardListHelper {
+class ListHelper {
     constructor() {
         this.execute()
     }
@@ -12,4 +12,4 @@ class ItemCardListHelper {
     }
 }
 
-new ItemCardListHelper();
+new ListHelper();

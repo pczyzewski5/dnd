@@ -13,9 +13,9 @@ use DND\Domain\Command\UpdateItemCard;
 use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
 use DND\Domain\ItemCard\ItemCard;
+use DND\Domain\Query\GetCharacterCardHtml;
 use DND\Domain\Query\GetCharactersByOwner;
 use DND\Domain\Query\GetItemCard;
-use DND\Domain\Query\GetItemCardsForList;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,14 +32,12 @@ class CharacterController extends BaseController
 
     public function read(Request $request): Response
     {
-        $itemCard = $this->queryBus->handle(
-            new GetItemCard(
-                $request->get('id')
-            )
+        $html = $this->queryBus->handle(
+            new GetCharacterCardHtml($request->get('id'))
         );
 
-        return $this->renderForm('item_card/read.html.twig', [
-            'itemCard' => $itemCard,
+        return $this->renderForm('character/read.html.twig', [
+            'characterCardHtml' => $html,
         ]);
     }
 

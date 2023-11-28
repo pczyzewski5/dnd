@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         {% for character in characters %}
-            <tr class="table-item" href="{{ path('item_card_read', {'id': 1}) }}">
+            <tr class="table-item" href="{{ path('character_read', {'id': character.getId()}) }}">
                 <th>1</th>
                 <td>{{ character.getCharacterName() }}</td>
                 <td>{{ character.getRace().getName() }}</td>
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <script src="{{ asset('js/item_card_list_helper.js') }}"></script>
+    <script src="{{ asset('js/list_helper.js') }}"></script>
 {% endblock %}

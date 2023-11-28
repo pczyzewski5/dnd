@@ -45,6 +45,7 @@ class CharacterMapper
         );
 
         return new DomainCharacter(
+            $entity->id,
             $characterClass,
             AbilitySkillsFactory::create($abilities, $proficiencies, $levels),
             $proficiencies,

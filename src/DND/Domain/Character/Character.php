@@ -23,6 +23,7 @@ use DND\Domain\Spellcasting\Spellcasting;
 
 class Character
 {
+    private string $id;
     private CharacterClass $characterClass;
     private AbilitySkills $abilitySkills;
     private Proficiencies $proficiencies;
@@ -49,6 +50,7 @@ class Character
     private Spellcasting $spellcasting;
 
     public function __construct(
+        string $id,
         CharacterClass $characterClass,
         AbilitySkills $abilitySkills,
         Proficiencies $proficiencies,
@@ -66,6 +68,7 @@ class Character
         \DateTimeImmutable $createdAt,
         ?CharacterClass $characterSubclass
     ) {
+        $this->id = $id;
         $this->characterClass = $characterClass;
         $this->abilitySkills = $abilitySkills;
         $this->proficiencies = $proficiencies;
@@ -91,6 +94,11 @@ class Character
         $this->skillsWithUseCount = $skills->getSkillsWithUseCount($this->actualLevel);
 
         $this->spellcasting = new Spellcasting();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getSpeed(): int

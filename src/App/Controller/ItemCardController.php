@@ -88,7 +88,7 @@ class ItemCardController extends BaseController
     {
         /** @var ItemCard $itemCard */
         $itemCard = $this->queryBus->handle(
-            new GetItemCard($request->get('id'),)
+            new GetItemCard($request->get('id'))
         );
         $form = $this->createForm(
             ItemCardForm::class,

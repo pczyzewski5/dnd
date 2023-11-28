@@ -44,7 +44,6 @@ services:
     DND\Domain\CharacterCard\CharacterCardBuilder:
         class: DND\Domain\CharacterCard\CharacterCardBuilder
         arguments:
-            - 'public/css/styles.css'
             - '@twig'
 
     App\Security\UserProvider:

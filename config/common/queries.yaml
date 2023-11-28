@@ -26,3 +26,11 @@ services:
       - '@DND\Domain\Character\CharacterRepository'
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetCharactersByOwner, bus: query }
+
+  DND\Domain\Query\GetCharacterCardHtmlHandler:
+    class: DND\Domain\Query\GetCharacterCardHtmlHandler
+    arguments:
+      - '@DND\Domain\Character\CharacterRepository'
+      - '@DND\Domain\CharacterCard\CharacterCardBuilder'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetCharacterCardHtml, bus: query }

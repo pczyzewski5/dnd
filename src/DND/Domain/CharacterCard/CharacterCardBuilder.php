@@ -21,12 +21,10 @@ use Twig\Environment;
 
 class CharacterCardBuilder
 {
-    private string $stylesPath;
     private Environment $twig;
 
-    public function __construct(string $stylesPath, Environment $twig)
+    public function __construct(Environment $twig)
     {
-        $this->stylesPath = $stylesPath;
         $this->twig = $twig;
     }
 
@@ -49,11 +47,6 @@ class CharacterCardBuilder
             'skillsSection' => (new SkillsSectionBuilder($character, $this->twig))->build(),
         ];
 
-        $context['styles'] = \file_get_contents($this->stylesPath);
-
-        return $this->twig->render(
-            'character_card/character_card_front.html.twig',
-            $context
-        );
+        return $this->twig->render('character_card/character_card_front.html.twig', $context);
     }
 }
