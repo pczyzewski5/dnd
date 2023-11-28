@@ -25,11 +25,22 @@
     </head>
     <body>
         {% include('navbar.html.twig') %}
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
-        <div class="container is-fluid">
-            {% block fluid_body %}{% endblock %}
-        </div>
+
+        {% set body_block = block('body') ?? null %}
+        {% set fluid_body_block = block('fluid_body') ?? null %}
+
+        {% if body_block is not empty %}
+            <div class="container" style="min-height: 520px;">
+               {{ body_block|raw }}
+            </div>
+        {% endif %}
+
+        {% if fluid_body_block is not empty %}
+            <div class="container is-fluid" style="min-height: 520px;">
+               {{ fluid_body_block|raw }}
+            </div>
+        {% endif %}
+
+        {% include('footer.html.twig') %}
     </body>
 </html>

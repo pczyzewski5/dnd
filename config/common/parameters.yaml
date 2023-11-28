@@ -1,4 +1,4 @@
 parameters:
-  is_dev_mode: false
+  character_card_dev_mode: false
   item_card_images_directory: '%kernel.project_dir%/public/images/item_card'
   item_card_images_allowed_mime: ['image/jpeg']

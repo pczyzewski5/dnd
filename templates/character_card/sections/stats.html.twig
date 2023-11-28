@@ -64,33 +64,33 @@
     }
 </style>
 
-<div id="stats-section" class="section">
+<div id="stats-section" class="character-card-section">
     <div id="stats-container">
         <div class="stat-background stat">
             <div class="tac"><b>PW</b></div>
-            <div>{{ hp }}</div>
+            <div class="opaque">{{ hp }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>PROFICIENCY BONUS</b></div>
-            <div>{{ proficiencyBonus|value }}</div>
+            <div class="opaque">{{ proficiencyBonus|value }}</div>
         </div>
         <div id="armor-class" class="stat-background stat">
             <div class="tac"><b>KP BEZ ZBROI</b></div>
-            <div>{{ acWithoutArmor }}</div>
+            <div class="opaque">{{ acWithoutArmor }}</div>
             <div class="tac"><b>KP W ZBROI</b></div>
             <div><span class="wide-rectangle"></span></div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>INICJATYWA</b></div>
-            <div>{{ initiative|value }}</div>
+            <div class="opaque">{{ initiative|value }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>WIDZENIE W CIEMNOŚCI</b></div>
-            <div>{{ nightvision == 0 ? 'n/d' : nightvision ~ ' hex' }}</div>
+            <div class="opaque">{{ nightvision == 0 ? 'n/d' : nightvision ~ ' hex' }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>SZYBKOŚĆ</b></div>
-            <div>{{ speed }} hex</div>
+            <div class="opaque">{{ speed }} hex</div>
         </div>
     </div>
 </div>

@@ -28,7 +28,7 @@ class CharacterCardBuilder
         $this->twig = $twig;
     }
 
-    public function build(Character $character): string
+    public function build(Character $character, $opaqueStats = false): string
     {
         $context = [
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
@@ -45,6 +45,7 @@ class CharacterCardBuilder
             'skillsCounterSection' => (new SkillsCounterSectionBuilder($character, $this->twig))->build(),
             'attacksTricksSection' => (new AttacksTricksSectionBuilder($character, $this->twig))->build(),
             'skillsSection' => (new SkillsSectionBuilder($character, $this->twig))->build(),
+            'opaqueStats' => $opaqueStats
         ];
 
         return $this->twig->render('character_card/character_card_front.html.twig', $context);

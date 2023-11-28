@@ -1,4 +1,66 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-   homepage
+   <style>
+      #dragon-image, #map-dice-pen-image {
+         color: transparent;
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-position: center;
+      }
+      #dragon-image {
+         background-image: url("/public/images/red_dragon.jpg");
+      }
+      #map-dice-pen-image {
+         background-image: url("/public/images/rpg-map-dice-pen.jpeg");
+         background-size: cover;
+      }
+   </style>
+   <div class="columns">
+      <div class="column">
+         <div class="content">
+            <p>
+               Dungeons & Dragons (ang. Lochy i Smoki) – uważana za prekursora gatunku fabularna gra fantasy zaprojektowana przez
+               Gary’ego Gygaxa i Dave’a Arnesona, po raz pierwszy opublikowana w 1974 przez Tactical Studies Rules (TSR).
+               Aktualnie grę wydaje Wizards of the Coast, przedsiębiorstwo zależne od Hasbro. Wywodzi się ona z miniaturowych
+               gier figurkowych, jako wariant gry Chainmail zawierającej zbliżony system rozgrywki.
+               Publikacja D&D jest szeroko uznawana za początek nowoczesnych gier RPG i, co więcej, całego przemysłu gier fabularnych.
+            </p>
+            <p id="dragon-image">
+               Gracze D&D tworzą swoje postacie biorące udział w wyimaginowanych przygodach w scenerii fantasy.
+               Mistrz Podziemi (lub Mistrz Gry) spełnia rolę prowadzącego rozgrywkę; opisuje rzeczywistość widzianą przez
+               poszczególne postaci i dba o porządek w trakcie rozgrywki, zajmuje się także scenerią gry. Podczas każdej sesji,
+               gracze wysłuchują opisów otoczenia odgrywanych przez siebie postaci, a także dodatkowych informacji i
+               potencjalnych wyborów od Mistrza Gry, następnie opisują reakcje postaci. Bohaterowie zwykle tworzą drużyny,
+               które wzajemnie oddziałują na osoby zamieszkujące opisany świat (i siebie nawzajem). Wspólnie znajdują rozwiązania
+               problemów, biorą udział w bitwach oraz zdobywają skarby i wiedzę. Podczas gry postaci zyskują punkty doświadczenia,
+               dzięki którym stają się coraz potężniejsze z sesji na sesję. D&D w przeciwieństwie do wargamingu przypisuje każdemu
+               graczowi określoną fikcyjną postać, zamiast oddziału wojskowego. Miniaturowe figurki lub znaczniki,
+               umieszczone na planszy z widoczną siatką, są często używane do przedstawienia tych bohaterów.
+            </p>
+         </div>
+      </div>
+      <div class="column">
+         <div class="content">
+            <p id="map-dice-pen-image">
+               Dungeons & Dragons (ang. Lochy i Smoki) – uważana za prekursora gatunku fabularna gra fantasy zaprojektowana przez
+               Gary’ego Gygaxa i Dave’a Arnesona, po raz pierwszy opublikowana w 1974 przez Tactical Studies Rules (TSR).
+               Aktualnie grę wydaje Wizards of the Coast, przedsiębiorstwo zależne od Hasbro. Wywodzi się ona z miniaturowych
+               gier figurkowych, jako wariant gry Chainmail zawierającej zbliżony system rozgrywki.
+               Publikacja D&D jest szeroko uznawana za początek nowoczesnych gier RPG i, co więcej, całego przemysłu gier fabularnych.
+            </p>
+            <p>
+               Gracze D&D tworzą swoje postacie biorące udział w wyimaginowanych przygodach w scenerii fantasy.
+               Mistrz Podziemi (lub Mistrz Gry) spełnia rolę prowadzącego rozgrywkę; opisuje rzeczywistość widzianą przez
+               poszczególne postaci i dba o porządek w trakcie rozgrywki, zajmuje się także scenerią gry. Podczas każdej sesji,
+               gracze wysłuchują opisów otoczenia odgrywanych przez siebie postaci, a także dodatkowych informacji i
+               potencjalnych wyborów od Mistrza Gry, następnie opisują reakcje postaci. Bohaterowie zwykle tworzą drużyny,
+               które wzajemnie oddziałują na osoby zamieszkujące opisany świat (i siebie nawzajem). Wspólnie znajdują rozwiązania
+               problemów, biorą udział w bitwach oraz zdobywają skarby i wiedzę. Podczas gry postaci zyskują punkty doświadczenia,
+               dzięki którym stają się coraz potężniejsze z sesji na sesję. D&D w przeciwieństwie do wargamingu przypisuje każdemu
+               graczowi określoną fikcyjną postać, zamiast oddziału wojskowego. Miniaturowe figurki lub znaczniki,
+               umieszczone na planszy z widoczną siatką, są często używane do przedstawienia tych bohaterów.
+            </p>
+         </div>
+      </div>
+   </div>
 {% endblock %}
