@@ -18,6 +18,6 @@ class LoginController extends BaseController
             ]);
         }
 
-        return $this->redirectToRoute('item_card_list');
+        return $this->redirectToRoute('home');
     }
 }
