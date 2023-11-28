@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Infrastructure\Character;
 
+use App\DateTimeNormalizer;
 use DND\Domain\Ability\AbilitiesFactory;
 use DND\Domain\AbilitySkills\AbilitySkillsFactory;
 use DND\Domain\CharacterClass\CharacterClassFactory;
@@ -58,6 +59,7 @@ class CharacterMapper
             $data['campaign_name'],
             $data['player_name'],
             $data['languages'],
+            DateTimeNormalizer::normalizeToImmutable($entity->createdAt),
             $characterSubclass
         );
     }
@@ -65,7 +67,7 @@ class CharacterMapper
     public static function fromDomain(
         DomainCharacter $domainEntity
     ): Character {
-       throw new \Exception('not implemented');
+        throw new \Exception('not implemented');
     }
 
     /**

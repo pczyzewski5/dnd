@@ -6,13 +6,8 @@ class TitleSectionBuilder extends AbstractSectionBuilder
 {
     public function build(): string
     {
-        $className = \ucfirst($this->character->getCharacterClass()->getName());
-        if (null !== $characterSubclass = $this->character->getCharacterSubclass()) {
-            $className .= '-' . \ucfirst($characterSubclass->getName());
-        }
-
         $context =  [
-            'className' => $className,
+            'className' => $this->character->getCharacterClassFullName(),
             'level' => $this->character->getActualLevel(),
             'origin' => $this->character->getOrigin(),
             'characterName' => $this->character->getCharacterName(),

@@ -36,6 +36,7 @@ class Character
     private string $campaignName;
     private string $playerName;
     private array $languages;
+    private \DateTimeImmutable $createdAt;
     private ?CharacterClass $characterSubclass;
 
     private int $actualLevel;
@@ -62,6 +63,7 @@ class Character
         string $campaignName,
         string $playerName,
         array $languages,
+        \DateTimeImmutable $createdAt,
         ?CharacterClass $characterSubclass
     ) {
         $this->characterClass = $characterClass;
@@ -77,6 +79,7 @@ class Character
         $this->campaignName = $campaignName;
         $this->playerName = $playerName;
         $this->languages = $languages;
+        $this->createdAt = $createdAt;
         $this->characterSubclass = $characterSubclass;
 
         $this->actualLevel = \count($this->levels->getLevels());
@@ -123,6 +126,16 @@ class Character
     public function getCharacterClass(): CharacterClass
     {
         return $this->characterClass;
+    }
+
+    public function getCharacterClassFullName(): string
+    {
+        $fullClassName = \ucfirst($this->getCharacterClass()->getName());
+        if (null !== $characterSubclass = $this->getCharacterSubclass()) {
+            $fullClassName .= '-' . \ucfirst($characterSubclass->getName());
+        }
+
+        return $fullClassName;
     }
 
     public function getAbilitySkills(): AbilitySkills
@@ -235,5 +248,10 @@ class Character
     public function getSpellcastingData(): array
     {
         return $this->spellcasting->getSpellcastingData($this);
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 }

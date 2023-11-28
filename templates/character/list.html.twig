@@ -5,12 +5,16 @@
             cursor: pointer;
         }
     </style>
-    <a class="button is-primary is-fullwidth" href="{{ path('item_card_create') }}">Stwórz postać</a>
+    <a class="button is-primary is-fullwidth" disabled>Stwórz postać</a>
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
         <tr>
             <th>#</th>
             <th>imię</th>
+            <th>rasa</th>
+            <th>klasa</th>
+            <th>poziom</th>
+            <th>kampania</th>
             <th>utworzono</th>
         </tr>
         </thead>
@@ -19,7 +23,11 @@
             <tr class="table-item" href="{{ path('item_card_read', {'id': 1}) }}">
                 <th>1</th>
                 <td>{{ character.getCharacterName() }}</td>
-                <td>utworzono</td>
+                <td>{{ character.getRace().getName() }}</td>
+                <td>{{ character.getCharacterClassFullName() }}</td>
+                <td>{{ character.getActualLevel() }}</td>
+                <td>{{ character.getCampaignName() }}</td>
+                <td>{{ character.getCreatedAt().format('Y-m-d H:i:s') }}</td>
             </tr>
         {% endfor %}
         </tbody>

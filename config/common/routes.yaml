@@ -58,3 +58,8 @@ character_list:
     path: /player/character/list
     controller: App\Controller\CharacterController::list
     methods: [ GET ]
+
+character_read:
+    path: /player/character/{id}
+    controller: App\Controller\CharacterController::read
+    methods: [ GET ]
