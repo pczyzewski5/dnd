@@ -63,3 +63,9 @@ character_read:
     path: /player/character/{id}
     controller: App\Controller\CharacterController::read
     methods: [ GET ]
+
+# index_controller
+calendar:
+    path: /calendar
+    controller: App\Controller\CalendarController::index
+    methods: [ GET, POST ]

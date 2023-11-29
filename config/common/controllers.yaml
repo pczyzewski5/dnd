@@ -53,6 +53,15 @@ services:
       - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
     tags: [ 'controller.service_arguments', 'container.service_subscriber' ]
 
+  App\Controller\CalendarController:
+    class: App\Controller\CalendarController
+    arguments:
+      - '@App\QueryBus\QueryBus'
+      - '@App\CommandBus\CommandBus'
+    calls:
+      - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+    tags: [ 'controller.service_arguments', 'container.service_subscriber' ]
+
   App\Controller\CharacterController:
     class: App\Controller\CharacterController
     arguments:
