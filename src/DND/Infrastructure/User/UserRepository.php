@@ -29,6 +29,21 @@ class UserRepository extends EntityRepository implements DomainRepository
         return UserMapper::toDomain($entity);
     }
 
+    /**
+     * @return DomainUser[]
+     */
+    public function getManyById(array $userIds): array
+    {
+        $qb = $this->getEntityManager()
+            ->getRepository(User::class)
+            ->createQueryBuilder('u');
+
+        return $qb->where('u.id IN (:userIds)')
+            ->setParameter('userIds', $userIds)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findAllUsers(): array
     {
         $result = $this->getEntityManager()->getRepository(User::class)->findAll();

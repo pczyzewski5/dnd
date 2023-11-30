@@ -16,6 +16,11 @@ interface UserRepository
     /**
      * @return User[]
      */
+    public function getManyById(array $userIds): array;
+
+    /**
+     * @return User[]
+     */
     public function findAllUsers(): array;
 
     public function findOneById(string $id): ?User;

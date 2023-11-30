@@ -1,0 +1,60 @@
+<style>
+    .day {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+    .day:hover {
+        cursor: pointer;
+    }
+    .week .day:nth-last-child(-n + 2) {
+        color: rgba(206,1,1,255);
+    }
+    .date {
+        display: none;
+    }
+    .will-attend {
+        background-color: rgba(72, 199, 142);
+        color: white;
+    }
+    .maybe-attend {
+        background-color: rgb(255, 224, 138);
+    }
+    .will-not-attend {
+        background-color: transparent;
+    }
+    .will-not-attend:hover {
+        background-color: rgba(245, 245, 245);
+    }
+</style>
+
+<div class="table-container">
+    {% for yearNumber, year in calendar %}
+        {% for monthName, month in year %}
+            <table class="table is-bordered">
+                <tr>
+                    <th colspan="7" class="has-text-centered">{{ monthName }} {{ yearNumber }}</th>
+                </tr>
+                <tr>
+                    {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                        <th class="has-text-centered">{{ dayName }}</th>
+                    {% endfor %}
+                </tr>
+                {% for weekNumber, week in month %}
+                    <tr class="week">
+                        {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                            <td class="day has-text-centered will-not-attend">
+                                {% if dayName in week|keys %}
+                                    {{ week[dayName].format('d') }}
+                                    <span class="date">{{ week[dayName].format('Y-m-d') }}</span>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<script src="{{ asset('js/calendar_helper.js') }}"></script>

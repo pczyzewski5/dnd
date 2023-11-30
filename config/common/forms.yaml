@@ -1,0 +1,11 @@
+services:
+  App\Form\DataTransformer\InvitedUsersTransformer:
+    class: App\Form\DataTransformer\InvitedUsersTransformer
+    arguments:
+      - '@DND\Domain\User\UserRepository'
+
+  App\Form\CalendarForm:
+    class: App\Form\CalendarForm
+    arguments:
+      - '@App\Form\DataTransformer\InvitedUsersTransformer'
+    tags: [ 'form.type' ]

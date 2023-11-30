@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\CommandBus\CommandBus;
 use App\Form\CalendarForm;
 use App\QueryBus\QueryBus;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -38,20 +39,25 @@ class CalendarController extends BaseController
                 = $dateTime;
         }
 
-        $form = $this->createForm(CalendarForm::class);
+        $userA = $this->getUser();
+        $userB = clone $userA;
+
+        $form = $this->createForm(CalendarForm::class, [CalendarForm::INVITED_USERS_FIELD => [$userA]]);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && !$form->isValid()) {
+            /** @var FormError $error */
+            foreach ($form->getErrors() as $error) {
+                \var_dump($error->getMessage());
+            }
+            exit;
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
-            \var_dump(
-                \json_decode(
-                    $form->getData()[CalendarForm::WILL_ATTEND_FIELD],
-                    true
-                ),
-                \json_decode(
-                    $form->getData()[CalendarForm::MAYBE_ATTEND_FIELD],
-                    true
-                )
-            );exit;
+            echo '<pre>';
+            \var_dump($form->getData());
+            echo '</pre>';
+            exit;
         }
         return $this->renderForm('calendar/index.html.twig', [
             'calendar' => $calendar,

@@ -4,18 +4,58 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Form\DataTransformer\InvitedUsersTransformer;
+use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CalendarForm extends AbstractType
 {
+    public const TITLE_FIELD = 'title';
+    public const IS_PUBLIC_FIELD = 'is_public';
+    public const INVITED_USERS_FIELD = 'invited_users';
     public const WILL_ATTEND_FIELD = 'will_attend';
     public const MAYBE_ATTEND_FIELD = 'maybe_attend';
 
+    private InvitedUsersTransformer $invitedUserTransformer;
+
+    public function __construct(InvitedUsersTransformer $invitedUserTransformer)
+    {
+        $this->invitedUserTransformer = $invitedUserTransformer;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->add(
+            self::TITLE_FIELD,
+            TextType::class,
+            ['required' => true]
+        );
+
+        $builder->add(
+            self::IS_PUBLIC_FIELD,
+            CheckboxType::class,
+            ['required' => false]
+        );
+
+        $builder->add(
+            self::INVITED_USERS_FIELD,
+            CollectionType::class,
+            [
+                'entry_type' => CheckboxSwitchType::class,
+                'required' => false
+            ]
+        );
+
+        $builder->get(self::INVITED_USERS_FIELD)->addModelTransformer(
+            $this->invitedUserTransformer
+        );
+
         $builder->add(
             self::WILL_ATTEND_FIELD,
             HiddenType::class,
@@ -31,7 +71,7 @@ class CalendarForm extends AbstractType
         $builder->add(
             'zapisz',
             SubmitType::class,
-            ['attr' => ['class' => 'button is-primary is-fullwidth']]
+            ['attr' => ['class' => 'button is-primary']]
         );
     }
 }
