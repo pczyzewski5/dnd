@@ -45,7 +45,7 @@ class CharacterController extends BaseController
     {
         $characters = $this->queryBus->handle(
             new GetCharactersByOwner(
-                $this->getUser()->getId()
+                $this->getUser()
             )
         );
 

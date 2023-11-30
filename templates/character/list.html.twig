@@ -19,9 +19,9 @@
         </tr>
         </thead>
         <tbody>
-        {% for character in characters %}
+        {% for key, character in characters %}
             <tr class="table-item" href="{{ path('character_read', {'id': character.getId()}) }}">
-                <th>1</th>
+                <td>{{ key + 1 }}</td>
                 <td>{{ character.getCharacterName() }}</td>
                 <td>{{ character.getRace().getName()|ucWords }}</td>
                 <td>{{ character.getCharacterClassFullName() }}</td>

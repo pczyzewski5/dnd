@@ -18,9 +18,9 @@
         </tr>
         </thead>
         <tbody>
-        {% for itemCard in itemCards %}
+        {% for key, itemCard in itemCards %}
             <tr class="table-item" href="{{ path('item_card_read', {'id': itemCard.id}) }}">
-                <th>1</th>
+                <td>{{ key + 1 }}</td>
                 <td>{{ itemCard.title }}</td>
                 <td>{{ itemCard.origin }}</td>
                 <td>{{ itemCard.category }}</td>

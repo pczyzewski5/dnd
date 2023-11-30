@@ -23,6 +23,7 @@
             </div>
 
             <div class="navbar-end">
+                <div class="navbar-item">{{ app.user.getEmail() }}</div>
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-light" href="{{ path('logout') }}">Wyloguj</a>
@@ -46,5 +47,6 @@
         {% endif %}
     </div>
 </nav>
+<div style="height: 0.5em;"></div>
 
 <script src="{{ asset('js/navbar_burger_helper.js') }}"></script>

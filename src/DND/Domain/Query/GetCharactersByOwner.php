@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace DND\Domain\Query;
 
+use DND\Domain\User\User;
+
 class GetCharactersByOwner
 {
-    private string $ownerId;
+    private User $user;
 
-    public function __construct(string $ownerId)
+    public function __construct(User $user)
     {
-        $this->ownerId = $ownerId;
+        $this->user = $user;
     }
 
-    public function getOwnerId(): string
+    public function getUser(): User
     {
-        return $this->ownerId;
+        return $this->user;
     }
 }

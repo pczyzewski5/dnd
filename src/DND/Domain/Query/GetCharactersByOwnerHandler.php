@@ -21,6 +21,10 @@ class GetCharactersByOwnerHandler
      */
     public function __invoke(GetCharactersByOwner $query): array
     {
-        return $this->repository->findByOwner($query->getOwnerId());
+        if (\in_array('ROLE_ADMIN', $query->getUser()->getRoles())) {
+            return $this->repository->findAll();
+        }
+
+        return $this->repository->findByOwner($query->getUser()->getId());
     }
 }

@@ -33,7 +33,7 @@ class RegistrationController extends BaseController
                 $this->commandBus->handle(
                     new RegisterUser(
                         $data[RegisterUserForm::EMAIL_FIELD],
-                        'ROLE_USER',
+                        'ROLE_PLAYER',
                         $data[RegisterUserForm::PASSWORD_FIELD],
                         false
                     )

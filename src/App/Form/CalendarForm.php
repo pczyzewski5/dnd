@@ -34,7 +34,7 @@ class CalendarForm extends AbstractType
         $builder->add(
             self::TITLE_FIELD,
             TextType::class,
-            ['required' => true]
+            ['required' => true, 'attr' => ['class' => 'input']],
         );
 
         $builder->add(
