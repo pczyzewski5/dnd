@@ -51,8 +51,8 @@ input:checked + .slider:before {
     align-items: center;
 }
 .switch-desc {
-    margin-left: 36px;
-    margin-top: -5px;
+    margin-left: 3px;
+    margin-top: -3px;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */

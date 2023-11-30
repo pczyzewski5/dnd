@@ -1,5 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/checkbox_switch.css') }}">
 
+<style>
+    #calendar_form_invite_users > div {
+        margin-bottom: 2px;
+    }
+    #calendar_form_invite_users > div:last-child {
+        margin: 0;
+    }
+</style>
+
 {{ form_start(form) }}
 <div class="field">
     <label class="label">{{ form_label(form.title) }}</label>
@@ -10,19 +19,17 @@
 </div>
 
 <div class="field">
-    <label class="label">{{ form_label(form.is_public) }}</label>
     <div class="control">
-        <label class="switch">
-            {{ form_widget(form.is_public) }}
-            <span class="slider round"></span>
-        </label>
+        {{ form_widget(form.is_public) }}
     </div>
 </div>
 
 <div class="field">
-    <label class="label">{{ form_label(form.invited_users) }}</label>
+    <label class="label">{{ form_label(form.invite_users) }}</label>
     <div class="control">
-        {{ form_widget(form.invited_users) }}
+        {{ form_widget(form.invite_users) }}
     </div>
 </div>
 {{ form_end(form) }}
+
+<script src="{{ asset('js/checkbox_switch.js') }}"></script>

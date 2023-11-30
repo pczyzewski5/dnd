@@ -6,13 +6,26 @@
 {% endblock %}
 
 {% block checkbox_switch_type_widget %}
-    <label class="switch switch-container">
-        <input
-                type="checkbox"
-                name="{{ full_name }}"
-                value="{{ value['id'] }}"
-        >
+
+    {% set valueValue = 1 %}
+    {% if value['value'] is defined %}
+        {% set valueValue = value['value'] %}
+    {% endif %}
+
+    {% set description = label %}
+    {% if value['description'] is defined %}
+        {% set description = value['description'] %}
+    {% endif %}
+
+    <div class="switch-container">
+        <label class="switch">
+            <input
+                    type="checkbox"
+                    name="{{ full_name }}"
+                    value="{{ valueValue }}"
+            >
             <div class="slider round"></div>
-        <div class="switch-desc">{{ value['email'] }}</div>
-    </label>
+        </label>
+        <div class="switch-desc">{{ description }}</div>
+    </div>
 {% endblock %}

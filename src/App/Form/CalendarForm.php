@@ -7,7 +7,6 @@ namespace App\Form;
 use App\Form\DataTransformer\InvitedUsersTransformer;
 use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,9 +17,10 @@ class CalendarForm extends AbstractType
 {
     public const TITLE_FIELD = 'title';
     public const IS_PUBLIC_FIELD = 'is_public';
-    public const INVITED_USERS_FIELD = 'invited_users';
+    public const INVITE_USERS_FIELD = 'invite_users';
     public const WILL_ATTEND_FIELD = 'will_attend';
     public const MAYBE_ATTEND_FIELD = 'maybe_attend';
+    public const OWNER_ID_FIELD = 'owner_id';
 
     private InvitedUsersTransformer $invitedUserTransformer;
 
@@ -39,20 +39,16 @@ class CalendarForm extends AbstractType
 
         $builder->add(
             self::IS_PUBLIC_FIELD,
-            CheckboxType::class,
-            ['required' => false]
+            CheckboxSwitchType::class,
+            ['required' => false, 'label' => 'Dostępny z zewnątrz?']
         );
 
         $builder->add(
-            self::INVITED_USERS_FIELD,
+            self::INVITE_USERS_FIELD,
             CollectionType::class,
-            [
-                'entry_type' => CheckboxSwitchType::class,
-                'required' => false
-            ]
+            ['required' => false, 'entry_type' => CheckboxSwitchType::class]
         );
-
-        $builder->get(self::INVITED_USERS_FIELD)->addModelTransformer(
+        $builder->get(self::INVITE_USERS_FIELD)->addModelTransformer(
             $this->invitedUserTransformer
         );
 
@@ -64,6 +60,12 @@ class CalendarForm extends AbstractType
 
         $builder->add(
             self::MAYBE_ATTEND_FIELD,
+            HiddenType::class,
+            ['required' => true]
+        );
+
+        $builder->add(
+            self::OWNER_ID_FIELD,
             HiddenType::class,
             ['required' => true]
         );

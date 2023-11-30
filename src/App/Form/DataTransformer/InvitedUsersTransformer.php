@@ -24,8 +24,8 @@ class InvitedUsersTransformer implements DataTransformerInterface
         /** @var User $user */
         foreach ($value as $user) {
             $result[] = [
-                'id' => $user->getId(),
-                'email' => $user->getEmail()
+                'value' => $user->getId(),
+                'description' => $user->getEmail()
             ];
         }
 
