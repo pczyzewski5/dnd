@@ -73,7 +73,7 @@ class CalendarForm extends AbstractType
         $builder->add(
             'zapisz',
             SubmitType::class,
-            ['attr' => ['class' => 'button is-primary']]
+            ['attr' => ['class' => 'button is-primary is-fullwidth']]
         );
     }
 }

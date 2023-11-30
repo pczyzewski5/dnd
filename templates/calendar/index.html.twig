@@ -1,5 +1,25 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {{ include('calendar/form.html.twig') }}
-    {{ include('calendar/calendar.html.twig') }}
+    <style>
+        .calendar-image {
+            height: 100%;
+            max-height: 321px;
+            min-height: 200px;
+            background-image: url("{{ asset('images/cobold.jpg') }}");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+    </style>
+
+    <div class="columns is-centered">
+        <div class="column is-narrow">
+            {{ include('calendar/calendar.html.twig') }}
+        </div>
+        <div class="column">
+            {{ include('calendar/form.html.twig') }}
+
+            <div class="calendar-image"></div>
+        </div>
+    </div>
 {% endblock %}

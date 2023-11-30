@@ -28,33 +28,31 @@
     }
 </style>
 
-<div class="table-container">
-    {% for yearNumber, year in calendar %}
-        {% for monthName, month in year %}
-            <table class="table is-bordered">
-                <tr>
-                    <th colspan="7" class="has-text-centered">{{ monthName }} {{ yearNumber }}</th>
-                </tr>
-                <tr>
+{% for yearNumber, year in calendar %}
+    {% for monthName, month in year %}
+        <table class="table is-bordered">
+            <tr>
+                <th colspan="7" class="has-text-centered">{{ monthName }} {{ yearNumber }}</th>
+            </tr>
+            <tr>
+                {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                    <th class="has-text-centered">{{ dayName }}</th>
+                {% endfor %}
+            </tr>
+            {% for weekNumber, week in month %}
+                <tr class="week">
                     {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
-                        <th class="has-text-centered">{{ dayName }}</th>
+                        <td class="day has-text-centered will-not-attend">
+                            {% if dayName in week|keys %}
+                                {{ week[dayName].format('d') }}
+                                <span class="date">{{ week[dayName].format('Y-m-d') }}</span>
+                            {% endif %}
+                        </td>
                     {% endfor %}
                 </tr>
-                {% for weekNumber, week in month %}
-                    <tr class="week">
-                        {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
-                            <td class="day has-text-centered will-not-attend">
-                                {% if dayName in week|keys %}
-                                    {{ week[dayName].format('d') }}
-                                    <span class="date">{{ week[dayName].format('Y-m-d') }}</span>
-                                {% endif %}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endfor %}
+            {% endfor %}
+        </table>
     {% endfor %}
-</div>
+{% endfor %}
 
 <script src="{{ asset('js/calendar_helper.js') }}"></script>
