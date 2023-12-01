@@ -1,0 +1,13 @@
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Calendar\Infrastructure\CalendarParticipant\CalendarParticipant" table="calendar_participants">
+        <id name="calendar_id" type="string" column="calendar_id"/>
+        <id name="participant_id" type="string" column="participant_id"/>
+        <field name="data" type="string" column="data"/>
+        <field name="createdAt" type="datetime" column="created_at"/>
+    </entity>
+
+</doctrine-mapping>

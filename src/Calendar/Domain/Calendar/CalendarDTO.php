@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Calendar\Domain\Calendar;
 
-use DND\Domain\Enum\ItemCardCategoryEnum;
-
 class CalendarDTO
 {
     public ?string $id = null;
