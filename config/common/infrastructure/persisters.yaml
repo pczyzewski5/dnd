@@ -8,3 +8,13 @@ services:
     class: DND\Infrastructure\ItemCard\ItemCardPersister
     arguments:
       - '@doctrine.orm.entity_manager'
+
+  Calendar\Infrastructure\Calendar\CalendarPersister:
+    class: Calendar\Infrastructure\Calendar\CalendarPersister
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  Calendar\Infrastructure\CalendarParticipant\CalendarParticipantPersister:
+    class: Calendar\Infrastructure\CalendarParticipant\CalendarParticipantPersister
+    arguments:
+      - '@doctrine.orm.entity_manager'

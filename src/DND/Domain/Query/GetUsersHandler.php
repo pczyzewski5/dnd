@@ -21,6 +21,21 @@ class GetUsersHandler
      */
     public function __invoke(GetUsers $query): array
     {
-        return $this->userRepository->findAllUsers();
+        $allUsers = $this->userRepository->findAllUsers();
+        if (null === $query->getExcludeUser()) {
+            return $allUsers;
+        }
+
+        $result = [];
+
+        foreach ($allUsers as $user) {
+            if ($user->getId() === $query->getExcludeUser()->getId()) {
+                continue;
+            }
+
+            $result[] = $user;
+        }
+
+        return $result;
     }
 }

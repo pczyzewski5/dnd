@@ -7,7 +7,11 @@ namespace App\Controller;
 use App\CommandBus\CommandBus;
 use App\Form\CalendarForm;
 use App\QueryBus\QueryBus;
+use Calendar\Domain\Command\CreateCalendar;
+use Calendar\Domain\Command\CreateCalendarParticipants;
+use Calendar\Domain\Command\GetDatesForCalendar;
 use DND\Domain\Query\GetUsers;
+use DND\Domain\User\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,38 +26,43 @@ class CalendarController extends BaseController
         $this->commandBus = $commandBus;
     }
 
-    public function index(Request $request): Response
+    public function create(Request $request): Response
     {
-        $startDate = new \DateTime('first day of this month');
-        $finishDate = new \DateTime('last day of next month');
-        $interval = new \DateInterval('P1D');
-        $period = new \DatePeriod($startDate, $interval, $finishDate, \DatePeriod::INCLUDE_END_DATE);
-
-        $calendar = [];
-        foreach ($period as $dateTime) {
-            $calendar
-            [$dateTime->format('Y')]
-            [$dateTime->format('M')]
-            [$dateTime->format('W')]
-            [$dateTime->format('D')]
-                = $dateTime;
-        }
+        /** @var User $loggedInUser */
+        $loggedInUser = $this->getUser();
+        $users = $this->queryBus->handle(
+            new GetUsers($loggedInUser)
+        );
 
         $form = $this->createForm(CalendarForm::class, [
-            CalendarForm::INVITE_USERS_FIELD => $this->queryBus->handle(new GetUsers()),
-            CalendarForm::OWNER_ID_FIELD => $this->getUser()->getId()
+            CalendarForm::INVITE_USERS_FIELD => $users,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            echo '<pre>';
-            \var_dump($form->getData());
-            echo '</pre>';
-            exit;
+            $data = $form->getData();
+            $participants = $data[CalendarForm::INVITE_USERS_FIELD];
+            $participants[] = $loggedInUser;
+
+            $calendarId = $this->commandBus->handle(
+                new CreateCalendar(
+                    $data[CalendarForm::TITLE_FIELD],
+                    \boolval($data[CalendarForm::IS_PUBLIC_FIELD]),
+                    $loggedInUser->getId()
+                )
+            );
+
+            $this->commandBus->handle(
+                new CreateCalendarParticipants($calendarId, $participants)
+            );
         }
 
+        $datesForCalendar = $this->commandBus->handle(
+            new GetDatesForCalendar()
+        );
+
         return $this->renderForm('calendar/index.html.twig', [
-            'calendar' => $calendar,
+            'datesForCalendar' => $datesForCalendar,
             'form' => $form
         ]);
     }

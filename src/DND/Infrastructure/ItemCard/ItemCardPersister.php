@@ -22,9 +22,9 @@ class ItemCardPersister implements DomainPersister
     /**
      * @throws PersisterException
      */
-    public function save(ItemCard $itemCard): void
+    public function save(ItemCard $domainEntity): void
     {
-        $entity = ItemCardMapper::fromDomain($itemCard);
+        $entity = ItemCardMapper::fromDomain($domainEntity);
 
         try {
             $this->entityManager->persist($entity);

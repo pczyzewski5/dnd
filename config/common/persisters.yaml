@@ -4,3 +4,9 @@ services:
 
   DND\Domain\ItemCard\ItemCardPersister:
     alias: DND\Infrastructure\ItemCard\ItemCardPersister
+
+  Calendar\Domain\Calendar\CalendarPersister:
+    alias: Calendar\Infrastructure\Calendar\CalendarPersister
+
+  Calendar\Domain\CalendarParticipant\CalendarParticipantPersister:
+    alias: Calendar\Infrastructure\CalendarParticipant\CalendarParticipantPersister

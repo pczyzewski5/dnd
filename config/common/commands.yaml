@@ -63,3 +63,22 @@ services:
       - '%item_card_images_directory%'
     tags:
       - { name: tactician.handler, command: DND\Domain\Command\DeleteItemCard, bus: command }
+
+  Calendar\Domain\Command\GetDatesForCalendarHandler:
+    class: Calendar\Domain\Command\GetDatesForCalendarHandler
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\GetDatesForCalendar, bus: command }
+
+  Calendar\Domain\Command\CreateCalendarHandler:
+    class: Calendar\Domain\Command\CreateCalendarHandler
+    arguments:
+      - '@Calendar\Domain\Calendar\CalendarPersister'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\CreateCalendar, bus: command }
+
+  Calendar\Domain\Command\CreateCalendarParticipantsHandler:
+    class: Calendar\Domain\Command\CreateCalendarParticipantsHandler
+    arguments:
+      - '@Calendar\Domain\CalendarParticipant\CalendarParticipantPersister'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\CreateCalendarParticipants, bus: command }

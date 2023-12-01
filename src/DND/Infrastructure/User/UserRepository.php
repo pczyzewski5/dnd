@@ -38,10 +38,12 @@ class UserRepository extends EntityRepository implements DomainRepository
             ->getRepository(User::class)
             ->createQueryBuilder('u');
 
-        return $qb->where('u.id IN (:userIds)')
+        $result = $qb->where('u.id IN (:userIds)')
             ->setParameter('userIds', $userIds)
             ->getQuery()
             ->getResult();
+
+        return UserMapper::mapArrayToDomain($result);
     }
 
     public function findAllUsers(): array

@@ -65,7 +65,12 @@ character_read:
     methods: [ GET ]
 
 # index_controller
-calendar:
-    path: /calendar
-    controller: App\Controller\CalendarController::index
+calendar_list:
+    path: /player/character/list
+    controller: App\Controller\CharacterController::list
+    methods: [ GET ]
+
+calendar_create:
+    path: /calendar/create
+    controller: App\Controller\CalendarController::create
     methods: [ GET, POST ]

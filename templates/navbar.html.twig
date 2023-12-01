@@ -16,7 +16,7 @@
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ path('home') }}">Home</a>
                 <a class="navbar-item" href="{{ path('character_list') }}">Postacie</a>
-                <a class="navbar-item" href="{{ path('calendar') }}">Kalendarz</a>
+                <a class="navbar-item" href="{{ path('calendar_list') }}">Kalendarz</a>
                 {% if is_granted('ROLE_DM') or is_granted('ROLE_ADMIN') %}
                     <a class="navbar-item" href="{{ path('item_card_list') }}">Karty</a>
                 {% endif %}

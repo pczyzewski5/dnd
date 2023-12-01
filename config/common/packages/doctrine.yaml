@@ -38,14 +38,14 @@ doctrine:
 
             Calendar:
                 type: xml
-                prefix: CalendarParticipant\Infrastructure\CalendarParticipant
-                dir: '%kernel.project_dir%/config/common/orm/CalendarParticipant'
+                prefix: Calendar\Infrastructure\Calendar
+                dir: '%kernel.project_dir%/config/common/orm/Calendar'
                 is_bundle: false
-                alias: CalendarParticipant
+                alias: Calendar
 
             CalendarParticipant:
                 type: xml
-                prefix: CalendarParticipant\Infrastructure\CalendarParticipant
+                prefix: Calendar\Infrastructure\CalendarParticipant
                 dir: '%kernel.project_dir%/config/common/orm/CalendarParticipant'
                 is_bundle: false
                 alias: CalendarParticipant
