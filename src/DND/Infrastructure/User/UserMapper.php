@@ -16,6 +16,7 @@ class UserMapper
         $dto = new UserDTO();
         $dto->id = $entity->id;
         $dto->email = $entity->email;
+        $dto->username = $entity->username;
         $dto->roles = \json_decode($entity->roles);
         $dto->password = $entity->password;
         $dto->isActive = $entity->isActive;
@@ -32,6 +33,7 @@ class UserMapper
         $entity = new User();
         $entity->id = $domainEntity->getId();
         $entity->email = $domainEntity->getEmail();
+        $entity->username = $domainEntity->getUsername();
         $entity->roles = \json_encode($domainEntity->getRoles());
         $entity->password = $domainEntity->getPassword();
         $entity->isActive = $domainEntity->isActive();

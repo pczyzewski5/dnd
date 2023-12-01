@@ -6,6 +6,7 @@
     <entity name="DND\Infrastructure\User\User" repository-class="DND\Infrastructure\User\UserRepository" table="users">
         <id name="id" type="string" column="id"/>
         <field name="email" type="string" column="email"/>
+        <field name="username" type="string" column="username"/>
         <field name="roles" type="string" column="roles"/>
         <field name="password" type="string" column="password"/>
         <field name="isActive" type="boolean" column="is_active"/>

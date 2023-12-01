@@ -16,6 +16,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private string $id;
     private string $email;
+    private string $username;
     private array $roles;
     private bool $isActive;
     private string $password;
@@ -43,6 +44,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             throw UserValidationException::missingProperty('email');
         }
 
+        if (!isset($this->username) || '' === $this->username) {
+            throw UserValidationException::missingProperty('username');
+        }
+
         if (!isset($this->roles) || empty($this->roles)) {
             throw UserValidationException::missingProperty('roles');
         }
@@ -68,6 +73,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
     }
 
     public function getRoles(): array
@@ -121,14 +131,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @see UserInterface
      */
     public function getUserIdentifier(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
     {
         return $this->email;
     }

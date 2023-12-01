@@ -28,6 +28,7 @@ class RegisterUserHandler
     {
         $user = UserFactory::create(
             $command->getEmail(),
+            $command->getUsername(),
             [$command->getRole()],
             $command->getPassword(),
             $command->isActive()

@@ -14,6 +14,9 @@
     height: inherit;
     width: 5rem;
 }
+.navbar-burger:hover {
+    background-color: transparent;
+}
 .navbar-burger span {
     width: 32px;
     left: calc(50% - 14px);

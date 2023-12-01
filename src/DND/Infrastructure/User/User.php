@@ -8,6 +8,7 @@ class User
 {
     public ?string $id;
     public ?string $email;
+    public ?string $username;
     public ?string $roles;
     public ?string $password;
     public ?bool $isActive;
