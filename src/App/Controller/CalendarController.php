@@ -10,6 +10,7 @@ use App\QueryBus\QueryBus;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\GetDatesForCalendar;
+use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
 use DND\Domain\Query\GetUsers;
 use DND\Domain\User\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,13 +48,25 @@ class CalendarController extends BaseController
             $calendarId = $this->commandBus->handle(
                 new CreateCalendar(
                     $data[CalendarForm::TITLE_FIELD],
-                    \boolval($data[CalendarForm::IS_PUBLIC_FIELD]),
+                    $data[CalendarForm::IS_PUBLIC_FIELD],
                     $loggedInUser->getId()
                 )
             );
 
             $this->commandBus->handle(
-                new CreateCalendarParticipants($calendarId, $participants)
+                new CreateCalendarParticipants(
+                    $calendarId,
+                    $participants
+                )
+            );
+
+            $this->commandBus->handle(
+                new UpdateCalendarParticipantResponse(
+                    $calendarId,
+                    $loggedInUser->getId(),
+                    $data[CalendarForm::WILL_ATTEND_FIELD],
+                    $data[CalendarForm::MAYBE_ATTEND_FIELD],
+                )
             );
         }
 
