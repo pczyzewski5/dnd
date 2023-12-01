@@ -68,6 +68,8 @@ class CalendarController extends BaseController
                     $data[CalendarForm::MAYBE_ATTEND_FIELD],
                 )
             );
+
+            return $this->redirectToRoute('calendar_list');
         }
 
         $datesForCalendar = $this->commandBus->handle(
