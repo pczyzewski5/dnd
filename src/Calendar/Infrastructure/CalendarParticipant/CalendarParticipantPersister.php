@@ -6,9 +6,9 @@ namespace Calendar\Infrastructure\CalendarParticipant;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
-use DND\Domain\ItemCard\ItemCardPersister as DomainPersister;
-use DND\Domain\ItemCard\ItemCard;
-use DND\Domain\Exception\PersisterException;
+use Calendar\Domain\CalendarParticipant\CalendarParticipantPersister as DomainPersister;
+use Calendar\Domain\CalendarParticipant\CalendarParticipant as DomainEntity;
+use Calendar\Domain\Exception\PersisterException;
 
 class CalendarParticipantPersister implements DomainPersister
 {
@@ -22,9 +22,9 @@ class CalendarParticipantPersister implements DomainPersister
     /**
      * @throws PersisterException
      */
-    public function save(ItemCard $itemCard): void
+    public function save(DomainEntity $domainEntity): void
     {
-        $entity = CalendarParticipantMapper::fromDomain($itemCard);
+        $entity = CalendarParticipantMapper::fromDomain($domainEntity);
 
         try {
             $this->entityManager->persist($entity);
@@ -34,42 +34,9 @@ class CalendarParticipantPersister implements DomainPersister
         }
     }
 
-    public function update(ItemCard $itemCard): void
+    public function update(DomainEntity $domainEntity): void
     {
-        try {
-            $sql = 'UPDATE item_cards
-                  SET title = :title,
-                      description = :description,
-                      origin = :origin,
-                      category = :category,
-                      image = :image,
-                      author_id = :authorId
-                  WHERE id = :id;';
 
-            $this->entityManager->getConnection()->executeQuery(
-                $sql,
-                [
-                    'id' => $itemCard->getId(),
-                    'title' => $itemCard->getTitle(),
-                    'description' => $itemCard->getDescription(),
-                    'origin' => $itemCard->getOrigin(),
-                    'category' => $itemCard->getCategory()->getValue(),
-                    'image' => $itemCard->getImage(),
-                    'authorId' => $itemCard->getAuthorId(),
-                ],
-                [
-                    'id' => Types::STRING,
-                    'title' => Types::STRING,
-                    'description' => Types::STRING,
-                    'origin' => Types::STRING,
-                    'category' => Types::STRING,
-                    'image' => Types::STRING,
-                    'authorId' => Types::STRING,
-                ]
-            );
-        } catch (\Throwable $exception) {
-            throw PersisterException::fromThrowable($exception);
-        }
     }
 
     /**
@@ -79,7 +46,7 @@ class CalendarParticipantPersister implements DomainPersister
     {
         try {
             $this->entityManager->getConnection()->executeQuery(
-                'DELETE FROM item_cards WHERE id = ?',
+                'DELETE FROM calendar_participants WHERE id = ?',
                 [$id],
                 [Types::STRING]
             );

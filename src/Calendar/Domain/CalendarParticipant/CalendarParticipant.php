@@ -14,7 +14,7 @@ class CalendarParticipant
 
     private string $calendarId;
     private string $participantId;
-    private string $data;
+    private ?string $data = null;
     private \DateTimeImmutable $createdAt;
 
     public function __construct(CalendarParticipantDTO $dto)
@@ -38,10 +38,6 @@ class CalendarParticipant
             throw ValidationException::missingProperty('participantId');
         }
 
-        if (!isset($this->data) || '' === $this->data) {
-            throw ValidationException::missingProperty('data');
-        }
-
         if (!isset($this->createdAt)) {
             throw ValidationException::missingProperty('createdAt');
         }
@@ -57,7 +53,7 @@ class CalendarParticipant
         return $this->participantId;
     }
 
-    public function getData(): string
+    public function getData(): ?string
     {
         return $this->data;
     }

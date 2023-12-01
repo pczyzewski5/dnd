@@ -9,7 +9,7 @@ class CalendarParticipantFactory
     public static function create(
     string $calendarId,
     string $participantId,
-    string $data,
+    ?string $data = null,
     ): CalendarParticipant {
         $dto = new CalendarParticipantDTO();
         $dto->calendarId = $calendarId;

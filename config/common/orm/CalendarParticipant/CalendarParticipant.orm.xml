@@ -4,9 +4,9 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Calendar\Infrastructure\CalendarParticipant\CalendarParticipant" table="calendar_participants">
-        <id name="calendar_id" type="string" column="calendar_id"/>
-        <id name="participant_id" type="string" column="participant_id"/>
-        <field name="data" type="string" column="data"/>
+        <id name="calendarId" type="string" column="calendar_id"/>
+        <id name="participantId" type="string" column="participant_id"/>
+        <field name="data" type="string" column="data" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>
     </entity>
 

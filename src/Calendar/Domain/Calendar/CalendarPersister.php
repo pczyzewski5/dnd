@@ -9,12 +9,12 @@ interface CalendarPersister
     /**
      * @throws PersisterException
      */
-    public function save(Calendar $entity): void;
+    public function save(Calendar $domainEntity): void;
 
     /**
      * @throws PersisterException
      */
-    public function update(Calendar $entity): void;
+    public function update(Calendar $domainEntity): void;
 
     /**
      * @throws PersisterException

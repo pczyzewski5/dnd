@@ -9,7 +9,7 @@ interface ItemCardPersister
     /**
      * @throws PersisterException
      */
-    public function save(ItemCard $itemCard): void;
+    public function save(ItemCard $domainEntity): void;
 
     /**
      * @throws PersisterException
