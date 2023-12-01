@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DND\Infrastructure\Tactician;
+namespace App\Tactician;
 
-use App\CommandBus\CommandBus as CommandBusInterface;
+use App\QueryBus\QueryBus as QueryBusInterface;
 use League\Tactician\CommandBus as TacticianCommandBus;
 
-class CommandBus implements CommandBusInterface
+class QueryBus implements QueryBusInterface
 {
     private TacticianCommandBus $commandBus;
 

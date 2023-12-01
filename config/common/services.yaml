@@ -4,10 +4,10 @@ services:
         autoconfigure: false
 
     App\QueryBus\QueryBus:
-        alias: DND\Infrastructure\Tactician\QueryBus
+        alias: App\Tactician\QueryBus
 
     App\CommandBus\CommandBus:
-        alias: DND\Infrastructure\Tactician\CommandBus
+        alias: App\Tactician\CommandBus
 
     App\Twig\ProficiencyDot:
         class: App\Twig\ProficiencyDot
