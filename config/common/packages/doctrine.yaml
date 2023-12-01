@@ -35,3 +35,10 @@ doctrine:
                 dir: '%kernel.project_dir%/config/common/orm/Character'
                 is_bundle: false
                 alias: Character
+
+            Calendar:
+                type: xml
+                prefix: Calendar\Infrastructure\Calendar
+                dir: '%kernel.project_dir%/config/common/orm/Calendar'
+                is_bundle: false
+                alias: Calendar
