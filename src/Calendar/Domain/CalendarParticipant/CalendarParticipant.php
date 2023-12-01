@@ -14,7 +14,8 @@ class CalendarParticipant
 
     private string $calendarId;
     private string $participantId;
-    private ?string $data = null;
+    private ?array $willAttend = null;
+    private ?array $maybeAttend = null;
     private \DateTimeImmutable $createdAt;
 
     public function __construct(CalendarParticipantDTO $dto)
@@ -53,9 +54,14 @@ class CalendarParticipant
         return $this->participantId;
     }
 
-    public function getData(): ?string
+    public function getWillAttend(): ?array
     {
-        return $this->data;
+        return $this->willAttend;
+    }
+
+    public function getMaybeAttend(): ?array
+    {
+        return $this->maybeAttend;
     }
 
     public function getCreatedAt(): \DateTimeImmutable

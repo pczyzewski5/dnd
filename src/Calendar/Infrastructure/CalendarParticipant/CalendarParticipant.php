@@ -8,6 +8,7 @@ class CalendarParticipant
 {
     public ?string $calendarId;
     public ?string $participantId;
-    public ?string $data;
+    public ?string $willAttend;
+    public ?string $maybeAttend;
     public ?\DateTime $createdAt;
 }

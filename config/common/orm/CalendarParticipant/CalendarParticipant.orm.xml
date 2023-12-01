@@ -6,7 +6,8 @@
     <entity name="Calendar\Infrastructure\CalendarParticipant\CalendarParticipant" table="calendar_participants">
         <id name="calendarId" type="string" column="calendar_id"/>
         <id name="participantId" type="string" column="participant_id"/>
-        <field name="data" type="string" column="data" nullable="true"/>
+        <field name="willAttend" type="string" column="will_attend" nullable="true"/>
+        <field name="maybeAttend" type="string" column="maybe_attend" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>
     </entity>
 

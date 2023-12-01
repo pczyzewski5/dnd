@@ -13,3 +13,8 @@ services:
     class: DND\Infrastructure\Character\CharacterRepository
     arguments:
       - '@doctrine.orm.entity_manager'
+
+  Calendar\Infrastructure\CalendarParticipant\CalendarParticipantRepository:
+    class: Calendar\Infrastructure\CalendarParticipant\CalendarParticipantRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'

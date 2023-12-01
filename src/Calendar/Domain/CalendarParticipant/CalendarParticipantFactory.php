@@ -9,12 +9,14 @@ class CalendarParticipantFactory
     public static function create(
     string $calendarId,
     string $participantId,
-    ?string $data = null,
+    ?string $willAttend = null,
+    ?string $maybeAttend = null,
     ): CalendarParticipant {
         $dto = new CalendarParticipantDTO();
         $dto->calendarId = $calendarId;
         $dto->participantId = $participantId;
-        $dto->data = $data;
+        $dto->willAttend = $willAttend;
+        $dto->maybeAttend = $maybeAttend;
         $dto->createdAt = new \DateTimeImmutable();
 
         return new CalendarParticipant($dto);

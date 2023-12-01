@@ -36,7 +36,30 @@ class CalendarParticipantPersister implements DomainPersister
 
     public function update(DomainEntity $domainEntity): void
     {
+        $entity = CalendarParticipantMapper::fromDomain($domainEntity);
 
+        try {
+            $sql = 'UPDATE calendar_participants
+                  SET will_attend = :willAttend,
+                      maybe_attend = :maybeAttend
+                  WHERE calendar_id = :calendarId AND participant_id = :participantId;';
+
+            $this->entityManager->getConnection()->executeQuery(
+                $sql,
+                [
+                    'willAttend' => $entity->willAttend,
+                    'maybeAttend' => $entity->maybeAttend,
+                    'calendarId' => $entity->calendarId,
+                    'participantId' => $entity->participantId,
+                ],
+                [
+                    'calendarId' => Types::STRING,
+                    'participantId' => Types::STRING,
+                ]
+            );
+        } catch (\Throwable $exception) {
+            throw PersisterException::fromThrowable($exception);
+        }
     }
 
     /**

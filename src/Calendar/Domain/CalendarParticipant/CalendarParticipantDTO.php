@@ -8,6 +8,7 @@ class CalendarParticipantDTO
 {
     public ?string $calendarId = null;
     public ?string $participantId = null;
-    public ?string $data = null;
+    public ?array $willAttend = null;
+    public ?array $maybeAttend = null;
     public ?\DateTimeImmutable $createdAt = null;
 }

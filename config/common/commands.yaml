@@ -82,3 +82,11 @@ services:
       - '@Calendar\Domain\CalendarParticipant\CalendarParticipantPersister'
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Command\CreateCalendarParticipants, bus: command }
+
+  Calendar\Domain\Command\UpdateCalendarParticipantResponseHandler:
+    class: Calendar\Domain\Command\UpdateCalendarParticipantResponseHandler
+    arguments:
+      - '@Calendar\Domain\CalendarParticipant\CalendarParticipantRepository'
+      - '@Calendar\Domain\CalendarParticipant\CalendarParticipantPersister'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\UpdateCalendarParticipantResponse, bus: command }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Calendar\Infrastructure\CalendarParticipant;
 
+use Calendar\Domain\Exception\RepositoryException;
 use Doctrine\ORM\EntityManagerInterface;
-use DND\Domain\ItemCard\Exception\ItemCardNotFoundException;
-use DND\Domain\ItemCard\ItemCard as DomainItemCard;
-use DND\Domain\ItemCard\ItemCardRepository as DomainRepository;
+use Calendar\Domain\CalendarParticipant\CalendarParticipant as DomainEntity;
+use Calendar\Domain\CalendarParticipant\CalendarParticipantRepository as DomainRepository;
 
 class CalendarParticipantRepository implements DomainRepository
 {
@@ -18,19 +18,22 @@ class CalendarParticipantRepository implements DomainRepository
         $this->entityManager = $entityManager;
     }
 
-    public function getOneById(string $id): DomainItemCard
+    public function getOneById(string $calendarId, string $participantId): DomainEntity
     {
-        $entity = $this->entityManager->getRepository(CalendarParticipant::class)->find($id);
+        $entity = $this->entityManager->getRepository(CalendarParticipant::class)->findOneBy([
+            'calendarId' => $calendarId,
+            'participantId' => $participantId
+        ]);
 
         if (null === $entity) {
-            throw ItemCardNotFoundException::notFound($id);
+            throw RepositoryException::notFound(CalendarParticipant::class, $participantId);
         }
 
         return CalendarParticipantMapper::toDomain($entity);
     }
 
     /**
-     * @return DomainItemCard[]
+     * @return DomainEntity[]
      */
     public function findAll(): array
     {

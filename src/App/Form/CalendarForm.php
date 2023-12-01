@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\DataTransformer\InvitedUsersTransformer;
-use App\Form\DataTransformer\InvitedUsersViewTransformer;
+use App\Form\DataTransformer\CalendarFormDataTransformer;
 use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -22,15 +21,17 @@ class CalendarForm extends AbstractType
     public const WILL_ATTEND_FIELD = 'will_attend';
     public const MAYBE_ATTEND_FIELD = 'maybe_attend';
 
-    private InvitedUsersTransformer $invitedUserTransformer;
+    private CalendarFormDataTransformer $calendarFormDataTransformer;
 
-    public function __construct(InvitedUsersTransformer $invitedUserTransformer)
+    public function __construct(CalendarFormDataTransformer $calendarFormDataTransformer)
     {
-        $this->invitedUserTransformer = $invitedUserTransformer;
+        $this->calendarFormDataTransformer = $calendarFormDataTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->addModelTransformer($this->calendarFormDataTransformer);
+
         $builder->add(
             self::TITLE_FIELD,
             TextType::class,
@@ -47,9 +48,6 @@ class CalendarForm extends AbstractType
             self::INVITE_USERS_FIELD,
             CollectionType::class,
             ['required' => false, 'entry_type' => CheckboxSwitchType::class]
-        );
-        $builder->get(self::INVITE_USERS_FIELD)->addModelTransformer(
-            $this->invitedUserTransformer
         );
 
         $builder->add(

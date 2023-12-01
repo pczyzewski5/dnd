@@ -24,7 +24,8 @@ CREATE TABLE calendar_participants
 (
     calendar_id    VARCHAR(36) NOT NULL,
     participant_id VARCHAR(36) NOT NULL,
-    data           TEXT,
+    will_attend    TEXT,
+    maybe_attend   TEXT,
     created_at     DATETIME NOT NULL,
     UNIQUE (calendar_id, participant_id)
 ) DEFAULT CHARACTER SET UTF8

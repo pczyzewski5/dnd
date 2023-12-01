@@ -13,10 +13,18 @@ class CalendarParticipantMapper
 {
     public static function toDomain(CalendarParticipant $entity): DomainEntity
     {
+        $willAttend = null === $entity->willAttend
+            ? null
+            : \json_encode($entity->willAttend);
+        $maybeAttend = null === $entity->maybeAttend
+            ? null
+            : \json_encode($entity->maybeAttend);
+
         $dto = new CalendarParticipantDTO();
         $dto->calendarId = $entity->calendarId;
         $dto->participantId = $entity->participantId;
-        $dto->data = $entity->data;
+        $dto->willAttend = $willAttend;
+        $dto->maybeAttend = $maybeAttend;
         $dto->createdAt = DateTimeNormalizer::normalizeToImmutable(
             $entity->createdAt
         );
@@ -26,10 +34,18 @@ class CalendarParticipantMapper
 
     public static function fromDomain(DomainEntity $domainEntity): CalendarParticipant
     {
+        $willAttend = null === $domainEntity->getWillAttend()
+            ? null
+            : \json_encode($domainEntity->getWillAttend());
+        $maybeAttend = null === $domainEntity->getMaybeAttend()
+            ? null
+            : \json_encode($domainEntity->getMaybeAttend());
+
         $entity = new CalendarParticipant();
         $entity->calendarId = $domainEntity->getCalendarId();
         $entity->participantId = $domainEntity->getParticipantId();
-        $entity->data = $domainEntity->getData();
+        $entity->willAttend = $willAttend;
+        $entity->maybeAttend = $maybeAttend;
         $entity->createdAt = DateTime::createFromImmutable(
             $domainEntity->getCreatedAt()
         );

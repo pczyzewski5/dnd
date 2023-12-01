@@ -7,3 +7,6 @@ services:
 
   DND\Domain\Character\CharacterRepository:
     alias: DND\Infrastructure\Character\CharacterRepository
+
+  Calendar\Domain\CalendarParticipant\CalendarParticipantRepository:
+    alias: Calendar\Infrastructure\CalendarParticipant\CalendarParticipantRepository
