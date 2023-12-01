@@ -1,14 +1,37 @@
 <style>
-    .day {
+    .month {
+        width: 100%;
+        max-width: 371px;
+        margin-bottom: 1.5rem;
+    }
+    .month div {
+        box-shadow:
+                1px 0 0 0 rgb(219, 219, 219),
+                0 1px 0 0 rgb(219, 219, 219),
+                1px 1px 0 0 rgb(219, 219, 219),
+                1px 0 0 0 rgb(219, 219, 219) inset,
+                0 1px 0 0 rgb(219, 219, 219) inset;
+        width: 100%;
+        color: #363636;
+    }
+    .month-title, .week > div {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    .week {
+        display: flex;
+        flex-grow: 1;
+    }
+    .week .day:nth-last-child(-n + 2) {
+        color: rgba(206,1,1,255);
+    }
+    .week > div, .month-title {
         -webkit-user-select: none; /* Safari */
         -ms-user-select: none; /* IE 10 and IE 11 */
         user-select: none; /* Standard syntax */
     }
     .day:hover {
         cursor: pointer;
-    }
-    .week .day:nth-last-child(-n + 2) {
-        color: rgba(206,1,1,255);
     }
     .date {
         display: none;
@@ -30,28 +53,32 @@
 
 {% for yearNumber, year in calendar %}
     {% for monthName, month in year %}
-        <table class="table is-bordered">
-            <tr>
-                <th colspan="7" class="has-text-centered">{{ monthName }} {{ yearNumber }}</th>
-            </tr>
-            <tr>
+        <div class="month">
+            <div class="month-title has-text-centered">
+                <b>{{ monthName }} {{ yearNumber }}</b>
+            </div>
+            <div class="week">
                 {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
-                    <th class="has-text-centered">{{ dayName }}</th>
+                    <div class="has-text-centered">
+                        <b>{{ dayName }}</b>
+                    </div>
                 {% endfor %}
-            </tr>
+            </div>
             {% for weekNumber, week in month %}
-                <tr class="week">
+                <div class="week">
                     {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
-                        <td class="day has-text-centered will-not-attend">
-                            {% if dayName in week|keys %}
+                        {% if dayName in week|keys %}
+                            <div class="day has-text-centered will-not-attend">
                                 {{ week[dayName].format('d') }}
                                 <span class="date">{{ week[dayName].format('Y-m-d') }}</span>
-                            {% endif %}
-                        </td>
+                            </div>
+                        {% else %}
+                            <div></div>
+                        {% endif %}
                     {% endfor %}
-                </tr>
+                </div>
             {% endfor %}
-        </table>
+        </div>
     {% endfor %}
 {% endfor %}
 
