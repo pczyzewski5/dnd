@@ -81,4 +81,9 @@ class CalendarController extends BaseController
             'form' => $form
         ]);
     }
+
+    public function list(): Response
+    {
+        return $this->renderForm('calendar/list.html.twig');
+    }
 }

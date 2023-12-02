@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .column > div {
+            height: 600px;
+            background-color: violet;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 5px 5px 5px #888888;
+            border: 1px solid #888888;
+        }
+        .column > div:before {
+            background-image: url("/images/hex_map_background.jpg");
+            background-size: 166%;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 200%;
+        }
+        .mind-flyer-container:before {
+            background-position-x: 50%;
+        }
+        .beholder-container:before {
+            transform: rotate(180deg);
+        }
+        .nothic-image, .mind-flyer-image, .beholder-image {
+            background-color: white;
+            height: 300px;
+            width: 590px;
+            rotate: 20deg;
+            position: absolute;
+            left: -78px;
+            overflow: hidden;
+            border: 1px solid #888888;
+        }
+        .nothic-image:before, .mind-flyer-image:before, .beholder-image:before {
+            background-size: 70%;
+            background-position: 78% 0;
+            background-repeat: no-repeat;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            z-index: -1;
+            transform: rotate(-20deg);
+        }
+        .nothic-image:before {
+            background-image: url("{{ asset('images/nothic.jpg') }}");
+        }
+        .mind-flyer-image:before {
+            background-image: url("{{ asset('images/mindflyer.jpg') }}");
+        }
+        .beholder-image:before {
+            background-image: url("{{ asset('images/beholder.jpg') }}");
+            background-size: 64%;
+        }
+    </style>
+    <div class="columns">
+        <div class="column">
+            <div class="nothic-image-container">
+                <div class="nothic-image"></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="mind-flyer-container">
+                <div class="mind-flyer-image"></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="beholder-container">
+                <div class="beholder-image"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
