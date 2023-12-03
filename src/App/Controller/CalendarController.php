@@ -48,7 +48,7 @@ class CalendarController extends BaseController
             $calendarId = $this->commandBus->handle(
                 new CreateCalendar(
                     $data[CalendarForm::TITLE_FIELD],
-                    $data[CalendarForm::IS_PUBLIC_FIELD],
+                    false, // $data[CalendarForm::IS_PUBLIC_FIELD],
                     $loggedInUser->getId()
                 )
             );

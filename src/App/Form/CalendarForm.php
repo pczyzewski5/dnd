@@ -38,11 +38,11 @@ class CalendarForm extends AbstractType
             ['required' => true, 'attr' => ['class' => 'input']],
         );
 
-        $builder->add(
-            self::IS_PUBLIC_FIELD,
-            CheckboxSwitchType::class,
-            ['required' => false, 'label' => 'Dostępny z zewnątrz?']
-        );
+//        $builder->add(
+//            self::IS_PUBLIC_FIELD,
+//            CheckboxSwitchType::class,
+//            ['required' => false, 'label' => 'Dostępny z zewnątrz?']
+//        );
 
         $builder->add(
             self::INVITE_USERS_FIELD,

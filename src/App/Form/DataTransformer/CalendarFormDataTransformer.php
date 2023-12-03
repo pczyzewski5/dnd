@@ -46,7 +46,7 @@ class CalendarFormDataTransformer implements DataTransformerInterface
             true
         );
 
-        $value[CalendarForm::IS_PUBLIC_FIELD] = isset($value[CalendarForm::IS_PUBLIC_FIELD]);
+//        $value[CalendarForm::IS_PUBLIC_FIELD] = isset($value[CalendarForm::IS_PUBLIC_FIELD]);
 
         return $value;
     }
