@@ -77,7 +77,7 @@ class CalendarController extends BaseController
             new GetDatesForCalendar()
         );
 
-        return $this->renderForm('calendar/index.html.twig', [
+        return $this->renderForm('calendar/create.html.twig', [
             'datesForCalendar' => $datesForCalendar,
             'form' => $form
         ]);

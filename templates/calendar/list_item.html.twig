@@ -73,7 +73,9 @@
                 <p class="has-text-centered is-size-3 has-text-light">{{ item['title'] }}</p>
             </div>
             <div class="decoration"></div>
-            <button class="button is-dark is-fullwidth">{{ item['hasAnswered'] ? 'zmień odpowiedź' : 'odpowiedz' }}</button>
+            <a class="button is-dark is-fullwidth" href="{{ path('calendar_answer', {'id': item['id']}) }}">
+                {{ item['hasAnswered'] ? 'zmień odpowiedź' : 'odpowiedz' }}
+            </a>
         </div>
     </div>
 {% endif %}
