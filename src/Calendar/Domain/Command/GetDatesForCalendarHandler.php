@@ -10,8 +10,12 @@ class GetDatesForCalendarHandler
     {
         $calendar = [];
 
-        $startDate = new \DateTime('first day of this month');
-        $finishDate = new \DateTime('last day of next month');
+        $startDate = null === $command->getStartDate()
+            ? new \DateTimeImmutable('first day of this month')
+            : \DateTimeImmutable::createFromFormat('Y-m-d', $command->getStartDate());
+
+        $finishDate = $startDate->modify('last day of next month');
+
         $interval = new \DateInterval('P1D');
         $period = new \DatePeriod($startDate, $interval, $finishDate, \DatePeriod::INCLUDE_END_DATE);
 
