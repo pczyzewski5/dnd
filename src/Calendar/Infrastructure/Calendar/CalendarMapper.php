@@ -14,10 +14,8 @@ class CalendarMapper
     public static function toDomain(Calendar $entity): DomainCalendar
     {
         $dates = [];
-        foreach ($entity->dates as $date) {
-            $dates[] =  DateTimeNormalizer::normalizeToImmutable(
-                $entity->createdAt
-            );
+        foreach (\json_decode($entity->dates, true) as $date) {
+            $dates[] =  \DateTimeImmutable::createFromFormat('Y-m-d', $date);
         }
 
         $dto = new CalendarDTO();
