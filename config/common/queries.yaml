@@ -34,3 +34,11 @@ services:
       - '@DND\Domain\CharacterCard\CharacterCardBuilder'
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetCharacterCardHtml, bus: query }
+
+  Calendar\Domain\Query\GetCalendarsForUserHandler:
+    class: Calendar\Domain\Query\GetCalendarsForUserHandler
+    arguments:
+      - '@Calendar\Domain\Calendar\CalendarRepository'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarsForUser, bus: query }
+    

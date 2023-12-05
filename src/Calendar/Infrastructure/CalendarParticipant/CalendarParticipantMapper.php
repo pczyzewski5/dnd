@@ -34,12 +34,14 @@ class CalendarParticipantMapper
 
     public static function fromDomain(DomainEntity $domainEntity): CalendarParticipant
     {
-        $willAttend = null === $domainEntity->getWillAttend()
+        $willAttend = $domainEntity->getWillAttend();
+        $willAttend = empty($willAttend) || null === $willAttend
             ? null
-            : \json_encode($domainEntity->getWillAttend());
-        $maybeAttend = null === $domainEntity->getMaybeAttend()
+            : \json_encode($willAttend);
+        $maybeAttend = $domainEntity->getMaybeAttend();
+        $maybeAttend = empty($maybeAttend) || null === $maybeAttend
             ? null
-            : \json_encode($domainEntity->getMaybeAttend());
+            : \json_encode($maybeAttend);
 
         $entity = new CalendarParticipant();
         $entity->calendarId = $domainEntity->getCalendarId();

@@ -17,4 +17,6 @@ interface CalendarRepository
      * @return Calendar[]
      */
     public function findAll(): array;
+
+    public function findManyForAttendantId(string $id): array;
 }

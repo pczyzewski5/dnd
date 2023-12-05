@@ -11,6 +11,7 @@ use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\GetDatesForCalendar;
 use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
+use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
 use DND\Domain\User\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,6 +85,12 @@ class CalendarController extends BaseController
 
     public function list(): Response
     {
-        return $this->renderForm('calendar/list.html.twig');
+        $calendars = $this->queryBus->handle(
+            new GetCalendarsForUser($this->getUser())
+        );
+
+        return $this->renderForm('calendar/list.html.twig', [
+            'calendars' => $calendars
+        ]);
     }
 }

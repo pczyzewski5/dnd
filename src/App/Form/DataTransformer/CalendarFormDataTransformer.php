@@ -37,14 +37,18 @@ class CalendarFormDataTransformer implements DataTransformerInterface
         $value[CalendarForm::INVITE_USERS_FIELD] = $this->reverseTransformInviteUsers(
             $value[CalendarForm::INVITE_USERS_FIELD]
         );
-        $value[CalendarForm::WILL_ATTEND_FIELD] = \json_decode(
-            $value[CalendarForm::WILL_ATTEND_FIELD],
-            true
-        );
-        $value[CalendarForm::MAYBE_ATTEND_FIELD] = \json_decode(
-            $value[CalendarForm::MAYBE_ATTEND_FIELD],
-            true
-        );
+        if (isset($value[CalendarForm::WILL_ATTEND_FIELD])) {
+            $value[CalendarForm::WILL_ATTEND_FIELD] = \json_decode(
+                $value[CalendarForm::WILL_ATTEND_FIELD],
+                true
+            );
+        }
+        if (isset($value[CalendarForm::MAYBE_ATTEND_FIELD])) {
+            $value[CalendarForm::MAYBE_ATTEND_FIELD] = \json_decode(
+                $value[CalendarForm::MAYBE_ATTEND_FIELD],
+                true
+            );
+        }
 
 //        $value[CalendarForm::IS_PUBLIC_FIELD] = isset($value[CalendarForm::IS_PUBLIC_FIELD]);
 

@@ -1,32 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <style>
-        .column {
-            display: flex;
-            justify-content: center;
-        }
-        .column > figure {
-            box-shadow: 0 0 10px #888888;
-        }
-        .column .image {
-            max-width: 400px;
-        }
-    </style>
     <div class="columns is-variable is-0-mobile">
         <div class="column">
-            <figure class="image">
-                <img src="{{ asset('images/chimera.jpg') }}">
-            </figure>
+            {% include 'calendar/list_item.html.twig' with {'item': calendars[0] ?? null, 'image': asset('images/chimera.jpg')} only %}
         </div>
         <div class="column">
-            <figure class="image">
-                <img src="{{ asset('images/cobold_2.jpg') }}">
-            </figure>
+            {% include 'calendar/list_item.html.twig' with {'item': calendars[1] ?? null, 'image': asset('images/cobold_2.jpg')} only %}
         </div>
         <div class="column">
-            <figure class="image">
-                <img src="{{ asset('images/sphinx.jpg') }}">
-            </figure>
+            {% include 'calendar/list_item.html.twig' with {'item': calendars[2] ?? null, 'image': asset('images/sphinx.jpg')} only %}
         </div>
     </div>
 {% endblock %}

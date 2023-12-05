@@ -16,7 +16,13 @@
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ path('home') }}">Home</a>
                 <a class="navbar-item" href="{{ path('character_list') }}">Postacie</a>
-                <a class="navbar-item" href="{{ path('calendar_list') }}">Kalendarz</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="{{ path('calendar_list') }}">Kalendarz</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{{ path('calendar_list') }}">lista</a>
+                        <a class="navbar-item" href="{{ path('calendar_create') }}">stwórz</a>
+                    </div>
+                </div>
                 {% if is_granted('ROLE_DM') or is_granted('ROLE_ADMIN') %}
                     <a class="navbar-item" href="{{ path('item_card_list') }}">Karty</a>
                 {% endif %}
