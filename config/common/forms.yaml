@@ -14,3 +14,9 @@ services:
     arguments:
       - '@App\Form\DataTransformer\CreateCalendarFormDataTransformer'
     tags: [ 'form.type' ]
+
+  App\Form\CalendarAnswerForm:
+    class: App\Form\CalendarAnswerForm
+    arguments:
+      - '@App\Form\DataTransformer\CalendarFormDataTransformer'
+    tags: [ 'form.type' ]

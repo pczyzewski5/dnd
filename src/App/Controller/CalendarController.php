@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\CommandBus\CommandBus;
-use App\Form\CalendarForm;
+use App\Form\CalendarAnswerForm;
 use App\Form\CreateCalendarForm;
 use App\QueryBus\QueryBus;
+use Calendar\Domain\Calendar\Calendar;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\GetDatesForCalendar;
+use Calendar\Domain\Command\GetDatesForCalendarAnswer;
+use Calendar\Domain\Query\GetCalendar;
+use Calendar\Domain\Query\GetCalendarParticipants;
 use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
 use DND\Domain\User\User;
@@ -71,6 +75,46 @@ class CalendarController extends BaseController
 
         return $this->renderForm('calendar/create.html.twig', [
             'datesForCalendar' => $datesForCalendar,
+            'form' => $form
+        ]);
+    }
+
+    public function answer(Request $request): Response
+    {
+        $form = $this->createForm(CalendarAnswerForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('calendar_list');
+        }
+
+        /** @var Calendar $calendar */
+        $calendar = $this->queryBus->handle(
+            new GetCalendar(
+                $request->get('id')
+            )
+        );
+        $datesForCalendar = $this->commandBus->handle(
+            new GetDatesForCalendar(
+                $calendar
+            )
+        );
+        $datesForCalendarAnswer = $this->commandBus->handle(
+            new GetDatesForCalendarAnswer(
+                $calendar
+            )
+        );
+        $calendarParticipants = $this->queryBus->handle(
+            new GetCalendarParticipants(
+                $calendar
+            )
+        );
+
+        return $this->renderForm('calendar/answer.html.twig', [
+            'calendar' => $calendar,
+            'datesForCalendar' => $datesForCalendar,
+            'datesForCalendarAnswer' => $datesForCalendarAnswer,
+            'calendarParticipants' => $calendarParticipants,
             'form' => $form
         ]);
     }

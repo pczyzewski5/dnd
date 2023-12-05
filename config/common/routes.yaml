@@ -74,3 +74,8 @@ calendar_create:
     path: /calendar/create
     controller: App\Controller\CalendarController::create
     methods: [ GET, POST ]
+
+calendar_answer:
+    path: /calendar/{id}/answer
+    controller: App\Controller\CalendarController::answer
+    methods: [ GET, POST ]

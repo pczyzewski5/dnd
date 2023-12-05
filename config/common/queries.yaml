@@ -41,4 +41,18 @@ services:
       - '@Calendar\Domain\Calendar\CalendarRepository'
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarsForUser, bus: query }
+
+  Calendar\Domain\Query\GetCalendarHandler:
+    class: Calendar\Domain\Query\GetCalendarHandler
+    arguments:
+      - '@Calendar\Domain\Calendar\CalendarRepository'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendar, bus: query }
+
+  Calendar\Domain\Query\GetCalendarParticipantsHandler:
+    class: Calendar\Domain\Query\GetCalendarParticipantsHandler
+    arguments:
+      - '@Calendar\Domain\CalendarParticipant\CalendarParticipantRepository'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarParticipants, bus: query }
     

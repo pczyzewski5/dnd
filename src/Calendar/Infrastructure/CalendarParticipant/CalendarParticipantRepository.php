@@ -35,6 +35,18 @@ class CalendarParticipantRepository implements DomainRepository
     /**
      * @return DomainEntity[]
      */
+    public function findByCalendarId(string $calendarId): array
+    {
+        $result = $this->entityManager->getRepository(CalendarParticipant::class)->findBy([
+            'calendarId' => $calendarId,
+        ]);
+
+        return CalendarParticipantMapper::mapArrayToDomain($result);
+    }
+
+    /**
+     * @return DomainEntity[]
+     */
     public function findAll(): array
     {
         return CalendarParticipantMapper::mapArrayToDomain(

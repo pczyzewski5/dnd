@@ -18,4 +18,9 @@ interface CalendarParticipantRepository
      * @return CalendarParticipant[]
      */
     public function findAll(): array;
+
+    /**
+     * @return CalendarParticipant[]
+     */
+    public function findByCalendarId(string $calendarId): array;
 }

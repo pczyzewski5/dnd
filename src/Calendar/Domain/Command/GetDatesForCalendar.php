@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace Calendar\Domain\Command;
 
+use Calendar\Domain\Calendar\Calendar;
+
 class GetDatesForCalendar
 {
-    private ?\DateTimeImmutable $startDate;
+    private ?Calendar $calendar;
 
-    public function __construct(?\DateTimeImmutable $startDate = null)
+    public function __construct(?Calendar $calendar = null)
     {
-        $this->startDate = $startDate;
+        $this->calendar = $calendar;
     }
 
-    public function getStartDate(): ?string
+    public function getCalendar(): ?string
     {
-        return null === $this->startDate
+        return null === $this->calendar
             ? null
-            : $this->startDate->format('Y-m-01');
+            : $this->calendar->getCreatedAt()->format('Y-m-01');
     }
 }

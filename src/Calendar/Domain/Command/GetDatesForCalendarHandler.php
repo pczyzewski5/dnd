@@ -10,9 +10,9 @@ class GetDatesForCalendarHandler
     {
         $calendar = [];
 
-        $startDate = null === $command->getStartDate()
+        $startDate = null === $command->getCalendar()
             ? new \DateTimeImmutable('first day of this month')
-            : \DateTimeImmutable::createFromFormat('Y-m-d', $command->getStartDate());
+            : \DateTimeImmutable::createFromFormat('Y-m-d', $command->getCalendar());
 
         $finishDate = $startDate->modify('last day of next month');
 

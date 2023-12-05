@@ -69,6 +69,11 @@ services:
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Command\GetDatesForCalendar, bus: command }
 
+  Calendar\Domain\Command\GetDatesForCalendarAnswerHandler:
+    class: Calendar\Domain\Command\GetDatesForCalendarAnswerHandler
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\GetDatesForCalendarAnswer, bus: command }
+
   Calendar\Domain\Command\CreateCalendarHandler:
     class: Calendar\Domain\Command\CreateCalendarHandler
     arguments:
