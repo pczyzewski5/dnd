@@ -5,8 +5,7 @@ class CalendarHelper {
 
     execute() {
         var $day = $('.day');
-        var $willAttend = [];
-        var $maybeAttend = [];
+        var $dates = [];
 
         $day.on('click', function(e) {
             var $day = $(e.target);
@@ -16,32 +15,16 @@ class CalendarHelper {
                 $day.removeClass('will-not-attend');
                 $day.addClass('will-attend');
 
-                $willAttend.push($date);
+                $dates.push($date);
             } else if ($day.hasClass('will-attend')) {
                 $day.removeClass('will-attend');
-                $day.addClass('maybe-attend');
-
-                $willAttend = removeFromArray($date, $willAttend);
-                $maybeAttend.push($date);
-            } else if ($day.hasClass('maybe-attend')) {
-                $day.removeClass('maybe-attend');
                 $day.addClass('will-not-attend');
 
-                $maybeAttend = removeFromArray($date, $maybeAttend);
+                $dates = removeFromArray($date, $dates);
             }
 
-            console.log({
-                'will atend': $willAttend,
-                'maybe attend': $maybeAttend
-            });
-
-
-            $('#calendar_form_will_attend').val(
-                JSON.stringify($willAttend)
-            );
-
-            $('#calendar_form_maybe_attend').val(
-                JSON.stringify($maybeAttend)
+            $('#create_calendar_form_dates').val(
+                JSON.stringify($dates)
             );
         });
 

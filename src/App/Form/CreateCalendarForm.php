@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\DataTransformer\CalendarFormDataTransformer;
+use App\Form\DataTransformer\CreateCalendarFormDataTransformer;
 use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -13,24 +14,23 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CalendarForm extends AbstractType
+class CreateCalendarForm extends AbstractType
 {
     public const TITLE_FIELD = 'title';
     public const IS_PUBLIC_FIELD = 'is_public';
     public const INVITE_USERS_FIELD = 'invite_users';
-    public const WILL_ATTEND_FIELD = 'will_attend';
-    public const MAYBE_ATTEND_FIELD = 'maybe_attend';
+    public const DATES_FIELD = 'dates';
 
-    private CalendarFormDataTransformer $calendarFormDataTransformer;
+    private CreateCalendarFormDataTransformer $dataTransformer;
 
-    public function __construct(CalendarFormDataTransformer $calendarFormDataTransformer)
+    public function __construct(CreateCalendarFormDataTransformer $dataTransformer)
     {
-        $this->calendarFormDataTransformer = $calendarFormDataTransformer;
+        $this->dataTransformer = $dataTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer($this->calendarFormDataTransformer);
+        $builder->addModelTransformer($this->dataTransformer);
 
         $builder->add(
             self::TITLE_FIELD,
@@ -51,13 +51,7 @@ class CalendarForm extends AbstractType
         );
 
         $builder->add(
-            self::WILL_ATTEND_FIELD,
-            HiddenType::class,
-            ['required' => true]
-        );
-
-        $builder->add(
-            self::MAYBE_ATTEND_FIELD,
+            self::DATES_FIELD,
             HiddenType::class,
             ['required' => true]
         );

@@ -82,4 +82,6 @@
     {% endfor %}
 {% endfor %}
 
-<script src="{{ asset('js/calendar_helper.js') }}"></script>
+{% if selectable is defined %}
+    <script src="{{ asset('js/create_calendar_helper.js') }}"></script>
+{% endif %}

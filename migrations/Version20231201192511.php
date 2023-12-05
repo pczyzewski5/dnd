@@ -26,6 +26,7 @@ CREATE TABLE calendars
     title       VARCHAR(36) NOT NULL,
     is_public   BOOLEAN NOT NULL,
     owner_id    VARCHAR(36) NOT NULL,
+    dates       TEXT NOT NULL,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)
 ) DEFAULT CHARACTER SET UTF8

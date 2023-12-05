@@ -22,6 +22,7 @@ class CreateCalendarHandler
             $command->getTitle(),
             $command->isPublic(),
             $command->getOwnerId(),
+            $command->getDates()
         );
 
         $this->persister->save($calendar);

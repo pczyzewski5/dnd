@@ -43,7 +43,11 @@ class CalendarRepository implements DomainRepository
     public function findManyForAttendantId(string $userId, int $limit = 3): array
     {
         $sql = <<<SQL
-SELECT * FROM calendars c JOIN calendar_participants cp ON c.id = cp.calendar_id WHERE cp.participant_id = :userId LIMIT :limit
+SELECT * FROM calendars c
+    JOIN calendar_participants cp ON c.id = cp.calendar_id
+    WHERE cp.participant_id = :userId 
+    ORDER BY c.created_at DESC
+    LIMIT :limit
 SQL;
 
         $stmt = $this->entityManager->getConnection()->executeQuery(

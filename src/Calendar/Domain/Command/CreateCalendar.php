@@ -9,12 +9,18 @@ class CreateCalendar
     private string $title;
     private bool $isPublic;
     private string $ownerId;
+    private array $dates;
 
-    public function __construct(string $title, bool $isPublic, string $ownerId)
-    {
+    public function __construct(
+        string $title,
+        bool $isPublic,
+        string $ownerId,
+        array $dates
+    ) {
         $this->title = $title;
         $this->isPublic = $isPublic;
         $this->ownerId = $ownerId;
+        $this->dates = $dates;
     }
 
     public function getTitle(): string
@@ -30,5 +36,13 @@ class CreateCalendar
     public function getOwnerId(): string
     {
         return $this->ownerId;
+    }
+
+    /**
+     * @return \DateTimeImmutable[]
+     */
+    public function getDates(): array
+    {
+        return $this->dates;
     }
 }

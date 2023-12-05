@@ -4,8 +4,13 @@ services:
     arguments:
       - '@DND\Domain\User\UserRepository'
 
-  App\Form\CalendarForm:
-    class: App\Form\CalendarForm
+  App\Form\DataTransformer\CreateCalendarFormDataTransformer:
+    class: App\Form\DataTransformer\CreateCalendarFormDataTransformer
     arguments:
-      - '@App\Form\DataTransformer\CalendarFormDataTransformer'
+      - '@DND\Domain\User\UserRepository'
+
+  App\Form\CreateCalendarForm:
+    class: App\Form\CreateCalendarForm
+    arguments:
+      - '@App\Form\DataTransformer\CreateCalendarFormDataTransformer'
     tags: [ 'form.type' ]

@@ -8,6 +8,7 @@
         <field name="title" type="string" column="title"/>
         <field name="isPublic" type="boolean" column="is_public"/>
         <field name="ownerId" type="string" column="owner_id"/>
+        <field name="dates" type="string" column="dates"/>
         <field name="createdAt" type="datetime" column="created_at"/>
     </entity>
 

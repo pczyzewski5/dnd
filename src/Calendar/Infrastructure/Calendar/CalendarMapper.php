@@ -13,11 +13,19 @@ class CalendarMapper
 {
     public static function toDomain(Calendar $entity): DomainCalendar
     {
+        $dates = [];
+        foreach ($entity->dates as $date) {
+            $dates[] =  DateTimeNormalizer::normalizeToImmutable(
+                $entity->createdAt
+            );
+        }
+
         $dto = new CalendarDTO();
         $dto->id = $entity->id;
         $dto->title = $entity->title;
         $dto->isPublic = $entity->isPublic;
         $dto->ownerId = $entity->ownerId;
+        $dto->dates = $dates;
         $dto->createdAt = DateTimeNormalizer::normalizeToImmutable(
             $entity->createdAt
         );
@@ -27,11 +35,18 @@ class CalendarMapper
 
     public static function fromDomain(DomainCalendar $domainEntity): Calendar
     {
+        $dates = [];
+        /** @var \DateTimeImmutable $date */
+        foreach ($domainEntity->getDates() as $date) {
+            $dates[] = $date->format('Y-m-d');
+        }
+
         $entity = new Calendar();
         $entity->id = $domainEntity->getId();
         $entity->title = $domainEntity->getTitle();
         $entity->isPublic = $domainEntity->isPublic();
         $entity->ownerId = $domainEntity->getOwnerId();
+        $entity->dates = \json_encode($dates);
         $entity->createdAt = DateTime::createFromImmutable(
             $domainEntity->getCreatedAt()
         );

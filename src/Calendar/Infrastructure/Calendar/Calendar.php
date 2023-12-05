@@ -10,5 +10,6 @@ class Calendar
     public ?string $title;
     public ?bool $isPublic;
     public ?string $ownerId;
+    public ?string $dates;
     public ?\DateTime $createdAt;
 }

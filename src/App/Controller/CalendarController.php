@@ -6,11 +6,11 @@ namespace App\Controller;
 
 use App\CommandBus\CommandBus;
 use App\Form\CalendarForm;
+use App\Form\CreateCalendarForm;
 use App\QueryBus\QueryBus;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\GetDatesForCalendar;
-use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
 use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
 use DND\Domain\User\User;
@@ -36,21 +36,22 @@ class CalendarController extends BaseController
             new GetUsers($loggedInUser)
         );
 
-        $form = $this->createForm(CalendarForm::class, [
-            CalendarForm::INVITE_USERS_FIELD => $users,
+        $form = $this->createForm(CreateCalendarForm::class, [
+            CreateCalendarForm::INVITE_USERS_FIELD => $users,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $participants = $data[CalendarForm::INVITE_USERS_FIELD];
+            $participants = $data[CreateCalendarForm::INVITE_USERS_FIELD];
             $participants[] = $loggedInUser;
 
             $calendarId = $this->commandBus->handle(
                 new CreateCalendar(
-                    $data[CalendarForm::TITLE_FIELD],
-                    false, // $data[CalendarForm::IS_PUBLIC_FIELD],
-                    $loggedInUser->getId()
+                    $data[CreateCalendarForm::TITLE_FIELD],
+                    false, // $data[CreateCalendarForm::IS_PUBLIC_FIELD],
+                    $loggedInUser->getId(),
+                    $data[CreateCalendarForm::DATES_FIELD],
                 )
             );
 
@@ -58,15 +59,6 @@ class CalendarController extends BaseController
                 new CreateCalendarParticipants(
                     $calendarId,
                     $participants
-                )
-            );
-
-            $this->commandBus->handle(
-                new UpdateCalendarParticipantResponse(
-                    $calendarId,
-                    $loggedInUser->getId(),
-                    $data[CalendarForm::WILL_ATTEND_FIELD],
-                    $data[CalendarForm::MAYBE_ATTEND_FIELD],
                 )
             );
 

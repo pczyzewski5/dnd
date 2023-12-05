@@ -14,10 +14,5 @@ interface CalendarPersister
     /**
      * @throws PersisterException
      */
-    public function update(Calendar $domainEntity): void;
-
-    /**
-     * @throws PersisterException
-     */
     public function delete(string $id): void;
 }

@@ -16,6 +16,7 @@ class Calendar
     private string $title;
     private bool $isPublic;
     private string $ownerId;
+    private array $dates;
     private \DateTimeImmutable $createdAt;
 
     public function __construct(CalendarDTO $dto)
@@ -43,6 +44,10 @@ class Calendar
             throw ValidationException::missingProperty('ownerId');
         }
 
+        if (empty($this->dates)) {
+            throw ValidationException::missingProperty('dates');
+        }
+
         if (!isset($this->createdAt)) {
             throw ValidationException::missingProperty('createdAt');
         }
@@ -66,6 +71,14 @@ class Calendar
     public function getOwnerId(): string
     {
         return $this->ownerId;
+    }
+
+    /**
+     * @return \DateTimeImmutable[]
+     */
+    public function getDates(): array
+    {
+        return $this->dates;
     }
 
     public function getCreatedAt(): \DateTimeImmutable
