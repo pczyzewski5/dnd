@@ -81,6 +81,13 @@ services:
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Command\CreateCalendar, bus: command }
 
+  Calendar\Domain\Command\DeleteCalendarHandler:
+    class: Calendar\Domain\Command\DeleteCalendarHandler
+    arguments:
+      - '@Calendar\Domain\Calendar\CalendarPersister'
+    tags:
+      - { name: tactician.handler, command: Calendar\Domain\Command\DeleteCalendar, bus: command }
+
   Calendar\Domain\Command\CreateCalendarParticipantsHandler:
     class: Calendar\Domain\Command\CreateCalendarParticipantsHandler
     arguments:

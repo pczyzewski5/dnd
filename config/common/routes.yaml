@@ -75,6 +75,11 @@ calendar_create:
     controller: App\Controller\CalendarController::create
     methods: [ GET, POST ]
 
+calendar_delete:
+    path: /calendar/{id}/delete
+    controller: App\Controller\CalendarController::delete
+    methods: [ GET ]
+
 calendar_answer:
     path: /calendar/{id}/answer
     controller: App\Controller\CalendarController::answer

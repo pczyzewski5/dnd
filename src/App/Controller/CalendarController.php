@@ -11,6 +11,7 @@ use App\QueryBus\QueryBus;
 use Calendar\Domain\Calendar\Calendar;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
+use Calendar\Domain\Command\DeleteCalendar;
 use Calendar\Domain\Command\GetDatesForCalendar;
 use Calendar\Domain\Command\GetDatesForCalendarAnswer;
 use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
@@ -141,5 +142,16 @@ class CalendarController extends BaseController
         return $this->renderForm('calendar/list.html.twig', [
             'calendars' => $calendars
         ]);
+    }
+
+    public function delete(Request $request): Response
+    {
+        $this->commandBus->handle(
+            new DeleteCalendar(
+                $request->get('id')
+            )
+        );
+
+        return $this->redirectToRoute('calendar_list');
     }
 }
