@@ -39,6 +39,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            cursor: pointer;
         }
         .list-item .content {
             margin: 0;
@@ -67,9 +68,10 @@
             margin-bottom: 0.5em;
         }
     </style>
+
     <div class="list-item" style="background-image: url({{ image }});">
-        <div>
-            <div class="content">
+        <div class="content" href="{{ path('calendar_answer', {'id': item['id']}) }}">
+            <div>
                 <p class="has-text-centered is-size-3 has-text-light">{{ item['title'] }}</p>
             </div>
             <div class="decoration"></div>
@@ -78,4 +80,6 @@
             </a>
         </div>
     </div>
+
+    <script src="{{ asset('js/calendar_list_helper.js') }}"></script>
 {% endif %}
