@@ -110,7 +110,7 @@ class CalendarController extends BaseController
               )
             );
 
-            return $this->redirectToRoute('calendar_list');
+            return $this->redirectToRoute('calendar_answer', ['id' => $calendar->getId()]);
         }
 
         $datesForCalendar = $this->commandBus->handle(
