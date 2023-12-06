@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Calendar\Domain\CalendarParticipant;
 
-use App\MergerTrait;
 use Symfony\Component\Uid\UuidV1;
 use Calendar\Domain\Exception\ValidationException;
 
 class CalendarParticipant
 {
-    use MergerTrait;
-
     private string $calendarId;
     private string $participantId;
     private ?array $willAttend = null;
@@ -67,5 +64,21 @@ class CalendarParticipant
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    private function merge(CalendarParticipantDTO $dto)
+    {
+        $properties = \array_keys(
+            \get_class_vars(self::class)
+        );
+
+        foreach ($properties as $property) {
+            if (isset($dto->$property)) {
+                $this->$property = $dto->$property;
+            }
+        }
+
+        $this->willAttend = $dto->willAttend;
+        $this->maybeAttend = $dto->maybeAttend;
     }
 }

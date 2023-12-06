@@ -13,6 +13,7 @@ use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\GetDatesForCalendar;
 use Calendar\Domain\Command\GetDatesForCalendarAnswer;
+use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
 use Calendar\Domain\Query\GetCalendar;
 use Calendar\Domain\Query\GetCalendarParticipants;
 use Calendar\Domain\Query\GetCalendarsForUser;
@@ -81,19 +82,36 @@ class CalendarController extends BaseController
 
     public function answer(Request $request): Response
     {
-        $form = $this->createForm(CalendarAnswerForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('calendar_list');
-        }
-
         /** @var Calendar $calendar */
         $calendar = $this->queryBus->handle(
             new GetCalendar(
                 $request->get('id')
             )
         );
+        $calendarParticipants = $this->queryBus->handle(
+            new GetCalendarParticipants(
+                $calendar
+            )
+        );
+
+        $form = $this->createForm(CalendarAnswerForm::class, [
+            CalendarAnswerForm::CALENDAR_PARTICIPANTS => $calendarParticipants
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->commandBus->handle(
+              new UpdateCalendarParticipantResponse(
+                  $calendar->getId(),
+                  $this->getUser()->getId(),
+                  $form->getData()[CalendarAnswerForm::WILL_ATTEND_FIELD],
+                  $form->getData()[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
+              )
+            );
+
+            return $this->redirectToRoute('calendar_list');
+        }
+
         $datesForCalendar = $this->commandBus->handle(
             new GetDatesForCalendar(
                 $calendar
@@ -101,11 +119,6 @@ class CalendarController extends BaseController
         );
         $datesForCalendarAnswer = $this->commandBus->handle(
             new GetDatesForCalendarAnswer(
-                $calendar
-            )
-        );
-        $calendarParticipants = $this->queryBus->handle(
-            new GetCalendarParticipants(
                 $calendar
             )
         );

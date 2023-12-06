@@ -1,8 +1,8 @@
 services:
-  App\Form\DataTransformer\CalendarFormDataTransformer:
-    class: App\Form\DataTransformer\CalendarFormDataTransformer
+  App\Form\DataTransformer\AnswerCalendarFormDataTransformer:
+    class: App\Form\DataTransformer\AnswerCalendarFormDataTransformer
     arguments:
-      - '@DND\Domain\User\UserRepository'
+      - '@security.token_storage'
 
   App\Form\DataTransformer\CreateCalendarFormDataTransformer:
     class: App\Form\DataTransformer\CreateCalendarFormDataTransformer
@@ -18,5 +18,5 @@ services:
   App\Form\CalendarAnswerForm:
     class: App\Form\CalendarAnswerForm
     arguments:
-      - '@App\Form\DataTransformer\CalendarFormDataTransformer'
+      - '@App\Form\DataTransformer\AnswerCalendarFormDataTransformer'
     tags: [ 'form.type' ]

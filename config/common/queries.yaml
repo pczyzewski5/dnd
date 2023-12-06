@@ -53,6 +53,7 @@ services:
     class: Calendar\Domain\Query\GetCalendarParticipantsHandler
     arguments:
       - '@Calendar\Domain\CalendarParticipant\CalendarParticipantRepository'
+      - '@security.token_storage'
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarParticipants, bus: query }
     

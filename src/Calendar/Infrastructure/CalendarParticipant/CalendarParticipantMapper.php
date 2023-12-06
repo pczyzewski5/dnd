@@ -15,10 +15,10 @@ class CalendarParticipantMapper
     {
         $willAttend = null === $entity->willAttend
             ? null
-            : \json_encode($entity->willAttend);
+            : \json_decode($entity->willAttend);
         $maybeAttend = null === $entity->maybeAttend
             ? null
-            : \json_encode($entity->maybeAttend);
+            : \json_decode($entity->maybeAttend);
 
         $dto = new CalendarParticipantDTO();
         $dto->calendarId = $entity->calendarId;

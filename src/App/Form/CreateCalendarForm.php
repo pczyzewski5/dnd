@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\DataTransformer\CalendarFormDataTransformer;
 use App\Form\DataTransformer\CreateCalendarFormDataTransformer;
 use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;

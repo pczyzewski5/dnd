@@ -8,17 +8,12 @@ class GetDatesForCalendarAnswerHandler
 {
     public function handle(GetDatesForCalendarAnswer $command): array
     {
-        $calendar = [];
+        $dates = $command->getCalendar()->getDates();
 
-        /** @var \DateTimeImmutable $dateTime */
-        foreach ($command->getCalendar()->getDates() as $dateTime) {
-            $calendar
-            [$dateTime->format('Y')]
-            [$dateTime->format('M')]
-            [$dateTime->format('D')]
-                = $dateTime;
-        }
+       \usort($dates, function (\DateTimeImmutable $first, \DateTimeImmutable $second) {
+           return $first > $second ? 1 : -1;
+       });
 
-        return $calendar;
+        return $dates;
     }
 }
