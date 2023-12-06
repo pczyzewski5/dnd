@@ -16,11 +16,6 @@
     </figure>
 {% else %}
     <style>
-        @font-face {
-            font-family: "Nodesto Caps Condensed";
-            src: url("/fonts/Nodesto Caps Condensed.otf") format("opentype");
-            font-weight: normal;
-        }
         .list-item {
             width: 400px;
             height: 560px;
@@ -43,9 +38,6 @@
         }
         .list-item .content {
             margin: 0;
-        }
-        .list-item .content p {
-            font-family: "Nodesto Caps Condensed";
         }
         .list-item .button {
             border-radius: 0;
@@ -72,7 +64,7 @@
     <div class="list-item" style="background-image: url({{ image }});">
         <div class="content" href="{{ path('calendar_answer', {'id': item['id']}) }}">
             <div>
-                <p class="has-text-centered is-size-3 has-text-light">{{ item['title'] }}</p>
+                <p class="has-text-centered is-size-4 has-text-light">{{ item['title'] }}</p>
             </div>
             <div class="decoration"></div>
             <a class="button is-dark is-fullwidth" href="{{ path('calendar_answer', {'id': item['id']}) }}">

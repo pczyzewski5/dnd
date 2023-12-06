@@ -39,3 +39,11 @@
 .navbar {
     margin-bottom: 0.5em;
 }
+@font-face {
+    font-family: "DnD Title";
+    src: url('/fonts/wakerobin-compressed-semi-bold.otf') format("opentype");
+    font-weight: normal;
+}
+.title-font {
+    font-family: "DnD Title";
+}
