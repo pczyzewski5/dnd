@@ -116,10 +116,8 @@
                     {% endfor %}
                     <tr>
                         <td colspan="1" class="corner-cel-bottom"></td>
-                        {% for points in calendarHelper.getPoints() %}
-                            <td>
-                                {{ points }}
-                            </td>
+                        {% for date, points in calendarHelper.getPoints() %}
+                            <td id="{{ date }}_points">{{ points }}</td>
                         {% endfor %}
                     </tr>
                     <tr>
