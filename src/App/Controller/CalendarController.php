@@ -94,13 +94,13 @@ class CalendarController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle(
-              new UpdateCalendarParticipantResponse(
-                  $calendarId,
-                  $this->getUser()->getId(),
-                  $form->getData()[CalendarAnswerForm::WILL_ATTEND_FIELD],
-                  $form->getData()[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
-                  $form->getData()[CalendarAnswerForm::WONT_ATTEND_FIELD],
-              )
+                new UpdateCalendarParticipantResponse(
+                    $calendarId,
+                    $this->getUser()->getId(),
+                    $form->getData()[CalendarAnswerForm::WILL_ATTEND_FIELD],
+                    $form->getData()[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
+                    $form->getData()[CalendarAnswerForm::WONT_ATTEND_FIELD],
+                )
             );
 
             return $this->redirectToRoute('calendar_answer', ['id' => $calendarId]);
