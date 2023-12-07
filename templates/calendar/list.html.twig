@@ -11,4 +11,6 @@
             {% include 'calendar/list_item.html.twig' with {'item': calendars[2] ?? null, 'image': asset('images/sphinx.jpg')} only %}
         </div>
     </div>
+
+    <script src="{{ asset('js/calendar_list_helper.js') }}"></script>
 {% endblock %}
