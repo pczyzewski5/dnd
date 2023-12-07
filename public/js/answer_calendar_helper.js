@@ -4,7 +4,7 @@ class AnswerCalendarHelper {
     }
 
     execute() {
-        var $day = $('.owner');
+        var $day = $('.can-vote');
         var $willAttendInput = $('#calendar_answer_form_will_attend');
         var $maybeAttendInput = $('#calendar_answer_form_maybe_attend')
         var $willAttendDates =  '' == $willAttendInput.val()
@@ -15,9 +15,9 @@ class AnswerCalendarHelper {
             : JSON.parse($maybeAttendInput.val());
 
         $day.on('click', function(e) {
-            var $day = $(e.target).attr('class') == 'owner'
+            var $day = $(e.target).attr('class') == 'can-vote'
                 ? $(e.target)
-                : $(e.target).parents('.owner');
+                : $(e.target).parents('.can-vote');
             var $date = $day.find('.date').html();
             var $icon = $day.find('.icon-container div');
 

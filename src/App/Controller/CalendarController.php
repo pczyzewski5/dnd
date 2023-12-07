@@ -8,15 +8,13 @@ use App\CommandBus\CommandBus;
 use App\Form\CalendarAnswerForm;
 use App\Form\CreateCalendarForm;
 use App\QueryBus\QueryBus;
-use Calendar\Domain\Calendar\Calendar;
+use Calendar\Domain\CalendarHelper;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
 use Calendar\Domain\Command\DeleteCalendar;
 use Calendar\Domain\Command\GetDatesForCalendar;
-use Calendar\Domain\Command\GetDatesForCalendarAnswer;
 use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
-use Calendar\Domain\Query\GetCalendar;
-use Calendar\Domain\Query\GetCalendarParticipants;
+use Calendar\Domain\Query\GetCalendarHelper;
 use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
 use DND\Domain\User\User;
@@ -83,52 +81,39 @@ class CalendarController extends BaseController
 
     public function answer(Request $request): Response
     {
-        /** @var Calendar $calendar */
-        $calendar = $this->queryBus->handle(
-            new GetCalendar(
-                $request->get('id')
-            )
-        );
-        $calendarParticipants = $this->queryBus->handle(
-            new GetCalendarParticipants(
-                $calendar
-            )
+        $calendarId = $request->get('id');
+        /** @var CalendarHelper $calendarHelper */
+        $calendarHelper = $this->queryBus->handle(
+            new GetCalendarHelper($calendarId)
         );
 
         $form = $this->createForm(CalendarAnswerForm::class, [
-            CalendarAnswerForm::CALENDAR_PARTICIPANTS => $calendarParticipants
+            CalendarAnswerForm::CALENDAR_PARTICIPANTS => $calendarHelper->getParticipants()
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle(
               new UpdateCalendarParticipantResponse(
-                  $calendar->getId(),
+                  $calendarId,
                   $this->getUser()->getId(),
                   $form->getData()[CalendarAnswerForm::WILL_ATTEND_FIELD],
                   $form->getData()[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
               )
             );
 
-            return $this->redirectToRoute('calendar_answer', ['id' => $calendar->getId()]);
+            return $this->redirectToRoute('calendar_answer', ['id' => $calendarId]);
         }
 
         $datesForCalendar = $this->commandBus->handle(
             new GetDatesForCalendar(
-                $calendar
-            )
-        );
-        $datesForCalendarAnswer = $this->commandBus->handle(
-            new GetDatesForCalendarAnswer(
-                $calendar
+                $calendarHelper->getCalendar()
             )
         );
 
         return $this->renderForm('calendar/answer.html.twig', [
-            'calendar' => $calendar,
             'datesForCalendar' => $datesForCalendar,
-            'datesForCalendarAnswer' => $datesForCalendarAnswer,
-            'calendarParticipants' => $calendarParticipants,
+            'calendarHelper' => $calendarHelper,
             'form' => $form
         ]);
     }

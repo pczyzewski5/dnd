@@ -42,18 +42,12 @@ services:
     tags:
       - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarsForUser, bus: query }
 
-  Calendar\Domain\Query\GetCalendarHandler:
-    class: Calendar\Domain\Query\GetCalendarHandler
+  Calendar\Domain\Query\GetCalendarHelperHandler:
+    class: Calendar\Domain\Query\GetCalendarHelperHandler
     arguments:
       - '@Calendar\Domain\Calendar\CalendarRepository'
-    tags:
-      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendar, bus: query }
-
-  Calendar\Domain\Query\GetCalendarParticipantsHandler:
-    class: Calendar\Domain\Query\GetCalendarParticipantsHandler
-    arguments:
       - '@Calendar\Domain\CalendarParticipant\CalendarParticipantRepository'
       - '@security.token_storage'
     tags:
-      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarParticipants, bus: query }
+      - { name: tactician.handler, command: Calendar\Domain\Query\GetCalendarHelper, bus: query }
     
