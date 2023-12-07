@@ -16,6 +16,7 @@ class CalendarAnswerForm extends AbstractType
 
     public const WILL_ATTEND_FIELD = 'will_attend';
     public const MAYBE_ATTEND_FIELD = 'maybe_attend';
+    public const WONT_ATTEND_FIELD = 'wont_attend';
 
     private AnswerCalendarFormDataTransformer $dataTransformer;
 
@@ -36,6 +37,12 @@ class CalendarAnswerForm extends AbstractType
 
         $builder->add(
             self::MAYBE_ATTEND_FIELD,
+            HiddenType::class,
+            ['required' => false]
+        );
+
+        $builder->add(
+            self::WONT_ATTEND_FIELD,
             HiddenType::class,
             ['required' => false]
         );

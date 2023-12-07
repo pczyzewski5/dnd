@@ -31,6 +31,7 @@ class UpdateCalendarParticipantResponseHandler
         $dto = new CalendarParticipantDTO();
         $dto->willAttend = $command->getWillAttendDates();
         $dto->maybeAttend = $command->getMaybeAttendDates();
+        $dto->wontAttend = $command->getWontAttendDates();
 
         $originalCalendarParticipant->update($dto);
 

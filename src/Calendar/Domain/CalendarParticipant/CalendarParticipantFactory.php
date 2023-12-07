@@ -11,12 +11,14 @@ class CalendarParticipantFactory
     string $participantId,
     ?string $willAttend = null,
     ?string $maybeAttend = null,
+    ?string $wontAttend = null,
     ): CalendarParticipant {
         $dto = new CalendarParticipantDTO();
         $dto->calendarId = $calendarId;
         $dto->participantId = $participantId;
         $dto->willAttend = $willAttend;
         $dto->maybeAttend = $maybeAttend;
+        $dto->wontAttend = $wontAttend;
         $dto->createdAt = new \DateTimeImmutable();
 
         return new CalendarParticipant($dto);

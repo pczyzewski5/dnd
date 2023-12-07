@@ -8,6 +8,7 @@
         <id name="participantId" type="string" column="participant_id"/>
         <field name="willAttend" type="string" column="will_attend" nullable="true"/>
         <field name="maybeAttend" type="string" column="maybe_attend" nullable="true"/>
+        <field name="wontAttend" type="string" column="wont_attend" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>
     </entity>
 

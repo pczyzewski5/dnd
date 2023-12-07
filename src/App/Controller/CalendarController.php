@@ -99,6 +99,7 @@ class CalendarController extends BaseController
                   $this->getUser()->getId(),
                   $form->getData()[CalendarAnswerForm::WILL_ATTEND_FIELD],
                   $form->getData()[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
+                  $form->getData()[CalendarAnswerForm::WONT_ATTEND_FIELD],
               )
             );
 

@@ -36,7 +36,7 @@ class CalendarParticipantRepository implements DomainRepository
     public function findByCalendarId(string $calendarId): array
     {
         $sql = <<<SQL
-    SELECT u.id as id, u.username as username, cp.will_attend as will_attend, cp.maybe_attend as maybe_attend FROM calendar_participants cp
+    SELECT u.id as id, u.username as username, cp.will_attend as will_attend, cp.maybe_attend as maybe_attend, cp.wont_attend as wont_attend FROM calendar_participants cp
         JOIN users u ON u.id = cp.participant_id 
         WHERE cp.calendar_id = :calendarId 
 SQL;
@@ -54,6 +54,10 @@ SQL;
             $item['maybe_attend'] = null === $item['maybe_attend']
                 ? null
                 : \json_decode($item['maybe_attend'], true);
+
+            $item['wont_attend'] = null === $item['wont_attend']
+                ? null
+                : \json_decode($item['wont_attend'], true);
 
             return $item;
         }, $stmt->fetchAllAssociative());

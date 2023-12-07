@@ -28,6 +28,9 @@ class AnswerCalendarFormDataTransformer implements DataTransformerInterface
                if (null !== $participant['maybe_attend']) {
                    $value[CalendarAnswerForm::MAYBE_ATTEND_FIELD] = \json_encode($participant['maybe_attend']);
                }
+               if (null !== $participant['wont_attend']) {
+                   $value[CalendarAnswerForm::WONT_ATTEND_FIELD] = \json_encode($participant['wont_attend']);
+               }
               break;
            }
         }
@@ -49,6 +52,12 @@ class AnswerCalendarFormDataTransformer implements DataTransformerInterface
         if (null !== $value[CalendarAnswerForm::MAYBE_ATTEND_FIELD]) {
             $value[CalendarAnswerForm::MAYBE_ATTEND_FIELD] = \json_decode(
                 $value[CalendarAnswerForm::MAYBE_ATTEND_FIELD],
+                true
+            );
+        }
+        if (null !== $value[CalendarAnswerForm::WONT_ATTEND_FIELD]) {
+            $value[CalendarAnswerForm::WONT_ATTEND_FIELD] = \json_decode(
+                $value[CalendarAnswerForm::WONT_ATTEND_FIELD],
                 true
             );
         }

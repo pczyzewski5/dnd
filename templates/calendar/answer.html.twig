@@ -44,6 +44,12 @@
                 .maybe-attend {
                     background-image: url("{{ asset('images/maybe_attend.jpg') }}");
                 }
+                .wont-attend {
+                    background-image: url("{{ asset('images/wont_attend.jpg') }}");
+                    width: 18px;
+                    height: 18px;
+                    background-size: contain;
+                }
                 .not-responded {
                     background-image: url("{{ asset('images/question-mark.jpg') }}");
                 }
@@ -67,7 +73,9 @@
             <h2 class="title is-3">{{ calendar.getTitle() }}</h2>
             <h6 class="subtitle is-6">
                 <div>Utworzony: {{ calendar.getCreatedAt().format('Y-m-d') }}</div>
-                <a href="{{ path('calendar_delete', {'id': calendar.getId()}) }}" class="button is-danger is-small mt-1">Usuń ten kalendarz</a>
+                {% if app.user.getId() == calendar.getOwnerId() %}
+                    <a href="{{ path('calendar_delete', {'id': calendar.getId()}) }}" class="button is-danger is-small mt-1">Usuń ten kalendarz</a>
+                {% endif %}
             </h6>
 
             <div class="table-container">
@@ -105,6 +113,8 @@
                                             <div class="will-attend"></div>
                                         {% elseif response == 'maybe_attend'  %}
                                             <div class="maybe-attend"></div>
+                                        {% elseif response == 'wont_attend'  %}
+                                            <div class="wont-attend"></div>
                                         {% elseif response == 'not_responded' %}
                                             <div class="not-responded"></div>
                                         {% endif %}

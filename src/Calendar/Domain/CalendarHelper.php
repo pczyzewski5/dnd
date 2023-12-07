@@ -82,6 +82,9 @@ class CalendarHelper
                     case \in_array($date, $participant['maybe_attend'] ?? []):
                         $response = 'maybe_attend';
                         break;
+                    case \in_array($date, $participant['wont_attend'] ?? []):
+                        $response = 'wont_attend';
+                        break;
                 endswitch;
 
                 $result[$participant['username']][$date] = $response;

@@ -10,17 +10,20 @@ class UpdateCalendarParticipantResponse
     private string $participantId;
     private ?array $willAttendDates;
     private ?array $maybeAttendDates;
+    private ?array $wontAttendDates;
 
     public function __construct(
         string $calendarId,
         string $participantId,
         ?array $willAttendDates = null,
-        ?array $maybeAttendDates = null
+        ?array $maybeAttendDates = null,
+        ?array $wontAttendDates = null
     ) {
         $this->calendarId = $calendarId;
         $this->participantId = $participantId;
         $this->willAttendDates = $willAttendDates;
         $this->maybeAttendDates = $maybeAttendDates;
+        $this->wontAttendDates = $wontAttendDates;
     }
 
     public function getCalendarId(): string
@@ -41,5 +44,10 @@ class UpdateCalendarParticipantResponse
     public function getMaybeAttendDates(): ?array
     {
         return $this->maybeAttendDates;
+    }
+
+    public function getWontAttendDates(): ?array
+    {
+        return $this->wontAttendDates;
     }
 }

@@ -41,7 +41,8 @@ class CalendarParticipantPersister implements DomainPersister
         try {
             $sql = 'UPDATE calendar_participants
                   SET will_attend = :willAttend,
-                      maybe_attend = :maybeAttend
+                      maybe_attend = :maybeAttend,
+                      wont_attend = :wontAttend
                   WHERE calendar_id = :calendarId AND participant_id = :participantId;';
 
             $this->entityManager->getConnection()->executeQuery(
@@ -49,6 +50,7 @@ class CalendarParticipantPersister implements DomainPersister
                 [
                     'willAttend' => $entity->willAttend,
                     'maybeAttend' => $entity->maybeAttend,
+                    'wontAttend' => $entity->wontAttend,
                     'calendarId' => $entity->calendarId,
                     'participantId' => $entity->participantId,
                 ],
