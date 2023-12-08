@@ -64,3 +64,6 @@
 {{ form_end(form) }}
 
 <script src="{{ asset('js/checkbox_switch.js') }}"></script>
+{% if selectable is defined %}
+    <script src="{{ asset('js/create_calendar_helper.js') }}"></script>
+{% endif %}

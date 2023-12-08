@@ -27,8 +27,6 @@ class AnswerCalendarHelper {
             var $actualPoints = parseInt($pointsContainer.html());
             var $icon = $day.find('.icon-container div');
 
-            console.log($pointsContainer, $actualPoints);
-
             if ($icon.hasClass('not-responded')) {
                 $icon.removeClass('not-responded');
                 $icon.addClass('will-attend');
