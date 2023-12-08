@@ -64,11 +64,11 @@
                     </div>
                 {% endfor %}
             </div>
-            {% for weekNumber, week in month %}
+            {% for week in month %}
                 <div class="week">
                     {% for dayName in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
                         {% if dayName in week|keys %}
-                            <div class="day has-text-centered will-not-attend">
+                            <div class="day has-text-centered will-not-attend {{ 'day_' ~ week[dayName].format('Y-m-d')  }}">
                                 {{ week[dayName].format('d') }}
                                 <span class="date">{{ week[dayName].format('Y-m-d') }}</span>
                             </div>

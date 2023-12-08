@@ -5,7 +5,15 @@ class CalendarHelper {
 
     execute() {
         var $day = $('.day');
-        var $dates = [];
+        var $datesInput = $('#create_calendar_form_dates');
+        var $dates = '' === $datesInput.val()
+            ? []
+            : JSON.parse($datesInput.val());
+
+        jQuery.each($dates, function($index, $item) {
+            $('.day_' + $item).removeClass('will-not-attend');
+            $('.day_' + $item).addClass('will-attend');
+        });
 
         $day.on('click', function(e) {
             var $day = $(e.target);
@@ -23,14 +31,17 @@ class CalendarHelper {
                 $dates = removeFromArray($date, $dates);
             }
 
-            $('#create_calendar_form_dates').val(
-                JSON.stringify($dates)
-            );
+            $datesInput.val(null);
+            if ($dates.length > 0) {
+                $datesInput.val(
+                    JSON.stringify($dates)
+                );
+            }
         });
 
         function removeFromArray($data, $array) {
             return jQuery.grep($array, function($value) {
-                return $value != $data;
+                return $value !== $data;
             });
         }
     }
