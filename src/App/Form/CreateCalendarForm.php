@@ -5,20 +5,22 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\DataTransformer\CreateCalendarFormDataTransformer;
-use App\FormType\CheckboxSwitchType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreateCalendarForm extends AbstractType
 {
     public const TITLE_FIELD = 'title';
-    public const IS_PUBLIC_FIELD = 'is_public';
-    public const INVITE_USERS_FIELD = 'invite_users';
     public const DATES_FIELD = 'dates';
+    public const USERS_FIELD = 'users';
+    public const USER_PREFIX = 'user_';
 
     private CreateCalendarFormDataTransformer $dataTransformer;
 
@@ -30,29 +32,53 @@ class CreateCalendarForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer($this->dataTransformer);
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            $usersChosen = 0;
+
+            foreach ($event->getData() as $key => $bool) {
+                if (\str_contains($key, self::USER_PREFIX) && $bool) {
+                    $usersChosen++;
+                }
+            }
+
+            if (0 === $usersChosen) {
+                $event->getForm()->addError(
+                    new FormError('Przed wyruszeniem w drogę należy zebrać drużynę!')
+                );
+            }
+        });
+
+        foreach ($builder->getData()['users'] as $user) {
+            $builder->add(
+                self::USER_PREFIX . $user->getId(),
+                CheckboxType::class,
+                [
+                    'value' => $user->getId(),
+                    'required' => false,
+                    'label' => $user->getUsername(),
+                    'attr' => ['is_user_checkbox' => true]
+                ]
+            );
+        }
 
         $builder->add(
             self::TITLE_FIELD,
             TextType::class,
-            ['required' => true, 'attr' => ['class' => 'input']],
-        );
-
-//        $builder->add(
-//            self::IS_PUBLIC_FIELD,
-//            CheckboxSwitchType::class,
-//            ['required' => false, 'label' => 'Dostępny z zewnątrz?']
-//        );
-
-        $builder->add(
-            self::INVITE_USERS_FIELD,
-            CollectionType::class,
-            ['required' => false, 'entry_type' => CheckboxSwitchType::class]
+            [
+                'required' => false,
+                'attr' => ['class' => 'input'],
+                'constraints' => new NotBlank(null, 'Tytuł nie może być pusty.')
+            ]
         );
 
         $builder->add(
             self::DATES_FIELD,
-            HiddenType::class,
-            ['required' => true]
+            TextType::class,
+            [
+                'required' => false,
+                'attr' => ['style' => 'display: none'],
+                'constraints' => new NotBlank(null, 'Wybierz przynajmniej jeden dzień w kalendarzu.'),
+            ]
         );
 
         $builder->add(

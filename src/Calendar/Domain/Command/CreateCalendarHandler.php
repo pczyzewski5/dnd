@@ -20,7 +20,7 @@ class CreateCalendarHandler
     {
         $calendar = CalendarFactory::create(
             $command->getTitle(),
-            $command->isPublic(),
+            false,
             $command->getOwnerId(),
             $command->getDates()
         );

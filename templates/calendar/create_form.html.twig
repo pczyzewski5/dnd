@@ -10,6 +10,10 @@
     .control input {
         width: 100%;
     }
+    .error-msg {
+        color: #FF0000;
+        font-size: 13px;
+    }
 </style>
 
 {{ form_start(form) }}
@@ -18,21 +22,45 @@
     <div class="control">
         {{ form_widget(form.title) }}
     </div>
-    <p class="help is-danger">{{ form_errors(form.title) }}</p>
+    {% for error in form.title.vars.errors %}
+        <div class="error-msg">{{ error.getMessage() }}</div>
+    {% endfor %}
 </div>
-
-{#<div class="field">#}
-{#    <div class="control">#}
-{#        {{ form_widget(form.is_public) }}#}
-{#    </div>#}
-{#</div>#}
 
 <div class="field">
-    <label class="label">{{ form_label(form.invite_users) }}</label>
     <div class="control">
-        {{ form_widget(form.invite_users) }}
+        {% for field in form.getIterator() %}
+            {% if field.vars.attr['is_user_checkbox'] is defined %}
+                <div class="switch-container">
+                    <label class="switch">
+                        <input
+                                type="checkbox"
+                                id="{{ field.vars.id }}"
+                                name="{{ field.vars.full_name }}"
+                                value="{{ field.vars.value }}"
+                        >
+                        <div class="slider round"></div>
+                    </label>
+                    <div class="switch-desc">{{ field.vars.label }}</div>
+                </div>
+                {% do field.setRendered() %}
+            {% endif %}
+        {% endfor %}
     </div>
+    {% for error in form.vars.errors %}
+        <div class="error-msg">{{ error.getMessage() }}</div>
+    {% endfor %}
 </div>
+
+<div class="field">
+    <div class="control">
+        {{ form_widget(form.dates) }}
+    </div>
+    {% for error in form.dates.vars.errors %}
+        <div class="error-msg">{{ error.getMessage() }}</div>
+    {% endfor %}
+</div>
+
 {{ form_end(form) }}
 
 <script src="{{ asset('js/checkbox_switch.js') }}"></script>

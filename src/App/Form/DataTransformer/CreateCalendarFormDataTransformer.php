@@ -20,29 +20,20 @@ class CreateCalendarFormDataTransformer implements DataTransformerInterface
 
     public function transform(mixed $value): array
     {
-        if (isset($value[CreateCalendarForm::INVITE_USERS_FIELD])) {
-            $value[CreateCalendarForm::INVITE_USERS_FIELD] = $this->transformInviteUsers(
-                $value[CreateCalendarForm::INVITE_USERS_FIELD]
-            );
-        }
-
         return $value;
     }
 
     public function reverseTransform(mixed $value): array
     {
-        if (isset($value[CreateCalendarForm::INVITE_USERS_FIELD])) {
-            $value[CreateCalendarForm::INVITE_USERS_FIELD] = $this->reverseTransformInviteUsers(
-                $value[CreateCalendarForm::INVITE_USERS_FIELD]
-            );
-        }
         if (isset($value[CreateCalendarForm::DATES_FIELD])) {
             $value[CreateCalendarForm::DATES_FIELD] = $this->reverseTransformDates(
                 $value[CreateCalendarForm::DATES_FIELD]
             );
         }
-
-//        $value[CreateCalendarForm::IS_PUBLIC_FIELD] = isset($value[CreateCalendarForm::IS_PUBLIC_FIELD]);
+        $value[CreateCalendarForm::USERS_FIELD] = $this->reverseTransformUsers(
+            $value[CreateCalendarForm::USERS_FIELD],
+            $value
+        );
 
         return $value;
     }
@@ -62,21 +53,33 @@ class CreateCalendarFormDataTransformer implements DataTransformerInterface
         return $result;
     }
 
-    private function reverseTransformInviteUsers(array $invitedUsers): array
-    {
-        $userIds = \array_filter($invitedUsers);
-
-        return empty($userIds)
-            ? []
-            : $this->repository->getManyById($userIds);
-    }
-
     private function reverseTransformDates(string $dates): array
     {
         $result = [];
 
         foreach (\json_decode($dates, true) as $date) {
             $result[] = \DateTimeImmutable::createFromFormat('Y-m-d', $date);
+        }
+
+        return $result;
+    }
+
+    private function reverseTransformUsers(array $providedUsers, array $submittedData): array
+    {
+        $result = [];
+        $invitedUserIds = [];
+
+        foreach ($submittedData as $key => $bool) {
+            if (\str_contains($key, CreateCalendarForm::USER_PREFIX) && $bool) {
+                $invitedUserIds[] = \str_replace(CreateCalendarForm::USER_PREFIX, '', $key);
+            }
+        }
+
+        /** @var User $user */
+        foreach ($providedUsers as $user) {
+            if (\in_array($user->getId(), $invitedUserIds)) {
+                $result[] = $user;
+            }
         }
 
         return $result;

@@ -41,19 +41,18 @@ class CalendarController extends BaseController
         );
 
         $form = $this->createForm(CreateCalendarForm::class, [
-            CreateCalendarForm::INVITE_USERS_FIELD => $users,
+           CreateCalendarForm::USERS_FIELD => $users,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $participants = $data[CreateCalendarForm::INVITE_USERS_FIELD];
+            $participants = $data[CreateCalendarForm::USERS_FIELD];
             $participants[] = $loggedInUser;
 
             $calendarId = $this->commandBus->handle(
                 new CreateCalendar(
                     $data[CreateCalendarForm::TITLE_FIELD],
-                    false, // $data[CreateCalendarForm::IS_PUBLIC_FIELD],
                     $loggedInUser->getId(),
                     $data[CreateCalendarForm::DATES_FIELD],
                 )
