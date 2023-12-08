@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Calendar\Domain;
 
 use Calendar\Domain\Calendar\Calendar;
+use DND\Domain\User\User;
 
 class CalendarHelper
 {
     private Calendar $calendar;
+    private string $calendarOwnerUsername;
     private array $participants;
     private array $dates;
     private array $responses;
@@ -18,6 +20,7 @@ class CalendarHelper
     {
         $this->calendar = $calendar;
         $this->participants = $participants;
+        $this->calendarOwnerUsername = $this->findCalendarOwnerUsername($calendar, $participants);
         $this->dates = $this->prepareDates($this->calendar);
         $this->responses = $this->prepareResponses($this->dates, $participants);
         $this->points = $this->calculatePoints($this->dates, $this->responses);
@@ -26,6 +29,11 @@ class CalendarHelper
     public function getCalendar(): Calendar
     {
         return $this->calendar;
+    }
+
+    public function getCalendarOwnerUsername(): string
+    {
+        return $this->calendarOwnerUsername;
     }
 
     public function getParticipants(): array
@@ -49,6 +57,20 @@ class CalendarHelper
     public function getPoints(): array
     {
         return $this->points;
+    }
+
+    private function findCalendarOwnerUsername(Calendar $calendar, array $participants): string
+    {
+        $result = '';
+
+        foreach ($participants as $participant) {
+            if ($participant['id'] === $calendar->getOwnerId()) {
+                $result = $participant['username'];
+                break;
+            }
+        }
+
+        return $result;
     }
 
     /**

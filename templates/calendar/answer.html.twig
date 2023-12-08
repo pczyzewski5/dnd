@@ -72,7 +72,7 @@
             {% set calendar = calendarHelper.getCalendar() %}
             <h2 class="title is-3">{{ calendar.getTitle() }}</h2>
             <h6 class="subtitle is-6">
-                <div>Utworzony: {{ calendar.getCreatedAt().format('Y-m-d') }}</div>
+                <div>Utworzony: {{ calendar.getCreatedAt().format('Y-m-d') }} | Autor: {{ calendarHelper.getCalendarOwnerUsername() }}</div>
                 {% if app.user.getId() == calendar.getOwnerId() %}
                     <a href="{{ path('calendar_delete', {'id': calendar.getId()}) }}" class="button is-danger is-small mt-1">Usuń ten kalendarz</a>
                 {% endif %}
