@@ -29,18 +29,18 @@ class CreateCalendarFormDataTransformer implements DataTransformerInterface
         return $value;
     }
 
-    /**
-     * @return User[]
-     */
     public function reverseTransform(mixed $value): array
     {
-        $value[CreateCalendarForm::INVITE_USERS_FIELD] = $this->reverseTransformInviteUsers(
-            $value[CreateCalendarForm::INVITE_USERS_FIELD]
-        );
-
-        $value[CreateCalendarForm::DATES_FIELD] = $this->reverseTransformDates(
-            $value[CreateCalendarForm::DATES_FIELD]
-        );
+        if (isset($value[CreateCalendarForm::INVITE_USERS_FIELD])) {
+            $value[CreateCalendarForm::INVITE_USERS_FIELD] = $this->reverseTransformInviteUsers(
+                $value[CreateCalendarForm::INVITE_USERS_FIELD]
+            );
+        }
+        if (isset($value[CreateCalendarForm::DATES_FIELD])) {
+            $value[CreateCalendarForm::DATES_FIELD] = $this->reverseTransformDates(
+                $value[CreateCalendarForm::DATES_FIELD]
+            );
+        }
 
 //        $value[CreateCalendarForm::IS_PUBLIC_FIELD] = isset($value[CreateCalendarForm::IS_PUBLIC_FIELD]);
 
