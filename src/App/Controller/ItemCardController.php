@@ -14,6 +14,8 @@ use DND\Domain\Command\UploadFile;
 use DND\Domain\Enum\ItemCardCategoryEnum;
 use DND\Domain\ItemCard\ItemCard;
 use DND\Domain\Query\GetItemCard;
+use DND\Domain\Query\GetItemCardBackHtml;
+use DND\Domain\Query\GetItemCardFrontHtml;
 use DND\Domain\Query\GetItemCardsForList;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,14 +33,18 @@ class ItemCardController extends BaseController
 
     public function read(Request $request): Response
     {
-        $itemCard = $this->queryBus->handle(
-            new GetItemCard(
-                $request->get('id')
-            )
+        $id = $request->get('id');
+        $itemCardFrontHtml = $this->queryBus->handle(
+            new GetItemCardFrontHtml($id)
+        );
+        $itemCardBackHtml = $this->queryBus->handle(
+            new GetItemCardBackHtml($id)
         );
 
         return $this->renderForm('item_card/read.html.twig', [
-            'itemCard' => $itemCard,
+            'id' => $id,
+            'itemCardFrontHtml' => $itemCardFrontHtml,
+            'itemCardBackHtml' => $itemCardBackHtml,
         ]);
     }
 
@@ -136,5 +142,18 @@ class ItemCardController extends BaseController
         );
 
         return $this->redirectToRoute('item_card_list');
+    }
+
+    public function print(Request $request): Response
+    {
+        $itemCard = $this->queryBus->handle(
+            new GetItemCard(
+                $request->get('id')
+            )
+        );
+
+        return $this->renderForm('item_card/print.html.twig', [
+            'itemCard' => $itemCard,
+        ]);
     }
 }

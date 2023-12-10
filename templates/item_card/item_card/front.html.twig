@@ -1,8 +1,9 @@
+<style>{{ styles }}</style>
 <div class="small-card-front">
     <div class="title-section">
         <div class="item-title title-font">
-            {% if itemCard is defined %}
-                {{ itemCard.getTitle() }}
+            {% if title is defined %}
+                {{ title }}
             {% else %}
                 Lorem ipsum dolor sit amet
             {% endif %}
@@ -10,8 +11,8 @@
     </div>
     <div class="description-section">
         <div id="item-description" class="content">
-            {% if itemCard is defined %}
-                {{ itemCard.getDescription()|quill }}
+            {% if description is defined %}
+                {{ description|quill }}
             {% else %}
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                 totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
@@ -23,8 +24,8 @@
         </div>
         <div id="origin-section">
             <div id="item-origin">
-                {% if itemCard is defined %}
-                    {{ itemCard.getOrigin() }}
+                {% if origin is defined %}
+                    {{ origin }}
                 {% else %}
                     Quis autem vel eum iure reprehenderit.
                 {% endif %}

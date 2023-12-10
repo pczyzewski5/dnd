@@ -53,6 +53,11 @@ item_card_delete:
     controller: App\Controller\ItemCardController::delete
     methods: [ GET ]
 
+item_card_print:
+    path: /dm/item_card/{id}/print
+    controller: App\Controller\ItemCardController::print
+    methods: [ GET ]
+
 # character_controller
 character_list:
     path: /player/character/list

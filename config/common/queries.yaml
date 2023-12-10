@@ -20,6 +20,24 @@ services:
     tags:
       - { name: tactician.handler, command: DND\Domain\Query\GetItemCard, bus: query }
 
+  DND\Domain\Query\GetItemCardFrontHtmlHandler:
+    class: DND\Domain\Query\GetItemCardFrontHtmlHandler
+    arguments:
+      - '@twig'
+      - '@DND\Domain\ItemCard\ItemCardRepository'
+      - '%item_card_css_path%'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetItemCardFrontHtml, bus: query }
+
+  DND\Domain\Query\GetItemCardBackHtmlHandler:
+    class: DND\Domain\Query\GetItemCardBackHtmlHandler
+    arguments:
+      - '@twig'
+      - '@DND\Domain\ItemCard\ItemCardRepository'
+      - '%item_card_css_path%'
+    tags:
+      - { name: tactician.handler, command: DND\Domain\Query\GetItemCardBackHtml, bus: query }
+
   DND\Domain\Query\GetCharactersByOwnerHandler:
     class: DND\Domain\Query\GetCharactersByOwnerHandler
     arguments:
