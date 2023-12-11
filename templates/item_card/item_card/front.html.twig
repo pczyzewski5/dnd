@@ -2,7 +2,7 @@
 <div class="small-card-front">
     <div class="title-section">
         <div class="item-title title-font">
-            {% if title is defined %}
+            {% if title is not null %}
                 {{ title }}
             {% else %}
                 Lorem ipsum dolor sit amet
@@ -11,7 +11,7 @@
     </div>
     <div class="description-section">
         <div id="item-description" class="content">
-            {% if description is defined %}
+            {% if description is not null %}
                 {{ description|quill }}
             {% else %}
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,

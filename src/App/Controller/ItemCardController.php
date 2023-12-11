@@ -84,17 +84,27 @@ class ItemCardController extends BaseController
             return $this->redirectToRoute('item_card_read', ['id' => $id]);
         }
 
+        $itemCardFrontHtml = $this->queryBus->handle(
+            new GetItemCardFrontHtml()
+        );
+        $itemCardBackHtml = $this->queryBus->handle(
+            new GetItemCardBackHtml()
+        );
+
         return $this->renderForm('item_card/create.html.twig', [
-            'item_card_form' => $form
+            'item_card_form' => $form,
+            'itemCardFrontHtml' => $itemCardFrontHtml,
+            'itemCardBackHtml'  => $itemCardBackHtml,
         ]);
     }
 
 
     public function update(Request $request): Response
     {
+        $id = $request->get('id');
         /** @var ItemCard $itemCard */
         $itemCard = $this->queryBus->handle(
-            new GetItemCard($request->get('id'))
+            new GetItemCard($id)
         );
         $form = $this->createForm(
             ItemCardForm::class,
@@ -127,9 +137,17 @@ class ItemCardController extends BaseController
             return $this->redirectToRoute('item_card_read', ['id' => $itemCard->getId()]);
         }
 
+        $itemCardFrontHtml = $this->queryBus->handle(
+            new GetItemCardFrontHtml($id)
+        );
+        $itemCardBackHtml = $this->queryBus->handle(
+            new GetItemCardBackHtml($id)
+        );
+
         return $this->renderForm('item_card/create.html.twig', [
             'item_card_form' => $form,
-            'itemCard' => $itemCard
+            'itemCardFrontHtml' => $itemCardFrontHtml,
+            'itemCardBackHtml'  => $itemCardBackHtml,
         ]);
     }
 

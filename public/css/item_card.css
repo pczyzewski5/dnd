@@ -69,7 +69,7 @@ li::before {
 .content {
     margin: 0 !important;
 }
-.item-origin {
+#item-origin {
     color: white;
     font-size: 9px;
     margin: 0 2mm 2mm 2mm;

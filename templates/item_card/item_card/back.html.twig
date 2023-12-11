@@ -2,16 +2,16 @@
 <div class="small-card-back">
     <div class="title-section">
         <div class="item-title title-font">
-            {% if title is defined %}
+            {% if title is not null %}
                 {{ title }}
             {% else %}
                 Lorem ipsum dolor sit amet
             {% endif %}
         </div>
     </div>
-    <div class="description-section description-section-back" {{ itemCardImage(image)|raw }}></div>
-    <div class="item-origin">
-        {% if origin is defined %}
+    <div class="description-section description-section-back" {{ image is not null ? itemCardImage(image)|raw : '' }}></div>
+    <div id="item-origin">
+        {% if origin is not null %}
             {{ origin }}
         {% else %}
             Quis autem vel eum iure reprehenderit.
