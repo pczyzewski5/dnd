@@ -10,4 +10,11 @@
         </div>
     </div>
     <div class="description-section description-section-back" {{ itemCardImage(image)|raw }}></div>
+    <div class="item-origin">
+        {% if origin is defined %}
+            {{ origin }}
+        {% else %}
+            Quis autem vel eum iure reprehenderit.
+        {% endif %}
+    </div>
 </div>

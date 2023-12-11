@@ -1,13 +1,3 @@
-@font-face {
-    font-family: "Nodesto Caps Condensed";
-    src: url("/fonts/Nodesto Caps Condensed.otf") format("opentype");
-    font-weight: normal;
-}
-@font-face {
-    font-family: "Bookinsanity";
-    src: url("/fonts/Bookinsanity.otf") format("opentype");
-    font-weight: normal;
-}
 .small-card-front, .small-card-back {
     width: 60mm !important;
     height: 90mm !important;
@@ -17,17 +7,16 @@
     flex-direction: column;
 }
 .title-section {
-    font-family: "Nodesto Caps Condensed";
     justify-content: center;
     background-color: white;
     margin: 2mm;
     border-radius: 5px;
-    height: 36px;
     display: flex;
     align-items: center;
+    line-height: 0.9;
+    padding: 4px 3px 1px 3px;
 }
 .description-section {
-    font-family: "Bookinsanity";
     background-image: url("/images/dnd5e_logo_opaque_10.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +32,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
-#item-description, #item-origin {
+#item-description {
     overflow: hidden;
 }
 #item-description.content {
@@ -55,11 +44,8 @@
 .description-section-back {
     background-image: url("/images/dnd5e_logo.png");
 }
-#item-origin {
-    height: 28px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+.description-section.description-section-back {
+    margin: 0 2mm 1mm 2mm;
 }
 #quill-editor-container {
     height: 400px;
@@ -82,4 +68,9 @@ li::before {
 }
 .content {
     margin: 0 !important;
+}
+.item-origin {
+    color: white;
+    font-size: 9px;
+    margin: 0 2mm 2mm 2mm;
 }

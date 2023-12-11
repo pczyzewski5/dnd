@@ -9,15 +9,18 @@ class GetItemCardBackHtml
     private ?string $id;
     private ?string $title;
     private ?string $image;
+    private ?string $origin;
 
     public function __construct(
         ?string $id = null,
         ?string $title = null,
         ?string $image = null,
+        ?string $origin = null
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->image = $image;
+        $this->origin = $origin;
     }
 
     public function getId(): ?string
@@ -33,5 +36,10 @@ class GetItemCardBackHtml
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    public function getOrigin(): ?string
+    {
+        return $this->origin;
     }
 }

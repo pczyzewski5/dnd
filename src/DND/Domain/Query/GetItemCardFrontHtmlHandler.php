@@ -27,20 +27,17 @@ class GetItemCardFrontHtmlHandler
     {
         $title = $query->getTitle();
         $description = $query->getDescription();
-        $origin = $query->getOrigin();
 
         if (null !== $query->getId()) {
             $itemCard = $this->repository->getOneById($query->getId());
 
             $title = $itemCard->getTitle();
             $description = $itemCard->getDescription();
-            $origin = $itemCard->getOrigin();
         }
 
         return $this->twig->render('item_card/item_card/front.html.twig', [
             'title' => $title,
             'description' => $description,
-            'origin' => $origin,
             'stylesPath' => $this->itemCardStylesPath
         ]);
     }

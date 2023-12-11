@@ -30,7 +30,7 @@ class ItemCardImage extends AbstractExtension
         $filepath = \preg_replace('/^.+(?=\/images)/i', '', $filepath);
 
         return \sprintf(
-            'style="background-image: url(%s); background-size: contain;"',
+            'style="background-image: url(%s); background-size: revert-layer;"',
             $filepath
         );
     }

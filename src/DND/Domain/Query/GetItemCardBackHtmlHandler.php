@@ -27,17 +27,20 @@ class GetItemCardBackHtmlHandler
     {
         $title = $query->getTitle();
         $image = $query->getImage();
+        $origin = $query->getOrigin();
 
         if (null !== $query->getId()) {
             $itemCard = $this->repository->getOneById($query->getId());
 
             $title = $itemCard->getTitle();
             $image = $itemCard->getImage();
+            $origin = $itemCard->getOrigin();
         }
 
         return $this->twig->render('item_card/item_card/back.html.twig', [
             'title' => $title,
             'image' => $image,
+            'origin' => $origin,
             'stylesPath' => $this->itemCardStylesPath
         ]);
     }
