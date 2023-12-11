@@ -75,3 +75,9 @@ li::before {
     font-size: 9px;
     margin: 0 2mm 2mm 2mm;
 }
+@media print {
+    .description-section-back {
+        -webkit-filter: brightness(120%);
+        filter: brightness(120%);
+    }
+}
