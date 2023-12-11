@@ -38,7 +38,7 @@ class GetItemCardBackHtmlHandler
         return $this->twig->render('item_card/item_card/back.html.twig', [
             'title' => $title,
             'image' => $image,
-            'styles' => \file_get_contents($this->itemCardStylesPath)
+            'stylesPath' => $this->itemCardStylesPath
         ]);
     }
 }

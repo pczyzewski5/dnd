@@ -41,7 +41,7 @@ class GetItemCardFrontHtmlHandler
             'title' => $title,
             'description' => $description,
             'origin' => $origin,
-            'styles' => \file_get_contents($this->itemCardStylesPath)
+            'stylesPath' => $this->itemCardStylesPath
         ]);
     }
 }
