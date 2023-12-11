@@ -164,14 +164,20 @@ class ItemCardController extends BaseController
 
     public function print(Request $request): Response
     {
-        $itemCard = $this->queryBus->handle(
-            new GetItemCard(
+        $itemCardFrontHtml = $this->queryBus->handle(
+            new GetItemCardFrontHtml(
+                $request->get('id')
+            )
+        );
+        $itemCardBackHtml = $this->queryBus->handle(
+            new GetItemCardBackHtml(
                 $request->get('id')
             )
         );
 
         return $this->renderForm('item_card/print.html.twig', [
-            'itemCard' => $itemCard,
+            'itemCardFrontHtml' => $itemCardFrontHtml,
+            'itemCardBackHtml'  => $itemCardBackHtml,
         ]);
     }
 }
