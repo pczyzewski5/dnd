@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\Race;
 
 use DND\Domain\Enum\RaceEnum;

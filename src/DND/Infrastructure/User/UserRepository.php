@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Infrastructure\User;
 
 use Doctrine\ORM\EntityManagerInterface;

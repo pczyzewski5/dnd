@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\Ability;
 
 use DND\Domain\Enum\AbilityEnum;

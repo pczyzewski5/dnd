@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\Skill;
 
 use DND\Domain\Character\Character;
