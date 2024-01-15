@@ -13,7 +13,6 @@ use DND\Domain\Validator\Validators\LanguageValidator;
 use DND\Domain\Validator\Validators\PlayerNameValidator;
 use DND\Domain\Validator\Validators\RaceValidator;
 use DND\Domain\Validator\Validators\StartingAbilitiesValidator;
-use DND\Validators\OriginValidator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

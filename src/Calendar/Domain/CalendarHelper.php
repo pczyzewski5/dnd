@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Calendar\Domain;
 
 use Calendar\Domain\Calendar\Calendar;
-use DND\Domain\User\User;
 
 class CalendarHelper
 {

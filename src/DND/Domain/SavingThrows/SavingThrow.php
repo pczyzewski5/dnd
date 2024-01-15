@@ -3,7 +3,6 @@
 namespace DND\Domain\SavingThrows;
 
 use DND\Domain\Ability\Ability;
-use DND\Domain\Enum\ProficiencyEnum;
 use DND\Domain\Proficiency\Proficiencies;
 
 class SavingThrow

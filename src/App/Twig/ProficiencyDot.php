@@ -8,7 +8,6 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
 use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 class ProficiencyDot extends AbstractExtension
 {
