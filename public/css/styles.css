@@ -3,13 +3,6 @@
     display: flex;
     align-items: flex-end;
 }
-.dragon-footer {
-    height: 20px;
-    background-image: url("/images/dragons.png");
-    background-size: contain;
-    width: 100%;
-    opacity: 0.5;
-}
 .navbar-burger {
     height: inherit;
     width: 5rem;
