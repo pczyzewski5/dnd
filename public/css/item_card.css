@@ -16,22 +16,6 @@
     line-height: 0.9;
     padding: 4px 3px 1px 3px;
 }
-.description-section {
-    background-image: url("/images/dnd5e_logo_opaque_10.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: 80%;
-    border-radius: 5px;
-    font-size: 9px;
-    padding: 4px;
-    margin: 0 2mm 2mm 2mm;
-    display: flex;
-    flex-grow: 1;
-    text-align: justify;
-    flex-direction: column;
-    justify-content: space-between;
-}
 #item-description {
     overflow: hidden;
 }
@@ -40,9 +24,6 @@
 }
 .item-title {
     text-align: center;
-}
-.description-section-back {
-    background-image: url("/images/dnd5e_logo.png");
 }
 .description-section.description-section-back {
     margin: 0 2mm 1mm 2mm;

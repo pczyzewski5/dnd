@@ -1,4 +1,22 @@
-<link rel="stylesheet" href="{{ stylesPath }}">
+<link rel="stylesheet" href="{{ asset(stylesPath) }}">
+<style>
+    .description-section {
+        background-image: url("{{ asset('images/dnd5e_logo_opaque_10.png') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: white;
+        background-size: 80%;
+        border-radius: 5px;
+        font-size: 9px;
+        padding: 4px;
+        margin: 0 2mm 2mm 2mm;
+        display: flex;
+        flex-grow: 1;
+        text-align: justify;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
 <div class="small-card-front">
     <div class="title-section">
         <div class="item-title title-font">
