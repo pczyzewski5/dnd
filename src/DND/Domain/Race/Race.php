@@ -42,7 +42,7 @@ class Race
         return $this->speed;
     }
 
-    public function getNightvision(): int
+    public function getNightvision(): float
     {
         return $this->nightvision;
     }

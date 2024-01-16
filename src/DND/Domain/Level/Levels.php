@@ -38,6 +38,6 @@ class Levels
 
     public function getProficiencyBonus(): int
     {
-       return \ceil(1 + (count($this->levels) / 4));
+       return (int)\ceil(1 + (count($this->levels) / 4));
     }
 }
