@@ -1,4 +1,4 @@
-# Dnd
+# DnD
 This project is the MVP version. This application allows you:
 * render your player character card
 * create item or spell cards
