@@ -5,7 +5,7 @@ MYSQL_LOG_FILE=/var/lib/mysql/general_log.log
 # MAIN
 ##################################################################################################################
 
-start: stop up init-db
+start: stop build up init-db
 
 stop:
 	docker-compose stop
@@ -13,7 +13,6 @@ stop:
 
 up:
 	docker-compose up -d --remove-orphans
-
 
 build: build_local_clear build_docker_php
 	docker-compose down --remove-orphans -v
