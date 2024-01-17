@@ -2,24 +2,21 @@
 
 declare(strict_types=1);
 
-namespace learn_by_tests;
+namespace dnd;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
-final class Version20231201201111 extends AbstractMigration
+final class Version20240117132201 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'create calendar_participants table';
+        return 'creates calendar_participants table';
     }
 
     public function up(Schema $schema): void
     {
-        $sql = <<<SQL
+       $sql = <<<SQL
 CREATE TABLE calendar_participants
 (
     calendar_id    VARCHAR(36) NOT NULL,
@@ -37,6 +34,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE calendar_participants;');
+        $this->addSql('DROP TABLE calendar_participants');
     }
 }

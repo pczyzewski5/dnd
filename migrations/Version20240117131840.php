@@ -2,31 +2,30 @@
 
 declare(strict_types=1);
 
-namespace learn_by_tests;
+namespace dnd;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
-final class Version20231201192511 extends AbstractMigration
+final class Version20240117131840 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'create calendars table';
+        return 'creates item_cards table';
     }
 
     public function up(Schema $schema): void
     {
         $sql = <<<SQL
-CREATE TABLE calendars
+CREATE TABLE item_cards
 (
     id          VARCHAR(36) NOT NULL,
-    title       VARCHAR(36) NOT NULL,
-    is_public   BOOLEAN NOT NULL,
-    owner_id    VARCHAR(36) NOT NULL,
-    dates       TEXT NOT NULL,
+    title       VARCHAR(72) NOT NULL,
+    description TEXT NOT NULL,
+    origin      VARCHAR(72) NOT NULL,
+    category    VARCHAR(36) NOT NULL,
+    author_id   VARCHAR(36) NOT NULL,
+    image       TEXT,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)
 ) DEFAULT CHARACTER SET UTF8
@@ -37,6 +36,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE calendars;');
+        $this->addSql('DROP TABLE item_cards');
     }
 }

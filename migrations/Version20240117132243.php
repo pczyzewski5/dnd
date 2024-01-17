@@ -2,24 +2,21 @@
 
 declare(strict_types=1);
 
-namespace learn_by_tests;
+namespace dnd;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
-final class Version20231128192113 extends AbstractMigration
+final class Version20240117132243 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'create characters table';
+        return 'creates characters table';
     }
 
     public function up(Schema $schema): void
     {
-        $sql = <<<SQL
+       $sql = <<<SQL
 CREATE TABLE characters
 (
     id          VARCHAR(36) NOT NULL,
@@ -35,6 +32,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE characters;');
+        $this->addSql('DROP TABLE characters');
     }
 }
