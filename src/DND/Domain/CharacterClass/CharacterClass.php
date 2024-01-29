@@ -10,7 +10,7 @@ use DND\Domain\Enum\ProficiencyEnum;
 class CharacterClass
 {
     private CharacterClassEnum $characterClassEnum;
-    private int $isMainClass;
+    private bool $isMainClass;
     private array $proficiencies;
     private array $multiclassProficiencies;
     private array $skills;
