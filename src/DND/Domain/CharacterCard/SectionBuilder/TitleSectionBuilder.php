@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\CharacterCard\SectionBuilder;
 
 class TitleSectionBuilder extends AbstractSectionBuilder
@@ -8,7 +10,7 @@ class TitleSectionBuilder extends AbstractSectionBuilder
     {
         $context =  [
             'className' => $this->character->getCharacterClassFullName(),
-            'level' => $this->character->getActualLevel(),
+            'level' => $this->character->getLevels()->getLevel(),
             'origin' => $this->character->getOrigin(),
             'characterName' => $this->character->getCharacterName(),
             'playerName' => $this->character->getPlayerName(),
