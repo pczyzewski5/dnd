@@ -8,26 +8,25 @@ use DND\Domain\Enum\ProficiencyEnum;
 class ProficienciesFactory
 {
     public static function create(
-        CharacterClass $characterClass,
+        array $characterClasses,
         array $proficiencies,
-        ?array $expertProficiencies = [],
-        ?CharacterClass $characterSubclass
+        ?array $expertProficiencies = []
     ): Proficiencies {
         $result = new Proficiencies();
 
-        foreach ($characterClass->getProficiencies() as $proficiency) {
-            $result->addProficiency(ProficiencyEnum::from($proficiency));
+        /** @var CharacterClass $characterClass */
+        foreach ($characterClasses as $characterClass) {
+            foreach ($characterClass->getProficiencies() as $proficiency) {
+                $result->addProficiency($proficiency);
+            }
         }
+
         foreach ($proficiencies as $proficiency) {
             $result->addProficiency(ProficiencyEnum::from($proficiency));
         }
+
         foreach ($expertProficiencies as $expertProficiency) {
             $result->addExpertProficiency(ProficiencyEnum::from($expertProficiency));
-        }
-        if (null !== $characterSubclass) {
-            foreach ($characterSubclass->getMulticlassProficiencies() as $proficiency) {
-                $result->addProficiency(ProficiencyEnum::from($proficiency));
-            }
         }
 
         return $result;
