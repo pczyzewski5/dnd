@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\Character;
 
 use DND\Domain\Ability\Abilities;
@@ -16,15 +18,15 @@ use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Level\Levels;
 use DND\Domain\Proficiency\Proficiencies;
 use DND\Domain\Race\Race;
-use DND\Domain\Resistances\ResistancesMapper;
 use DND\Domain\SavingThrows\SavingThrows;
+use DND\Domain\Skill\Skills;
 use DND\Domain\Skill\SkillsFactory;
 use DND\Domain\Spellcasting\Spellcasting;
 
 class Character
 {
     private string $id;
-    private CharacterClass $characterClass;
+    private array $characterClasses;
     private AbilitySkills $abilitySkills;
     private Proficiencies $proficiencies;
     private SavingThrows $savingThrows;
@@ -37,21 +39,15 @@ class Character
     private string $campaignName;
     private string $playerName;
     private array $languages;
-    private \DateTimeImmutable $createdAt;
-    private ?CharacterClass $characterSubclass;
 
-    private int $actualLevel;
 
-    private array $activeSkills;
-    private array $passiveSkills;
-    private array $resistanceSkills;
-    private array $skillsWithUseCount;
+    private Skills $skills;
 
     private Spellcasting $spellcasting;
 
     public function __construct(
         string $id,
-        CharacterClass $characterClass,
+        array $characterClasses,
         AbilitySkills $abilitySkills,
         Proficiencies $proficiencies,
         SavingThrows $savingThrows,
@@ -65,11 +61,9 @@ class Character
         string $campaignName,
         string $playerName,
         array $languages,
-        \DateTimeImmutable $createdAt,
-        ?CharacterClass $characterSubclass
     ) {
         $this->id = $id;
-        $this->characterClass = $characterClass;
+        $this->characterClasses = $characterClasses;
         $this->abilitySkills = $abilitySkills;
         $this->proficiencies = $proficiencies;
         $this->savingThrows = $savingThrows;
@@ -82,16 +76,8 @@ class Character
         $this->campaignName = $campaignName;
         $this->playerName = $playerName;
         $this->languages = $languages;
-        $this->createdAt = $createdAt;
-        $this->characterSubclass = $characterSubclass;
 
-        $this->actualLevel = \count($this->levels->getLevels());
-
-        $skills = SkillsFactory::create($this, $extraSkills);
-        $this->activeSkills = $skills->getActiveSkills($this->actualLevel);
-        $this->passiveSkills = $skills->getPassiveSkills($this->actualLevel);
-        $this->resistanceSkills = $skills->getResistanceSkills($this->actualLevel);
-        $this->skillsWithUseCount = $skills->getSkillsWithUseCount($this->actualLevel);
+        $this->skills = SkillsFactory::create($this, $extraSkills);
 
         $this->spellcasting = new Spellcasting();
     }
@@ -103,7 +89,7 @@ class Character
 
     public function getSpeed(): int
     {
-        return SpeedCalculator::calculate($this->race, $this->passiveSkills);
+        return SpeedCalculator::calculate($this->race, $this->skills);
     }
 
     public function getNightvision(): int
@@ -113,12 +99,17 @@ class Character
 
     public function getInitiative(): int
     {
-        return InitiativeCalculator::calculate($this->abilities, $this->passiveSkills);
+        return InitiativeCalculator::calculate($this->abilities, $this->skills);
+    }
+
+    public function getLevels(): Levels
+    {
+        return $this->levels;
     }
 
     public function getArmorClassWithoutArmor(): int
     {
-        return ArmorClassCalculator::calculate($this->abilities, $this->passiveSkills);
+        return ArmorClassCalculator::calculate($this->abilities, $this->skills);
     }
 
     public function getHitDices(): array
@@ -131,19 +122,28 @@ class Character
         return HitPointsCalculator::calculate($this->abilities, $this->levels);
     }
 
-    public function getCharacterClass(): CharacterClass
+    /**
+     * @return CharacterClass[]
+     */
+    public function getCharacterClasses(): array
     {
-        return $this->characterClass;
+        return $this->characterClasses;
     }
 
     public function getCharacterClassFullName(): string
     {
-        $fullClassName = \ucfirst($this->getCharacterClass()->getName());
-        if (null !== $characterSubclass = $this->getCharacterSubclass()) {
-            $fullClassName .= '-' . \ucfirst($characterSubclass->getName());
+        $result = [];
+
+        foreach ($this->getCharacterClasses() as $characterClass) {
+            $result[] = \ucwords($characterClass->getCharacterClassEnum()->getValue());
         }
 
-        return $fullClassName;
+        return \implode(' - ', $result);
+    }
+
+    public function getSkills(): Skills
+    {
+        return $this->skills;
     }
 
     public function getAbilitySkills(): AbilitySkills
@@ -176,21 +176,6 @@ class Character
         return $this->origin;
     }
 
-    public function getActiveSkills(): array
-    {
-        return $this->activeSkills;
-    }
-
-    public function getPassiveSkills(): array
-    {
-        return $this->passiveSkills;
-    }
-
-    public function getSkillsWithUseCount(): array
-    {
-        return $this->skillsWithUseCount;
-    }
-
     public function getRace(): Race
     {
         return $this->race;
@@ -209,11 +194,6 @@ class Character
     public function getPlayerName(): string
     {
         return $this->playerName;
-    }
-
-    public function getResistances(): array
-    {
-        return ResistancesMapper::getResistances($this->resistanceSkills);
     }
 
     public function getImmunities(): array
@@ -238,14 +218,9 @@ class Character
         return $this->levels->getProficiencyBonus();
     }
 
-    public function getActualLevel(): int
-    {
-        return $this->actualLevel;
-    }
-
     public function getAttackCount(): int
     {
-        return AttackCountCalculator::calculate($this->passiveSkills);
+        return AttackCountCalculator::calculate($this->skills);
     }
 
     public function getSpellCircles(): array
@@ -256,10 +231,5 @@ class Character
     public function getSpellcastingData(): array
     {
         return $this->spellcasting->getSpellcastingData($this);
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
     }
 }

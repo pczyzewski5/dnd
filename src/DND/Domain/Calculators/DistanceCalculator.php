@@ -4,8 +4,8 @@ namespace DND\Domain\Calculators;
 
 class DistanceCalculator
 {
-    public static function metersToHex(float $meters): float
+    public static function metersToHex(float $meters): int
     {
-        return $meters / 1.5;
+        return \intval($meters / 1.5);
     }
 }
