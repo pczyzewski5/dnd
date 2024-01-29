@@ -1,0 +1,57 @@
+{
+  "character_name": "Lizard",
+  "player_name": "Paweł",
+  "campaign_name": "Klątwa Sthrada",
+  "origin": "akolita",
+  "race": "lizardfolk",
+  "alignment": "neutral evil",
+  "levels": {
+    "1": {
+      "class": "barbarian"
+    },
+    "2": {
+      "class": "barbarian"
+    },
+    "3": {
+      "class": "path of the totem warrior"
+    },
+    "4": {
+      "class": "fighter"
+    },
+    "5": {
+      "class": "fighter"
+    },
+    "6": {
+      "class": "cavalier"
+    },
+    "7": {
+      "class": "cavalier"
+    },
+    "8": {
+      "class": "cavalier"
+    },
+    "9": {
+      "class": "cavalier"
+    }
+  },
+  "starting_abilities": {
+    "str": 15,
+    "dex": 15,
+    "con": 15,
+    "int": 8,
+    "wis": 8,
+    "cha": 8
+  },
+  "asi": {
+    "con": 2
+  },
+  "proficiencies": [
+    "persuasion"
+  ],
+  "expert_proficiencies": [],
+  "languages": [],
+  "extra_skills": ["fighting style protection"],
+  "feats": [
+    "defensive duelist"
+  ]
+}
