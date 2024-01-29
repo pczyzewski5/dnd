@@ -14,57 +14,49 @@ class Skills
     public function addSkill(AbstractSkill $skill): void
     {
         foreach ($skill->getTags() as $tag) {
-            $this->skills[$tag][$skill->getGrantLevel()][] = $skill;
+            $this->skills[$tag][] = $skill;
+            $this->skills['index'][] = \get_class($skill);
         }
     }
 
-    /**
-     * @return AbstractSkill[]
-     */
-    public function getActiveSkills(int $actualLevel): array
+    public function hasSkill(string $name): bool
     {
-        return $this->getSkills(SkillTagEnum::ACTIVE(), $actualLevel);
+        return \in_array($name, $this->skills['index']);
     }
 
     /**
      * @return AbstractSkill[]
      */
-    public function getPassiveSkills(int $actualLevel): array
+    public function getActiveSkills(): array
     {
-        return $this->getSkills(SkillTagEnum::PASSIVE(), $actualLevel);
+        return $this->getSkillsByTag(SkillTagEnum::ACTIVE());
     }
 
     /**
      * @return AbstractSkill[]
      */
-    public function getResistanceSkills(int $actualLevel): array
+    public function getPassiveSkills(): array
     {
-        return $this->getSkills(SkillTagEnum::RESISTANCE(), $actualLevel);
+        return $this->getSkillsByTag(SkillTagEnum::PASSIVE());
     }
 
     /**
      * @return AbstractSkill[]
      */
-    public function getSkillsWithUseCount(int $actualLevel): array
+    public function getSkillsWithUseCount(): array
     {
-        return $this->getSkills(SkillTagEnum::USE_COUNT(), $actualLevel);
+        return $this->getSkillsByTag(SkillTagEnum::USE_COUNT());
     }
 
     /**
      * @return AbstractSkill[]
      */
-    private function getSkills(SkillTagEnum $skillTagEnum, int $actualLevel): array
+    private function getSkillsByTag(SkillTagEnum $skillTagEnum): array
     {
-        $result = [];
+        $result = $this->skills[$skillTagEnum->getValue()] ?? [];
 
-        foreach (\range(0, $actualLevel) as $level) {
-            foreach ($this->skills[$skillTagEnum->getValue()][$level] ?? [] as $skill) {
-                $result[] = $skill;
-            }
-        }
-
-        \usort($result, static function (AbstractSkill $skill, AbstractSkill $anotherSkill) {
-            return $skill->getOrder() > $anotherSkill->getOrder() ? 1 : -1;
+        \usort($result, static function (AbstractSkill $skillA, AbstractSkill $skillB) {
+            return $skillA->getOrder() > $skillB->getOrder() ? 1 : -1;
         });
 
         return $result;

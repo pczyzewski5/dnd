@@ -12,57 +12,18 @@ class SkillsFactory
     {
         $result = new Skills();
 
-        self::addSkillsWithGrantLevel(
-            $character,
-            $result,
-            $character->getCharacterClass()->getSkills()
-        );
-        self::addSkillsWithGrantLevel(
-            $character,
-            $result,
-            $character->getRace()->getSkills()
-        );
-        self::addSkillWithNoGrantLevel(
-            $character,
-            $result,
-            $extraSkills
-        );
-        if (null !== $character->getCharacterSubclass()) {
-            self::addSkillsWithGrantLevel(
-                $character,
-                $result,
-                $character->getCharacterSubclass()->getSkills()
-            );
-        }
-
-        return $result;
-    }
-
-    private static function addSkillsWithGrantLevel(
-        Character $character,
-        Skills $result,
-        array $skillsWithGrantLevel
-    ): Skills {
-        foreach ($skillsWithGrantLevel as $grantLevel => $skills) {
-            foreach ($skills as $skillName) {
-                $result->addSkill(
-                    SkillFactory::create($character, $skillName, $grantLevel)
-                );
+        foreach ($character->getCharacterClasses() as $characterClass) {
+            foreach ($characterClass->getSkills() as $skillName) {
+                $result->addSkill(SkillFactory::create($character, $skillName));
             }
         }
 
-        return $result;
-    }
+        foreach ($extraSkills as $skillName) {
+            $result->addSkill(SkillFactory::create($character, $skillName));
+        }
 
-    private static function addSkillWithNoGrantLevel(
-        Character $character,
-        Skills $result,
-        array $skills
-    ): Skills {
-        foreach ($skills as $skillName) {
-            $result->addSkill(
-                SkillFactory::create($character, $skillName, 0)
-            );
+        foreach ($character->getRace()->getSkills() as $skillName) {
+            $result->addSkill(SkillFactory::create($character, $skillName));
         }
 
         return $result;
