@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\HitDice;
 
 use DND\Domain\CharacterClass\CharacterClassHelper;
@@ -14,6 +16,7 @@ class HitDiceMapper
         CharacterClassEnum::DRUID => HitDiceEnum::D8,
         CharacterClassEnum::RANGER => HitDiceEnum::D10,
         CharacterClassEnum::PALADIN => HitDiceEnum::D10,
+        CharacterClassEnum::FIGHTER => HitDiceEnum::D10,
         CharacterClassEnum::BARBARIAN => HitDiceEnum::D12,
     ];
 

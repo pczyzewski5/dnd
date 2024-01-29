@@ -3,26 +3,24 @@
     "ASI": {
       "cha": 1
     },
-    "skills": {
-      "0": ["naturally stealthy"]
-    }
+    "skills": ["naturally stealthy"]
   },
   "human variant": {
     "ASI": {},
-    "skills": {}
+    "skills": []
   },
   "copper dragonborn": {
     "ASI": {},
-    "skills": {
-      "0": ["acid breath", "acid resistance"]
-    }
+    "skills": ["acid breath", "acid resistance"]
   },
   "high elf": {
     "ASI": {
       "int": 1
     },
-    "skills": {
-      "0": ["elf weapon training", "cantrip", "bonus language"]
-    }
+    "skills": ["elf weapon training", "cantrip", "bonus language"]
+  },
+  "lizardfolk": {
+    "ASI": {},
+    "skills": []
   }
 }

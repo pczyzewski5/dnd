@@ -21,4 +21,6 @@ class RaceEnum extends Enum
 
     const ELF = 'elf';
     const HIGH_ELF = 'high elf';
+
+    const LIZARDFOLK = 'lizardfolk';
 }

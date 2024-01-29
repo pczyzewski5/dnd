@@ -3,9 +3,7 @@
     "ASI": {
       "dex": 2
     },
-    "skills": {
-      "0": ["lucky", "brave", "nimble"]
-    },
+    "skills": ["lucky", "brave", "nimble"],
     "languages": ["common", "halfling"],
     "speed_in_meters": 7.5,
     "nightvision_in_meters": 0
@@ -19,7 +17,7 @@
       "wis": 1,
       "cha": 1
     },
-    "skills": {},
+    "skills": [],
     "languages": ["common"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
@@ -29,8 +27,18 @@
       "str": 2,
       "cha": 1
     },
-    "skills": {},
+    "skills": [],
     "languages": ["common", "draconic"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
+  },
+  "lizardfolk": {
+    "ASI": {
+      "con": 2,
+      "dex": 1
+    },
+    "skills": ["hungry jaws", "natural armor", "hold breath", "bite", "nature intuition"],
+    "languages": ["common"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0
   },
@@ -39,9 +47,7 @@
       "int": 1,
       "cha": 2
     },
-    "skills": {
-      "0": ["infernal legacy", "hellish resistance"]
-    },
+    "skills": ["infernal legacy", "hellish resistance"],
     "languages": ["common", "infernal"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18
@@ -50,9 +56,7 @@
     "ASI": {
       "dex": 2
     },
-    "skills": {
-      "0": ["fey ancestry", "trance", "keen senses"]
-    },
+    "skills": ["fey ancestry", "trance", "keen senses"],
     "languages": ["common", "elf"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 18

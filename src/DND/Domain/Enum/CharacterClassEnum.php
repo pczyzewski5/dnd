@@ -10,6 +10,7 @@ class CharacterClassEnum extends Enum
 {
     const BARBARIAN = 'barbarian';
     const BERSERKER = 'berserker';
+    const PATH_OF_THE_TOTEM_WARRIOR = 'path of the totem warrior';
 
     const BARD = 'bard';
 
@@ -19,6 +20,7 @@ class CharacterClassEnum extends Enum
     const CIRCLE_OF_MOON_DRUID = 'circle of moon druid';
 
     const FIGHTER = 'fighter';
+    const CAVALIER = 'cavalier';
 
     const MONK = 'monk';
 
