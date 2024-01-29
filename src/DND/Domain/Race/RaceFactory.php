@@ -16,9 +16,9 @@ class RaceFactory
             ? RaceDataRepository::getSubraceData($raceEnum)
             : [];
 
-        $raceData = RaceHelper::isSubrace($raceEnum)
-            ? RaceDataRepository::getRaceData(RaceHelper::getBaseRace($raceEnum))
-            : RaceDataRepository::getRaceData($raceEnum);
+        $raceData = RaceHelper::isBaseRace($raceEnum)
+            ? RaceDataRepository::getRaceData($raceEnum)
+            : RaceDataRepository::getRaceData(RaceHelper::getBaseRace($raceEnum));
 
         return new Race(
             $raceEnum,
@@ -26,8 +26,7 @@ class RaceFactory
             $raceData['nightvision_in_meters'],
             $raceData['languages'],
             $raceData['ASI'] + ($subraceData['ASI'] ?? []),
-            $raceData['skills'],
-            $subraceData['skills'] ?? []
+            $raceData['skills'] + ($subraceData['skills'] ?? [])
         );
     }
 }

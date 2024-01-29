@@ -13,6 +13,7 @@ class RaceHelper
         RaceEnum::HUMAN => [RaceEnum::HUMAN_VARIANT],
         RaceEnum::DRAGONBORN => [RaceEnum::COPPER_DRAGONBORN],
         RaceEnum::TIEFLING => [],
+        RaceEnum::LIZARDFOLK => [],
         RaceEnum::ELF => [RaceEnum::HIGH_ELF],
     ];
 
@@ -37,7 +38,6 @@ class RaceHelper
             }
         }
 
-        // @todo changeme
-        throw new \Exception('Base race not found');
+        throw new \Exception('Base race not found.');
     }
 }
