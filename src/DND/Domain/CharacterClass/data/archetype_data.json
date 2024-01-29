@@ -10,6 +10,11 @@
       "6": ["mindless rage"]
     }
   },
+  "path of the totem warrior": {
+    "skills": {
+      "3": ["bear spirit totem", "spirit seeker"]
+    }
+  },
   "oath of the ancients paladin": {
     "skills": {
       "3": ["oath of the ancients paladin spells", "oath of the ancients paladin channel divinity"],
@@ -26,6 +31,11 @@
     "skills": {
       "2": ["combat wild shape", "circle forms"],
       "6": ["primal strike"]
+    }
+  },
+  "cavalier": {
+    "skills": {
+      "3": ["bonus proficiency", "born to the saddle", "unwavering mark"]
     }
   }
 }

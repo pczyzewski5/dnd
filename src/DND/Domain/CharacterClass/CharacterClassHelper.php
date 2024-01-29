@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\CharacterClass;
 
 use DND\Domain\Enum\CharacterClassEnum;
@@ -8,8 +10,9 @@ class CharacterClassHelper
 {
     private const CLASS_TO_ARCHETYPE = [
         CharacterClassEnum::RANGER => [],
+        CharacterClassEnum::FIGHTER => [CharacterClassEnum::CAVALIER],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
-        CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER],
+        CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER, CharacterClassEnum::PATH_OF_THE_TOTEM_WARRIOR],
         CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS_PALADIN],
         CharacterClassEnum::SORCERER => [CharacterClassEnum::WILD_MAGIC_SORCERER],
         CharacterClassEnum::DRUID => [CharacterClassEnum::CIRCLE_OF_MOON_DRUID],
@@ -36,7 +39,6 @@ class CharacterClassHelper
             }
         }
 
-        // @todo changeme
-        throw new \Exception('Base class not found');
+        throw new \Exception('Base class not found.');
     }
 }

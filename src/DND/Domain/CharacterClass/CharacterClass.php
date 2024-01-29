@@ -1,42 +1,55 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\CharacterClass;
 
 use DND\Domain\Enum\CharacterClassEnum;
+use DND\Domain\Enum\ProficiencyEnum;
 
 class CharacterClass
 {
     private CharacterClassEnum $characterClassEnum;
+    private int $isMainClass;
     private array $proficiencies;
     private array $multiclassProficiencies;
     private array $skills;
 
     public function __construct(
         CharacterClassEnum $characterClassEnum,
+        bool $isMainClass,
         array $proficiencies,
         array $multiclassProficiencies,
-        array $skills,
-        array $archetypeSkills
+        array $skills
     ) {
         $this->characterClassEnum = $characterClassEnum;
+        $this->isMainClass = $isMainClass;
         $this->proficiencies = $proficiencies;
         $this->multiclassProficiencies = $multiclassProficiencies;
-        $this->skills = $this->mergeSkills($skills, $archetypeSkills);
+        $this->skills = $skills;
     }
 
-    public function getName(): string
+    public function getCharacterClassEnum(): CharacterClassEnum
     {
-        return $this->characterClassEnum->getValue();
+        return $this->characterClassEnum;
     }
 
+    /**
+     * @return ProficiencyEnum[]
+     */
     public function getProficiencies(): array
     {
-        return $this->proficiencies;
-    }
+        $result = [];
 
-    public function getMulticlassProficiencies(): array
-    {
-        return $this->multiclassProficiencies;
+        $proficiencies = $this->isMainClass
+            ? $this->proficiencies
+            : $this->multiclassProficiencies;
+
+        foreach ($proficiencies as $proficiency) {
+            $result[] = ProficiencyEnum::from($proficiency);
+        }
+
+        return $result;
     }
 
     public function getSkills(): array
@@ -47,29 +60,5 @@ class CharacterClass
     public function equals(CharacterClass $characterClass): bool
     {
         return $this->characterClassEnum->equals($characterClass->getCharacterClassEnum());
-    }
-
-    public function getCharacterClassEnum(): CharacterClassEnum
-    {
-        return $this->characterClassEnum;
-    }
-
-    private function mergeSkills(array $skillsA, array $skillsB): array
-    {
-        $result = [];
-
-        $levels = \range(1, 20);
-        foreach ($levels as $level) {
-            $skills = \array_merge(
-                $skillsA[$level] ?? [],
-                $skillsB[$level] ?? []
-            );
-
-            if (false === empty($skills)) {
-                $result[$level] = $skills;
-            }
-        }
-
-        return $result;
     }
 }

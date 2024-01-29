@@ -27,6 +27,15 @@
       "1": ["favored enemy", "natural explorer"]
     }
   },
+  "fighter": {
+    "proficiencies": ["str", "con","light armors", "medium armors", "heavy armors", "shields", "simple weapons", "martial weapons"],
+    "multiclass_proficiencies": ["light armors", "medium armors", "shields", "simple weapons", "martial weapons"],
+    "skills": {
+      "1": ["second wind"],
+      "2": ["action surge"],
+      "5": ["bonus attack"]
+    }
+  },
   "paladin": {
     "proficiencies": ["wis", "cha", "light armors", "medium armors", "heavy armors", "shields", "simple weapons", "martial weapons"],
     "multiclass_proficiencies": [],
