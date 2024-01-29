@@ -26,7 +26,7 @@ class CharacterRepository implements DomainRepository
             throw CharacterNotFoundException::notFound($id);
         }
 
-        return CharacterMapper::toDomain($entity);
+        return CharacterFactory::createFromEntity($entity);
     }
 
     /**
@@ -34,7 +34,7 @@ class CharacterRepository implements DomainRepository
      */
     public function findAll(): array
     {
-        return CharacterMapper::mapArrayToDomain(
+        return CharacterFactory::createManyFromEntities(
             $this->entityManager->getRepository(Character::class)->findAll()
         );
     }
@@ -48,6 +48,6 @@ class CharacterRepository implements DomainRepository
             'ownerId' => $ownerId
         ]);
 
-        return CharacterMapper::mapArrayToDomain($characters);
+        return CharacterFactory::createManyFromEntities($characters);
     }
 }
