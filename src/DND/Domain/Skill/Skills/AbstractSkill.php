@@ -17,23 +17,16 @@ abstract class AbstractSkill
 
     protected Character $character;
     protected string $name;
-    protected int $grantLevel;
 
-    public function __construct(Character $character, string $skillName, int $grantLevel)
+    public function __construct(Character $character, string $name)
     {
         $this->character = $character;
-        $this->name = $skillName;
-        $this->grantLevel = $grantLevel;
+        $this->name = $name;
     }
 
     public function getName(): string
     {
         return \str_replace('feat ', '', $this->name);
-    }
-
-    public function getGrantLevel(): int
-    {
-        return $this->grantLevel;
     }
 
     public function getUsageCount(): int

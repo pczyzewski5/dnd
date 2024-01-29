@@ -29,13 +29,13 @@ class Rage extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        return self::RAGE_LEVELS[$this->character->getActualLevel()]['count'];
+        return self::RAGE_LEVELS[$this->character->getLevels()->getLevel()]['count'];
     }
 
     public function getContext(): array
     {
         return [
-            'damage' => self::RAGE_LEVELS[$this->character->getActualLevel()]['damage']
+            'damage' => self::RAGE_LEVELS[$this->character->getLevels()->getLevel()]['damage']
         ];
     }
 }
