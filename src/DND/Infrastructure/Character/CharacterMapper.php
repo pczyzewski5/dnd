@@ -23,6 +23,11 @@ class CharacterMapper
         // @todo please refactor me
         $data = \json_decode($entity->data, true);
 
+        if (\array_key_exists('input_filename', $data)) {
+            $data = \file_get_contents(Kernel::getProjectDirectory() . '/input/' . $data['input_filename']);
+            $data = \json_decode($data, true);
+        }
+
         $levels = LevelsFactory::fromArray($data['levels']);
         $characterClass = CharacterClassFactory::create(
             CharacterClassResolver::getCharacterClass($levels)
