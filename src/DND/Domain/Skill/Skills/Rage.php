@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DND\Domain\Skill\Skills;
 
+use DND\Domain\CharacterClass\CharacterClassHelper;
+use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\SkillTagEnum;
 
 class Rage extends AbstractSkill
@@ -29,7 +31,19 @@ class Rage extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        return self::RAGE_LEVELS[$this->character->getLevels()->getLevel()]['count'];
+        foreach ($this->character->getCharacterClassCollection()->getCharacterClasses() as $characterClass) {
+            $characterClassEnum = $characterClass->getCharacterClassEnum();
+            if (CharacterClassHelper::isArchetype($characterClassEnum)) {
+                $characterClassEnum = CharacterClassHelper::getBaseClass($characterClassEnum);
+            }
+
+            if ($characterClassEnum->getValue() === CharacterClassEnum::BARBARIAN) {
+                $barbarianLevel = $characterClass->getLevel();
+                break;
+            }
+        }
+
+        return self::RAGE_LEVELS[$barbarianLevel]['count'];
     }
 
     public function getContext(): array

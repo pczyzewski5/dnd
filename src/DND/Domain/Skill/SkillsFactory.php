@@ -12,7 +12,7 @@ class SkillsFactory
     {
         $result = new Skills();
 
-        foreach ($character->getCharacterClasses() as $characterClass) {
+        foreach ($character->getCharacterClassCollection()->getCharacterClasses() as $characterClass) {
             foreach ($characterClass->getSkills() as $skillName) {
                 $result->addSkill(SkillFactory::create($character, $skillName));
             }

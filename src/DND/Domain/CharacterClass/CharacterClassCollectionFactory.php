@@ -7,14 +7,11 @@ namespace DND\Domain\CharacterClass;
 use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Level\Levels;
 
-class CharacterClassFactory
+class CharacterClassCollectionFactory
 {
-    /**
-     * @return CharacterClass[]
-     */
-    public static function createFromLevels(Levels $levels): array
+    public static function createFromLevels(Levels $levels): CharacterClassCollection
     {
-        $result = [];
+        $result = new CharacterClassCollection();
 
         foreach ($levels->getClassToLevel() as $class => $level) {
             $class = CharacterClassEnum::from($class);
@@ -47,12 +44,15 @@ class CharacterClassFactory
                 }
             }
 
-            $result[] = new CharacterClass(
-                $class,
-                self::isMainClass($class, $levels),
-                $classData['proficiencies'],
-                $classData['multiclass_proficiencies'],
-                $allSkills
+            $result->addCharacterClass(
+                new CharacterClass(
+                    $class,
+                    $level,
+                    self::isMainClass($class, $levels),
+                    $classData['proficiencies'],
+                    $classData['multiclass_proficiencies'],
+                    $allSkills
+                )
             );
         }
 

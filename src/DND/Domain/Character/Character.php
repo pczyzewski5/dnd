@@ -14,6 +14,7 @@ use DND\Domain\Calculators\HitPointsCalculator;
 use DND\Domain\Calculators\InitiativeCalculator;
 use DND\Domain\Calculators\SpeedCalculator;
 use DND\Domain\CharacterClass\CharacterClass;
+use DND\Domain\CharacterClass\CharacterClassCollection;
 use DND\Domain\Enum\AlignmentEnum;
 use DND\Domain\Level\Levels;
 use DND\Domain\Proficiency\Proficiencies;
@@ -26,7 +27,7 @@ use DND\Domain\Spellcasting\Spellcasting;
 class Character
 {
     private string $id;
-    private array $characterClasses;
+    private CharacterClassCollection $characterClassCollection;
     private AbilitySkills $abilitySkills;
     private Proficiencies $proficiencies;
     private SavingThrows $savingThrows;
@@ -47,7 +48,7 @@ class Character
 
     public function __construct(
         string $id,
-        array $characterClasses,
+        CharacterClassCollection $characterClassCollection,
         AbilitySkills $abilitySkills,
         Proficiencies $proficiencies,
         SavingThrows $savingThrows,
@@ -63,7 +64,7 @@ class Character
         array $languages,
     ) {
         $this->id = $id;
-        $this->characterClasses = $characterClasses;
+        $this->characterClassCollection = $characterClassCollection;
         $this->abilitySkills = $abilitySkills;
         $this->proficiencies = $proficiencies;
         $this->savingThrows = $savingThrows;
@@ -125,20 +126,9 @@ class Character
     /**
      * @return CharacterClass[]
      */
-    public function getCharacterClasses(): array
+    public function getCharacterClassCollection(): CharacterClassCollection
     {
-        return $this->characterClasses;
-    }
-
-    public function getCharacterClassFullName(): string
-    {
-        $result = [];
-
-        foreach ($this->getCharacterClasses() as $characterClass) {
-            $result[] = \ucwords($characterClass->getCharacterClassEnum()->getValue());
-        }
-
-        return \implode(' - ', $result);
+        return $this->characterClassCollection;
     }
 
     public function getSkills(): Skills

@@ -1,21 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DND\Domain\Proficiency;
 
-use DND\Domain\CharacterClass\CharacterClass;
+use DND\Domain\CharacterClass\CharacterClassCollection;
 use DND\Domain\Enum\ProficiencyEnum;
 
 class ProficienciesFactory
 {
     public static function create(
-        array $characterClasses,
+        CharacterClassCollection $characterClassCollection,
         array $proficiencies,
         ?array $expertProficiencies = []
     ): Proficiencies {
         $result = new Proficiencies();
 
-        /** @var CharacterClass $characterClass */
-        foreach ($characterClasses as $characterClass) {
+        foreach ($characterClassCollection->getCharacterClasses() as $characterClass) {
             foreach ($characterClass->getProficiencies() as $proficiency) {
                 $result->addProficiency($proficiency);
             }

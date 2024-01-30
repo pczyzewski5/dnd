@@ -10,6 +10,7 @@ use DND\Domain\Enum\ProficiencyEnum;
 class CharacterClass
 {
     private CharacterClassEnum $characterClassEnum;
+    private int $level;
     private bool $isMainClass;
     private array $proficiencies;
     private array $multiclassProficiencies;
@@ -17,12 +18,14 @@ class CharacterClass
 
     public function __construct(
         CharacterClassEnum $characterClassEnum,
+        int $level,
         bool $isMainClass,
         array $proficiencies,
         array $multiclassProficiencies,
         array $skills
     ) {
         $this->characterClassEnum = $characterClassEnum;
+        $this->level = $level;
         $this->isMainClass = $isMainClass;
         $this->proficiencies = $proficiencies;
         $this->multiclassProficiencies = $multiclassProficiencies;
@@ -32,6 +35,11 @@ class CharacterClass
     public function getCharacterClassEnum(): CharacterClassEnum
     {
         return $this->characterClassEnum;
+    }
+
+    public function getLevel(): int
+    {
+        return $this->level;
     }
 
     public function isMainClass(): bool
