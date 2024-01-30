@@ -38,7 +38,7 @@ class MordimerCharacterCardTest extends TestCase
     {
         $this->assertSame('Mordimer Madderdin', $this->characterUnderTest->getCharacterName());
         $this->assertSame('assassin', $this->characterUnderTest->getCharacterClass()->getName());
-        $this->assertSame(9, $this->characterUnderTest->getActualLevel());
+        $this->assertSame(9, $this->characterUnderTest->getLevels()->getLevel());
         $this->assertSame('akolita', $this->characterUnderTest->getOrigin());
         $this->assertSame('Paweł', $this->characterUnderTest->getPlayerName());
         $this->assertSame('lightfoot halfling', $this->characterUnderTest->getRace()->getName());

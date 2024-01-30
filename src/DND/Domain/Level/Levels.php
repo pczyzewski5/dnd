@@ -51,6 +51,9 @@ class Levels
             $class = CharacterClassEnum::from($class);
             if (CharacterClassHelper::isArchetype($class)) {
                 $baseClass = CharacterClassHelper::getBaseClass($class)->getValue();
+                if ($baseClass === CharacterClassEnum::SORCERER) {
+                    continue;
+                }
                 $result[$class->getValue()] += $result[$baseClass];
                 unset($result[$baseClass]);
             }
@@ -61,6 +64,6 @@ class Levels
 
     public function getProficiencyBonus(): int
     {
-       return (int)\ceil(1 + (count($this->levels) / 4));
+        return (int)\ceil(1 + (count($this->levels) / 4));
     }
 }

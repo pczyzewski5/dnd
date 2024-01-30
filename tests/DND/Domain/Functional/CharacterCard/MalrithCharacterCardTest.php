@@ -36,7 +36,7 @@ class MalrithCharacterCardTest extends TestCase
     {
         $this->assertSame('Malrith', $this->characterUnderTest->getCharacterName());
         $this->assertSame('oath of the ancients paladin', $this->characterUnderTest->getCharacterClass()->getName());
-        $this->assertSame(9, $this->characterUnderTest->getActualLevel());
+        $this->assertSame(9, $this->characterUnderTest->getLevels()->getLevel());
         $this->assertSame('mroczna przeszłość', $this->characterUnderTest->getOrigin());
         $this->assertSame('Bartek N', $this->characterUnderTest->getPlayerName());
         $this->assertSame('copper dragonborn', $this->characterUnderTest->getRace()->getName());

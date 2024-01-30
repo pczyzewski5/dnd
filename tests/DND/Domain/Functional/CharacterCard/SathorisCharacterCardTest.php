@@ -31,7 +31,7 @@ class SathorisCharacterCardTest extends TestCase
     {
         $this->assertSame('Sathoris', $this->characterUnderTest->getCharacterName());
         $this->assertSame('wild magic sorcerer', $this->characterUnderTest->getCharacterClass()->getName());
-        $this->assertSame(9, $this->characterUnderTest->getActualLevel());
+        $this->assertSame(9, $this->characterUnderTest->getLevels()->getLevel());
         $this->assertSame('szlachcic', $this->characterUnderTest->getOrigin());
         $this->assertSame('Wiktoria I', $this->characterUnderTest->getPlayerName());
         $this->assertSame('tiefling', $this->characterUnderTest->getRace()->getName());

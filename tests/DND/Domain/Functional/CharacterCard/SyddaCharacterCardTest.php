@@ -31,7 +31,7 @@ class SyddaCharacterCardTest extends TestCase
     {
         $this->assertSame('Sydda', $this->characterUnderTest->getCharacterName());
         $this->assertSame('berserker', $this->characterUnderTest->getCharacterClass()->getName());
-        $this->assertSame(9, $this->characterUnderTest->getActualLevel());
+        $this->assertSame(9, $this->characterUnderTest->getLevels()->getLevel());
         $this->assertSame('ludowy bohater', $this->characterUnderTest->getOrigin());
         $this->assertSame('Bartek J', $this->characterUnderTest->getPlayerName());
         $this->assertSame('human', $this->characterUnderTest->getRace()->getName());

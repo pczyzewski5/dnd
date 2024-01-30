@@ -16,7 +16,7 @@ class SneakAttack extends AbstractSkill
     public function getContext(): array
     {
         return [
-            'sneakAttackDiceCount' => \ceil($this->character->getActualLevel() / 2)
+            'sneakAttackDiceCount' => \ceil($this->character->getLevels()->getLevel() / 2)
         ];
     }
 }

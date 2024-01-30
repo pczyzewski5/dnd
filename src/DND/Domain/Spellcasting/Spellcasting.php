@@ -7,6 +7,7 @@ use DND\Domain\CharacterClass\CharacterClassHelper;
 use DND\Domain\Enum\AbilityEnum;
 use DND\Domain\Enum\CharacterClassEnum;
 
+// @todo need total refactor
 class Spellcasting
 {
     // @todo move to repo?
@@ -63,7 +64,7 @@ class Spellcasting
         $spellcastingAbilityGeter = 'get' . \ucfirst($spellcastingAbility);
         $spellcastingAbilityMod = $character->getAbilities()->$spellcastingAbilityGeter()->getModifier();
 
-        $halvedCurrentLevel = (int)\floor($character->getActualLevel() / 2);
+        $halvedCurrentLevel = (int)\floor($character->getLevels()->getLevel() / 2);
         $proficiencyBonus = $character->getProficiencyBonus();
 
         // @todo changeme
@@ -72,7 +73,7 @@ class Spellcasting
                 $spellCount = $spellcastingAbilityMod + $halvedCurrentLevel;
                 break;
             case CharacterClassEnum::DRUID:
-                $spellCount = $spellcastingAbilityMod + $character->getActualLevel();
+                $spellCount = $spellcastingAbilityMod + $character->getLevels()->getLevel();
                 break;
             case CharacterClassEnum::SORCERER:
                 $spellCount = 10;
@@ -94,7 +95,7 @@ class Spellcasting
         $result = [];
 
         foreach ($levelToSpellCircles as $level => $spellCircles) {
-            if ($character->getActualLevel() >= $level) {
+            if ($character->getLevels()->getLevel() >= $level) {
                 $result = $spellCircles;
                 break;
             }
@@ -105,7 +106,7 @@ class Spellcasting
 
     private function getCharacterClassName(Character $character): string
     {
-        $characterClassEnum = $character->getCharacterClass()->getCharacterClassEnum();
+        $characterClassEnum = $character->getCharacterClasses()[0]->getCharacterClassEnum();
 
         return CharacterClassHelper::isArchetype($characterClassEnum)
             ? CharacterClassHelper::getBaseClass($characterClassEnum)->getValue()

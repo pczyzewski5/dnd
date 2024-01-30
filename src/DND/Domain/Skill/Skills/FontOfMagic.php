@@ -15,7 +15,7 @@ class FontOfMagic extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        return $this->character->getActualLevel();
+        return $this->character->getLevels()->getLevel();
     }
 
     public function getContext(): array

@@ -16,7 +16,7 @@ class LayOnHands extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        return $this->character->getActualLevel() * 5;
+        return $this->character->getLevels()->getLevel() * 5;
     }
 
     public function getContext(): array

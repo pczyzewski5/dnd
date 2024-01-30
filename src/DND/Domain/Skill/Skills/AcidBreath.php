@@ -28,7 +28,7 @@ class AcidBreath extends AbstractSkill
     public function getContext(): array
     {
         foreach (self::LEVEL_TO_DMG as $level => $dmg) {
-            if ($this->character->getActualLevel() >= $level) {
+            if ($this->character->getLevels()->getLevel() >= $level) {
                 break;
             }
         }

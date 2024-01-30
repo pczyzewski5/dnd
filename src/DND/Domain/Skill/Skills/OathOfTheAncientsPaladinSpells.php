@@ -17,7 +17,7 @@ class OathOfTheAncientsPaladinSpells extends AbstractSkill
         $oathSpells = [];
 
         foreach (self::LEVEL_TO_SPELLS as $level => $spells) {
-            if ($this->character->getActualLevel() >= $level) {
+            if ($this->character->getLevels()->getLevel() >= $level) {
                 $oathSpells = \array_merge($oathSpells, $spells);
             }
         }

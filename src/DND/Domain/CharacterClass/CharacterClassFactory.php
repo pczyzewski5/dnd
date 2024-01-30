@@ -29,10 +29,9 @@ class CharacterClassFactory
                     CharacterClassHelper::getBaseClass($class)
                 );
 
-
             $allSkills = [];
 
-            foreach ($archetypeData['skills'] as $skillsLevel => $skills) {
+            foreach ($archetypeData['skills'] ?? [] as $skillsLevel => $skills) {
                 if ($skillsLevel <= $level) {
                     foreach ($skills as $skill) {
                         $allSkills[] = $skill;

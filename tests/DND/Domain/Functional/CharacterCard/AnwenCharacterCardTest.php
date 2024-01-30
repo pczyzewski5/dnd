@@ -34,7 +34,7 @@ class AnwenCharacterCardTest extends TestCase
     {
         $this->assertSame('Anwen', $this->characterUnderTest->getCharacterName());
         $this->assertSame('circle of moon druid', $this->characterUnderTest->getCharacterClass()->getName());
-        $this->assertSame(9, $this->characterUnderTest->getActualLevel());
+        $this->assertSame(9, $this->characterUnderTest->getLevels()->getLevel());
         $this->assertSame('mędrzec', $this->characterUnderTest->getOrigin());
         $this->assertSame('Kasia', $this->characterUnderTest->getPlayerName());
         $this->assertSame('high elf', $this->characterUnderTest->getRace()->getName());

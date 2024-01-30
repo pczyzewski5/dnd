@@ -15,8 +15,8 @@ class CircleForms extends AbstractSkill
     public function getContext(): array
     {
         return [
-            'CR' => $this->character->getActualLevel() >= 6
-                ? (int)\floor($this->character->getActualLevel() / 3)
+            'CR' => $this->character->getLevels()->getLevel() >= 6
+                ? (int)\floor($this->character->getLevels()->getLevel() / 3)
                 : 1
         ];
     }

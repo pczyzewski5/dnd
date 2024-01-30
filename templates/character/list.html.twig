@@ -15,7 +15,6 @@
             <th>klasa</th>
             <th>poziom</th>
             <th>kampania</th>
-            <th>utworzono</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +24,8 @@
                 <td>{{ character.getCharacterName() }}</td>
                 <td>{{ character.getRace().getName()|ucWords }}</td>
                 <td>{{ character.getCharacterClassFullName() }}</td>
-                <td>{{ character.getActualLevel() }}</td>
+                <td>{{ character.getLevels().getLevel() }}</td>
                 <td>{{ character.getCampaignName() }}</td>
-                <td>{{ character.getCreatedAt().format('Y-m-d H:i:s') }}</td>
             </tr>
         {% endfor %}
         </tbody>

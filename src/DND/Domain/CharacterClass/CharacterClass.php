@@ -34,6 +34,11 @@ class CharacterClass
         return $this->characterClassEnum;
     }
 
+    public function isMainClass(): bool
+    {
+        return $this->isMainClass;
+    }
+
     /**
      * @return ProficiencyEnum[]
      */
