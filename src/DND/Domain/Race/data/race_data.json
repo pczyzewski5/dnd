@@ -37,7 +37,7 @@
       "con": 2,
       "dex": 1
     },
-    "skills": ["hungry jaws", "natural armor", "hold breath", "bite", "nature intuition"],
+    "skills": ["bite", "hold breath", "hungry jaws", "natural armor", "nature intuition"],
     "languages": ["common"],
     "speed_in_meters": 9,
     "nightvision_in_meters": 0

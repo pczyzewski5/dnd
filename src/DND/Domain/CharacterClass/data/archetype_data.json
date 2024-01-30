@@ -6,13 +6,13 @@
   },
   "berserker": {
     "skills": {
-      "3": ["frenzy"],
+      "3": ["frenzy", "exhaustion"],
       "6": ["mindless rage"]
     }
   },
   "path of the totem warrior": {
     "skills": {
-      "3": ["bear spirit totem", "spirit seeker"]
+      "3": ["spirit seeker", "bear spirit totem"]
     }
   },
   "oath of the ancients paladin": {
@@ -35,7 +35,7 @@
   },
   "cavalier": {
     "skills": {
-      "3": ["bonus proficiency", "born to the saddle", "unwavering mark"]
+      "3": ["born to the saddle", "unwavering mark"]
     }
   }
 }
