@@ -43,13 +43,18 @@
     "cha": 8
   },
   "asi": {
-    "con": 2
+    "dex": 2
   },
   "proficiencies": [
-    "persuasion"
+    "stealth",
+    "nature",
+    "perception",
+    "intimidation",
+    "insight",
+    "performance"
   ],
   "expert_proficiencies": [],
-  "languages": [],
+  "languages": ["draconic"],
   "extra_skills": ["fighting style protection"],
   "feats": [
     "defensive duelist"
