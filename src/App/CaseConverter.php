@@ -24,6 +24,14 @@ class CaseConverter
        return \implode('', $string);
    }
 
+   public static function normalToScreamingSnake(string $string): string
+   {
+       $string = self::cleanup($string);
+       $string = \explode(' ', $string);
+
+       return \strtoupper(\implode('_', $string));
+   }
+
    private static function cleanup(string $string): string
    {
        return \preg_replace('/[^A-Za-z ąśćźżńłęó]/', '', $string);
