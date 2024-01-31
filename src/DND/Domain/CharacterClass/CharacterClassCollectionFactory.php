@@ -21,8 +21,8 @@ class CharacterClassCollectionFactory
                 : [];
 
             $classData = CharacterClassDataRepository::getCharacterClassData(
-                    CharacterClassHelper::toBaseClass($class)
-                );
+                CharacterClassHelper::toBaseClass($class)
+            );
 
             $allSkills = [];
 
@@ -56,30 +56,24 @@ class CharacterClassCollectionFactory
 
         return $result;
     }
-    //chgme
+
     private static function isMainClass(CharacterClassEnum $givenClass, Levels $levels): bool
     {
-        $isMainClass = false;
-
         foreach ($levels->getLevels() as $level) {
-            $class = $level->getCharacterClassEnum();
-            if (CharacterClassHelper::isArchetype($class)) {
-                $class = CharacterClassHelper::toBaseClass($class);
-            }
+            $class = CharacterClassHelper::toBaseClass(
+                $level->getCharacterClassEnum()
+            );
 
             if (isset($previousClass)) {
                 if (!$previousClass->equals($class)) {
-                    if (CharacterClassHelper::isArchetype($givenClass)) {
-                        $givenClass = CharacterClassHelper::toBaseClass($givenClass);
-                    }
-
-                    $isMainClass = $previousClass->equals($givenClass);
-                    break;
+                    return $previousClass->equals(
+                        CharacterClassHelper::toBaseClass($givenClass)
+                    );
                 }
             }
             $previousClass = $class;
         }
 
-        return $isMainClass;
+        return false;
     }
 }
