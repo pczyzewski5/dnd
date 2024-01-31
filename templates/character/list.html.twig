@@ -19,11 +19,17 @@
         </thead>
         <tbody>
         {% for key, character in characters %}
+            {% set className = character.getCharacterClassCollection().getMainClassName()|ucWords %}
+            {% set subclassName = character.getCharacterClassCollection().getSubclassName() %}
+            {% if subclassName is not null %}
+                {% set className = className ~ ' - ' ~ subclassName|ucWords %}
+            {% endif %}
+
             <tr class="table-item" href="{{ path('character_read', {'id': character.getId()}) }}">
                 <td>{{ key + 1 }}</td>
                 <td>{{ character.getCharacterName() }}</td>
                 <td>{{ character.getRace().getName()|ucWords }}</td>
-                <td>{{ character.getCharacterClassFullName() }}</td>
+                <td>{{ className }}</td>
                 <td>{{ character.getLevels().getLevel() }}</td>
                 <td>{{ character.getCampaignName() }}</td>
             </tr>
