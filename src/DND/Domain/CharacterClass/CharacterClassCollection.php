@@ -55,9 +55,13 @@ class CharacterClassCollection
             : $this->getSubclass()->getCharacterClassEnum()->getValue();
     }
 
-    public function getClassLevel(CharacterClassEnum $givenCharacterClassEnum): int
+    public function getClassLevel(CharacterClassEnum|string $givenCharacterClassEnum): int
     {
         $level = 0;
+
+        if (\is_string($givenCharacterClassEnum)) {
+            $givenCharacterClassEnum = CharacterClassEnum::from($givenCharacterClassEnum);
+        }
 
         $givenCharacterClassEnum = CharacterClassHelper::toBaseClass(
             $givenCharacterClassEnum
