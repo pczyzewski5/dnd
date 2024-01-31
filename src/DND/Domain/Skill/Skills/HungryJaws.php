@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace DND\Domain\Skill\Skills;
 
-use DND\Domain\Enum\CharacterClassEnum;
 use DND\Domain\Enum\SkillTagEnum;
 
-class SecondWind extends AbstractSkill
+class HungryJaws extends AbstractSkill
 {
     protected const TAGS = [
         SkillTagEnum::ACTIVE,
@@ -16,13 +15,13 @@ class SecondWind extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        return 1;
+        return $this->character->getLevels()->getProficiencyBonus();
     }
 
     public function getContext(): array
     {
        return [
-           'bonus_hp' => $this->character->getCharacterClassCollection()->getClassLevel(CharacterClassEnum::FIGHTER)
+           'bonus_hp' => $this->getUsageCount(),
        ];
     }
 }

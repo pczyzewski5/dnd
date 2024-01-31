@@ -6,14 +6,16 @@ namespace DND\Domain\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class BonusAttack extends AbstractSkill
+class FeatDefensiveDuelist extends AbstractSkill
 {
     protected const TAGS = [
-        SkillTagEnum::HIDDEN
+        SkillTagEnum::ACTIVE,
     ];
 
     public function getContext(): array
     {
-        return [];
+        return [
+            'bonus_ac' => $this->character->getLevels()->getProficiencyBonus()
+        ];
     }
 }

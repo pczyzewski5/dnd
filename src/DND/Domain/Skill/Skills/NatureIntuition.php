@@ -6,7 +6,7 @@ namespace DND\Domain\Skill\Skills;
 
 use DND\Domain\Enum\SkillTagEnum;
 
-class BonusAttack extends AbstractSkill
+class NatureIntuition extends AbstractSkill
 {
     protected const TAGS = [
         SkillTagEnum::HIDDEN

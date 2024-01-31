@@ -1,10 +1,10 @@
 {
-  "character_name": "Lizard",
+  "character_name": "Kesselar",
   "player_name": "Paweł",
-  "campaign_name": "Klątwa Sthrada",
-  "origin": "akolita",
+  "campaign_name": "Twierdza",
+  "origin": "myśliwy",
   "race": "lizardfolk",
-  "alignment": "neutral evil",
+  "alignment": "neutral",
   "levels": {
     "1": {
       "class": "barbarian"
@@ -51,7 +51,9 @@
     "perception",
     "intimidation",
     "insight",
-    "performance"
+    "performance",
+    "acrobatics",
+    "survival"
   ],
   "expert_proficiencies": [],
   "languages": ["draconic"],
