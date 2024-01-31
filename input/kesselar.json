@@ -43,7 +43,7 @@
     "cha": 8
   },
   "asi": {
-    "dex": 2
+
   },
   "proficiencies": [
     "stealth",
@@ -59,6 +59,7 @@
   "languages": ["draconic"],
   "extra_skills": ["fighting style protection"],
   "feats": [
-    "defensive duelist"
+    "defensive duelist",
+    "sentinel"
   ]
 }
