@@ -106,7 +106,7 @@ class Spellcasting
 
     private function getCharacterClassName(Character $character): string
     {
-        $characterClassEnum = $character->getCharacterClasses()[0]->getCharacterClassEnum();
+        $characterClassEnum = $character->getCharacterClassCollection()->getMainClass()->getCharacterClassEnum();
 
         return CharacterClassHelper::toBaseClass($characterClassEnum)->getValue();
     }
