@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace DND\Domain\CharacterCard\SectionBuilder;
 
-use DND\Domain\Skill\Skills\AcidResistance;
-use DND\Domain\Skill\Skills\DivineHealth;
-use DND\Domain\Skill\Skills\HellishResistance;
+use DND\Domain\Enum\SkillEnum;
 
 class ResistancesImmunitiesSectionBuilder extends AbstractSectionBuilder
 {
     private const SKILL_TO_RESISTANCE = [
-        AcidResistance::class => 'acid',
-        DivineHealth::class => 'diseases',
-        HellishResistance::class => 'fire',
+        SkillEnum::ACID_RESISTANCE => 'acid',
+        SkillEnum::DIVINE_HEALTH => 'diseases',
+        SkillEnum::HELLISH_RESISTANCE => 'fire',
     ];
 
     public function build(): string

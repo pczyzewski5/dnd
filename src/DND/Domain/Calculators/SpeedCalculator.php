@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DND\Domain\Calculators;
 
+use DND\Domain\Enum\SkillEnum;
 use DND\Domain\Race\Race;
 use DND\Domain\Skill\Skills;
-use DND\Domain\Skill\Skills\FastMovement;
 
 class SpeedCalculator
 {
@@ -14,10 +14,10 @@ class SpeedCalculator
     {
         $speed = DistanceCalculator::metersToHex($race->getSpeed());
 
-        if ($skills->hasSkill(FastMovement::class)) {
+        if ($skills->hasSkill(SkillEnum::FAST_MOVEMENT)) {
             $speed += 2;
         }
 
-        return \intval($speed);
+        return $speed;
     }
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace DND\Domain\Calculators;
 
 use DND\Domain\Ability\Abilities;
+use DND\Domain\Enum\SkillEnum;
 use DND\Domain\Skill\Skills;
-use DND\Domain\Skill\Skills\FeatAlert;
 
 class InitiativeCalculator
 {
@@ -14,7 +14,7 @@ class InitiativeCalculator
     {
        $initiative = $abilities->getDex()->getModifier();
 
-       if ($skills->hasSkill(FeatAlert::class)) {
+       if ($skills->hasSkill(SkillEnum::FEAT_ALERT)) {
            $initiative += 5;
        }
 

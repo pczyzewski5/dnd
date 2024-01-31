@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace DND\Domain\Calculators;
 
 use DND\Domain\Ability\Abilities;
+use DND\Domain\Enum\SkillEnum;
 use DND\Domain\Skill\Skills;
-use DND\Domain\Skill\Skills\UnarmoredDefense;
-use DND\Domain\Skill\Skills\NaturalArmor;
-use DND\Domain\Skill\Skills\FightingStyleProtection;
 
 class ArmorClassCalculator
 {
@@ -16,15 +14,15 @@ class ArmorClassCalculator
     {
         $acs = [$abilities->getDex()->getModifier() + 10];
 
-        if ($skills->hasSkill(UnarmoredDefense::class)) {
+        if ($skills->hasSkill(SkillEnum::UNARMORED_DEFENSE)) {
             $acs[] = $abilities->getCon()->getModifier() + $abilities->getDex()->getModifier() + 10;
         }
-        if ($skills->hasSkill(NaturalArmor::class)) {
+        if ($skills->hasSkill(SkillEnum::NATURAL_ARMOR)) {
             $acs[] = $abilities->getDex()->getModifier() + 13;
         }
 
         $ac = \max($acs);
-        if ($skills->hasSkill(FightingStyleProtection::class)) {
+        if ($skills->hasSkill(SkillEnum::FIGHTING_STYLE_PROTECTION)) {
             $ac += 1;
         }
 

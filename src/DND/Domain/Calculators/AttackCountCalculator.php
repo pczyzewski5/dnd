@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DND\Domain\Calculators;
 
+use DND\Domain\Enum\SkillEnum;
 use DND\Domain\Skill\Skills;
-use DND\Domain\Skill\Skills\BonusAttack;
 
 class AttackCountCalculator
 {
@@ -13,7 +13,7 @@ class AttackCountCalculator
     {
         $count = 1;
 
-        if ($skills->hasSkill(BonusAttack::class)) {
+        if ($skills->hasSkill(SkillEnum::BONUS_ATTACK)) {
             $count += 1;
         }
 
