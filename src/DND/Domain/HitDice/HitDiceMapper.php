@@ -22,12 +22,8 @@ class HitDiceMapper
 
     public static function getHitDice(CharacterClassEnum $characterClassEnum): HitDiceEnum
     {
-        if (false === CharacterClassHelper::isBaseClass($characterClassEnum)) {
-            $characterClassEnum = CharacterClassHelper::getBaseClass($characterClassEnum);
-        }
-
         return HitDiceEnum::from(
-            self::CLASS_TO_DICE[$characterClassEnum->getValue()]
+            self::CLASS_TO_DICE[CharacterClassHelper::toBaseClass($characterClassEnum)->getValue()]
         );
     }
 }

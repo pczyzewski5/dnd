@@ -31,8 +31,12 @@ class CharacterClassHelper
         return false === self::isBaseClass($characterClassEnum);
     }
 
-    public static function getBaseClass(CharacterClassEnum $characterClassEnum): CharacterClassEnum
+    public static function toBaseClass(CharacterClassEnum $characterClassEnum): CharacterClassEnum
     {
+        if (self::isBaseClass($characterClassEnum)) {
+            return $characterClassEnum;
+        }
+
         foreach (self::CLASS_TO_ARCHETYPE as $baseClass => $archetypes) {
             if (\in_array($characterClassEnum->getValue(), $archetypes)) {
                 return CharacterClassEnum::from($baseClass);

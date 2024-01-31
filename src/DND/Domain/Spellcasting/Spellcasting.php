@@ -108,8 +108,6 @@ class Spellcasting
     {
         $characterClassEnum = $character->getCharacterClasses()[0]->getCharacterClassEnum();
 
-        return CharacterClassHelper::isArchetype($characterClassEnum)
-            ? CharacterClassHelper::getBaseClass($characterClassEnum)->getValue()
-            : $characterClassEnum->getValue();
+        return CharacterClassHelper::toBaseClass($characterClassEnum)->getValue();
     }
 }

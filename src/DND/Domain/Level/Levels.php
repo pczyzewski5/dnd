@@ -50,7 +50,7 @@ class Levels
         foreach ($result as $class => $level) {
             $class = CharacterClassEnum::from($class);
             if (CharacterClassHelper::isArchetype($class)) {
-                $baseClass = CharacterClassHelper::getBaseClass($class)->getValue();
+                $baseClass = CharacterClassHelper::toBaseClass($class)->getValue();
                 if ($baseClass === CharacterClassEnum::SORCERER) {
                     continue;
                 }
