@@ -32,12 +32,12 @@ class CharacterController extends BaseController
 
     public function read(Request $request): Response
     {
-        $html = $this->queryBus->handle(
-            new GetCharacterCardHtml($request->get('id'))
-        );
+        $id = $request->get('id');
+        $html = $this->queryBus->handle(new GetCharacterCardHtml($id));
 
         return $this->renderForm('character/read.html.twig', [
             'characterCardHtml' => $html,
+            'id' => $id
         ]);
     }
 
@@ -137,5 +137,16 @@ class CharacterController extends BaseController
         );
 
         return $this->redirectToRoute('item_card_list');
+    }
+
+    public function print(Request $request): Response
+    {
+        $html = $this->queryBus->handle(
+            new GetCharacterCardHtml($request->get('id'))
+        );
+
+        return $this->renderForm('character/print.html.twig', [
+            'characterCardHtml' => $html,
+        ]);
     }
 }

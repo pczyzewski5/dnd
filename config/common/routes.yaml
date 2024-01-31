@@ -69,6 +69,11 @@ character_read:
     controller: App\Controller\CharacterController::read
     methods: [ GET ]
 
+character_print:
+    path: /player/character/{id}/print
+    controller: App\Controller\CharacterController::print
+    methods: [ GET ]
+
 # index_controller
 calendar_list:
     path: /calendar/list

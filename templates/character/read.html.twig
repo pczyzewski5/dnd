@@ -3,6 +3,7 @@
     <div class="columns is-centered">
         <div class="column is-narrow">
             {{ characterCardHtml|raw }}
+            <a href="{{ path('character_print', {'id': id}) }}" target="_blank" class="button is-success is-fullwidth is-light mt-3">Drukuj</a>
         </div>
     </div>
 {% endblock %}
