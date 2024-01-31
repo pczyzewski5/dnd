@@ -57,14 +57,26 @@ class CharacterClassCollectionFactory
         return $result;
     }
 
+    // refactor me, move to static class? MainClassResolver or smt
     private static function isMainClass(CharacterClassEnum $givenClass, Levels $levels): bool
     {
+        $classExceptions = [
+            CharacterClassEnum::SORCERER
+        ];
+
         foreach ($levels->getLevels() as $level) {
             $class = CharacterClassHelper::toBaseClass(
                 $level->getCharacterClassEnum()
             );
 
+            if ($level->getLevel() === 1 && \in_array($class, $classExceptions)) {
+                return true;
+            }
+
             if (isset($previousClass)) {
+                if ($previousClass->equals($class) && $level->getLevel() === $levels->getLevel()) {
+                    return true;
+                }
                 if (!$previousClass->equals($class)) {
                     return $previousClass->equals(
                         CharacterClassHelper::toBaseClass($givenClass)
