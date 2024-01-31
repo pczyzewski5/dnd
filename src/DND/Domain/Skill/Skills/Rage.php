@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DND\Domain\Skill\Skills;
 
-use DND\Domain\CharacterClass\CharacterClassHelper;
 use DND\Domain\Enum\CharacterClassEnum;
+use DND\Domain\Enum\SkillEnum;
 use DND\Domain\Enum\SkillTagEnum;
 
 class Rage extends AbstractSkill
@@ -31,25 +31,27 @@ class Rage extends AbstractSkill
 
     public function getUsageCount(): int
     {
-        foreach ($this->character->getCharacterClassCollection()->getCharacterClasses() as $characterClass) {
-            $characterClassEnum = $characterClass->getCharacterClassEnum();
-            if (CharacterClassHelper::isArchetype($characterClassEnum)) {
-                $characterClassEnum = CharacterClassHelper::getBaseClass($characterClassEnum);
-            }
+        $level = $this->character->getCharacterClassCollection()->getClassLevel(
+            CharacterClassEnum::BARBARIAN()
+        );
 
-            if ($characterClassEnum->getValue() === CharacterClassEnum::BARBARIAN) {
-                $barbarianLevel = $characterClass->getLevel();
-                break;
-            }
-        }
-
-        return self::RAGE_LEVELS[$barbarianLevel]['count'];
+        return self::RAGE_LEVELS[$level]['count'];
     }
 
     public function getContext(): array
     {
+        $level = $this->character->getCharacterClassCollection()->getClassLevel(
+            CharacterClassEnum::BARBARIAN()
+        );
+
+        $resistances = 'otrzymujesz połowę obrażeń: siecznych, obuchowych oraz przebijających';
+        if ($this->character->getSkills()->hasSkill(SkillEnum::BEAR_SPIRIT_TOTEM)) {
+            $resistances = 'otrzymujesz połowę obrażeń każdego typu - prócz psychicznych';
+        }
+
         return [
-            'damage' => self::RAGE_LEVELS[$this->character->getLevels()->getLevel()]['damage']
+            'damage' => self::RAGE_LEVELS[$level]['damage'],
+            'resistances' => $resistances
         ];
     }
 }
