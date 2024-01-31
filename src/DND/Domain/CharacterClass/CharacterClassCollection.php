@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DND\Domain\CharacterClass;
 
+use DND\Domain\Enum\CharacterClassEnum;
+
 class CharacterClassCollection
 {
     /** @var CharacterClass[] */
@@ -51,5 +53,26 @@ class CharacterClassCollection
         return null === $this->getSubclass()
             ? null
             : $this->getSubclass()->getCharacterClassEnum()->getValue();
+    }
+
+    public function getClassLevel(CharacterClassEnum $givenCharacterClassEnum): int
+    {
+        $level = 0;
+
+        $givenCharacterClassEnum = CharacterClassHelper::toBaseClass(
+            $givenCharacterClassEnum
+        );
+
+        foreach ($this->characterClasses as $characterClass) {
+            $characterClassEnum = CharacterClassHelper::toBaseClass(
+                $characterClass->getCharacterClassEnum()
+            );
+
+            if ($characterClassEnum->getValue() === $givenCharacterClassEnum->getValue()) {
+                return $characterClass->getLevel();
+            }
+        }
+
+        return $level;
     }
 }
