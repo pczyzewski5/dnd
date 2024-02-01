@@ -12,7 +12,11 @@ class CharacterClassHelper
         CharacterClassEnum::RANGER => [],
         CharacterClassEnum::FIGHTER => [CharacterClassEnum::CAVALIER],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
-        CharacterClassEnum::BARBARIAN => [CharacterClassEnum::BERSERKER, CharacterClassEnum::PATH_OF_THE_TOTEM_WARRIOR],
+        CharacterClassEnum::BARBARIAN => [
+            CharacterClassEnum::BERSERKER,
+            CharacterClassEnum::PATH_OF_THE_TOTEM_WARRIOR,
+            CharacterClassEnum::PATH_OF_THE_ANCESTRAL_GUARDIAN
+        ],
         CharacterClassEnum::PALADIN => [CharacterClassEnum::OATH_OF_THE_ANCIENTS_PALADIN],
         CharacterClassEnum::SORCERER => [CharacterClassEnum::WILD_MAGIC_SORCERER],
         CharacterClassEnum::DRUID => [CharacterClassEnum::CIRCLE_OF_MOON_DRUID],

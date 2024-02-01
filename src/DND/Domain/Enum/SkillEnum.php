@@ -65,4 +65,6 @@ class SkillEnum extends Enum
     const MYSTIC_WISDOM = 'mystic wisdom';
     const INFERNAL_LEGACY = 'infernal legacy';
     const SENTINEL = 'sentinel';
+    const ANCESTRAL_PROTECTORS = 'ancestral protectors';
+    const SPIRIT_SHIELD = 'spirit shield';
 }

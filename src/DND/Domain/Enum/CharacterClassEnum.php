@@ -11,6 +11,7 @@ class CharacterClassEnum extends Enum
     const BARBARIAN = 'barbarian';
     const BERSERKER = 'berserker';
     const PATH_OF_THE_TOTEM_WARRIOR = 'path of the totem warrior';
+    const PATH_OF_THE_ANCESTRAL_GUARDIAN = 'path of the ancestral guardian';
 
     const BARD = 'bard';
 

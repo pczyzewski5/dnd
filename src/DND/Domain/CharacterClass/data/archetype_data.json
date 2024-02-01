@@ -15,6 +15,12 @@
       "3": ["spirit seeker", "bear spirit totem"]
     }
   },
+  "path of the ancestral guardian": {
+    "skills": {
+      "3": ["ancestral protectors"],
+      "6": ["spirit shield"]
+    }
+  },
   "oath of the ancients paladin": {
     "skills": {
       "3": ["oath of the ancients paladin spells", "oath of the ancients paladin channel divinity"],
