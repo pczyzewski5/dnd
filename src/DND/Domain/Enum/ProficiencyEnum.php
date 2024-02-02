@@ -66,6 +66,7 @@ class ProficiencyEnum extends Enum
     // tools
     const THIEF_TOOLS = 'thief tools';
     const TINKER_TOOLS = 'tinker tools';
+    const COOK_TOOLS = 'cook tools';
 
     // kits
     const HERBALISM_KIT = 'herbalism kit';

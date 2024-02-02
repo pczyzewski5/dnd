@@ -10,7 +10,10 @@ class CharacterClassHelper
 {
     private const CLASS_TO_ARCHETYPE = [
         CharacterClassEnum::RANGER => [],
-        CharacterClassEnum::FIGHTER => [CharacterClassEnum::CAVALIER],
+        CharacterClassEnum::FIGHTER => [
+            CharacterClassEnum::CAVALIER,
+            CharacterClassEnum::BATTLE_MASTER
+        ],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [
             CharacterClassEnum::BERSERKER,

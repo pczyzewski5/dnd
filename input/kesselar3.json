@@ -1,5 +1,5 @@
 {
-  "character_name": "Kesselar Mk2",
+  "character_name": "Kesselar Mk3",
   "player_name": "Paweł",
   "campaign_name": "Twierdza",
   "origin": "myśliwy",
@@ -16,46 +16,47 @@
       "class": "path of the ancestral guardian"
     },
     "4": {
-      "class": "path of the ancestral guardian"
+      "class": "fighter"
     },
     "5": {
-      "class": "path of the ancestral guardian"
+      "class": "fighter"
     },
     "6": {
-      "class": "path of the ancestral guardian"
+      "class": "battle master"
     },
     "7": {
-      "class": "fighter"
+      "class": "battle master"
     },
     "8": {
-      "class": "fighter"
+      "class": "battle master"
     },
     "9": {
-      "class": "cavalier"
+      "class": "battle master"
     }
   },
   "starting_abilities": {
-    "str": 15,
+    "str": 8,
     "dex": 15,
     "con": 15,
     "int": 8,
-    "wis": 8,
+    "wis": 15,
     "cha": 8
   },
-  "asi": {},
+  "asi": {
+    "dex": 2
+  },
   "proficiencies": [
     "stealth",
     "nature",
     "perception",
-    "intimidation",
     "insight",
-    "performance",
     "acrobatics",
-    "survival"
+    "survival",
+    "cook tools"
   ],
   "expert_proficiencies": [],
   "languages": ["draconic"],
-  "extra_skills": ["fighting style protection"],
+  "extra_skills": ["fighting style protection", "cook meals"],
   "feats": [
     "defensive duelist"
   ]

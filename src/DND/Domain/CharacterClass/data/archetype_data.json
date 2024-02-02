@@ -43,5 +43,11 @@
     "skills": {
       "3": ["born to the saddle", "unwavering mark"]
     }
+  },
+  "battle master": {
+    "skills": {
+      "3": ["trip attack", "precision attack", "distracting strike", "maneuver save dc", "superiority dice"],
+      "7": ["know your enemy"]
+    }
   }
 }

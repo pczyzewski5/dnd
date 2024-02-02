@@ -67,4 +67,11 @@ class SkillEnum extends Enum
     const SENTINEL = 'sentinel';
     const ANCESTRAL_PROTECTORS = 'ancestral protectors';
     const SPIRIT_SHIELD = 'spirit shield';
+    const TRIP_ATTACK = 'trip attack';
+    const PRECISION_ATTACK = 'precision attack';
+    const DISTRACTING_STRIKE = 'distracting strike';
+    const MANEUVER_SAVE_DC = 'maneuver save dc';
+    const SUPERIORITY_DICE = 'superiority dice';
+    const COOK_TOOLS = 'cook tools';
+    const COOK_MEAL = 'cook meals';
 }
