@@ -23,6 +23,7 @@ class CharacterClassEnum extends Enum
     const FIGHTER = 'fighter';
     const CAVALIER = 'cavalier';
     const BATTLE_MASTER = 'battle master';
+    const ELDRITCH_KNIGHT = 'eldritch knight';
 
     const MONK = 'monk';
 

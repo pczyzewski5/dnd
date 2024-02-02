@@ -10,7 +10,8 @@ class RaceHelper
 {
     private const RACE_TO_SUBRACE = [
         RaceEnum::HALFLING => [RaceEnum::LIGHTFOOT_HALFLING],
-        RaceEnum::HUMAN => [RaceEnum::HUMAN_VARIANT],
+        RaceEnum::HUMAN => [],
+        RaceEnum::HUMAN_VARIANT => [],
         RaceEnum::DRAGONBORN => [RaceEnum::COPPER_DRAGONBORN],
         RaceEnum::TIEFLING => [],
         RaceEnum::LIZARDFOLK => [],

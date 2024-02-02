@@ -49,5 +49,10 @@
       "3": ["trip attack", "precision attack", "distracting strike", "maneuver save dc", "superiority dice"],
       "7": ["know your enemy"]
     }
+  },
+  "eldritch knight": {
+    "skills": {
+      "7": ["war magic"]
+    }
   }
 }

@@ -1,0 +1,71 @@
+{
+  "character_name": "Juan",
+  "player_name": "Paweł",
+  "campaign_name": "Twierdza",
+  "origin": "WWE - Artysta",
+  "race": "human variant",
+  "alignment": "chaotic good",
+  "levels": {
+    "1": {
+      "class": "barbarian"
+    },
+    "2": {
+      "class": "fighter"
+    },
+    "3": {
+      "class": "fighter"
+    },
+    "4": {
+      "class": "eldritch knight"
+    },
+    "5": {
+      "class": "eldritch knight"
+    },
+    "6": {
+      "class": "eldritch knight"
+    },
+    "7": {
+      "class": "eldritch knight"
+    },
+    "8": {
+      "class": "eldritch knight"
+    },
+    "9": {
+      "class": "eldritch knight"
+    }
+  },
+  "starting_abilities": {
+    "str": 15,
+    "dex": 15,
+    "con": 15,
+    "int": 8,
+    "wis": 8,
+    "cha": 8
+  },
+  "asi": {
+    "str": 5,
+    "con": 3,
+    "dex": 1
+  },
+  "proficiencies": [
+    "athletics",
+    "intimidation",
+    "acrobatics",
+    "perception",
+    "performance",
+    "stealth"
+  ],
+  "expert_proficiencies": [
+    "athletics"
+  ],
+  "languages": [],
+  "extra_skills": [
+    "unarmed fighting style",
+    "grappling",
+    "shove",
+    "juan notes"
+  ],
+  "feats": [
+    "skill expert"
+  ]
+}

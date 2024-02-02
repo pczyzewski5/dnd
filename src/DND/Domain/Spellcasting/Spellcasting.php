@@ -42,6 +42,12 @@ class Spellcasting
                 ['circle' => 'V', 'count' => 1],
             ],
         ],
+        CharacterClassEnum::FIGHTER => [
+            9 => [
+                ['circle' => 'I', 'count' => 4],
+                ['circle' => 'II', 'count' => 2]
+            ],
+        ],
         CharacterClassEnum::SORCERER => [
             9 => [
                 ['circle' => 'I', 'count' => 4],

@@ -12,7 +12,8 @@ class CharacterClassHelper
         CharacterClassEnum::RANGER => [],
         CharacterClassEnum::FIGHTER => [
             CharacterClassEnum::CAVALIER,
-            CharacterClassEnum::BATTLE_MASTER
+            CharacterClassEnum::BATTLE_MASTER,
+            CharacterClassEnum::ELDRITCH_KNIGHT
         ],
         CharacterClassEnum::ROUGE => [CharacterClassEnum::ASSASSIN],
         CharacterClassEnum::BARBARIAN => [

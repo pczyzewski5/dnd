@@ -74,4 +74,10 @@ class SkillEnum extends Enum
     const SUPERIORITY_DICE = 'superiority dice';
     const COOK_TOOLS = 'cook tools';
     const COOK_MEAL = 'cook meals';
+    const WAR_MAGIC = 'war magic';
+    const SKILL_EXPERT = 'skill expert';
+    const UNARMED_FIGHTING_STYLE = 'unarmed fighting style';
+    const GRAPPLING = 'grappling';
+    const SHOVE = 'shove';
+    const JUAN_NOTES = 'juan notes';
 }
