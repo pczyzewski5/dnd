@@ -74,6 +74,11 @@ character_print:
     controller: App\Controller\CharacterController::print
     methods: [ GET ]
 
+character_preview:
+    path: /preview/character/{id}
+    controller: App\Controller\CharacterController::print
+    methods: [ GET ]
+
 # index_controller
 calendar_list:
     path: /calendar/list

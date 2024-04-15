@@ -34,6 +34,7 @@ security:
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/preview, roles: PUBLIC_ACCESS }
         - { path: ^/dm, roles: ROLE_DM }
         - { path: ^/player, roles: ROLE_PLAYER }
         - { path: ^/calendar, roles: ROLE_PLAYER }
