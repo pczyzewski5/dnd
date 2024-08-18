@@ -16,7 +16,8 @@ class ControllerCompilerPass implements CompilerPassInterface
             $definition->addMethodCall(
                 'setFormFactory',
                 [$container->getDefinition('form.factory')]
-            ); $definition->addMethodCall(
+            );
+            $definition->addMethodCall(
                 'setTwig',
                 [$container->getDefinition('twig')]
             );
