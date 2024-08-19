@@ -7,7 +7,6 @@ services:
         resource: '../src/App/'
         exclude:
             - '../src/App/Kernel.php'
-            - '../src/App/User/User.php'
             - '../src/App/Twig/'
 
     DND\:

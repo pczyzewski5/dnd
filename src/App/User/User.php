@@ -4,66 +4,39 @@ declare(strict_types=1);
 
 namespace App\User;
 
-use App\User\Exception\UserValidationException;
 use DND\Domain\MergerTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\UuidV1;
+use Doctrine\ORM\Mapping;
+use Symfony\Component\Uid\Uuid;
 
+#[Mapping\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use MergerTrait;
 
+    #[Mapping\Id]
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    #[Mapping\CustomIdGenerator(class: Uuid::class)]
     private string $id;
+
+    #[Mapping\Column(type: 'string', length: 36, nullable: false)]
     private string $email;
+
+    #[Mapping\Column(type: 'string', length: 36, nullable: false)]
     private string $username;
+
+    #[Mapping\Column(type: 'json', nullable: false)]
     private array $roles;
-    private bool $isActive;
+
+    #[Mapping\Column(type: 'string', length: 255, nullable: false)]
     private string $password;
+
+    #[Mapping\Column(type: 'boolean', nullable: false, options: ['default' => false])]
+    private bool $isActive;
+
+    #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
-
-    public function __construct(UserDTO $dto)
-    {
-        $this->merge($dto);
-    }
-
-    public function update(UserDTO $dto): void
-    {
-        $this->merge($dto);
-        $this->validate();
-    }
-
-    private function validate(): void
-    {
-        // @todo fix validation, ex password cant be empty
-        if (!isset($this->id) && UuidV1::isValid($this->id)) {
-            throw UserValidationException::missingProperty('id');
-        }
-        
-        if (!isset($this->email) || '' === $this->email) {
-            throw UserValidationException::missingProperty('email');
-        }
-
-        if (!isset($this->username) || '' === $this->username) {
-            throw UserValidationException::missingProperty('username');
-        }
-
-        if (!isset($this->roles) || empty($this->roles)) {
-            throw UserValidationException::missingProperty('roles');
-        }
-
-        if (!isset($this->password) || '' === $this->password) {
-            throw UserValidationException::missingProperty('password');
-        }
-
-        if (!\is_bool($this->isActive)) {
-            throw UserValidationException::missingProperty('is_active');
-        }
-
-        if (!isset($this->createdAt)) {
-            throw UserValidationException::missingProperty('createdAt');
-        }
-    }
 
     public function getId(): string
     {
@@ -85,11 +58,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->roles;
     }
 
-    public function hasRole(string $role): bool
-    {
-        return \in_array($role, $this->roles);
-    }
-
     public function getPassword(): string
     {
         return $this->password;
@@ -105,15 +73,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
+    public function hasRole(string $role): bool
     {
-        return null;
+        return \in_array($role, $this->roles);
     }
 
     public function eraseCredentials(): void
@@ -121,11 +83,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return $this->email;

@@ -13,39 +13,11 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        auto_mapping: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
         mappings:
-            User:
-                type: xml
-                prefix: DND\Infrastructure\User
-                dir: '%kernel.project_dir%/config/orm/User'
+            App:
                 is_bundle: false
+                dir: '%kernel.project_dir%/src/App/User'
+                prefix: 'App\User'
                 alias: User
-
-            ItemCard:
-                type: xml
-                prefix: DND\Infrastructure\ItemCard
-                dir: '%kernel.project_dir%/config/orm/ItemCard'
-                is_bundle: false
-                alias: ItemCard
-
-            Character:
-                type: xml
-                prefix: DND\Infrastructure\Character
-                dir: '%kernel.project_dir%/config/orm/Character'
-                is_bundle: false
-                alias: Character
-
-            Calendar:
-                type: xml
-                prefix: Calendar\Infrastructure\Calendar
-                dir: '%kernel.project_dir%/config/orm/Calendar'
-                is_bundle: false
-                alias: Calendar
-
-            CalendarParticipant:
-                type: xml
-                prefix: Calendar\Infrastructure\CalendarParticipant
-                dir: '%kernel.project_dir%/config/orm/CalendarParticipant'
-                is_bundle: false
-                alias: CalendarParticipant
