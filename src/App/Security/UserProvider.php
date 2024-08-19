@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\User\Exception\UserException;
+use App\Exception\UserException;
 use App\User\User;
 use App\User\UserRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -20,7 +20,7 @@ class UserProvider implements UserProviderInterface
 
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
-        $user = $this->userRepository->findUserByEmail($identifier);
+        $user = $this->userRepository->findByEmail($identifier);
 
         if (null === $user) {
             throw new UserNotFoundException();
@@ -40,7 +40,7 @@ class UserProvider implements UserProviderInterface
             );
         }
 
-        $user = $this->userRepository->findOneById($user->getId());
+        $user = $this->userRepository->find($user->getId());
 
         if (null === $user) {
             throw new UserNotFoundException();

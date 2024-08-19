@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\UserAlreadyExistsException;
 use App\Form\RegisterUserForm;
-use App\User\Exception\UserAlreadyExistsException;
 use DND\Domain\Command\RegisterUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

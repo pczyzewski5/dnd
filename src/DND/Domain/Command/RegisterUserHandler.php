@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Domain\Command;
 
-use App\User\Exception\UserAlreadyExistsException;
-use App\User\UserDTO;
+use App\Exception\UserAlreadyExistsException;
 use App\User\UserFactory;
 use App\User\UserPersister;
 use DND\Domain\Exception\PersisterException;
