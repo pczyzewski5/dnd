@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DND\Domain\User;
+namespace App\User;
 
+use App\User\Exception\UserValidationException;
 use DND\Domain\MergerTrait;
-use DND\Domain\User\Exception\UserValidationException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\UuidV1;

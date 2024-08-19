@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Calendar\Domain\Query;
 
-use DND\Domain\User\User;
+use App\User\User;
 
 class GetCalendarsForUser
 {

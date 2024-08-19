@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DND\Domain\User\Exception;
+namespace App\User\Exception;
 
 use DND\Domain\Exception\ValidationException;
 

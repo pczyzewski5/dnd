@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DND\Domain\Command;
 
-use DND\Domain\User\UserDTO;
-use DND\Domain\User\UserPersister;
-use DND\Domain\User\UserRepository;
+use App\User\UserDTO;
+use App\User\UserPersister;
+use App\User\UserRepository;
 
 class DeactivateUserHandler
 {

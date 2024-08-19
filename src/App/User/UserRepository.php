@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace DND\Infrastructure\User;
+namespace App\User;
 
+use App\User\Exception\UserNotFoundException;
+use App\User\User as DomainUser;
+use DND\Infrastructure\User\User;
+use DND\Infrastructure\User\UserMapper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use DND\Domain\User\Exception\UserNotFoundException;
-use DND\Domain\User\UserRepository as DomainRepository;
-use DND\Domain\User\User as DomainUser;
 
-class UserRepository extends EntityRepository implements DomainRepository
+class UserRepository extends EntityRepository
 {
     public function __construct(EntityManagerInterface $entityManager)
     {

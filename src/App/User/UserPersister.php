@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace DND\Infrastructure\User;
+namespace App\User;
 
-use Doctrine\DBAL\Types\Types;
 use DND\Domain\Exception\PersisterException;
-use DND\Domain\User\User;
+use DND\Infrastructure\User\UserMapper;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
-use DND\Domain\User\UserPersister as DomainPersister;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class UserPersister implements DomainPersister, PasswordUpgraderInterface
+class UserPersister implements PasswordUpgraderInterface
 {
     private EntityManagerInterface $entityManager;
 

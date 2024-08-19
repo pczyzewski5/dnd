@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DND\Domain\Command;
 
+use App\User\Exception\UserAlreadyExistsException;
+use App\User\UserDTO;
+use App\User\UserFactory;
+use App\User\UserPersister;
 use DND\Domain\Exception\PersisterException;
-use DND\Domain\User\Exception\UserAlreadyExistsException;
-use DND\Domain\User\UserDTO;
-use DND\Domain\User\UserFactory;
-use DND\Domain\User\UserPersister;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterUserHandler

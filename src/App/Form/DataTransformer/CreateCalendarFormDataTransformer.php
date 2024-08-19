@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use App\Form\CreateCalendarForm;
-use DND\Domain\User\User;
-use DND\Domain\User\UserRepository;
+use App\User\User;
+use App\User\UserRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class CreateCalendarFormDataTransformer implements DataTransformerInterface

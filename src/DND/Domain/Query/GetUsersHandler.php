@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DND\Domain\Query;
 
-use DND\Domain\User\User;
-use DND\Domain\User\UserRepository;
+use App\User\User;
+use App\User\UserRepository;
 
 class GetUsersHandler
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DND\Domain\User;
+namespace App\User;
 
 use Symfony\Component\Uid\Uuid;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DND\Domain\Query;
 
-use DND\Domain\User\User;
+use App\User\User;
 
 class GetUsers
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use DND\Domain\User\Exception\UserException;
-use DND\Domain\User\User;
-use DND\Domain\User\UserRepository;
+use App\User\Exception\UserException;
+use App\User\User;
+use App\User\UserRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,12 +14,8 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class UserProvider implements UserProviderInterface
 {
-    private UserRepository $userRepository;
-
-    public function __construct(
-        UserRepository $userRepository
-    ) {
-        $this->userRepository = $userRepository;
+    public function __construct(private readonly UserRepository $userRepository)
+    {
     }
 
     public function loadUserByIdentifier(string $identifier): UserInterface
@@ -31,17 +27,6 @@ class UserProvider implements UserProviderInterface
         }
         if ($user->isActive() === false) {
             throw UserException::notActive();
-        }
-
-        return $user;
-    }
-
-    public function loadUserByUsername(string $username): UserInterface
-    {
-        $user = $this->userRepository->findUserByEmail($username);
-
-        if (null === $user) {
-            throw new UserNotFoundException();
         }
 
         return $user;
