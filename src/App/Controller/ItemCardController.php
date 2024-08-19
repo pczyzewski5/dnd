@@ -33,7 +33,7 @@ class ItemCardController extends AbstractController
             new GetItemCardBackHtml($id)
         );
 
-        return $this->renderForm('item_card/read.html.twig', [
+        return $this->render('item_card/read.html.twig', [
             'id' => $id,
             'itemCardFrontHtml' => $itemCardFrontHtml,
             'itemCardBackHtml' => $itemCardBackHtml,
@@ -46,7 +46,7 @@ class ItemCardController extends AbstractController
             new GetItemCardsForList()
         );
 
-        return $this->renderForm('item_card/list.html.twig', [
+        return $this->render('item_card/list.html.twig', [
             'itemCards' => $itemCards,
         ]);
     }
@@ -83,7 +83,7 @@ class ItemCardController extends AbstractController
             new GetItemCardBackHtml()
         );
 
-        return $this->renderForm('item_card/create.html.twig', [
+        return $this->render('item_card/create.html.twig', [
             'item_card_form' => $form,
             'itemCardFrontHtml' => $itemCardFrontHtml,
             'itemCardBackHtml'  => $itemCardBackHtml,
@@ -136,7 +136,7 @@ class ItemCardController extends AbstractController
             new GetItemCardBackHtml($id)
         );
 
-        return $this->renderForm('item_card/create.html.twig', [
+        return $this->render('item_card/create.html.twig', [
             'item_card_form' => $form,
             'itemCardFrontHtml' => $itemCardFrontHtml,
             'itemCardBackHtml'  => $itemCardBackHtml,
@@ -167,7 +167,7 @@ class ItemCardController extends AbstractController
             )
         );
 
-        return $this->renderForm('item_card/print.html.twig', [
+        return $this->render('item_card/print.html.twig', [
             'itemCardFrontHtml' => $itemCardFrontHtml,
             'itemCardBackHtml'  => $itemCardBackHtml,
         ]);

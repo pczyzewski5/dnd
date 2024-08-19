@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
                     )
                 );
             } catch (UserAlreadyExistsException $e) {
-                return $this->renderForm('registration/register.html.twig', [
+                return $this->render('registration/register.html.twig', [
                     'register_form' => $form,
                     'error_message' => 'Account already exists.'
                 ]);
@@ -43,13 +43,13 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('register_info');
         }
 
-        return $this->renderForm('registration/register.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'register_form' => $form
         ]);
     }
 
     public function registerInfo()
     {
-        return $this->renderForm('registration/register_info.html.twig');
+        return $this->render('registration/register_info.html.twig');
     }
 }

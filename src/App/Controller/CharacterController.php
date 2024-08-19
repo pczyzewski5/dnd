@@ -27,7 +27,7 @@ class CharacterController extends AbstractController
         $id = $request->get('id');
         $html = $this->queryBus->handle(new GetCharacterCardHtml($id));
 
-        return $this->renderForm('character/read.html.twig', [
+        return $this->render('character/read.html.twig', [
             'characterCardHtml' => $html,
             'id' => $id
         ]);
@@ -41,7 +41,7 @@ class CharacterController extends AbstractController
             )
         );
 
-        return $this->renderForm('character/list.html.twig', [
+        return $this->render('character/list.html.twig', [
             'characters' => $characters,
         ]);
     }
@@ -71,7 +71,7 @@ class CharacterController extends AbstractController
             return $this->redirectToRoute('item_card_read', ['id' => $id]);
         }
 
-        return $this->renderForm('item_card/create.html.twig', [
+        return $this->render('item_card/create.html.twig', [
             'item_card_form' => $form
         ]);
     }
@@ -114,7 +114,7 @@ class CharacterController extends AbstractController
             return $this->redirectToRoute('item_card_read', ['id' => $itemCard->getId()]);
         }
 
-        return $this->renderForm('item_card/create.html.twig', [
+        return $this->render('item_card/create.html.twig', [
             'item_card_form' => $form,
             'itemCard' => $itemCard
         ]);
@@ -137,7 +137,7 @@ class CharacterController extends AbstractController
             new GetCharacterCardHtml($request->get('id'))
         );
 
-        return $this->renderForm('character/print.html.twig', [
+        return $this->render('character/print.html.twig', [
             'characterCardHtml' => $html,
         ]);
     }

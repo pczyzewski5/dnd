@@ -62,7 +62,7 @@ class CalendarController extends AbstractController
             new GetDatesForCalendar()
         );
 
-        return $this->renderForm('calendar/create.html.twig', [
+        return $this->render('calendar/create.html.twig', [
             'datesForCalendar' => $datesForCalendar,
             'form' => $form
         ]);
@@ -101,7 +101,7 @@ class CalendarController extends AbstractController
             )
         );
 
-        return $this->renderForm('calendar/answer.html.twig', [
+        return $this->render('calendar/answer.html.twig', [
             'datesForCalendar' => $datesForCalendar,
             'calendarHelper' => $calendarHelper,
             'form' => $form
@@ -114,7 +114,7 @@ class CalendarController extends AbstractController
             new GetCalendarsForUser($this->getUser())
         );
 
-        return $this->renderForm('calendar/list.html.twig', [
+        return $this->render('calendar/list.html.twig', [
             'calendars' => $calendars
         ]);
     }

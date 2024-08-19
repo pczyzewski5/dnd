@@ -16,7 +16,7 @@ class AdminController extends AbstractController
 {
     public function userList(): Response
     {
-        return $this->renderForm('super_admin/user_list.html.twig', [
+        return $this->render('super_admin/user_list.html.twig', [
             'users' => $this->queryBus->handle(
                 new GetUsers()
             )
