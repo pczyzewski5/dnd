@@ -9,6 +9,8 @@ services:
     links:
       - mysql
     working_dir: /data/application
+    environment:
+      APP_SECRET: 1d92903cf4adf7cbaeb9bc61e7f7b91
 
   nginx:
     image: nginx
