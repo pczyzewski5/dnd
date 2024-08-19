@@ -15,15 +15,15 @@ class UserFactory
         string $password,
         bool $isActive,
     ): User {
-        $dto = new UserDTO();
-        $dto->id = Uuid::v1()->toRfc4122();
-        $dto->email = $email;
-        $dto->username = $username;
-        $dto->roles = $roles;
-        $dto->password = $password;
-        $dto->isActive = $isActive;
-        $dto->createdAt = new \DateTimeImmutable();
-
-        return new User($dto);
+        return (new User)
+            ->setId(Uuid::v1())
+            ->setEmail($email)
+            ->setUsername($username)
+            ->setRoles($roles)
+            ->setPassword($password)
+            ->setIsActive($isActive)
+            ->setCreatedAt(
+                new \DateTimeImmutable()
+            );
     }
 }

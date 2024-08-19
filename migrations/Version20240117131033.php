@@ -19,7 +19,7 @@ final class Version20240117131033 extends AbstractMigration
         $sql = <<<SQL
 CREATE TABLE user
 (
-    id             VARCHAR(36) NOT NULL,
+    id             BINARY(16) NOT NULL,
     email          VARCHAR(36) NOT NULL,
     username       VARCHAR(36) NOT NULL,
     roles          JSON NOT NULL,

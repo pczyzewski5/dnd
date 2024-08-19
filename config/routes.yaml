@@ -12,11 +12,6 @@
 #    path: /logout
 #    methods: [ GET ]
 #
-#register_info:
-#    path: /register/info
-#    controller: App\Controller\RegistrationController::registerInfo
-#    methods: [ GET ]
-#
 ## item_card_controller
 #item_card_list:
 #    path: /dm/item_card/list

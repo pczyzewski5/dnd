@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Mapping\Id]
     #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
     #[Mapping\CustomIdGenerator(class: Uuid::class)]
-    private string $id;
+    private Uuid $id;
 
     #[Mapping\Column(type: 'string', length: 36, nullable: false)]
     private string $email;
@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function getId(): string
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -73,9 +73,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    public function hasRole(string $role): bool
+    public function setId(Uuid $id): self
     {
-        return \in_array($role, $this->roles);
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     public function eraseCredentials(): void

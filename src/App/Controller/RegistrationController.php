@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Exception\UserAlreadyExistsException;
 use App\Form\RegisterUserForm;
 use DND\Domain\Command\RegisterUser;
+use DND\Domain\Command\RegisterUserHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', 'register', methods: [Request::METHOD_GET, Request::METHOD_POST])]
-    public function register(Request $request): Response
+    public function register(Request $request, RegisterUserHandler $registerUserHandler): Response
     {
         $form = $this->createForm(RegisterUserForm::class);
         $form->handleRequest($request);
@@ -24,7 +25,7 @@ class RegistrationController extends AbstractController
             $data = $form->getData();
 
             try {
-                $this->commandBus->handle(
+                $registerUserHandler->handle(
                     new RegisterUser(
                         $data[RegisterUserForm::EMAIL_FIELD],
                         $data[RegisterUserForm::USERNAME_FIELD],
@@ -48,6 +49,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+    #[Route('/register/info', 'register_info', methods: [Request::METHOD_GET])]
     public function registerInfo()
     {
         return $this->render('registration/register_info.html.twig');

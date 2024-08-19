@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\User;
 
 use DND\Domain\Exception\PersisterException;
-use DND\Infrastructure\User\UserMapper;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -21,10 +20,8 @@ class UserPersister implements PasswordUpgraderInterface
         $this->entityManager = $entityManager;
     }
 
-    public function save(User $user): void
+    public function save(User $entity): void
     {
-        $entity = UserMapper::fromDomain($user);
-
         try {
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
@@ -36,7 +33,7 @@ class UserPersister implements PasswordUpgraderInterface
     public function update(User $user): void
     {
         try {
-            $sql = 'UPDATE users
+            $sql = 'UPDATE user
                   SET is_active = :isActive
                   WHERE id = :id;';
 

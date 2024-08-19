@@ -38,10 +38,7 @@ class RegisterUserHandler
             $command->getPassword()
         );
 
-        $dto = new UserDTO();
-        $dto->password = $hashedPassword;
-
-        $user->update($dto);
+        $user->setPassword($hashedPassword);
 
         try {
             $this->userPersister->save($user);
