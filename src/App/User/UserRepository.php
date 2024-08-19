@@ -5,23 +5,17 @@ declare(strict_types=1);
 namespace App\User;
 
 use App\User\Exception\UserNotFoundException;
-use App\User\User as DomainUser;
-use DND\Infrastructure\User\User;
-use DND\Infrastructure\User\UserMapper;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class UserRepository extends EntityRepository
+class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct(
-            $entityManager,
-            $entityManager->getClassMetadata(User::class)
-        );
+        parent::__construct($registry, User::class);
     }
 
-    public function getOneById(string $id): DomainUser
+    public function getOneById(string $id): User
     {
         $entity = $this->getEntityManager()->getRepository(User::class)->find($id);
 
@@ -33,7 +27,7 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * @return DomainUser[]
+     * @return User[]
      */
     public function getManyById(array $userIds): array
     {
@@ -56,14 +50,14 @@ class UserRepository extends EntityRepository
         return UserMapper::mapArrayToDomain($result);
     }
 
-    public function findOneById(string $id): ?DomainUser
+    public function findOneById(string $id): ?User
     {
         $entity = $this->getEntityManager()->getRepository(User::class)->find($id);
 
         return UserMapper::toDomain($entity) ?? null;
     }
 
-    public function findUserByEmail(string $username): ?DomainUser
+    public function findUserByEmail(string $username): ?User
     {
         $entity = $this->getEntityManager()->getRepository(User::class)->findOneBy([
             'email' => $username
