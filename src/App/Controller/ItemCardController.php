@@ -22,15 +22,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ItemCardController extends BaseController
 {
-    private QueryBus $queryBus;
-    private CommandBus $commandBus;
-
-    public function __construct(QueryBus $queryBus, CommandBus $commandBus)
-    {
-        $this->queryBus = $queryBus;
-        $this->commandBus = $commandBus;
-    }
-
     public function read(Request $request): Response
     {
         $id = $request->get('id');

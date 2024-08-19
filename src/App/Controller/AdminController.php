@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\CommandBus\CommandBus;
-use App\QueryBus\QueryBus;
 use DND\Domain\Command\ActivateUser;
 use DND\Domain\Command\DeactivateUser;
 use DND\Domain\Command\DeleteUser;
@@ -15,15 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends BaseController
 {
-    private QueryBus $queryBus;
-    private CommandBus $commandBus;
-
-    public function __construct(QueryBus $queryBus, CommandBus $commandBus)
-    {
-        $this->queryBus = $queryBus;
-        $this->commandBus = $commandBus;
-    }
-
     public function userList(): Response
     {
         return $this->renderForm('super_admin/user_list.html.twig', [

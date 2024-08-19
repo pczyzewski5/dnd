@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\CommandBus\CommandBus;
 use App\Form\CalendarAnswerForm;
 use App\Form\CreateCalendarForm;
-use App\QueryBus\QueryBus;
+use App\User\User;
 use Calendar\Domain\CalendarHelper;
 use Calendar\Domain\Command\CreateCalendar;
 use Calendar\Domain\Command\CreateCalendarParticipants;
@@ -17,21 +16,11 @@ use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
 use Calendar\Domain\Query\GetCalendarHelper;
 use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
-use DND\Domain\User\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends BaseController
 {
-    private QueryBus $queryBus;
-    private CommandBus $commandBus;
-
-    public function __construct(QueryBus $queryBus, CommandBus $commandBus)
-    {
-        $this->queryBus = $queryBus;
-        $this->commandBus = $commandBus;
-    }
-
     public function create(Request $request): Response
     {
         /** @var User $loggedInUser */

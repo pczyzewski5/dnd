@@ -4,25 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\CommandBus\CommandBus;
 use App\Form\RegisterUserForm;
-use App\QueryBus\QueryBus;
+use App\User\Exception\UserAlreadyExistsException;
 use DND\Domain\Command\RegisterUser;
-use DND\Domain\User\Exception\UserAlreadyExistsException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController extends BaseController
 {
-    private QueryBus $queryBus;
-    private CommandBus $commandBus;
-
-    public function __construct(QueryBus $queryBus, CommandBus $commandBus)
-    {
-        $this->queryBus = $queryBus;
-        $this->commandBus = $commandBus;
-    }
-
     public function register(Request $request): Response
     {
         $form = $this->createForm(RegisterUserForm::class);
