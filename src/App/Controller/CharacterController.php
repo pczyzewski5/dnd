@@ -16,10 +16,11 @@ use DND\Domain\ItemCard\ItemCard;
 use DND\Domain\Query\GetCharacterCardHtml;
 use DND\Domain\Query\GetCharactersByOwner;
 use DND\Domain\Query\GetItemCard;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CharacterController extends BaseController
+class CharacterController extends AbstractController
 {
     public function read(Request $request): Response
     {

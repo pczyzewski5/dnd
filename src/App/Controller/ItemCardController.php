@@ -17,10 +17,11 @@ use DND\Domain\Query\GetItemCard;
 use DND\Domain\Query\GetItemCardBackHtml;
 use DND\Domain\Query\GetItemCardFrontHtml;
 use DND\Domain\Query\GetItemCardsForList;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ItemCardController extends BaseController
+class ItemCardController extends AbstractController
 {
     public function read(Request $request): Response
     {

@@ -7,11 +7,14 @@ namespace App\Controller;
 use App\Exception\UserAlreadyExistsException;
 use App\Form\RegisterUserForm;
 use DND\Domain\Command\RegisterUser;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class RegistrationController extends BaseController
+class RegistrationController extends AbstractController
 {
+    #[Route('/register', 'register', methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function register(Request $request): Response
     {
         $form = $this->createForm(RegisterUserForm::class);

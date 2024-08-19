@@ -8,10 +8,11 @@ use DND\Domain\Command\ActivateUser;
 use DND\Domain\Command\DeactivateUser;
 use DND\Domain\Command\DeleteUser;
 use DND\Domain\Query\GetUsers;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminController extends BaseController
+class AdminController extends AbstractController
 {
     public function userList(): Response
     {

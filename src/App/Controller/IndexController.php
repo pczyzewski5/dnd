@@ -7,14 +7,17 @@ namespace App\Controller;
 use App\CommandBus\CommandBus;
 use App\QueryBus\QueryBus;
 use nadar\quill\Lexer;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class IndexController extends BaseController
+class IndexController extends AbstractController
 {
+    #[Route('/', 'home', methods: [Request::METHOD_GET])]
     public function index(): Response
     {
-        return $this->renderForm('index/index.html.twig');
+        return $this->render('index/index.html.twig');
     }
 
     public function quill(Request $request): Response

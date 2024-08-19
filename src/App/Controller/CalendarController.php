@@ -16,10 +16,11 @@ use Calendar\Domain\Command\UpdateCalendarParticipantResponse;
 use Calendar\Domain\Query\GetCalendarHelper;
 use Calendar\Domain\Query\GetCalendarsForUser;
 use DND\Domain\Query\GetUsers;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CalendarController extends BaseController
+class CalendarController extends AbstractController
 {
     public function create(Request $request): Response
     {
