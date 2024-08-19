@@ -18,34 +18,34 @@ doctrine:
             User:
                 type: xml
                 prefix: DND\Infrastructure\User
-                dir: '%kernel.project_dir%/config/common/orm/User'
+                dir: '%kernel.project_dir%/config/orm/User'
                 is_bundle: false
                 alias: User
 
             ItemCard:
                 type: xml
                 prefix: DND\Infrastructure\ItemCard
-                dir: '%kernel.project_dir%/config/common/orm/ItemCard'
+                dir: '%kernel.project_dir%/config/orm/ItemCard'
                 is_bundle: false
                 alias: ItemCard
 
             Character:
                 type: xml
                 prefix: DND\Infrastructure\Character
-                dir: '%kernel.project_dir%/config/common/orm/Character'
+                dir: '%kernel.project_dir%/config/orm/Character'
                 is_bundle: false
                 alias: Character
 
             Calendar:
                 type: xml
                 prefix: Calendar\Infrastructure\Calendar
-                dir: '%kernel.project_dir%/config/common/orm/Calendar'
+                dir: '%kernel.project_dir%/config/orm/Calendar'
                 is_bundle: false
                 alias: Calendar
 
             CalendarParticipant:
                 type: xml
                 prefix: Calendar\Infrastructure\CalendarParticipant
-                dir: '%kernel.project_dir%/config/common/orm/CalendarParticipant'
+                dir: '%kernel.project_dir%/config/orm/CalendarParticipant'
                 is_bundle: false
                 alias: CalendarParticipant

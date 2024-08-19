@@ -3,3 +3,10 @@ parameters:
   item_card_css_path: 'css/item_card.css'
   item_card_images_directory: '%kernel.project_dir%/public/images/item_card'
   item_card_images_allowed_mime: ['image/jpeg']
+
+  dnd.mysql_host: mysql
+  dnd.mysql_port: 3306
+  dnd.mysql_database: dnd
+  dnd.mysql_user: dnd_management
+  dnd.mysql_password: password123
+

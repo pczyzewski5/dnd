@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/App/'
+        exclude:
+            - '../src/App/Kernel.php'
+            - '../src/App/User/User.php'
+            - '../src/App/Twig/'
+            - '../src/App/Command/'
+
+imports:
+    - { resource: 'parameters.yaml' }
