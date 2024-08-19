@@ -15,13 +15,14 @@ use DND\Domain\Validator\Validators\LanguageValidator;
 use DND\Domain\Validator\Validators\PlayerNameValidator;
 use DND\Domain\Validator\Validators\RaceValidator;
 use DND\Domain\Validator\Validators\StartingAbilitiesValidator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'dnd:create-character-card')]
 class CreateCharacterCardCommand extends Command
 {
-    private const COMMAND_NAME = 'dnd:create-character-card';
     private const CHARACTER_JSON_DIR = 'input/';
     private const OUTPUT_DIR = 'output/';
 
@@ -29,9 +30,9 @@ class CreateCharacterCardCommand extends Command
 
     public function __construct(CharacterCardBuilder $characterCardBuilder)
     {
-        parent::__construct(self::COMMAND_NAME);
-
         $this->characterCardBuilder = $characterCardBuilder;
+
+        parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

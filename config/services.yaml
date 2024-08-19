@@ -9,7 +9,9 @@ services:
             - '../src/App/Kernel.php'
             - '../src/App/User/User.php'
             - '../src/App/Twig/'
-            - '../src/App/Command/'
+
+    DND\:
+        resource: '../src/DND/'
 
 imports:
     - { resource: 'parameters.yaml' }
