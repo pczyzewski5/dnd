@@ -11,13 +11,13 @@ final class Version20240117132201 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'creates calendar_participants table';
+        return 'creates calendar_participant table';
     }
 
     public function up(Schema $schema): void
     {
        $sql = <<<SQL
-CREATE TABLE calendar_participants
+CREATE TABLE calendar_participant
 (
     calendar_id    VARCHAR(36) NOT NULL,
     participant_id VARCHAR(36) NOT NULL,
@@ -34,6 +34,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE calendar_participants');
+        $this->addSql('DROP TABLE calendar_participant');
     }
 }

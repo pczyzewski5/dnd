@@ -11,13 +11,13 @@ final class Version20240117131033 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'creates users table';
+        return 'creates user table';
     }
 
     public function up(Schema $schema): void
     {
         $sql = <<<SQL
-CREATE TABLE users
+CREATE TABLE user
 (
     id             VARCHAR(36) NOT NULL,
     email          VARCHAR(36) NOT NULL,
@@ -35,6 +35,6 @@ SQL;
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE users');
+        $this->addSql('DROP TABLE user');
     }
 }
