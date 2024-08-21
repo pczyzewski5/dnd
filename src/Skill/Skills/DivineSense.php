@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Skill\Skills;
+
+use App\Enum\SkillTagEnum;
+
+class DivineSense extends AbstractSkill
+{
+    protected CONST TAGS = [
+        SkillTagEnum::ACTIVE,
+        SkillTagEnum::USE_COUNT,
+    ];
+
+    public function getUsageCount(): int
+    {
+        return  $this->character->getAbilities()->getCha()->getModifier() + 1;
+    }
+
+    public function getContext(): array
+    {
+        return [];
+    }
+}

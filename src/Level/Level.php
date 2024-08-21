@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Level;
+
+use App\Enum\CharacterClassEnum;
+
+class Level
+{
+    private CharacterClassEnum $characterClass;
+    private int $level;
+
+    public function __construct(CharacterClassEnum $characterClass, int $level)
+    {
+        $this->characterClass = $characterClass;
+        $this->level = $level;
+    }
+
+    public function getCharacterClassEnum(): CharacterClassEnum
+    {
+        return $this->characterClass;
+    }
+
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+}

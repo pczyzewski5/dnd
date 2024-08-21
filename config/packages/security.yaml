@@ -5,7 +5,7 @@ security:
 
     providers:
         user_provider:
-            id: App\Security\UserProvider
+            id: App\User\UserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

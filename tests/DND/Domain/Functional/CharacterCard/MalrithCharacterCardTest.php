@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\DND\Domain\Functional\CharacterCard;
 
-use DND\Domain\Character\Character;
 use DND\Domain\Character\CharacterFactory;
 use DND\Domain\Enum\ProficiencyEnum;
 use DND\Domain\Skill\Skills\AcidBreath;
@@ -23,6 +22,7 @@ use DND\Domain\Skill\Skills\OathOfTheAncientsPaladinChannelDivinity;
 use DND\Domain\Skill\Skills\OathOfTheAncientsPaladinSpells;
 use DND\Domain\Skill\Skills\Spellcasting;
 use PHPUnit\Framework\TestCase;
+use App\Character\Entity\Character;
 
 class MalrithCharacterCardTest extends TestCase
 {

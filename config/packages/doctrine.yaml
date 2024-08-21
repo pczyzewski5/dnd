@@ -18,6 +18,6 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/App/User'
-                prefix: 'App\User'
+                dir: '%kernel.project_dir%/src/User/Entity'
+                prefix: 'App\User\Entity'
                 alias: User

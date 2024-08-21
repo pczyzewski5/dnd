@@ -4,13 +4,9 @@ services:
         autoconfigure: true
 
     App\:
-        resource: '../src/App/'
+        resource: '../src/'
         exclude:
-            - '../src/App/Kernel.php'
-            - '../src/App/Twig/'
-
-    DND\:
-        resource: '../src/DND/'
+            - '../src/Kernel.php'
 
 imports:
     - { resource: 'parameters.yaml' }

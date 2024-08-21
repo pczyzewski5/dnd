@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\DND\Domain\Functional\CharacterCard;
 
-use DND\Domain\Character\Character;
 use DND\Domain\Character\CharacterFactory;
 use DND\Domain\Enum\ProficiencyEnum;
 use DND\Domain\Skill\Skills\BonusAttack;
@@ -18,6 +17,7 @@ use DND\Domain\Skill\Skills\Rage;
 use DND\Domain\Skill\Skills\RecklessAttack;
 use DND\Domain\Skill\Skills\UnarmoredDefense;
 use PHPUnit\Framework\TestCase;
+use App\Character\Entity\Character;
 
 class SyddaCharacterCardTest extends TestCase
 {

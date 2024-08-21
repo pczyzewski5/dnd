@@ -8,15 +8,10 @@
 #    controller: App\Controller\LoginController::login
 #    methods: [ GET, POST ]
 #
-#logout:
-#    path: /logout
-#    methods: [ GET ]
+
 #
 ## item_card_controller
-#item_card_list:
-#    path: /dm/item_card/list
-#    controller: App\Controller\ItemCardController::list
-#    methods: [ GET ]
+
 #
 #item_card_create:
 #    path: /dm/item_card/create
@@ -44,10 +39,7 @@
 #    methods: [ GET ]
 #
 ## character_controller
-#character_list:
-#    path: /player/character/list
-#    controller: App\Controller\CharacterController::list
-#    methods: [ GET ]
+
 #
 #character_read:
 #    path: /player/character/{id}
@@ -65,15 +57,10 @@
 #    methods: [ GET ]
 #
 ## index_controller
-#calendar_list:
-#    path: /calendar/list
-#    controller: App\Controller\CalendarController::list
-#    methods: [ GET ]
+
 #
 #calendar_create:
-#    path: /calendar/create
-#    controller: App\Controller\CalendarController::create
-#    methods: [ GET, POST ]
+
 #
 #calendar_delete:
 #    path: /calendar/{id}/delete

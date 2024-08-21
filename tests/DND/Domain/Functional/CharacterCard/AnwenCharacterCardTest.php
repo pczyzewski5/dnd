@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\DND\Domain\Functional\CharacterCard;
 
-use DND\Domain\Character\Character;
 use DND\Domain\Character\CharacterFactory;
 use DND\Domain\Enum\ProficiencyEnum;
 use DND\Domain\Skill\Skills\BonusLanguage;
@@ -21,6 +20,7 @@ use DND\Domain\Skill\Skills\Spellcasting;
 use DND\Domain\Skill\Skills\Trance;
 use DND\Domain\Skill\Skills\WildShape;
 use PHPUnit\Framework\TestCase;
+use App\Character\Entity\Character;
 
 class AnwenCharacterCardTest extends TestCase
 {

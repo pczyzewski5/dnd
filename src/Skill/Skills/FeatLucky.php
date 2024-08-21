@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Skill\Skills;
+
+use App\Enum\SkillTagEnum;
+
+class FeatLucky extends AbstractSkill
+{
+    protected const ORDER = 10000;
+    protected const TAGS = [
+        SkillTagEnum::PASSIVE,
+        SkillTagEnum::USE_COUNT,
+    ];
+
+    public function getUsageCount(): int
+    {
+        return 3;
+    }
+
+    public function getContext(): array
+    {
+        return [];
+    }
+}
