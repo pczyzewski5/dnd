@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Calendar\Command;
 
-use App\Calendar\CalendarParticipant\CalendarParticipantPersister;
-use App\Calendar\CalendarParticipant\Entity\CalendarParticipantFactory;
+use App\Calendar\CalendarParticipantPersister;
+use App\Calendar\Entity\CalendarParticipantFactory;
 
 class CreateCalendarParticipantsHandler
 {

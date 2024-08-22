@@ -2,7 +2,8 @@
 
 namespace App\Spellcasting;
 
-use App\Character\Entity\Character;
+use App\Character\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 use App\CharacterClass\CharacterClassHelper;
 use App\Enum\AbilityEnum;
 use App\Enum\CharacterClassEnum;

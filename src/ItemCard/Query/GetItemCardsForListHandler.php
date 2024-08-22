@@ -9,22 +9,19 @@ use App\ItemCard\Entity\ItemCard;
 
 class GetItemCardsForListHandler
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;
     }
 
     /**
      * @return ItemCard[]
      */
-    public function __invoke(GetItemCardsForList $query): array
+    public function handle(GetItemCardsForList $query): array
     {
-        $sql = 'SELECT ic.id, ic.title, ic.description, ic.origin, ic.category, u.email as author, ic.created_at 
-                FROM item_cards ic LEFT JOIN users u ON u.id = ic.author_id';
-
-        $stmt = $this->entityManager->getConnection()->executeQuery($sql);
+        $stmt = $this->entityManager->getConnection()->executeQuery(
+            'SELECT ic.id, ic.title, ic.description, ic.origin, ic.category, u.email as author, ic.created_at 
+                FROM item_card ic LEFT JOIN user u ON u.id = ic.author_id'
+        );
 
         return $stmt->fetchAllAssociative();
     }

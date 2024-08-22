@@ -2,27 +2,7 @@
 #    path: /quill
 #    controller: App\Controller\IndexController::quill
 #    methods: [ POST ]
-#
-#login:
-#    path: /login
-#    controller: App\Controller\LoginController::login
-#    methods: [ GET, POST ]
-#
 
-#
-## item_card_controller
-
-#
-#item_card_create:
-#    path: /dm/item_card/create
-#    controller: App\Controller\ItemCardController::create
-#    methods: [ GET, POST ]
-#
-#item_card_read:
-#    path: /dm/item_card/{id}
-#    controller: App\Controller\ItemCardController::read
-#    methods: [ GET ]
-#
 #item_card_update:
 #    path: /dm/item_card/{id}/update
 #    controller: App\Controller\ItemCardController::update
@@ -38,30 +18,7 @@
 #    controller: App\Controller\ItemCardController::print
 #    methods: [ GET ]
 #
-## character_controller
 
-#
-#character_read:
-#    path: /player/character/{id}
-#    controller: App\Controller\CharacterController::read
-#    methods: [ GET ]
-#
-#character_print:
-#    path: /player/character/{id}/print
-#    controller: App\Controller\CharacterController::print
-#    methods: [ GET ]
-#
-#character_preview:
-#    path: /preview/character/{id}
-#    controller: App\Controller\CharacterController::print
-#    methods: [ GET ]
-#
-## index_controller
-
-#
-#calendar_create:
-
-#
 #calendar_delete:
 #    path: /calendar/{id}/delete
 #    controller: App\Controller\CalendarController::delete

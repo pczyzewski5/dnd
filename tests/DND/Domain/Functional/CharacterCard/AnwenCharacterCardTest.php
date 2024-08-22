@@ -20,11 +20,11 @@ use DND\Domain\Skill\Skills\Spellcasting;
 use DND\Domain\Skill\Skills\Trance;
 use DND\Domain\Skill\Skills\WildShape;
 use PHPUnit\Framework\TestCase;
-use App\Character\Entity\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 
 class AnwenCharacterCardTest extends TestCase
 {
-    private Character $characterUnderTest;
+    private PlayerCharacter $characterUnderTest;
 
     /**
      * @test

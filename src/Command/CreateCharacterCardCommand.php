@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\CaseConverter;
-use App\Character\Entity\Character;
-use App\Character\Entity\CharacterFactory;
+use App\Character\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
+use App\PlayerCharacter\Entity\PlayerCharacterFactory;
 use App\CharacterCard\CharacterCardBuilder;
 use App\Validator\CharacterDataValidator;
 use App\Validator\Validators\AlignmentValidator;
@@ -42,7 +43,7 @@ class CreateCharacterCardCommand extends Command
 
             $this->validate($data);
 
-            $this->createHtmlFile(CharacterFactory::createFromArray($data));
+            $this->createHtmlFile(PlayerCharacterFactory::createFromArray($data));
         }
 
         return Command::SUCCESS;

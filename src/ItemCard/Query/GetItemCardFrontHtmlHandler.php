@@ -23,7 +23,7 @@ class GetItemCardFrontHtmlHandler
         $this->itemCardStylesPath = $itemCardStylesPath;
     }
 
-    public function __invoke(GetItemCardFrontHtml $query): string
+    public function handle(GetItemCardFrontHtml $query): string
     {
         $title = $query->getTitle();
         $description = $query->getDescription();

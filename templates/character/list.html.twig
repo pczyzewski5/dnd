@@ -25,7 +25,8 @@
                 {% set className = className ~ ' - ' ~ subclassName|ucWords %}
             {% endif %}
 
-            <tr class="table-item" href="{{ path('character_read', {'id': character.getId()}) }}">
+            <tr class="table-item" href="{{ path('character_read', {'id': character.getPlayerCharacter.getIdAsString
+                ()}) }}">
                 <td>{{ key + 1 }}</td>
                 <td>{{ character.getCharacterName() }}</td>
                 <td>{{ character.getRace().getName()|ucWords }}</td>

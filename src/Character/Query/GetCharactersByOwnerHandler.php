@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace App\Character\Query;
 
-use App\Character\CharacterRepository;
-use App\ItemCard\Entity\ItemCard;
+use App\Character\Character;
+use App\Character\CharacterFactory;
+use App\PlayerCharacter\PlayerCharacterRepository;
 
 class GetCharactersByOwnerHandler
 {
-    public function __construct(private readonly CharacterRepository $repository)
+    public function __construct(private readonly PlayerCharacterRepository $repository)
     {
     }
 
     /**
-     * @return ItemCard[]
+     * @return Character[]
      */
     public function handle(GetCharactersByOwner $query): array
     {
-        if (\in_array('ROLE_ADMIN', $query->getUser()->getRoles())) {
-            return $this->repository->findAll();
-        }
+        $result = \in_array('ROLE_ADMIN', $query->getUser()->getRoles())
+            ? $this->repository->findAll()
+            : $this->repository->findByOwner($query->getUser()->getId());
 
-        return $this->repository->findByOwner($query->getUser()->getIdAsString());
+        return CharacterFactory::createManyFromEntities($result);
     }
 }

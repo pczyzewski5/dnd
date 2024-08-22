@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Calendar\Query;
 
-use App\Calendar\Calendar\CalendarRepository;
+
+use App\Calendar\CalendarRepository;
 
 class GetCalendarsForUserHandler
 {
-    private CalendarRepository $repository;
-
-    public function __construct(CalendarRepository $repository)
+    public function __construct(private readonly CalendarRepository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function __invoke(GetCalendarsForUser $query): array
+    public function handle(GetCalendarsForUser $query): array
     {
-        return $this->repository->findManyForAttendantId($query->getUser()->getId());
+        return $this->repository->findManyForAttendantId(
+            $query->getUser()->getId()
+        );
     }
 }

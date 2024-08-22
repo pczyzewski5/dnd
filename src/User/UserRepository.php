@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\User;
 
+use App\Exception\RepositoryException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Exception\UserNotFoundException;
 use App\User\Entity\User;
 
 class UserRepository extends ServiceEntityRepository
@@ -21,7 +21,7 @@ class UserRepository extends ServiceEntityRepository
         $entity = $this->find($id);
 
         if (null === $entity) {
-            throw UserNotFoundException::notFound($id);
+            throw RepositoryException::notFound(User::class, $id);
         }
 
         return $entity;

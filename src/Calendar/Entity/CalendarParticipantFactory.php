@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace App\Calendar\Entity;
 
-use App\Calendar\CalendarParticipant\CalendarParticipantDTO;
+use Symfony\Component\Uid\Uuid;
 
 class CalendarParticipantFactory
 {
     public static function create(
-    string $calendarId,
-    string $participantId,
-    ?string $willAttend = null,
-    ?string $maybeAttend = null,
-    ?string $wontAttend = null,
+        Uuid $calendarId,
+        Uuid $participantId,
+        ?string $willAttend = null,
+        ?string $maybeAttend = null,
+        ?string $wontAttend = null,
     ): CalendarParticipant {
-        $dto = new CalendarParticipantDTO();
-        $dto->calendarId = $calendarId;
-        $dto->participantId = $participantId;
-        $dto->willAttend = $willAttend;
-        $dto->maybeAttend = $maybeAttend;
-        $dto->wontAttend = $wontAttend;
-        $dto->createdAt = new \DateTimeImmutable();
-
-        return new CalendarParticipant($dto);
+        return new CalendarParticipant(
+            $calendarId,
+            $participantId,
+            new \DateTimeImmutable(),
+            $willAttend,
+            $maybeAttend,
+            $wontAttend,
+        );
     }
 }

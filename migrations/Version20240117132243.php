@@ -19,9 +19,9 @@ final class Version20240117132243 extends AbstractMigration
        $sql = <<<SQL
 CREATE TABLE player_character
 (
-    id          VARCHAR(36) NOT NULL,
+    id          BINARY(16) NOT NULL,
     data        TEXT NOT NULL,
-    owner_id    VARCHAR(36) NOT NULL,
+    owner_id    BINARY(16) NOT NULL,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)
 ) DEFAULT CHARACTER SET UTF8

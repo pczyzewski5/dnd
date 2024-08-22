@@ -10,6 +10,7 @@ use App\Calendar\Calendar\Calendar;
 use App\Calendar\Calendar\CalendarMapper;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Uid\Uuid;
 
 class CalendarRepository
 {
@@ -41,11 +42,11 @@ class CalendarRepository
         );
     }
 
-    public function findManyForAttendantId(string $userId, int $limit = 3): array
+    public function findManyForAttendantId(Uuid $userId, int $limit = 3): array
     {
         $sql = <<<SQL
-SELECT * FROM calendars c
-    JOIN calendar_participants cp ON c.id = cp.calendar_id
+SELECT * FROM calendar c
+    JOIN calendar_participant cp ON c.id = cp.calendar_id
     WHERE cp.participant_id = :userId 
     ORDER BY c.created_at DESC
     LIMIT :limit

@@ -17,11 +17,11 @@ use DND\Domain\Skill\Skills\Rage;
 use DND\Domain\Skill\Skills\RecklessAttack;
 use DND\Domain\Skill\Skills\UnarmoredDefense;
 use PHPUnit\Framework\TestCase;
-use App\Character\Entity\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 
 class SyddaCharacterCardTest extends TestCase
 {
-    private Character $characterUnderTest;
+    private PlayerCharacter $characterUnderTest;
 
     /**
      * @test

@@ -2,54 +2,58 @@
 
 namespace App\Calendar\Entity;
 
-use App\Calendar\Calendar\CalendarDTO;
-use App\Calendar\Exception\ValidationException;
-use Symfony\Component\Uid\UuidV1;
+use App\Calendar\CalendarRepository;
+use Symfony\Component\Uid\Uuid;
+use Doctrine\ORM\Mapping;
 
+#[Mapping\Entity(repositoryClass: CalendarRepository::class)]
 class Calendar
 {
-    private string $id;
+    #[Mapping\Id]
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    #[Mapping\CustomIdGenerator(class: Uuid::class)]
+    private Uuid $id;
+
+    #[Mapping\Column(type: 'string', length: 36, nullable: false)]
     private string $title;
+
+    #[Mapping\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $isPublic;
+
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
     private string $ownerId;
+
+    #[Mapping\Column(type: 'text', nullable: false)]
     private array $dates;
+
+    #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(CalendarDTO $dto)
-    {
-        $this->merge($dto);
+    /**
+     * @param string $id
+     * @param string $title
+     * @param bool $isPublic
+     * @param string $ownerId
+     * @param array $dates
+     * @param \DateTimeImmutable $createdAt
+     */
+    public function __construct(
+        Uuid $id,
+        string $title,
+        bool $isPublic,
+        string $ownerId,
+        array $dates,
+        \DateTimeImmutable $createdAt
+    ) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->isPublic = $isPublic;
+        $this->ownerId = $ownerId;
+        $this->dates = $dates;
+        $this->createdAt = $createdAt;
     }
 
-    public function update(CalendarDTO $dto): void
-    {
-        $this->merge($dto);
-        $this->validate();
-    }
-
-    private function validate(): void
-    {
-        if (!isset($this->id) && UuidV1::isValid($this->id)) {
-            throw ValidationException::missingProperty('id');
-        }
-
-        if (!isset($this->title) || '' === $this->title) {
-            throw ValidationException::missingProperty('title');
-        }
-
-        if (!isset($this->ownerId) && UuidV1::isValid($this->ownerId)) {
-            throw ValidationException::missingProperty('ownerId');
-        }
-
-        if (empty($this->dates)) {
-            throw ValidationException::missingProperty('dates');
-        }
-
-        if (!isset($this->createdAt)) {
-            throw ValidationException::missingProperty('createdAt');
-        }
-    }
-
-    public function getId(): string
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -59,9 +63,21 @@ class Calendar
         return $this->title;
     }
 
+    public function setTitle(string $title): Calendar
+    {
+        $this->title = $title;
+        return $this;
+    }
+
     public function isPublic(): bool
     {
         return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): Calendar
+    {
+        $this->isPublic = $isPublic;
+        return $this;
     }
 
     public function getOwnerId(): string
@@ -69,16 +85,34 @@ class Calendar
         return $this->ownerId;
     }
 
-    /**
-     * @return \DateTimeImmutable[]
-     */
+    public function setOwnerId(string $ownerId): Calendar
+    {
+        $this->ownerId = $ownerId;
+
+        return $this;
+    }
+
     public function getDates(): array
     {
         return $this->dates;
     }
 
+    public function setDates(array $dates): Calendar
+    {
+        $this->dates = $dates;
+
+        return $this;
+    }
+
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): Calendar
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

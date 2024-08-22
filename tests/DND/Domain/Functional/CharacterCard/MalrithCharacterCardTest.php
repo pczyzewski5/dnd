@@ -22,11 +22,11 @@ use DND\Domain\Skill\Skills\OathOfTheAncientsPaladinChannelDivinity;
 use DND\Domain\Skill\Skills\OathOfTheAncientsPaladinSpells;
 use DND\Domain\Skill\Skills\Spellcasting;
 use PHPUnit\Framework\TestCase;
-use App\Character\Entity\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 
 class MalrithCharacterCardTest extends TestCase
 {
-    private Character $characterUnderTest;
+    private PlayerCharacter $characterUnderTest;
 
     /**
      * @test

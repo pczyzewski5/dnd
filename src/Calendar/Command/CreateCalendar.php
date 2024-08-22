@@ -4,20 +4,15 @@ declare(strict_types=1);
 
 namespace App\Calendar\Command;
 
+use Symfony\Component\Uid\Uuid;
+
 class CreateCalendar
 {
-    private string $title;
-    private string $ownerId;
-    private array $dates;
-
     public function __construct(
-        string $title,
-        string $ownerId,
-        array $dates
+        private readonly string $title,
+        private readonly Uuid $ownerId,
+        private readonly array $dates
     ) {
-        $this->title = $title;
-        $this->ownerId = $ownerId;
-        $this->dates = $dates;
     }
 
     public function getTitle(): string
@@ -25,7 +20,7 @@ class CreateCalendar
         return $this->title;
     }
 
-    public function getOwnerId(): string
+    public function getOwnerId(): Uuid
     {
         return $this->ownerId;
     }

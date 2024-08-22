@@ -2,18 +2,15 @@
 
 namespace App\CharacterCard\SectionBuilder;
 
-use App\Character\Entity\Character;
+use App\Character\Character;
 use Twig\Environment;
 
 abstract class AbstractSectionBuilder
 {
-    protected Character $character;
-    protected Environment $twig;
-
-    public function __construct(Character $character, Environment $twig)
-    {
-        $this->character = $character;
-        $this->twig = $twig;
+    public function __construct(
+        protected readonly Character $character,
+        protected readonly Environment $twig
+    ) {
     }
 
     abstract public function build(): string;

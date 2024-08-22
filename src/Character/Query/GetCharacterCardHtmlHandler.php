@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace App\Character\Query;
 
-use App\Character\CharacterRepository;
+use App\Character\CharacterFactory;
 use App\CharacterCard\CharacterCardBuilder;
+use App\PlayerCharacter\PlayerCharacterRepository;
 
 class GetCharacterCardHtmlHandler
 {
-    private CharacterRepository $repository;
-    private CharacterCardBuilder $builder;
-
-    public function __construct(CharacterRepository $repository, CharacterCardBuilder $builder)
-    {
-        $this->repository = $repository;
-        $this->builder = $builder;
+    public function __construct(
+        private readonly PlayerCharacterRepository $repository,
+        private readonly CharacterCardBuilder $builder
+    ) {
     }
 
-    public function __invoke(GetCharacterCardHtml $query): string
+    public function handle(GetCharacterCardHtml $query): string
     {
         return $this->builder->build(
-            $this->repository->getOneById($query->getId())
+            CharacterFactory::createFromEntity(
+                $this->repository->getOneById(
+                    $query->getId()
+                )
+            )
         );
     }
 }

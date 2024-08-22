@@ -17,11 +17,11 @@ use DND\Domain\Skill\Skills\Spellcasting;
 use DND\Domain\Skill\Skills\TidesOfChaos;
 use DND\Domain\Skill\Skills\WildMagicSurge;
 use PHPUnit\Framework\TestCase;
-use App\Character\Entity\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 
 class SathorisCharacterCardTest extends TestCase
 {
-    private Character $characterUnderTest;
+    private PlayerCharacter $characterUnderTest;
 
     /**
      * @test

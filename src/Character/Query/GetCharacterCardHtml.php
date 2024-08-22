@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Character\Query;
 
+use Symfony\Component\Uid\Uuid;
+
 class GetCharacterCardHtml
 {
-    private string $id;
-
-    public function __construct(string $id)
+    public function __construct(private readonly Uuid $id)
     {
-        $this->id = $id;
     }
 
-    public function getId(): string
+    public function getId(): Uuid
     {
         return $this->id;
     }

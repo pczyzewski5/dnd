@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Skill\Skills;
 
 use App\CaseConverter;
-use App\Character\Entity\Character;
+use App\Character\Character;
 use App\Enum\SkillTagEnum;
 
 abstract class AbstractSkill
@@ -15,13 +15,10 @@ abstract class AbstractSkill
         SkillTagEnum::PASSIVE
     ];
 
-    protected Character $character;
-    protected string $name;
-
-    public function __construct(Character $character, string $name)
-    {
-        $this->character = $character;
-        $this->name = $name;
+    public function __construct(
+        protected readonly Character $character,
+        protected readonly string $name
+    ) {
     }
 
     public function getName(): string

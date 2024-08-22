@@ -6,14 +6,19 @@ namespace App\Skill;
 
 use App\CaseConverter;
 
+use App\Kernel;
+
+use function var_dump;
+
 class SkillFilesGenerator
 {
-    private const TEMPLATE_DIR = 'templates/skill_templates/';
+    private const TEMPLATE_DIR = __DIR__ . '../../templates/skill_templates/';
     private const SKILL_TEMPLATE_FILE = 'SkillTemplate.php';
     private const CLASS_DIR = __DIR__ . '/Skills/';
 
     public static function generateFiles(string $skillName): void
     {
+        var_dump('aaa');exit;
         self::generateClass($skillName);
         self::generateTwigTemplate($skillName);
     }
@@ -33,11 +38,14 @@ class SkillFilesGenerator
     private static function generateTwigTemplate(string $skillName): void
     {
         $filepath = \sprintf(
-            '%s%s.html.twig',
+            '\%s%s.html.twig',
             self::TEMPLATE_DIR,
             CaseConverter::normalToSnake($skillName)
         );
+        var_dump($filepath);exit;
 
-        \file_put_contents($filepath, "<b>{ $skillName }</b> - ");
+        if (\file_exists($filepath) == false) {
+            \file_put_contents($filepath, "<b>{ $skillName }</b> - ");
+        }
     }
 }

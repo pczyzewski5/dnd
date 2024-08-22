@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Character;
+namespace App\PlayerCharacter;
 
-use App\DND\Exception\PersisterException;
+use App\Exception\PersisterException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Character\Entity\Character;
 
-class CharacterPersister
+class PlayerCharacterPersister
 {
     private EntityManagerInterface $entityManager;
 
@@ -18,27 +17,11 @@ class CharacterPersister
         $this->entityManager = $entityManager;
     }
 
-    /**
-     * @throws PersisterException
-     */
-    public function save(Character $character): void
-    {
-        throw new \Exception('not implemented');
-    }
-
-    public function update(Character $character): void
-    {
-        throw new \Exception('not implemented');
-    }
-
-    /**
-     * @throws PersisterException
-     */
     public function delete(string $id): void
     {
         try {
             $this->entityManager->getConnection()->executeQuery(
-                'DELETE FROM characters WHERE id = ?',
+                'DELETE FROM player_character WHERE id = ?',
                 [$id],
                 [Types::STRING]
             );

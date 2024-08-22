@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Skill;
 
-use App\Character\Entity\Character;
+use App\Character\Character;
 
 class SkillsFactory
 {

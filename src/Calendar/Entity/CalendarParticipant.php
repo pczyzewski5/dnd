@@ -4,53 +4,65 @@ declare(strict_types=1);
 
 namespace App\Calendar\Entity;
 
-use App\Calendar\CalendarParticipant\CalendarParticipantDTO;
-use App\Calendar\Exception\ValidationException;
-use Symfony\Component\Uid\UuidV1;
+use Symfony\Component\Uid\Uuid;
+use Doctrine\ORM\Mapping;
 
 class CalendarParticipant
 {
-    private string $calendarId;
-    private string $participantId;
-    private ?array $willAttend = null;
-    private ?array $maybeAttend = null;
-    private ?array $wontAttend = null;
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    private Uuid $calendarId;
+
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    private Uuid $participantId;
+
+    #[Mapping\Column(type: 'text', nullable: true)]
+    private ?array $willAttend;
+
+    #[Mapping\Column(type: 'text', nullable: true)]
+    private ?array $maybeAttend;
+
+    #[Mapping\Column(type: 'text', nullable: true)]
+    private ?array $wontAttend;
+
+    #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(CalendarParticipantDTO $dto)
-    {
-        $this->merge($dto);
+    public function __construct(
+        Uuid $calendarId,
+        Uuid $participantId,
+        \DateTimeImmutable $createdAt,
+        ?array $willAttend = null,
+        ?array $maybeAttend = null,
+        ?array $wontAttend = null,
+    ) {
+        $this->calendarId = $calendarId;
+        $this->participantId = $participantId;
+        $this->willAttend = $willAttend;
+        $this->maybeAttend = $maybeAttend;
+        $this->wontAttend = $wontAttend;
+        $this->createdAt = $createdAt;
     }
 
-    public function update(CalendarParticipantDTO $dto): void
-    {
-        $this->merge($dto);
-        $this->validate();
-    }
-
-    private function validate(): void
-    {
-        if (!isset($this->calendarId) && UuidV1::isValid($this->calendarId)) {
-            throw ValidationException::missingProperty('calendarId');
-        }
-
-        if (!isset($this->participantId) && UuidV1::isValid($this->participantId)) {
-            throw ValidationException::missingProperty('participantId');
-        }
-
-        if (!isset($this->createdAt)) {
-            throw ValidationException::missingProperty('createdAt');
-        }
-    }
-
-    public function getCalendarId(): string
+    public function getCalendarId(): Uuid
     {
         return $this->calendarId;
     }
 
-    public function getParticipantId(): string
+    public function setCalendarId(Uuid $calendarId): CalendarParticipant
+    {
+        $this->calendarId = $calendarId;
+        return $this;
+    }
+
+    public function getParticipantId(): Uuid
     {
         return $this->participantId;
+    }
+
+    public function setParticipantId(Uuid $participantId): CalendarParticipant
+    {
+        $this->participantId = $participantId;
+        return $this;
     }
 
     public function getWillAttend(): ?array
@@ -58,9 +70,21 @@ class CalendarParticipant
         return $this->willAttend;
     }
 
+    public function setWillAttend(?array $willAttend): CalendarParticipant
+    {
+        $this->willAttend = $willAttend;
+        return $this;
+    }
+
     public function getMaybeAttend(): ?array
     {
         return $this->maybeAttend;
+    }
+
+    public function setMaybeAttend(?array $maybeAttend): CalendarParticipant
+    {
+        $this->maybeAttend = $maybeAttend;
+        return $this;
     }
 
     public function getWontAttend(): ?array
@@ -68,12 +92,24 @@ class CalendarParticipant
         return $this->wontAttend;
     }
 
+    public function setWontAttend(?array $wontAttend): CalendarParticipant
+    {
+        $this->wontAttend = $wontAttend;
+        return $this;
+    }
+
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    private function merge(CalendarParticipantDTO $dto)
+    public function setCreatedAt(\DateTimeImmutable $createdAt): CalendarParticipant
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    private function merge()
     {
         $properties = \array_keys(
             \get_class_vars(self::class)

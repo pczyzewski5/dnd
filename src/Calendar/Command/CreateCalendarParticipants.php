@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace App\Calendar\Command;
 
 use App\User\Entity\User;
+use Symfony\Component\Uid\Uuid;
 
 class CreateCalendarParticipants
 {
-    private string $calendarId;
-    private array $participants;
-
-    public function __construct(string $calendarId, array $participants)
-    {
-        $this->calendarId = $calendarId;
-        $this->participants = $participants;
+    public function __construct(
+        private readonly Uuid $calendarId,
+        private readonly array $participants
+    ) {
     }
 
-    public function getCalendarId(): string
+    public function getCalendarId(): Uuid
     {
         return $this->calendarId;
     }

@@ -6,16 +6,21 @@ namespace App\Controller;
 
 use App\Calendar\CalendarHelper;
 use App\Calendar\Command\CreateCalendar;
+use App\Calendar\Command\CreateCalendarHandler;
 use App\Calendar\Command\CreateCalendarParticipants;
+use App\Calendar\Command\CreateCalendarParticipantsHandler;
 use App\Calendar\Command\DeleteCalendar;
 use App\Calendar\Command\GetDatesForCalendar;
+use App\Calendar\Command\GetDatesForCalendarHandler;
 use App\Calendar\Command\UpdateCalendarParticipantResponse;
 use App\Calendar\Query\GetCalendarHelper;
 use App\Calendar\Query\GetCalendarsForUser;
+use App\Calendar\Query\GetCalendarsForUserHandler;
 use App\Form\CalendarAnswerForm;
 use App\Form\CreateCalendarForm;
 use App\User\Entity\User;
 use App\User\Query\GetUsers;
+use App\User\Query\GetUsersHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,16 +29,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class CalendarController extends AbstractController
 {
     #[Route('/calendar/create', 'calendar_create', methods: [Request::METHOD_GET, Request::METHOD_POST])]
-    public function create(Request $request): Response
-    {
+    public function create(
+        Request $request,
+        GetUsersHandler $getUsersHandler,
+        CreateCalendarHandler $createCalendarHandler,
+        CreateCalendarParticipantsHandler $createCalendarParticipantsHandler,
+        GetDatesForCalendarHandler $getDatesForCalendarHandler
+    ): Response {
         /** @var User $loggedInUser */
         $loggedInUser = $this->getUser();
-        $users = $this->queryBus->handle(
+        $users = $getUsersHandler->handle(
             new GetUsers($loggedInUser)
         );
 
         $form = $this->createForm(CreateCalendarForm::class, [
-           CreateCalendarForm::USERS_FIELD => $users,
+            CreateCalendarForm::USERS_FIELD => $users,
         ]);
         $form->handleRequest($request);
 
@@ -42,7 +52,7 @@ class CalendarController extends AbstractController
             $participants = $data[CreateCalendarForm::USERS_FIELD];
             $participants[] = $loggedInUser;
 
-            $calendarId = $this->commandBus->handle(
+            $calendarId = $createCalendarHandler->handle(
                 new CreateCalendar(
                     $data[CreateCalendarForm::TITLE_FIELD],
                     $loggedInUser->getId(),
@@ -50,7 +60,7 @@ class CalendarController extends AbstractController
                 )
             );
 
-            $this->commandBus->handle(
+            $createCalendarParticipantsHandler->handle(
                 new CreateCalendarParticipants(
                     $calendarId,
                     $participants
@@ -60,7 +70,7 @@ class CalendarController extends AbstractController
             return $this->redirectToRoute('calendar_answer', ['id' => $calendarId]);
         }
 
-        $datesForCalendar = $this->commandBus->handle(
+        $datesForCalendar = $getDatesForCalendarHandler->handle(
             new GetDatesForCalendar()
         );
 
@@ -111,14 +121,12 @@ class CalendarController extends AbstractController
     }
 
     #[Route('/calendar/list', 'calendar_list', methods: [Request::METHOD_GET])]
-    public function list(): Response
+    public function list(GetCalendarsForUserHandler $getCalendarsForUserHandler): Response
     {
-        $calendars = $this->queryBus->handle(
-            new GetCalendarsForUser($this->getUser())
-        );
-
         return $this->render('calendar/list.html.twig', [
-            'calendars' => $calendars
+            'calendars' => $getCalendarsForUserHandler->handle(
+                new GetCalendarsForUser($this->getUser())
+            )
         ]);
     }
 

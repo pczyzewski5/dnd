@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace App\Calendar\Command;
 
-use App\Calendar\Calendar\CalendarPersister;
-use App\Calendar\Calendar\Entity\CalendarFactory;
+use App\Calendar\CalendarPersister;
+use App\Calendar\Entity\CalendarFactory;
 
 class CreateCalendarHandler
 {
-    private CalendarPersister $persister;
-
-    public function __construct(CalendarPersister $persister)
+    public function __construct(private readonly CalendarPersister $persister)
     {
-        $this->persister = $persister;
     }
 
     public function handle(CreateCalendar $command): string

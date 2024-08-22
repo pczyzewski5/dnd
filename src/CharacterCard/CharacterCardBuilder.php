@@ -2,7 +2,7 @@
 
 namespace App\CharacterCard;
 
-use App\Character\Entity\Character;
+use App\Character\Character;
 use App\CharacterCard\SectionBuilder\AbilitiesSectionBuilder;
 use App\CharacterCard\SectionBuilder\AbilitySkillsSectionBuilder;
 use App\CharacterCard\SectionBuilder\AttacksTricksSectionBuilder;

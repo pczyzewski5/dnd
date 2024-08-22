@@ -21,14 +21,14 @@ use DND\Domain\Skill\Skills\SneakAttack;
 use DND\Domain\Skill\Skills\ThievesCant;
 use DND\Domain\Skill\Skills\UncannyDodge;
 use PHPUnit\Framework\TestCase;
-use App\Character\Entity\Character;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 
 /**
  * @group dev
  */
 class MordimerCharacterCardTest extends TestCase
 {
-    private Character $characterUnderTest;
+    private PlayerCharacter $characterUnderTest;
 
     /**
      * @test

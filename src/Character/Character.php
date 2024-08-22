@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Character\Entity;
+namespace App\Character;
 
 use App\Ability\Abilities;
 use App\AbilitySkills\AbilitySkills;
@@ -17,6 +17,7 @@ use App\CharacterClass\CharacterClass;
 use App\CharacterClass\CharacterClassCollection;
 use App\Enum\AlignmentEnum;
 use App\Level\Levels;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 use App\Proficiency\Proficiencies;
 use App\Race\Race;
 use App\SavingThrows\SavingThrows;
@@ -26,66 +27,35 @@ use App\Spellcasting\Spellcasting;
 
 class Character
 {
-    private string $id;
-    private CharacterClassCollection $characterClassCollection;
-    private AbilitySkills $abilitySkills;
-    private Proficiencies $proficiencies;
-    private SavingThrows $savingThrows;
-    private AlignmentEnum $alignment;
-    private Abilities $abilities;
-    private string $origin;
-    private Levels $levels;
-    private Race $race;
-    private string $characterName;
-    private string $campaignName;
-    private string $playerName;
-    private array $languages;
-
-
     private Skills $skills;
-
     private Spellcasting $spellcasting;
 
     public function __construct(
-        string $id,
-        CharacterClassCollection $characterClassCollection,
-        AbilitySkills $abilitySkills,
-        Proficiencies $proficiencies,
-        SavingThrows $savingThrows,
-        AlignmentEnum $alignment,
-        Abilities $abilities,
-        string $origin,
-        Levels $levels,
-        Race $race,
-        array $extraSkills,
-        string $characterName,
-        string $campaignName,
-        string $playerName,
-        array $languages,
+        private readonly PlayerCharacter $playerCharacter,
+        private readonly CharacterClassCollection $characterClassCollection,
+        private readonly AbilitySkills $abilitySkills,
+        private readonly Proficiencies $proficiencies,
+        private readonly SavingThrows $savingThrows,
+        private readonly AlignmentEnum $alignment,
+        private readonly Abilities $abilities,
+        private readonly string $origin,
+        private readonly Levels $levels,
+        private readonly Race $race,
+        private readonly array $extraSkills,
+        private readonly string $characterName,
+        private readonly string $campaignName,
+        private readonly string $playerName,
+        private readonly array $languages,
     ) {
-        $this->id = $id;
-        $this->characterClassCollection = $characterClassCollection;
-        $this->abilitySkills = $abilitySkills;
-        $this->proficiencies = $proficiencies;
-        $this->savingThrows = $savingThrows;
-        $this->alignment = $alignment;
-        $this->abilities = $abilities;
-        $this->origin = $origin;
-        $this->levels = $levels;
-        $this->race = $race;
-        $this->characterName = $characterName;
-        $this->campaignName = $campaignName;
-        $this->playerName = $playerName;
-        $this->languages = $languages;
-
+        // @todo do wyciągnięcia do buildera
         $this->skills = SkillsFactory::create($this, $extraSkills);
 
         $this->spellcasting = new Spellcasting();
     }
 
-    public function getId(): string
+    public function getPlayerCharacter(): PlayerCharacter
     {
-        return $this->id;
+        return $this->playerCharacter;
     }
 
     public function getSpeed(): int

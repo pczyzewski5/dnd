@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Skill;
 
 use App\CaseConverter;
-use App\Character\Entity\Character;
+use App\Character\Character;
 use App\Skill\Skills\AbstractSkill;
 
 class SkillFactory
 {
-    private const SKILLS_NAMESPACE = 'App\DND\Skill\Skills\\';
+    private const SKILLS_NAMESPACE = 'App\Skill\Skills\\';
 
     public static function create(Character $character, string $skillName): AbstractSkill
     {

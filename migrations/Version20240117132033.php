@@ -22,7 +22,7 @@ CREATE TABLE calendar
     id          VARCHAR(36) NOT NULL,
     title       VARCHAR(36) NOT NULL,
     is_public   BOOLEAN NOT NULL,
-    owner_id    VARCHAR(36) NOT NULL,
+    owner_id    BINARY(16) NOT NULL,
     dates       TEXT NOT NULL,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)

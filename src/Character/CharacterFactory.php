@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Character\Entity;
+namespace App\Character;
 
 use App\Ability\AbilitiesFactory;
 use App\AbilitySkills\AbilitySkillsFactory;
-use App\Character\Entity\Character as DomainCharacter;
+use App\PlayerCharacter\Entity\PlayerCharacter;
 use App\CharacterClass\CharacterClassCollectionFactory;
-use App\DND\Character\Character;
 use App\Enum\AlignmentEnum;
 use App\Kernel;
 use App\Level\LevelsFactory;
@@ -18,10 +17,10 @@ use App\SavingThrows\SavingThrowsFactory;
 
 class CharacterFactory
 {
-    public static function createFromEntity(Character $entity): DomainCharacter
+    public static function createFromEntity(PlayerCharacter $entity): Character
     {
         // @todo please refactor me
-        $data = \json_decode($entity->data, true);
+        $data = \json_decode($entity->getData(), true);
 
         if (\array_key_exists('input_filename', $data)) {
             $data = \file_get_contents(Kernel::getProjectDirectory() . '/input/' . $data['input_filename']);
@@ -46,8 +45,8 @@ class CharacterFactory
             $data['extra_skills']
         );
 
-        return new DomainCharacter(
-            $entity->id,
+        return new Character(
+            $entity,
             $characterClasses,
             AbilitySkillsFactory::create($abilities, $proficiencies, $levels),
             $proficiencies,
@@ -66,12 +65,12 @@ class CharacterFactory
     }
 
     /**
-     * @return DomainCharacter[]
+     * @return Character[]
      */
     public static function createManyFromEntities(array $entities): array
     {
         return \array_map(
-            static fn (Character $entity) => self::createFromEntity($entity),
+            static fn (PlayerCharacter $entity) => self::createFromEntity($entity),
             $entities
         );
     }
