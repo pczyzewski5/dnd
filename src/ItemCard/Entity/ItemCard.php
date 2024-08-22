@@ -5,64 +5,58 @@ declare(strict_types=1);
 namespace App\ItemCard\Entity;
 
 use App\Enum\ItemCardCategoryEnum;
-use App\ItemCard\Exception\ItemCardValidationException;
-use App\ItemCard\ItemCardDTO;
-use Symfony\Component\Uid\UuidV1;
+use App\ItemCard\ItemCardRepository;
+use Symfony\Component\Uid\Uuid;
+use Doctrine\ORM\Mapping;
 
+#[Mapping\Entity(repositoryClass: ItemCardRepository::class)]
 class ItemCard
 {
-    private string $id;
+    #[Mapping\Id]
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    #[Mapping\CustomIdGenerator(class: Uuid::class)]
+    private Uuid $id;
+
+    #[Mapping\Column(type: 'string', length: 72, nullable: false)]
     private string $title;
+
+    #[Mapping\Column(type: 'text', nullable: false)]
     private string $description;
+
+    #[Mapping\Column(type: 'string', length: 72, nullable: false)]
     private string $origin;
-    private ItemCardCategoryEnum $category;
-    private string $authorId;
-    private ?string $image = null;
+
+    #[Mapping\Column(type: 'string', length: 36, nullable: false)]
+    private string $category;
+
+    #[Mapping\Column(type: 'uuid', length: 36, nullable: false)]
+    private Uuid $authorId;
+
+    #[Mapping\Column(type: 'text', nullable: true)]
+    private ?string $image;
+
+    #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(ItemCardDTO $dto)
-    {
-        $this->merge($dto);
+    public function __construct(
+        string $title,
+        string $description,
+        string $origin,
+        ItemCardCategoryEnum $category,
+        Uuid $authorId,
+        ?string $image = null,
+    ) {
+        $this->id = Uuid::v1();
+        $this->title = $title;
+        $this->description = $description;
+        $this->origin = $origin;
+        $this->category = $category->value;
+        $this->authorId = $authorId;
+        $this->image = $image;
+        $this->createdAt = new \DateTimeImmutable();
     }
 
-    public function update(ItemCardDTO $dto): void
-    {
-        $this->merge($dto);
-        $this->validate();
-    }
-
-    private function validate(): void
-    {
-        if (!isset($this->id) && UuidV1::isValid($this->id)) {
-            throw ItemCardValidationException::missingProperty('id');
-        }
-
-        if (!isset($this->title) || '' === $this->title) {
-            throw ItemCardValidationException::missingProperty('title');
-        }
-
-        if (!isset($this->description) || '' === $this->description) {
-            throw ItemCardValidationException::missingProperty('description');
-        }
-
-        if (!isset($this->origin) || '' === $this->origin) {
-            throw ItemCardValidationException::missingProperty('origin');
-        }
-
-        if (ItemCardCategoryEnum::isValid($this->category)) {
-            throw ItemCardValidationException::missingProperty('category');
-        }
-
-        if (!isset($this->authorId) && UuidV1::isValid($this->authorId)) {
-            throw ItemCardValidationException::missingProperty('authorId');
-        }
-
-        if (!isset($this->createdAt)) {
-            throw ItemCardValidationException::missingProperty('createdAt');
-        }
-    }
-
-    public function getId(): string
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -72,9 +66,21 @@ class ItemCard
         return $this->title;
     }
 
+    public function setTitle(string $title): ItemCard
+    {
+        $this->title = $title;
+        return $this;
+    }
+
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function setDescription(string $description): ItemCard
+    {
+        $this->description = $description;
+        return $this;
     }
 
     public function getOrigin(): string
@@ -82,14 +88,34 @@ class ItemCard
         return $this->origin;
     }
 
-    public function getCategory(): ItemCardCategoryEnum
+    public function setOrigin(string $origin): ItemCard
     {
-        return $this->category;
+        $this->origin = $origin;
+        return $this;
     }
 
-    public function getAuthorId(): string
+    public function getCategory(): ItemCardCategoryEnum
+    {
+        return ItemCardCategoryEnum::from($this->category);
+    }
+
+    public function setCategory(ItemCardCategoryEnum $category): ItemCard
+    {
+        $this->category = $category->value;
+
+        return $this;
+    }
+
+    public function getAuthorId(): Uuid
     {
         return $this->authorId;
+    }
+
+    public function setAuthorId(Uuid $authorId): ItemCard
+    {
+        $this->authorId = $authorId;
+
+        return $this;
     }
 
     public function getImage(): ?string
@@ -97,8 +123,22 @@ class ItemCard
         return $this->image;
     }
 
+    public function setImage(?string $image): ItemCard
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): ItemCard
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

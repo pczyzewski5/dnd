@@ -19,12 +19,12 @@ final class Version20240117131840 extends AbstractMigration
         $sql = <<<SQL
 CREATE TABLE item_card
 (
-    id          VARCHAR(36) NOT NULL,
+    id          BINARY(16) NOT NULL,
     title       VARCHAR(72) NOT NULL,
     description TEXT NOT NULL,
     origin      VARCHAR(72) NOT NULL,
     category    VARCHAR(36) NOT NULL,
-    author_id   VARCHAR(36) NOT NULL,
+    author_id   BINARY(16) NOT NULL,
     image       TEXT,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)

@@ -1,22 +1,6 @@
-#quill:
-#    path: /quill
-#    controller: App\Controller\IndexController::quill
-#    methods: [ POST ]
 
-#item_card_update:
-#    path: /dm/item_card/{id}/update
-#    controller: App\Controller\ItemCardController::update
-#    methods: [ GET, POST ]
-#
-#item_card_delete:
-#    path: /dm/item_card/{id}/delete
-#    controller: App\Controller\ItemCardController::delete
-#    methods: [ GET ]
-#
-#item_card_print:
-#    path: /dm/item_card/{id}/print
-#    controller: App\Controller\ItemCardController::print
-#    methods: [ GET ]
+
+
 #
 
 #calendar_delete:

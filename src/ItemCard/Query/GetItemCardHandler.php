@@ -9,15 +9,11 @@ use App\ItemCard\ItemCardRepository;
 
 class GetItemCardHandler
 {
-    private ItemCardRepository $repository;
-
-    public function __construct(
-        ItemCardRepository $repository
-    ) {
-        $this->repository = $repository;
+    public function __construct(private readonly ItemCardRepository $repository)
+    {
     }
 
-    public function __invoke(GetItemCard $command): ItemCard
+    public function handle(GetItemCard $command): ItemCard
     {
         return $this->repository->getOneById($command->getId());
     }

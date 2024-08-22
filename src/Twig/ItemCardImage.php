@@ -9,13 +9,9 @@ use Twig\TwigFunction;
 
 class ItemCardImage extends AbstractExtension
 {
-    private string $itemCardImagesDirectory;
-
-//    public function __construct(
-//        string $itemCardImagesDirectory
-//    ) {
-//        $this->itemCardImagesDirectory = $itemCardImagesDirectory;
-//    }
+    public function __construct(private readonly string $itemCardImagesDirectory)
+    {
+    }
 
     public function getFunctions(): array
     {

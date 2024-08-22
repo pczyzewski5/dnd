@@ -31,8 +31,8 @@ class ItemCardForm extends AbstractType
                 'label' => 'Rodzaj',
                 'required' => true,
                 'choices' => [
-                    ItemCardCategoryEnum::ITEM => ItemCardCategoryEnum::ITEM,
-                    ItemCardCategoryEnum::SPELL => ItemCardCategoryEnum::SPELL,
+                    ItemCardCategoryEnum::item->value => ItemCardCategoryEnum::item->value,
+                    ItemCardCategoryEnum::spell->value => ItemCardCategoryEnum::spell->value,
                 ]
             ]
         );

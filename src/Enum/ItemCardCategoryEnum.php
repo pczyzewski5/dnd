@@ -2,10 +2,8 @@
 
 namespace App\Enum;
 
-use MyCLabs\Enum\Enum;
-
-class ItemCardCategoryEnum extends Enum
+enum ItemCardCategoryEnum: string
 {
-    const ITEM = 'item';
-    const SPELL = 'spell';
+    case item = 'item';
+    case spell = 'spell';
 }

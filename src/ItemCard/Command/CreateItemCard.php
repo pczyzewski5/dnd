@@ -4,31 +4,18 @@ declare(strict_types=1);
 
 namespace App\ItemCard\Command;
 
-use App\Enum\ItemCardCategoryEnum;
+use Symfony\Component\Uid\Uuid;
 
 class CreateItemCard
 {
-    private string $title;
-    private string $description;
-    private string $origin;
-    private ItemCardCategoryEnum $category;
-    private ?string $image;
-    private string $authorId;
-
     public function __construct(
-        string $title,
-        string $description,
-        string $origin,
-        ItemCardCategoryEnum $category,
-        string $authorId,
-        ?string $image,
+        private readonly string $title,
+        private readonly string $description,
+        private readonly string $origin,
+        private readonly string $category,
+        private readonly Uuid $authorId,
+        private readonly ?string $image,
     ) {
-        $this->title = $title;
-        $this->description = $description;
-        $this->origin = $origin;
-        $this->category = $category;
-        $this->image = $image;
-        $this->authorId = $authorId;
     }
 
     public function getTitle(): string
@@ -46,7 +33,7 @@ class CreateItemCard
         return $this->origin;
     }
 
-    public function getCategory(): ItemCardCategoryEnum
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -56,7 +43,7 @@ class CreateItemCard
         return $this->image;
     }
 
-    public function getAuthorId(): string
+    public function getAuthorId(): Uuid
     {
         return $this->authorId;
     }

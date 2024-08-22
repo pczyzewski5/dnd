@@ -4,40 +4,28 @@ declare(strict_types=1);
 
 namespace App\ItemCard;
 
-use App\DND\ItemCard\ItemCardRepository as DomainRepository;
-use App\DND\ItemCard\ItemCard;
-use App\DND\ItemCard\ItemCardMapper;
-use Doctrine\ORM\EntityManagerInterface;
-use App\ItemCard\Entity\ItemCard as DomainItemCard;
-use App\ItemCard\Exception\ItemCardNotFoundException;
+use App\Exception\RepositoryException;
+use App\ItemCard\Entity\ItemCard;
 
-class ItemCardRepository
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid;
+
+class ItemCardRepository extends ServiceEntityRepository
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->entityManager = $entityManager;
+        parent::__construct($registry, ItemCard::class);
     }
 
-    public function getOneById(string $id): DomainItemCard
+    public function getOneById(Uuid $id): ItemCard
     {
-        $entity = $this->entityManager->getRepository(ItemCard::class)->find($id);
+        $entity = $this->find($id);
 
         if (null === $entity) {
-            throw ItemCardNotFoundException::notFound($id);
+            throw RepositoryException::notFound(ItemCard::class, $id);
         }
 
-        return ItemCardMapper::toDomain($entity);
-    }
-
-    /**
-     * @return DomainItemCard[]
-     */
-    public function findAll(): array
-    {
-        return ItemCardMapper::mapArrayToDomain(
-            $this->entityManager->getRepository(ItemCard::class)->findAll()
-        );
+        return $entity;
     }
 }

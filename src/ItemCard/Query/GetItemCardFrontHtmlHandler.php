@@ -9,24 +9,17 @@ use Twig\Environment;
 
 class GetItemCardFrontHtmlHandler
 {
-    private Environment $twig;
-    private ItemCardRepository $repository;
-    private string $itemCardStylesPath;
-
     public function __construct(
-        Environment $twig,
-        ItemCardRepository $repository,
-        string $itemCardStylesPath,
+        private readonly Environment $twig,
+        private readonly ItemCardRepository $repository,
+        private readonly string $itemCardStylesPath,
     ) {
-        $this->twig = $twig;
-        $this->repository = $repository;
-        $this->itemCardStylesPath = $itemCardStylesPath;
     }
 
     public function handle(GetItemCardFrontHtml $query): string
     {
-        $title = $query->getTitle();
-        $description = $query->getDescription();
+        $title = null;
+        $description = null;
 
         if (null !== $query->getId()) {
             $itemCard = $this->repository->getOneById($query->getId());

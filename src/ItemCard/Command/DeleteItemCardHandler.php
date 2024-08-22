@@ -9,18 +9,11 @@ use App\ItemCard\ItemCardRepository;
 
 class DeleteItemCardHandler
 {
-    private ItemCardRepository $repository;
-    private ItemCardPersister $persister;
-    private string $itemCardImagesDirectory;
-
     public function __construct(
-        ItemCardRepository $repository,
-        ItemCardPersister $persister,
-        string $itemCardImagesDirectory
+        private readonly ItemCardRepository $repository,
+        private readonly ItemCardPersister $persister,
+        private readonly string $itemCardImagesDirectory
     ) {
-        $this->repository = $repository;
-        $this->persister = $persister;
-        $this->itemCardImagesDirectory = $itemCardImagesDirectory;
     }
 
     public function handle(DeleteItemCard $command): void

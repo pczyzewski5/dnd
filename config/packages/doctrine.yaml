@@ -27,3 +27,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/PlayerCharacter/Entity'
                 prefix: 'App\PlayerCharacter\Entity'
                 alias: PlayerCharacter
+
+            ItemCard:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/ItemCard/Entity'
+                prefix: 'App\ItemCard\Entity'
+                alias: ItemCard

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\ItemCard;
 
-use App\DND\Exception\PersisterException;
-use App\DND\ItemCard\ItemCardMapper;
+use App\Exception\PersisterException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use App\ItemCard\Entity\ItemCard;
+use Symfony\Component\Uid\Uuid;
 
 class ItemCardPersister
 {
@@ -22,10 +22,8 @@ class ItemCardPersister
     /**
      * @throws PersisterException
      */
-    public function save(ItemCard $domainEntity): void
+    public function save(ItemCard $entity): void
     {
-        $entity = ItemCardMapper::fromDomain($domainEntity);
-
         try {
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
@@ -37,25 +35,25 @@ class ItemCardPersister
     public function update(ItemCard $itemCard): void
     {
         try {
-            $sql = 'UPDATE item_cards
+            $sql = 'UPDATE item_card
                   SET title = :title,
                       description = :description,
                       origin = :origin,
                       category = :category,
                       image = :image,
-                      author_id = :authorId
-                  WHERE id = :id;';
+                      author_id = UUID_TO_BIN(:authorId)
+                  WHERE id = UUID_TO_BIN(:id);';
 
             $this->entityManager->getConnection()->executeQuery(
                 $sql,
                 [
-                    'id' => $itemCard->getId(),
+                    'id' => $itemCard->getId()->toRfc4122(),
                     'title' => $itemCard->getTitle(),
                     'description' => $itemCard->getDescription(),
                     'origin' => $itemCard->getOrigin(),
-                    'category' => $itemCard->getCategory()->getValue(),
+                    'category' => $itemCard->getCategory()->value,
                     'image' => $itemCard->getImage(),
-                    'authorId' => $itemCard->getAuthorId(),
+                    'authorId' => $itemCard->getAuthorId()->toRfc4122(),
                 ],
                 [
                     'id' => Types::STRING,
@@ -75,12 +73,12 @@ class ItemCardPersister
     /**
      * @throws PersisterException
      */
-    public function delete(string $id): void
+    public function delete(Uuid $id): void
     {
         try {
             $this->entityManager->getConnection()->executeQuery(
-                'DELETE FROM item_cards WHERE id = ?',
-                [$id],
+                'DELETE FROM item_card WHERE id = UUID_TO_BIN(?)',
+                [$id->toRfc4122()],
                 [Types::STRING]
             );
         } catch (\Throwable $exception) {

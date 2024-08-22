@@ -18,7 +18,7 @@ class IndexController extends AbstractController
         return $this->render('index/index.html.twig');
     }
 
-    #[Route('/logout', 'logout', methods: [Request::METHOD_GET])]
+    #[Route('/quill', 'quill', methods: [Request::METHOD_POST])]
     public function quill(Request $request): Response
     {
         $content = $request->getContent();

@@ -26,4 +26,10 @@ class LoginController extends AbstractController
 
         return $this->redirectToRoute('home');
     }
+
+    #[Route('/logout', 'logout', methods: [Request::METHOD_GET])]
+    public function logout(): void
+    {
+
+    }
 }

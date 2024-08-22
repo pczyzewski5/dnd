@@ -9,18 +9,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UploadFileHandler
 {
-    private SluggerInterface $slugger;
-    private array $itemCardImagesAllowedMime;
-    private string $itemCardImagesDirectory;
-
     public function __construct(
-        SluggerInterface $slugger,
-        array            $itemCardImagesAllowedMime,
-        string $itemCardImagesDirectory
+        private readonly SluggerInterface $slugger,
+        private readonly array $itemCardImagesAllowedMime,
+        private readonly string $itemCardImagesDirectory
     ) {
-        $this->slugger = $slugger;
-        $this->itemCardImagesAllowedMime = $itemCardImagesAllowedMime;
-        $this->itemCardImagesDirectory = $itemCardImagesDirectory;
     }
 
     public function handle(UploadFile $command): string

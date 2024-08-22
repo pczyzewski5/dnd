@@ -6,24 +6,27 @@ namespace App\Controller;
 
 use App\Command\UploadFile;
 use App\Command\UploadFileHandler;
-use App\Enum\ItemCardCategoryEnum;
 use App\Form\ItemCardForm;
 use App\ItemCard\Command\CreateItemCard;
 use App\ItemCard\Command\CreateItemCardHandler;
 use App\ItemCard\Command\DeleteItemCard;
+use App\ItemCard\Command\DeleteItemCardHandler;
 use App\ItemCard\Command\UpdateItemCard;
+use App\ItemCard\Command\UpdateItemCardHandler;
 use App\ItemCard\Entity\ItemCard;
 use App\ItemCard\Query\GetItemCard;
 use App\ItemCard\Query\GetItemCardBackHtml;
 use App\ItemCard\Query\GetItemCardBackHtmlHandler;
 use App\ItemCard\Query\GetItemCardFrontHtml;
 use App\ItemCard\Query\GetItemCardFrontHtmlHandler;
+use App\ItemCard\Query\GetItemCardHandler;
 use App\ItemCard\Query\GetItemCardsForList;
 use App\ItemCard\Query\GetItemCardsForListHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 class ItemCardController extends AbstractController
 {
@@ -59,13 +62,13 @@ class ItemCardController extends AbstractController
                     $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
                     $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
                     $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
-                    ItemCardCategoryEnum::from($form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD]),
+                    $form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD],
                     $this->getUser()->getId(),
                     $image
                 )
             );
 
-            return $this->redirectToRoute('item_card_read', ['id' => $id]);
+            return $this->redirectToRoute('item_card_read', ['id' => $id->toRfc4122()]);
         }
 
         $itemCardFrontHtml = $getItemCardFrontHtmlHandler->handle(
@@ -82,18 +85,25 @@ class ItemCardController extends AbstractController
         ]);
     }
 
-
-    public function update(Request $request): Response
-    {
+    #[Route('/dm/item_card/{id}/update', 'item_card_update', methods: [Request::METHOD_GET, Request::METHOD_POST])]
+    public function update(
+        Request $request,
+        UploadFileHandler $uploadFileHandler,
+        GetItemCardHandler $getItemCardHandler,
+        UpdateItemCardHandler $updateItemCardHandler,
+        GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
+        GetItemCardBackHtmlHandler $getItemCardBackHtmlHandler
+    ): Response {
         $id = $request->get('id');
-        /** @var ItemCard $itemCard */
-        $itemCard = $this->queryBus->handle(
-            new GetItemCard($id)
+        $itemCard = $getItemCardHandler->handle(
+            new GetItemCard(
+                Uuid::fromRfc4122($id)
+            )
         );
         $form = $this->createForm(
             ItemCardForm::class,
             [
-                ItemCardForm::ITEM_CATEGORY_FIELD => $itemCard->getCategory()->getValue(),
+                ItemCardForm::ITEM_CATEGORY_FIELD => $itemCard->getCategory()->value,
                 ItemCardForm::ITEM_TITLE_FIELD => $itemCard->getTitle(),
                 ItemCardForm::ITEM_DESCRIPTION_FIELD => $itemCard->getDescription(),
                 ItemCardForm::ITEM_ORIGIN_FIELD => $itemCard->getOrigin(),
@@ -104,10 +114,10 @@ class ItemCardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
             if (null !== $image) {
-                $image = $this->commandBus->handle(new UploadFile($image));
+                $image = $uploadFileHandler->handle(new UploadFile($image));
             }
 
-            $this->commandBus->handle(
+            $updateItemCardHandler->handle(
                 new UpdateItemCard(
                     $itemCard,
                     $form->getData()[ItemCardForm::ITEM_TITLE_FIELD],
@@ -121,11 +131,15 @@ class ItemCardController extends AbstractController
             return $this->redirectToRoute('item_card_read', ['id' => $itemCard->getId()]);
         }
 
-        $itemCardFrontHtml = $this->queryBus->handle(
-            new GetItemCardFrontHtml($id)
+        $itemCardFrontHtml = $getItemCardFrontHtmlHandler->handle(
+            new GetItemCardFrontHtml(
+                Uuid::fromRfc4122($id)
+            )
         );
-        $itemCardBackHtml = $this->queryBus->handle(
-            new GetItemCardBackHtml($id)
+        $itemCardBackHtml = $getItemCardBackHtmlHandler->handle(
+            new GetItemCardBackHtml(
+                Uuid::fromRfc4122($id)
+            )
         );
 
         return $this->render('item_card/create.html.twig', [
@@ -135,51 +149,66 @@ class ItemCardController extends AbstractController
         ]);
     }
 
-    #[Route(' /dm/item_card/{id}', 'item_card_read', methods: [Request::METHOD_GET])]
-    public function read(Request $request): Response
-    {
-        $id = $request->get('id');
-        $itemCardFrontHtml = $this->queryBus->handle(
+    #[Route('/dm/item_card/{id}', 'item_card_read', methods: [Request::METHOD_GET])]
+    public function read(
+        Request $request,
+        GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
+        GetItemCardBackHtmlHandler $getItemCardBackHtmlHandler
+    ): Response {
+        $id = Uuid::fromRfc4122(
+            $request->get('id')
+        );
+        $itemCardFrontHtml = $getItemCardFrontHtmlHandler->handle(
             new GetItemCardFrontHtml($id)
         );
-        $itemCardBackHtml = $this->queryBus->handle(
+        $itemCardBackHtml = $getItemCardBackHtmlHandler->handle(
             new GetItemCardBackHtml($id)
         );
 
         return $this->render('item_card/read.html.twig', [
-            'id' => $id,
+            'id' => $id->toRfc4122(),
             'itemCardFrontHtml' => $itemCardFrontHtml,
             'itemCardBackHtml' => $itemCardBackHtml,
         ]);
     }
 
-    public function delete(Request $request): Response
-    {
-        $this->commandBus->handle(
+    #[Route('/dm/item_card/{id}/delete', 'item_card_delete', methods: [Request::METHOD_GET])]
+    public function delete(
+        Request $request,
+        DeleteItemCardHandler $handler
+    ): Response {
+        $handler->handle(
             new DeleteItemCard(
-                $request->get('id')
+                Uuid::fromRfc4122(
+                    $request->get('id')
+                )
             )
         );
 
         return $this->redirectToRoute('item_card_list');
     }
 
-    public function print(Request $request): Response
-    {
-        $itemCardFrontHtml = $this->queryBus->handle(
-            new GetItemCardFrontHtml(
-                $request->get('id')
-            )
-        );
-        $itemCardBackHtml = $this->queryBus->handle(
-            new GetItemCardBackHtml(
-                $request->get('id')
-            )
-        );
-
+    #[Route('/dm/item_card/{id}/print', 'item_card_print', methods: [Request::METHOD_GET])]
+    public function print(
+        Request $request,
+        GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
+        GetItemCardBackHtmlHandler $getItemCardBackHtmlHandler
+    ): Response {
         return $this->render('item_card/print.html.twig', [
-            'itemCardFrontHtml' => $itemCardFrontHtml,
-            'itemCardBackHtml'  => $itemCardBackHtml,
+            'itemCardFrontHtml' => $getItemCardFrontHtmlHandler->handle(
+                new GetItemCardFrontHtml(
+                    Uuid::fromRfc4122(
+                        $request->get('id')
+                    )
+                )
+            ),
+            'itemCardBackHtml'  => $getItemCardBackHtmlHandler->handle(
+                new GetItemCardBackHtml(
+                    Uuid::fromRfc4122(
+                        $request->get('id')
+                    )
+                )
+            ),
         ]);
     }
 }

@@ -9,25 +9,18 @@ use Twig\Environment;
 
 class GetItemCardBackHtmlHandler
 {
-    private Environment $twig;
-    private ItemCardRepository $repository;
-    private string $itemCardStylesPath;
-
     public function __construct(
-        Environment $twig,
-        ItemCardRepository $repository,
-        string $itemCardStylesPath,
+        private readonly Environment $twig,
+        private readonly ItemCardRepository $repository,
+        private readonly string $itemCardStylesPath,
     ) {
-        $this->twig = $twig;
-        $this->repository = $repository;
-        $this->itemCardStylesPath = $itemCardStylesPath;
     }
 
     public function handle(GetItemCardBackHtml $query): string
     {
-        $title = $query->getTitle();
-        $image = $query->getImage();
-        $origin = $query->getOrigin();
+        $title = null;
+        $image = null;
+        $origin = null;
 
         if (null !== $query->getId()) {
             $itemCard = $this->repository->getOneById($query->getId());

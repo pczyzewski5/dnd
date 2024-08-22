@@ -8,5 +8,58 @@ services:
         exclude:
             - '../src/Kernel.php'
 
+    App\Command\UploadFileHandler:
+        arguments:
+            $itemCardImagesAllowedMime: '%item_card_images_allowed_mime%'
+            $itemCardImagesDirectory: '%item_card_images_directory%'
+
+    App\ItemCard\Query\GetItemCardFrontHtmlHandler:
+        arguments:
+            $itemCardStylesPath: '%item_card_css_path%'
+
+    App\ItemCard\Query\GetItemCardBackHtmlHandler:
+        arguments:
+            $itemCardStylesPath: '%item_card_css_path%'
+
+    App\ItemCard\Command\UpdateItemCardHandler:
+        arguments:
+            $itemCardImagesDirectory: '%item_card_images_directory%'
+
+    App\ItemCard\Command\DeleteItemCardHandler:
+        arguments:
+            $itemCardImagesDirectory: '%item_card_images_directory%'
+
+    App\Twig\ProficiencyDot:
+        class: App\Twig\ProficiencyDot
+        arguments:
+            - '@twig'
+        tags: [ 'twig.extension' ]
+
+    App\Twig\QuillDeltaParser:
+        class: App\Twig\QuillDeltaParser
+        arguments:
+            - '@twig'
+        tags: [ 'twig.extension' ]
+
+    App\Twig\ValueDecorator:
+        class: App\Twig\ValueDecorator
+        tags: [ 'twig.extension' ]
+
+    App\Twig\UcWords:
+        class: App\Twig\UcWords
+        tags: [ 'twig.extension' ]
+
+    App\Twig\BackgroundColorCss:
+        class: App\Twig\BackgroundColorCss
+        arguments:
+            - '%character_card_dev_mode%'
+        tags: [ 'twig.extension' ]
+
+    App\Twig\ItemCardImage:
+        class: App\Twig\ItemCardImage
+        arguments:
+            - '%item_card_images_directory%'
+        tags: [ 'twig.extension' ]
+
 imports:
     - { resource: 'parameters.yaml' }

@@ -12,11 +12,8 @@ use Twig\TwigFilter;
 
 class QuillDeltaParser extends AbstractExtension
 {
-    private Environment $twigEnv;
-
-    public function __construct(Environment $twigEnv)
+    public function __construct(private readonly Environment $twigEnv)
     {
-        $this->twigEnv = $twigEnv;
     }
 
     public function getFilters()

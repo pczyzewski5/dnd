@@ -9,12 +9,9 @@ use Twig\TwigFunction;
 
 class BackgroundColorCss extends AbstractExtension
 {
-    private bool $devMode = false;
-
-//    public function __construct(bool $devMode)
-//    {
-//        $this->devMode = $devMode;
-//    }
+    public function __construct(private readonly bool $devMode)
+    {
+    }
 
     public function getFunctions(): array
     {

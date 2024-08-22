@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\ItemCard\Command;
 
 use App\Enum\ItemCardCategoryEnum;
-use App\ItemCard\ItemCardDTO;
 use App\ItemCard\ItemCardPersister;
 
 class UpdateItemCardHandler
@@ -25,12 +24,6 @@ class UpdateItemCardHandler
     {
         $originalItemCard = $command->getOriginalItemCard();
 
-        $dto = new ItemCardDTO();
-        $dto->category = ItemCardCategoryEnum::from($command->getCategory());
-        $dto->title = $command->getTitle();
-        $dto->description = $command->getDescription();
-        $dto->origin = $command->getOrigin();
-
         if (null !== $command->getImage()) {
             if (null !== $originalItemCard->getImage()) {
                 $filename = $this->itemCardImagesDirectory . '/' . $originalItemCard->getImage();
@@ -41,10 +34,14 @@ class UpdateItemCardHandler
                 \unlink($filename);
             }
 
-            $dto->image = $command->getImage();
+            $originalItemCard->setImage($command->getImage());
         }
 
-        $originalItemCard->update($dto);
+        $originalItemCard
+            ->setCategory(ItemCardCategoryEnum::from($command->getCategory()))
+            ->setTitle($command->getTitle())
+            ->setDescription($command->getDescription())
+            ->setOrigin($command->getOrigin());
 
         $this->persister->update($originalItemCard);
     }
