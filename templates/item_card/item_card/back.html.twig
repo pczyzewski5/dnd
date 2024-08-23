@@ -30,7 +30,11 @@
             {% endif %}
         </div>
     </div>
-    <div class="description-section description-section-back" {{ image is not null ? itemCardImage(image)|raw : '' }}></div>
+    {% set backgroundImage = '' %}
+    {% if image is not null %}
+        {% set backgroundImage = 'style="background-image: url(' ~ getImageUrl(image) ~ ')"' %}
+    {% endif %}
+    <div class="description-section description-section-back" {{ backgroundImage|raw }}></div>
     <div id="item-origin">
         {% if origin is not null %}
             {{ origin }}

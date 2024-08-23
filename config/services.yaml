@@ -55,8 +55,8 @@ services:
             - '%character_card_dev_mode%'
         tags: [ 'twig.extension' ]
 
-    App\Twig\ItemCardImage:
-        class: App\Twig\ItemCardImage
+    App\Twig\GetImageUrl:
+        class: App\Twig\GetImageUrl
         arguments:
             - '%item_card_images_directory%'
         tags: [ 'twig.extension' ]

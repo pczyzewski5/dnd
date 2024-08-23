@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .table-item {
+            cursor: pointer;
+        }
+    </style>
+    <a class="button is-primary is-fullwidth" href="{{ path('monster_create') }}">Dodaj potworka</a>
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>nazwa</th>
+            <th>klasa pancerza</th>
+            <th>punkty wytrzymałości</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, monster in monsters %}
+            <tr class="table-item" href="{{ path('monster_read', {'id': monster.getIdAsString()}) }}">
+                <td>{{ key + 1 }}</td>
+                <td>{{ monster.getName() }}</td>
+                <td>{{ monster.getArmorClass() }}</td>
+                <td>{{ monster.getHitPoints() }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="{{ asset('js/list_helper.js') }}"></script>
+{% endblock %}

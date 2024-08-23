@@ -1,0 +1,51 @@
+{{ form_start(monsterForm) }}
+<div class="field">
+    <label class="label">{{ form_label(monsterForm.name) }}</label>
+    <div class="control">
+        {{ form_widget(monsterForm.name) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(monsterForm.name) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(monsterForm.armor_class) }}</label>
+    <div class="control">
+        {{ form_widget(monsterForm.armor_class) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(monsterForm.armor_class) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(monsterForm.hit_points) }}</label>
+    <div class="control">
+        {{ form_widget(monsterForm.hit_points) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(monsterForm.hit_points) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(monsterForm.uploaded_image) }}</label>
+    <div class="control">
+        <div class="file">
+            <label class="file-label">
+                {{ form_widget(monsterForm.uploaded_image) }}
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Wybierz plik...
+                    </span>
+                </span>
+            </label>
+        </div>
+    </div>
+    <p class="help is-danger">{{ form_errors(monsterForm.uploaded_image) }}</p>
+</div>
+
+<div class="field">
+    <div class="control">
+        {{ form_widget(monsterForm.submit) }}
+    </div>
+</div>
+{{ form_end(monsterForm) }}
