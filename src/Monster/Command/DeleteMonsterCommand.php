@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\ItemCard\Command;
+namespace App\Monster\Command;
 
 use App\Command\DeleteFileCommand;
-use App\ItemCard\Entity\ItemCard;
+use App\Monster\Entity\Monster;
 use App\Service\EntityService;
+use Symfony\Component\Uid\Uuid;
 
-class DeleteItemCardHandler
+class DeleteMonsterCommand
 {
     public function __construct(
         private readonly EntityService $entityService,
@@ -16,17 +17,16 @@ class DeleteItemCardHandler
     ) {
     }
 
-    public function handle(DeleteItemCard $command): void
+    public function execute(Uuid $uuid)
     {
         $entity = $this->entityService->getByUuid(
-            $command->getId(),
-            ItemCard::class
+            $uuid,
+            Monster::class
         );
 
-        $image = $entity->getImage();
-        if (null !== $image) {
-            $this->deleteFileCommand->execute($image);
-        }
+        $this->deleteFileCommand->execute(
+            $entity->getImage()
+        );
 
         $this->entityService->delete($entity);
     }

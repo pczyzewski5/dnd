@@ -14,14 +14,13 @@ use App\ItemCard\Command\DeleteItemCardHandler;
 use App\ItemCard\Command\UpdateItemCard;
 use App\ItemCard\Command\UpdateItemCardHandler;
 use App\ItemCard\Entity\ItemCard;
-use App\ItemCard\Query\GetItemCard;
 use App\ItemCard\Query\GetItemCardBackHtml;
 use App\ItemCard\Query\GetItemCardBackHtmlHandler;
 use App\ItemCard\Query\GetItemCardFrontHtml;
 use App\ItemCard\Query\GetItemCardFrontHtmlHandler;
-use App\ItemCard\Query\GetItemCardHandler;
 use App\ItemCard\Query\GetItemCardsForList;
 use App\ItemCard\Query\GetItemCardsForListHandler;
+use App\Service\EntityService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -89,16 +88,15 @@ class ItemCardController extends AbstractController
     public function update(
         Request $request,
         UploadFileHandler $uploadFileHandler,
-        GetItemCardHandler $getItemCardHandler,
+        EntityService $entityService,
         UpdateItemCardHandler $updateItemCardHandler,
         GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
         GetItemCardBackHtmlHandler $getItemCardBackHtmlHandler
     ): Response {
         $id = $request->get('id');
-        $itemCard = $getItemCardHandler->handle(
-            new GetItemCard(
-                Uuid::fromRfc4122($id)
-            )
+        $itemCard = $entityService->getByUuid(
+                Uuid::fromRfc4122($id),
+            ItemCard::class
         );
         $form = $this->createForm(
             ItemCardForm::class,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\MonsterForm;
+use App\Monster\Command\DeleteMonsterCommand;
 use App\Monster\Entity\Monster;
 use App\Service\EntityService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -72,11 +73,10 @@ class MonsterController extends AbstractController
     }
 
     #[Route('/dm/monster/{id}/delete', 'monster_delete', methods: [Request::METHOD_GET])]
-    public function delete(Request $request, EntityService $entityService): Response
+    public function delete(Request $request, DeleteMonsterCommand $deleteMonsterCommand): Response
     {
-        $entityService->deleteByUuid(
-            Uuid::fromRfc4122($request->get('id')),
-            Monster::class
+        $deleteMonsterCommand->execute(
+            Uuid::fromRfc4122($request->get('id'))
         );
 
         return $this->redirectToRoute('monster_list');

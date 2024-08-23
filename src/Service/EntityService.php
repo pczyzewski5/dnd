@@ -6,6 +6,7 @@ namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Uid\Uuid;
 
 class EntityService
@@ -32,8 +33,13 @@ class EntityService
 
     public function deleteByUuid(Uuid $uuid, string $entityClass): void
     {
-        $entity = $this->entityManager->getReference($entityClass, $uuid);
+        $entity = $this->getByUuid($uuid, $entityClass);
 
+        $this->delete($entity);
+    }
+
+    public function delete(object $entity): void
+    {
         $this->entityManager->remove($entity);
         $this->entityManager->flush();
     }

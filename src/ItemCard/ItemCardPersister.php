@@ -8,7 +8,6 @@ use App\Exception\PersisterException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use App\ItemCard\Entity\ItemCard;
-use Symfony\Component\Uid\Uuid;
 
 class ItemCardPersister
 {
@@ -64,22 +63,6 @@ class ItemCardPersister
                     'image' => Types::STRING,
                     'authorId' => Types::STRING,
                 ]
-            );
-        } catch (\Throwable $exception) {
-            throw PersisterException::fromThrowable($exception);
-        }
-    }
-
-    /**
-     * @throws PersisterException
-     */
-    public function delete(Uuid $id): void
-    {
-        try {
-            $this->entityManager->getConnection()->executeQuery(
-                'DELETE FROM item_card WHERE id = UUID_TO_BIN(?)',
-                [$id->toRfc4122()],
-                [Types::STRING]
             );
         } catch (\Throwable $exception) {
             throw PersisterException::fromThrowable($exception);

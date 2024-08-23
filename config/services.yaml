@@ -25,9 +25,9 @@ services:
         arguments:
             $itemCardImagesDirectory: '%item_card_images_directory%'
 
-    App\ItemCard\Command\DeleteItemCardHandler:
+    App\Command\DeleteFileCommand:
         arguments:
-            $itemCardImagesDirectory: '%item_card_images_directory%'
+            $filesDirectory: '%item_card_images_directory%'
 
     App\Twig\ProficiencyDot:
         class: App\Twig\ProficiencyDot
