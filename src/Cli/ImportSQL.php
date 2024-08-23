@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Cli;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;

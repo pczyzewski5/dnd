@@ -2,8 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Command\UploadFile;
-use App\Command\UploadFileHandler;
+use App\Command\WriteFileCommand;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -19,7 +18,7 @@ class UploadImageType extends AbstractType
     private const SUPPORTED_MIME = 'image/jpeg';
 
     public function __construct(
-        private readonly UploadFileHandler $uploadFileHandler,
+        private readonly WriteFileCommand $writeFileCommand,
     ) {
     }
 
@@ -72,9 +71,7 @@ class UploadImageType extends AbstractType
         }
 
         $event->setData(
-            $this->uploadFileHandler->handle(
-                new UploadFile($uploadedFile)
-            )
+            $this->writeFileCommand->execute($uploadedFile)
         );
     }
 

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Command\UploadFile;
-use App\Command\UploadFileHandler;
+use App\Command\WriteFileCommand;
 use App\Form\ItemCardForm;
 use App\ItemCard\Command\CreateItemCard;
 use App\ItemCard\Command\CreateItemCardHandler;
@@ -42,7 +41,7 @@ class ItemCardController extends AbstractController
     #[Route('/dm/item_card/create', 'item_card_create', methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function create(
         Request $request,
-        UploadFileHandler $uploadFileHandler,
+        WriteFileCommand $uploadFileHandler,
         CreateItemCardHandler $createItemCardHandler,
         GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
         GetItemCardBackHtmlHandler $getItemCardBackHtmlHandler
@@ -51,9 +50,9 @@ class ItemCardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
-            if (null !== $image) {
-                $image = $uploadFileHandler->handle(new UploadFile($image));
+            $uploadedFile = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
+            if (null !== $uploadedFile) {
+                $filename = $uploadFileHandler->execute($uploadedFile);
             }
 
             $id = $createItemCardHandler->handle(
@@ -63,7 +62,7 @@ class ItemCardController extends AbstractController
                     $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
                     $form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD],
                     $this->getUser()->getId(),
-                    $image
+                    $filename
                 )
             );
 
@@ -87,7 +86,7 @@ class ItemCardController extends AbstractController
     #[Route('/dm/item_card/{id}/update', 'item_card_update', methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function update(
         Request $request,
-        UploadFileHandler $uploadFileHandler,
+        WriteFileCommand $writeFileCommand,
         EntityService $entityService,
         UpdateItemCardHandler $updateItemCardHandler,
         GetItemCardFrontHtmlHandler $getItemCardFrontHtmlHandler,
@@ -110,9 +109,9 @@ class ItemCardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
-            if (null !== $image) {
-                $image = $uploadFileHandler->handle(new UploadFile($image));
+            $uploadedFile = $form->getData()[ItemCardForm::ITEM_IMAGE_FIELD];
+            if (null !== $uploadedFile) {
+                $filename = $writeFileCommand->execute($uploadedFile);
             }
 
             $updateItemCardHandler->handle(
@@ -122,7 +121,7 @@ class ItemCardController extends AbstractController
                     $form->getData()[ItemCardForm::ITEM_DESCRIPTION_FIELD],
                     $form->getData()[ItemCardForm::ITEM_ORIGIN_FIELD],
                     $form->getData()[ItemCardForm::ITEM_CATEGORY_FIELD],
-                    $image
+                    $filename
                 )
             );
 

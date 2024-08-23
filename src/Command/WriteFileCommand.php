@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Command;
 
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class UploadFileHandler
+class WriteFileCommand
 {
     public function __construct(
         private readonly SluggerInterface $slugger,
@@ -16,10 +17,8 @@ class UploadFileHandler
     ) {
     }
 
-    public function handle(UploadFile $command): string
+    public function execute(UploadedFile $uploadedFile): string
     {
-        $uploadedFile = $command->getUploadedFile();
-
         if (false === \in_array($uploadedFile->getMimeType(), $this->itemCardImagesAllowedMime)) {
             $message = \sprintf(
                 'Invalid mime type: %s, allowed are: %s.',
