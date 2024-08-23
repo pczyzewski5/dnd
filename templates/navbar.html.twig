@@ -26,6 +26,7 @@
                 {% if is_granted('ROLE_DM') or is_granted('ROLE_ADMIN') %}
                     <a class="navbar-item" href="{{ path('monster_list') }}">Księga Potworów</a>
                     <a class="navbar-item" href="{{ path('item_card_list') }}">Karty</a>
+                    <a class="navbar-item" href="{{ path('encounter') }}">Potyczka</a>
                 {% endif %}
             </div>
 

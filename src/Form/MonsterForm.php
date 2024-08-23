@@ -19,7 +19,7 @@ class MonsterForm extends AbstractType
 {
     public const NAME = 'name';
     public const ARMOR_CLASS = 'armor_class';
-    public const HIT_POINTS = 'hit_points';
+    public const MAX_HP = 'max_hp';
     public const UPLOADED_IMAGE = 'uploaded_image';
 
     public function configureOptions(OptionsResolver $resolver)
@@ -30,7 +30,7 @@ class MonsterForm extends AbstractType
                 return MonsterFactory::create(
                     $form->get(self::NAME)->getData(),
                     $form->get(self::ARMOR_CLASS)->getData(),
-                    $form->get(self::HIT_POINTS)->getData(),
+                    $form->get(self::MAX_HP)->getData(),
                     $form->get(self::UPLOADED_IMAGE)->getData() ?? '',
                 );
             },
@@ -60,7 +60,7 @@ class MonsterForm extends AbstractType
         );
 
         $builder->add(
-            self::HIT_POINTS,
+            self::MAX_HP,
             IntegerType::class,
             [
                 'label' => 'Punkty wytrzymałości',

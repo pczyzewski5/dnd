@@ -25,9 +25,9 @@ INSERT INTO `item_card` (`id`, `title`, `description`, `origin`, `category`, `au
 
 INSERT INTO `user` (`id`, `email`, `username`, `roles`, `password`, `is_active`, `created_at`) VALUES('1dfe29f6-b4a1-11ee-a0ef-a7c83caa988d', 'example@test.com', 'ExampleTest', '[\"ROLE_ADMIN\"]', '$2y$13$wCH131qc6qDPKd2JmnMGzuwg0PqO8G44oEEKAl.Qz05df1P7IoWIa', 1, '2024-01-16 19:57:38');
 
-INSERT INTO `monster` (`id`, `name`, `armor_class`, `hit_points`, `image`, `created_at`) VALUES ('3ba62ac2-6175-11ef-8d1e-352ff4ff2998', 'Błędny Ognik',19,22,'php4MXWlL-66c8c6f1267d3.jpg','2024-08-23 17:29:21');
-INSERT INTO `monster` (`id`, `name`, `armor_class`, `hit_points`, `image`, `created_at`) VALUES ('52b450ea-6175-11ef-a33f-afbb3d402c19', 'Cudowny Smok',15,14,'php9cWO6X-66c8c717cc9d9.jpg','2024-08-23 17:29:59');
-INSERT INTO `monster` (`id`, `name`, `armor_class`, `hit_points`, `image`, `created_at`) VALUES ('6092f22a-6175-11ef-bc0e-97d7a630a9ca', 'Czarny Pudding',7,85,'phpY7oUiV-66c8c72f1a26b.jpg','2024-08-23 17:30:23');
+INSERT INTO `monster` (`id`, `name`, `armor_class`, `max_hp`, `image`, `created_at`) VALUES ('3ba62ac2-6175-11ef-8d1e-352ff4ff2998', 'Błędny Ognik',19,22,'php4MXWlL-66c8c6f1267d3.jpg','2024-08-23 17:29:21');
+INSERT INTO `monster` (`id`, `name`, `armor_class`, `max_hp`, `image`, `created_at`) VALUES ('52b450ea-6175-11ef-a33f-afbb3d402c19', 'Cudowny Smok',15,14,'php9cWO6X-66c8c717cc9d9.jpg','2024-08-23 17:29:59');
+INSERT INTO `monster` (`id`, `name`, `armor_class`, `max_hp`, `image`, `created_at`) VALUES ('6092f22a-6175-11ef-bc0e-97d7a630a9ca', 'Czarny Pudding',7,85,'phpY7oUiV-66c8c72f1a26b.jpg','2024-08-23 17:30:23');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

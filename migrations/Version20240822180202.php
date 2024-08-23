@@ -22,7 +22,7 @@ CREATE TABLE monster
     id          BINARY(16) NOT NULL,
     name        VARCHAR(72) NOT NULL,
     armor_class TINYINT(2) NOT NULL,
-    hit_points  SMALLINT(4) NOT NULL,
+    max_hp  SMALLINT(4) NOT NULL,
     image       TEXT NOT NULL,
     created_at  DATETIME NOT NULL,
     UNIQUE (id)

@@ -9,13 +9,13 @@ class MonsterFactory
     public static function create(
         string $name,
         int $armorClass,
-        int $hitPoints,
+        int $maxHp,
         string $image,
     ): Monster {
         return new Monster(
             $name,
             $armorClass,
-            $hitPoints,
+            $maxHp,
             $image,
         );
     }

@@ -21,7 +21,7 @@ class Monster
     private int $armorClass;
 
     #[Mapping\Column(type: 'integer', length: 4, nullable: false)]
-    private int $hitPoints;
+    private int $maxHp;
 
     #[Mapping\Column(type: 'text', nullable: false)]
     private string $image;
@@ -29,12 +29,12 @@ class Monster
     #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(string $name, int $armorClass, int $hitPoints, string $image)
+    public function __construct(string $name, int $armorClass, int $maxHp, string $image)
     {
         $this->id = Uuid::v1();
         $this->name = $name;
         $this->armorClass = $armorClass;
-        $this->hitPoints = $hitPoints;
+        $this->maxHp = $maxHp;
         $this->image = $image;
         $this->createdAt = new \DateTimeImmutable();
     }
@@ -71,14 +71,14 @@ class Monster
         return $this;
     }
 
-    public function getHitPoints(): int
+    public function getMaxHp(): int
     {
-        return $this->hitPoints;
+        return $this->maxHp;
     }
 
-    public function setHitPoints(int $hitPoints): Monster
+    public function setMaxHp(int $maxHp): Monster
     {
-        $this->hitPoints = $hitPoints;
+        $this->maxHp = $maxHp;
         return $this;
     }
 

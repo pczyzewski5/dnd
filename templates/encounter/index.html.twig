@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="buttons">
+        <a class="button is-small is-primary" href="{{ path('encounter_participant_add', {'uuid': '33626136-3261-6332-2d36-3137352d3131'}) }}">Dodaj potworka</a>
+        <a class="button is-small is-danger" href="{{ path('encounter_delete') }}">Usuń potyczkę</a>
+    </div>
+    {% for participant in encounter.getParticipants() %}
+        id: {{ participant.getId() }} | name: {{ participant.getName() }} | Max HP: {{ participant.getMaxHp() }} | Actual HP: {{ participant.getActualHp() }} <br>
+        <div class="buttons">
+            <a class="button is-small is-warning" href="{{ path('encounter_participant_delete', {'participantId': participant.getId()}) }}">Usuń potworka</a>
+            <a class="button is-small is-info" href="{{ path('encounter_participant_duplicate', {'participantId': participant.getId()}) }}">Duplikuj potworka</a>
+            <a class="button is-small is-primary" href="{{ path('encounter_participant_add_hp', {'participantId': participant.getId(), 'hp': 1}) }}">Dodaj PW</a>
+            <a class="button is-small is-primary" href="{{ path('encounter_participant_remove_hp', {'participantId': participant.getId(), 'hp': 1}) }}">Usuń PW</a>
+            <a class="button is-small is-warning" href="{{ path('encounter_participant_hp_rollback', {'participantId': participant.getId()}) }}">rollback PW</a>
+        </div>
+    {% endfor %}
+{% endblock %}
