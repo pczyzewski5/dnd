@@ -22,11 +22,8 @@ class CreateCalendarForm extends AbstractType
     public const USERS_FIELD = 'users';
     public const USER_PREFIX = 'user_';
 
-    private CreateCalendarFormDataTransformer $dataTransformer;
-
-    public function __construct(CreateCalendarFormDataTransformer $dataTransformer)
+    public function __construct(private readonly CreateCalendarFormDataTransformer $dataTransformer)
     {
-        $this->dataTransformer = $dataTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
