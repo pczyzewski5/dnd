@@ -13,9 +13,11 @@ class EncounterParticipantFactory
         return new EncounterParticipant(
             $monster->getName(),
             $monster->getArmorClass(),
-            $monster->getMaxHp(),
             10,
-            $monster->getImage()
+            $monster->getImage(),
+            new EncounterParticipantHp(
+                $monster->getMaxHp()
+            ),
         );
     }
 
@@ -24,9 +26,9 @@ class EncounterParticipantFactory
         return new EncounterParticipant(
             $participant->getName(),
             $participant->getArmorClass(),
-            $participant->getMaxHp(),
             10,
-            $participant->getImage()
+            $participant->getImage(),
+            $participant->getHp(),
         );
     }
 }

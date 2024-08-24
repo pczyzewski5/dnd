@@ -9,30 +9,24 @@ class EncounterParticipant
     private int $id;
     private string $name;
     private int $armorClass;
-    private int $maxHp;
-    private int $actualHp;
     private int $speed;
     private string $image;
-    private int $lastHpChange;
-    private array $hpHistory;
+    private EncounterParticipantHp $encounterParticipantHp;
     private string $note;
 
     public function __construct(
         string $name,
         int $armorClass,
-        int $maxHp,
         int $speed,
-        string $image
+        string $image,
+        EncounterParticipantHp $encounterParticipantHp,
     ) {
         $this->name = $name;
         $this->armorClass = $armorClass;
-        $this->maxHp = $maxHp;
         $this->speed = $speed;
         $this->image = $image;
+        $this->encounterParticipantHp = $encounterParticipantHp;
 
-        $this->actualHp = $maxHp;
-        $this->lastHpChange = 0;
-        $this->hpHistory = [];
         $this->note = '';
     }
 
@@ -57,17 +51,7 @@ class EncounterParticipant
     {
         return $this->armorClass;
     }
-
-    public function getMaxHp(): int
-    {
-        return $this->maxHp;
-    }
-
-    public function getActualHp(): int
-    {
-        return max($this->actualHp, 0);
-    }
-
+    
     public function getSpeed(): int
     {
         return $this->speed;
@@ -78,54 +62,11 @@ class EncounterParticipant
         return $this->image;
     }
 
-    public function addHp(int $hp): self
+    public function getHp(): EncounterParticipantHp
     {
-        $this->actualHp += $hp;
-
-        $this->lastHpChange = $hp;
-        $this->hpHistory[] = $this->lastHpChange;
-
-        return $this;
+        return $this->encounterParticipantHp;
     }
-
-    public function removeHp(int $hp): self
-    {
-        $this->actualHp = max(
-            $this->actualHp -= $hp,
-            0
-        );
-
-        $this->lastHpChange = -1 * abs($hp);
-        $this->hpHistory[] = $this->lastHpChange;
-
-        return $this;
-    }
-
-    public function rollbackLastHpChange(): void
-    {
-        $lastHpChange = $this->lastHpChange;
-
-        if ($lastHpChange === 0) {
-            return;
-        }
-
-        $lastHpChange > 0
-            ? $this->removeHp(abs($this->lastHpChange))
-            : $this->addHp(abs($this->lastHpChange));
-
-        $this->lastHpChange = 0;
-    }
-
-    public function isDead(): bool
-    {
-        return $this->getActualHp() === 0;
-    }
-
-    public function getHpHistory(): array
-    {
-        return $this->hpHistory;
-    }
-
+    
     public function getNote(): string
     {
         return $this->note;

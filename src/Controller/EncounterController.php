@@ -19,107 +19,29 @@ use function base64_decode;
 
 class EncounterController extends AbstractController
 {
-    #[Route('/encounter', 'encounter', methods: [Request::METHOD_GET])]
+    #[Route(
+        '/encounter',
+        'encounter',
+        methods: [Request::METHOD_GET]
+    )]
     public function index(EncounterCache $encounterCache): Response
     {
-        $encounter = $encounterCache->encounterExist()
-            ? $encounterCache->getEncounter()
+        $encounter = $encounterCache->isExist()
+            ? $encounterCache->get()
             : new Encounter();
+
+        $encounterCache->save($encounter);
 
         return $this->render('encounter/index.html.twig', [
             'encounter' => $encounter,
         ]);
     }
 
-    #[Route('/encounter/participant/add/{uuid}', 'participant_add', methods: [Request::METHOD_GET])]
-    public function participantAdd(
-        Uuid $uuid,
-        EntityService $entityService,
-        EncounterCache $encounterCache,
-    ): Response {
-        $encounter = $encounterCache->encounterExist()
-            ? $encounterCache->getEncounter()
-            : new Encounter();
-
-        $encounterCache->saveEncounter(
-            $encounter->addParticipant(
-                EncounterParticipantFactory::createFromMonster(
-                    $entityService->getByUuid($uuid, Monster::class),
-                )
-            )
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/participant/{participantId}/hp/{hp}/add', 'participant_add_hp', methods: [Request::METHOD_GET])]
-    public function participantAddHP(
-        EncounterCache $encounterCache,
-        int $participantId,
-        int $hp
-    ): Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()
-                ->addHp($participantId, $hp)
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/participant/{participantId}/hp/{hp}/remove', 'participant_remove_hp', methods: [Request::METHOD_GET])]
-    public function participantRemoveHp(
-        EncounterCache $encounterCache,
-        int $participantId,
-        int $hp
-    ): Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()
-                ->removeHp($participantId, $hp)
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/participant/{participantId}/hp/rollback', 'participant_hp_rollback', methods: [Request::METHOD_GET])]
-    public function participantRollbackHp(
-        EncounterCache $encounterCache,
-        int $participantId,
-    ): Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()
-                ->rollbackLastHpChange($participantId)
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/participant/duplicate/{participantId}', 'participant_duplicate', methods: [Request::METHOD_GET])]
-    public function participantDuplicate(
-        EncounterCache $encounterCache,
-        int $participantId,
-    ): Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()
-                ->duplicateParticipant($participantId)
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/participant/delete/{participantId}', 'participant_delete', methods: [Request::METHOD_GET])]
-    public function participantDelete(
-        EncounterCache $encounterCache,
-        int $participantId,
-    ) : Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()
-                ->removeParticipant($participantId)
-        );
-
-        return $this->redirectToRoute('encounter');
-    }
-
-    #[Route('/encounter/delete', 'encounter_delete', methods: [Request::METHOD_GET])]
+    #[Route(
+        '/encounter/delete',
+        'encounter_delete',
+        methods: [Request::METHOD_GET]
+    )]
     public function encounterDelete(EncounterCache $encounterCache): Response
     {
         $encounterCache->deleteEncounter();
@@ -127,38 +49,167 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/note/{note}/save', 'participant_note_add', methods: [Request::METHOD_GET])]
-    public function participantNoteAdd(
+    #[Route(
+        '/encounter/participant/monster/{monsterId}/add',
+        'participant_add',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantAdd
+    (
+        Uuid $monsterId,
+        EntityService $entityService,
         EncounterCache $encounterCache,
-        int $participantId,
-        string $note,
     ): Response {
-        $note = $note === ':note'
-            ? ''
-            : base64_decode($note, true);
+        $encounter = $encounterCache->get();
 
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()->addNote(
-                $participantId,
-                $note
+        $encounter->getParticipants()->add(
+            EncounterParticipantFactory::createFromMonster(
+                $entityService->getByUuid($monsterId, Monster::class),
             )
         );
+
+        $encounterCache->save($encounter);
 
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/swap/{swapId}', 'participant_swap', methods: [Request::METHOD_GET])]
-    public function participantSwap(
+    #[Route(
+        '/encounter/participant/{participantId}/delete',
+        'participant_delete',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantDelete
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+    ) : Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->remove($participantId);
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/hp/{hp}/add',
+        'participant_hp_add',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantHpAdd
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+        int $hp
+    ): Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->get($participantId)->getHp()->add($hp);
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/hp/{hp}/remove',
+        'participant_hp_remove',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantHpRemove
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+        int $hp
+    ): Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->get($participantId)->getHp()->remove($hp);
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/hp/rollback',
+        'participant_hp_rollback',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantHpRollback
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+    ): Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->get($participantId)->getHp()->rollbackLastChange();
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/duplicate',
+        'participant_duplicate',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantDuplicate
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+    ): Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->duplicate($participantId);
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/note/{note}/save',
+        'participant_note_set',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantNoteSet
+    (
+        EncounterCache $encounterCache,
+        int $participantId,
+        string $note,
+    ): Response {
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->get($participantId)->setNote(
+            $note === ':note'
+                ? ''
+                : base64_decode($note, true)
+        );
+
+        $encounterCache->save($encounter);
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route(
+        '/encounter/participant/{participantId}/swap/{swapId}',
+        'participant_swap',
+        methods: [Request::METHOD_GET]
+    )]
+    public function participantSwap
+    (
         EncounterCache $encounterCache,
         int $participantId,
         int $swapId,
     ): Response {
-        $encounterCache->saveEncounter(
-            $encounterCache->getEncounter()->swapParticipant(
-                $participantId,
-                $swapId
-            )
-        );
+        $encounter = $encounterCache->get();
+
+        $encounter->getParticipants()->swap($participantId, $swapId);
+
+        $encounterCache->save($encounter);
 
         return $this->redirectToRoute('encounter');
     }

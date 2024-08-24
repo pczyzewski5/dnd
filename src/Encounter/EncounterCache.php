@@ -16,14 +16,14 @@ class EncounterCache
     {
     }
 
-    public function encounterExist(): bool
+    public function isExist(): bool
     {
         $item = $this->pool->getItem(self::ENCOUNTER_KEY);
 
         return $item->isHit();
     }
 
-    public function getEncounter(): Encounter
+    public function get(): Encounter
     {
         $item = $this->pool->getItem(self::ENCOUNTER_KEY);
 
@@ -34,7 +34,7 @@ class EncounterCache
         return $item->get();
     }
 
-    public function saveEncounter(Encounter $encounter): void
+    public function save(Encounter $encounter): void
     {
         $item = $this->pool->getItem(self::ENCOUNTER_KEY);
         $item->set($encounter);
