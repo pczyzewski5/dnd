@@ -7,11 +7,10 @@ class EncounterHpHelper {
         $('.button.hp').on('click', function(e) {
             e.preventDefault()
 
-            let $submitButton = $(e.target);
-            let $hp = $submitButton.parent().find('#hp').val();
+            let $hp = $(e.target).parent().find('#hp').val();
 
             if ($hp.length !== 0) {
-                window.location.href = $submitButton.attr('href').replaceAll(':hp', parseInt($hp));
+                window.location.href = $(e.target).data('href').replaceAll(':hp', parseInt($hp));
             }
         });
     }

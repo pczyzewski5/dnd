@@ -97,4 +97,37 @@ class Encounter
 
         return $this;
     }
+
+    public function getParticipantIds(): array
+    {
+        return array_map(
+            fn (EncounterParticipant $participant): int => $participant->getId(),
+            $this->participants
+        );
+    }
+
+    public function swapParticipant(int $participantId, int $swapId): self
+    {
+        $participant = $this->getParticipant($participantId);
+        $participantToSwap = $this->getParticipant($swapId);
+
+        $participant->setId($swapId);
+        $participantToSwap->setId($participantId);
+
+        $this->participants[$participantId] = $participantToSwap;
+        $this->participants[$swapId] = $participant;
+
+        return $this;
+    }
+
+    private function getParticipant(int $participantId): EncounterParticipant
+    {
+        foreach ($this->participants as $participant) {
+            if ($participant->getId() === $participantId) {
+                return $participant;
+            }
+        }
+
+        throw new \Exception('Participant not found');
+    }
 }

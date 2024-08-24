@@ -7,8 +7,7 @@ class EncounterNoteHelper {
         $('.button.save-note').on('click', function(e) {
             e.preventDefault()
 
-            let $submitButton = $(e.target);
-            let $notes = $submitButton.parent().find('#notes').val();
+            let $notes = $(e.target).parent().find('#notes').val();
 
             if ($notes.length === 0) {
                 $notes = ':note';
@@ -16,7 +15,7 @@ class EncounterNoteHelper {
                 $notes = btoa($notes);
             }
 
-            window.location.href = $submitButton.attr('href').replaceAll(':note', $notes);
+            window.location.href = $(e.target).attr('href').replaceAll(':note', $notes);
         });
     }
 }

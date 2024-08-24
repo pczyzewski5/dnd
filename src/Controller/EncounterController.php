@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
 
 use function base64_decode;
-use function var_dump;
 
 class EncounterController extends AbstractController
 {
@@ -128,8 +127,8 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/note/{note}/save', 'participant_note_save', methods: [Request::METHOD_GET])]
-    public function test(
+    #[Route('/encounter/participant/{participantId}/note/{note}/save', 'participant_note_add', methods: [Request::METHOD_GET])]
+    public function participantNoteAdd(
         EncounterCache $encounterCache,
         int $participantId,
         string $note,
@@ -142,6 +141,22 @@ class EncounterController extends AbstractController
             $encounterCache->getEncounter()->addNote(
                 $participantId,
                 $note
+            )
+        );
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route('/encounter/participant/{participantId}/swap/{swapId}', 'participant_swap', methods: [Request::METHOD_GET])]
+    public function participantSwap(
+        EncounterCache $encounterCache,
+        int $participantId,
+        int $swapId,
+    ): Response {
+        $encounterCache->saveEncounter(
+            $encounterCache->getEncounter()->swapParticipant(
+                $participantId,
+                $swapId
             )
         );
 
