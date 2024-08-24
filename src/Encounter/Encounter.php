@@ -86,4 +86,15 @@ class Encounter
 
         return $this;
     }
+
+    public function addNote(int $participantId, string $note): self
+    {
+        foreach ($this->participants as $participant) {
+            if ($participant->getId() === $participantId) {
+                $participant->setNote($note);
+            }
+        }
+
+        return $this;
+    }
 }

@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
 
+use function base64_decode;
+use function var_dump;
+
 class EncounterController extends AbstractController
 {
     #[Route('/encounter', 'encounter', methods: [Request::METHOD_GET])]
@@ -29,7 +32,7 @@ class EncounterController extends AbstractController
         ]);
     }
 
-    #[Route('/encounter/participant/add/{uuid}', 'encounter_participant_add', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/add/{uuid}', 'participant_add', methods: [Request::METHOD_GET])]
     public function participantAdd(
         Uuid $uuid,
         EntityService $entityService,
@@ -50,7 +53,7 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/hp/{hp}/add', 'encounter_participant_add_hp', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/{participantId}/hp/{hp}/add', 'participant_add_hp', methods: [Request::METHOD_GET])]
     public function participantAddHP(
         EncounterCache $encounterCache,
         int $participantId,
@@ -64,7 +67,7 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/hp/{hp}/remove', 'encounter_participant_remove_hp', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/{participantId}/hp/{hp}/remove', 'participant_remove_hp', methods: [Request::METHOD_GET])]
     public function participantRemoveHp(
         EncounterCache $encounterCache,
         int $participantId,
@@ -78,7 +81,7 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/{participantId}/hp/rollback', 'encounter_participant_hp_rollback', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/{participantId}/hp/rollback', 'participant_hp_rollback', methods: [Request::METHOD_GET])]
     public function participantRollbackHp(
         EncounterCache $encounterCache,
         int $participantId,
@@ -91,7 +94,7 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/duplicate/{participantId}', 'encounter_participant_duplicate', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/duplicate/{participantId}', 'participant_duplicate', methods: [Request::METHOD_GET])]
     public function participantDuplicate(
         EncounterCache $encounterCache,
         int $participantId,
@@ -104,7 +107,7 @@ class EncounterController extends AbstractController
         return $this->redirectToRoute('encounter');
     }
 
-    #[Route('/encounter/participant/delete/{participantId}', 'encounter_participant_delete', methods: [Request::METHOD_GET])]
+    #[Route('/encounter/participant/delete/{participantId}', 'participant_delete', methods: [Request::METHOD_GET])]
     public function participantDelete(
         EncounterCache $encounterCache,
         int $participantId,
@@ -121,6 +124,26 @@ class EncounterController extends AbstractController
     public function encounterDelete(EncounterCache $encounterCache): Response
     {
         $encounterCache->deleteEncounter();
+
+        return $this->redirectToRoute('encounter');
+    }
+
+    #[Route('/encounter/participant/{participantId}/note/{note}/save', 'participant_note_save', methods: [Request::METHOD_GET])]
+    public function test(
+        EncounterCache $encounterCache,
+        int $participantId,
+        string $note,
+    ): Response {
+        $note = $note === ':note'
+            ? ''
+            : base64_decode($note, true);
+
+        $encounterCache->saveEncounter(
+            $encounterCache->getEncounter()->addNote(
+                $participantId,
+                $note
+            )
+        );
 
         return $this->redirectToRoute('encounter');
     }

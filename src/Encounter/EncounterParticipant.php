@@ -14,6 +14,8 @@ class EncounterParticipant
     private int $speed;
     private string $image;
     private int $lastHpChange;
+    private array $hpHistory;
+    private string $note;
 
     public function __construct(
         string $name,
@@ -30,6 +32,8 @@ class EncounterParticipant
 
         $this->actualHp = $maxHp;
         $this->lastHpChange = 0;
+        $this->hpHistory = [];
+        $this->note = '';
     }
 
     public function setId(int $id): self
@@ -79,6 +83,7 @@ class EncounterParticipant
         $this->actualHp += $hp;
 
         $this->lastHpChange = $hp;
+        $this->hpHistory[] = $this->lastHpChange;
 
         return $this;
     }
@@ -91,6 +96,7 @@ class EncounterParticipant
         );
 
         $this->lastHpChange = -1 * abs($hp);
+        $this->hpHistory[] = $this->lastHpChange;
 
         return $this;
     }
@@ -113,5 +119,22 @@ class EncounterParticipant
     public function isDead(): bool
     {
         return $this->getActualHp() === 0;
+    }
+
+    public function getHpHistory(): array
+    {
+        return $this->hpHistory;
+    }
+
+    public function getNote(): string
+    {
+        return $this->note;
+    }
+
+    public function setNote(string $note): self
+    {
+        $this->note = $note;
+
+        return $this;
     }
 }
