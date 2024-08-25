@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Encounter;
 
 use function abs;
+use function array_key_last;
 use function max;
 
 class EncounterParticipantHp
@@ -12,14 +13,12 @@ class EncounterParticipantHp
     private int $maxHp;
     private int $actualHp;
     private array $hpHistory;
-    private int $lastHpChange;
 
     public function __construct(int $maxHp)
     {
         $this->maxHp = $maxHp;
 
         $this->actualHp = $this->maxHp;
-        $this->lastHpChange = 0;
         $this->hpHistory = [];
     }
 
@@ -44,8 +43,11 @@ class EncounterParticipantHp
     {
         $hp = abs($hp);
 
+        if (0 === $hp) {
+            return $this;
+        }
+
         $this->actualHp += $hp;
-        $this->lastHpChange = $hp;
         $this->hpHistory[] = $hp;
 
         return $this;
@@ -55,6 +57,10 @@ class EncounterParticipantHp
     {
         $hp = -1 * abs($hp);
 
+        if (0 === $hp) {
+            return $this;
+        }
+
         $this->actualHp = max(0, $this->actualHp += $hp);
         $this->hpHistory[] = $hp;
 
@@ -63,17 +69,23 @@ class EncounterParticipantHp
 
     public function rollbackLastChange(): self
     {
-        $lastHpChange = $this->lastHpChange;
-
-        if ($lastHpChange === 0) {
+        if (empty($this->hpHistory)) {
             return $this;
         }
 
-        $lastHpChange > 0
-            ? $this->remove(abs($this->lastHpChange))
-            : $this->add(abs($this->lastHpChange));
+        $lastHpChange = end($this->hpHistory);
 
-        $this->lastHpChange = 0;
+        unset($this->hpHistory[
+            array_key_last($this->hpHistory)
+            ]);
+
+        $lastHpChange > 0
+            ? $this->remove($lastHpChange)
+            : $this->add($lastHpChange);
+
+        unset($this->hpHistory[
+            array_key_last($this->hpHistory)
+            ]);
 
         return $this;
     }
