@@ -4,13 +4,25 @@ class EncounterHpHelper {
     }
 
     execute() {
-        $('.button.hp').on('click', function(e) {
+        $('.hp').on('click', function(e) {
             e.preventDefault()
 
-            let $hp = $(e.target).parent().find('#hp').val();
+            let $target = $(e.target);
+
+            if ($target.hasClass('button') === false) {
+                $target = $target.closest('.hp.button');
+            }
+
+            let $hp = $(e.target)
+                .closest('.participant')
+                .find('#hp')
+                .val();
 
             if ($hp.length !== 0) {
-                window.location.href = $(e.target).data('href').replaceAll(':hp', parseInt($hp));
+                window.location.href =
+                    $target
+                    .data('href')
+                    .replaceAll(':hp', parseInt($hp));
             }
         });
     }

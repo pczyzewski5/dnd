@@ -10,20 +10,37 @@
         <a class="button is-small is-danger" href="{{ path('encounter_delete') }}">Usuń potyczkę</a>
     </div>
 
-    {% for participant in encounter.getParticipants().getAll() %}
-        id: {{ participant.getId() }} | name: {{ participant.getName() }} | Max HP: {{ participant.getHp().getMax() }} | Actual HP: {{ participant.getHp().getActual() }} | HP HISTORY: {{ participant.getHp().getHistory()|join(', ') }}<br>
-        <div class="buttons">
-            <button class="button is-small is-primary swap-id" data-actual-id="{{ participant.getId() }}" data-href="{{ path('participant_swap', {'participantId': participant.getId(), 'swapId': ':swapId'}) }}">zamień id</button>
 
-            <a class="button is-small is-warning" href="{{ path('participant_delete', {'participantId': participant.getId()}) }}">Usuń potworka</a>
-            <a class="button is-small is-info" href="{{ path('participant_duplicate', {'participantId': participant.getId()}) }}">Duplikuj potworka</a>
-            <input type="number" min="0" max="1000" placeholder="0" id="hp">
-            <button class="button is-small is-primary hp" data-href="{{ path('participant_hp_add', {'participantId': participant.getId(), 'hp': ':hp'}) }}">Dodaj PW</button>
-            <button class="button is-small is-primary hp" data-href="{{ path('participant_hp_remove', {'participantId': participant.getId(), 'hp': ':hp'}) }}">Usuń PW</button>
-            <a class="button is-small is-warning" href="{{ path('participant_hp_rollback', {'participantId': participant.getId()}) }}">rollback PW</a>
-            <textarea placeholder="notes..." rows="4" cols="50" id="notes">{{ participant.getNote() }}</textarea>
-            <a class="button is-small is-info save-note" href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}">zapisz notkę</a>
+    {% set participants = encounter.getParticipants().getAll() %}
+    {% for key, participant in participants %}
+        {% if participant.getId() == participants|first.getId() %}
+            <div class="columns">
+        {% endif %}
+
+        <div class="column is-one-quarter">
+            {{ include('encounter/participant.html.twig') }}
+
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <section class="modal-card-body">
+                        <button class="button is-small is-primary swap-id" data-actual-id="{{ participant.getId() }}" data-href="{{ path('participant_swap', {'participantId': participant.getId(), 'swapId': ':swapId'}) }}">zamień id</button>
+                        <a class="button is-small is-warning" href="{{ path('participant_delete', {'participantId': participant.getId()}) }}">Usuń potworka</a>
+                        <a class="button is-small is-info" href="{{ path('participant_duplicate', {'participantId': participant.getId()}) }}">Duplikuj potworka</a>
+                    </section>
+                </div>
+            </div>
         </div>
+
+        {% if key is divisible by(4) %}
+            </div>
+        {% endif %}
+        {% if key is divisible by(4) and participants|length > key %}
+            <div class="columns">
+        {% endif %}
+        {% if participants|last.getId() == participant.getId() %}
+            </div>
+        {% endif %}
     {% endfor %}
 
     <div class="modal">

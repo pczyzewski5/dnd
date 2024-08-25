@@ -8,7 +8,7 @@ class EncounterParticipant
 {
     private int $id;
     private string $name;
-    private int $armorClass;
+    private int $ac;
     private int $speed;
     private string $image;
     private EncounterParticipantHp $encounterParticipantHp;
@@ -16,16 +16,16 @@ class EncounterParticipant
 
     public function __construct(
         string $name,
-        int $armorClass,
+        int $ac,
         int $speed,
         string $image,
-        EncounterParticipantHp $encounterParticipantHp,
+        EncounterParticipantHp $hp,
     ) {
         $this->name = $name;
-        $this->armorClass = $armorClass;
+        $this->ac = $ac;
         $this->speed = $speed;
         $this->image = $image;
-        $this->encounterParticipantHp = $encounterParticipantHp;
+        $this->encounterParticipantHp = $hp;
 
         $this->note = '';
     }
@@ -47,9 +47,9 @@ class EncounterParticipant
         return $this->name;
     }
 
-    public function getArmorClass(): int
+    public function getAc(): int
     {
-        return $this->armorClass;
+        return $this->ac;
     }
     
     public function getSpeed(): int

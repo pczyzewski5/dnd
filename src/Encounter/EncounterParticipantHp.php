@@ -35,28 +35,28 @@ class EncounterParticipantHp
 
     public function getHistory(): array
     {
-        return $this->hpHistory;
+        return array_map(static function(int $value): string {
+            return $value > 0 ? '+' . $value : (string)$value;
+        }, $this->hpHistory);
     }
 
     public function add(int $hp): self
     {
-        $this->actualHp += $hp;
+        $hp = abs($hp);
 
+        $this->actualHp += $hp;
         $this->lastHpChange = $hp;
-        $this->hpHistory[] = $this->lastHpChange;
+        $this->hpHistory[] = $hp;
 
         return $this;
     }
 
     public function remove(int $hp): self
     {
-        $this->actualHp = max(
-            $this->actualHp -= $hp,
-            0
-        );
+        $hp = -1 * abs($hp);
 
-        $this->lastHpChange = -1 * abs($hp);
-        $this->hpHistory[] = $this->lastHpChange;
+        $this->actualHp = max(0, $this->actualHp += $hp);
+        $this->hpHistory[] = $hp;
 
         return $this;
     }

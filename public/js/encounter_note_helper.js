@@ -7,7 +7,7 @@ class EncounterNoteHelper {
         $('.button.save-note').on('click', function(e) {
             e.preventDefault()
 
-            let $notes = $(e.target).parent().find('#notes').val();
+            let $notes = $(e.target).closest('.participant').find('#notes').val();
 
             if ($notes.length === 0) {
                 $notes = ':note';

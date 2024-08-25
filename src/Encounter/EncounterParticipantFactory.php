@@ -25,7 +25,7 @@ class EncounterParticipantFactory
     {
         return new EncounterParticipant(
             $participant->getName(),
-            $participant->getArmorClass(),
+            $participant->getAc(),
             10,
             $participant->getImage(),
             $participant->getHp(),

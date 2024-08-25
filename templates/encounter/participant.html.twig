@@ -1,0 +1,147 @@
+<style>
+    .participant {
+        width: 100%;
+    }
+    table {
+        border: 2px solid lightgray;
+        box-shadow: 0 0 20px #ccc;
+    }
+    table tr td {
+        border: 1px solid lightgray;
+        padding: 4px 4px;
+        font-size: 12px;
+        vertical-align:middle;
+    }
+    .participant input {
+        width: 48px;
+        font-size: 18px !important;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        line-height: 26px;
+        color: gray;
+    }
+    .participant input:focus {
+        border: none;
+        outline: none;
+    }
+    .participant textarea {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+    }
+    .tac {
+        text-align: center !important;
+    }
+    .hp-history {
+        font-size: 10px;
+    }
+    .participant-id {
+        font-size: 26px;
+        color: gray;
+        width: 10px !important;
+        position: relative;
+    }
+    .hash {
+        font-size: 14px;
+        position: absolute;
+        left: 3px;
+        top: -1px;
+    }
+    .hp-controls .button {
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+    }
+    .button-container {
+        padding: 0 !important;
+    }
+</style>
+
+<table class="participant">
+    <tr>
+        <td rowspan="2" class="participant-id tac">
+            <span class="hash">#</span>
+            {{ participant.getId() }}
+        </td>
+        <td colspan="3">
+            {{ participant.getName() }}
+        </td>
+    </tr>
+    <tr class="tac">
+        <td>
+            <span class="icon is-small">
+                <i class="fas fa-shield" aria-hidden="true"></i>
+            </span>
+            {{ participant.getAc() }}
+        </td>
+        <td>
+            <span class="icon is-small">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+            </span>
+            {{ participant.getHp().getActual() }}/{{ participant.getHp().getMax() }}</td>
+        <td>
+            <span class="icon is-small">
+                <i class="fas fa-person-running" aria-hidden="true"></i>
+            </span>
+            {{ participant.getSpeed() }}
+        </td>
+    </tr>
+    <tr class="hp-controls">
+        <td>
+            <input type="number" placeholder="0" id="hp" min="0" max="999">
+        </td>
+        <td class="button-container">
+            <button class="button is-small is-success is-light hp" data-href="{{ path('participant_hp_add', {'participantId': participant.getId(), 'hp': ':hp'}) }}">
+                <span class="icon is-small hp">
+                    <i class="fas fa-plus hp" aria-hidden="true"></i>
+                </span>
+            </button>
+        </td>
+        <td class="button-container">
+            <button class="button is-small is-danger is-light hp" data-href="{{ path('participant_hp_remove', {'participantId': participant.getId(), 'hp': ':hp'}) }}">
+                <span class="icon is-small">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                </span>
+            </button>
+        </td>
+        <td class="button-container">
+            <a class="button is-small is-warning us-light" href="{{ path('participant_hp_rollback', {'participantId': participant.getId()}) }}">
+                 <span class="icon is-small">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                 </span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="hp-history">
+            {{ participant.getHp().getMax() }}{{ participant.getHp().getHistory()|join('') }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <textarea placeholder="notes..." rows="4" cols="20" id="notes">{{ participant.getNote() }}</textarea>
+            <a class="button is-small is-light save"
+               href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}"
+            >
+                <span class="icon is-small">
+                    <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                </span>
+            </a>
+            <button class="button is-small is-light">
+                <span class="icon is-small">
+                    <i class="fas fa-image" aria-hidden="true"></i>
+                </span>
+            </button>
+            <button class="button is-small is-light is-pulled-right">
+                <span class="icon is-small">
+                    <i class="fas fa-gear" aria-hidden="true"></i>
+                </span>
+            </button>
+        </td>
+    </tr>
+</table>
