@@ -69,7 +69,7 @@
     }
 </style>
 
-<table class="participant">
+<table class="participant" {{ participant.getHp().isDead() ? 'style="opacity: 50%"' : '' }}>
     <tr>
         <td rowspan="2" class="participant-id tac">
             <span class="hash">#</span>
