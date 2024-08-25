@@ -4,21 +4,24 @@ class EncounterSwapHelper {
     }
 
     execute() {
-        $('.button.swap-id').on('click', function(e) {
+        $('.swap-modal').on('click', function(e) {
             e.preventDefault()
 
+            let $target = $(e.target);
+
+            if ($target.hasClass('button') === false) {
+                $target = $target.closest('.button.swap-modal');
+            }
+
             buildModalContent(
-                $(e.target).data('actual-id'),
+                $target.data('actual-id'),
                 $('#participant-ids').data('ids').split('|')
             );
 
-            $('.modal').addClass('is-active');
-            $('.modal-background').on('click', function(e) {
-                $('.modal').removeClass('is-active');
-            })
+            $('.swap-modal-window').addClass('is-active');
 
             function buildModalContent($actualParticipantId, $participantsIds) {
-                $('.modal-card-body').empty();
+                $('.swap-modal-window .modal-card-body .buttons').empty();
 
                 $.each($participantsIds, function($key, $swapId) {
                     if ($actualParticipantId == $swapId) {
@@ -27,10 +30,10 @@ class EncounterSwapHelper {
 
                     let $button = buildSwapButton(
                         $swapId,
-                        customizeHref($swapId, $(e.target).data('href'))
+                        customizeHref($swapId, $target.data('href'))
                     );
 
-                    $('.modal-card-body').append($button);
+                    $('.swap-modal-window .modal-card-body .buttons').append($button);
                 });
             }
 
@@ -46,7 +49,8 @@ class EncounterSwapHelper {
             }
 
             function customizeHref($swapId, $href) {
-                return $href.replaceAll(
+               console.log($href);
+                return $href.replace(
                     ':swapId',
                     parseInt($swapId)
                 )

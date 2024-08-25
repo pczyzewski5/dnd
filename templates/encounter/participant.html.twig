@@ -12,6 +12,12 @@
         font-size: 12px;
         vertical-align:middle;
     }
+    table tr:last-child td {
+        border: 0;
+    }
+    table tr:last-child td:last-child {
+        text-align: right;
+    }
     .participant input {
         width: 48px;
         font-size: 18px !important;
@@ -33,6 +39,7 @@
         outline: none;
         padding: 0;
         margin: 0;
+        font-size: 12px;
     }
     .tac {
         text-align: center !important;
@@ -125,23 +132,46 @@
     <tr>
         <td colspan="4">
             <textarea placeholder="notes..." rows="4" cols="20" id="notes">{{ participant.getNote() }}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="1">
             <button class="button is-small is-light save-note"
-               data-href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}"
+                    data-href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}"
             >
                 <span class="icon is-small save-note">
                     <i class="fas fa-floppy-disk save-note" aria-hidden="true"></i>
                 </span>
             </button>
-            <button class="button is-small is-light">
+        </td>
+        <td colspan="3">
+            <button class="button is-small is-light image-modal">
                 <span class="icon is-small">
                     <i class="fas fa-image" aria-hidden="true"></i>
                 </span>
             </button>
-            <button class="button is-small is-light is-pulled-right">
+            <button class="button is-small is-light swap-modal"
+                    data-actual-id="{{ participant.getId() }}"
+                    data-href="{{ path('participant_swap', {'participantId': participant.getId(), 'swapId': ':swapId'}) }}"
+            >
                 <span class="icon is-small">
-                    <i class="fas fa-gear" aria-hidden="true"></i>
+                    <i class="fas fa-rotate" aria-hidden="true"></i>
                 </span>
             </button>
+            <a class="button is-small is-light"
+               href="{{ path('participant_duplicate', {'participantId': participant.getId()}) }}"
+            >
+                <span class="icon is-small">
+                    <i class="fas fa-copy" aria-hidden="true"></i>
+                </span>
+            </a>
+            <a class="button is-small is-light"
+               href="{{ path('participant_delete', {'participantId': participant.getId()}) }}"
+            >
+                <span class="icon is-small">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
+                </span>
+            </a>
         </td>
     </tr>
 </table>

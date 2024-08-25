@@ -28,7 +28,9 @@ class EncounterParticipantFactory
             $participant->getAc(),
             10,
             $participant->getImage(),
-            $participant->getHp(),
+            new EncounterParticipantHp(
+                $participant->getHp()->getMax()
+            )
         );
     }
 }

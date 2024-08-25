@@ -13,10 +13,14 @@ class EncounterHpHelper {
                 $target = $target.closest('.hp.button');
             }
 
-            let $hp = $(e.target)
+            let $hp = $target
                 .closest('.participant')
                 .find('#hp')
                 .val();
+
+            if ($hp.length === 0) {
+                return;
+            }
 
             if ($hp.length !== 0) {
                 window.location.href =
