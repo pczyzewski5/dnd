@@ -125,13 +125,13 @@
     <tr>
         <td colspan="4">
             <textarea placeholder="notes..." rows="4" cols="20" id="notes">{{ participant.getNote() }}</textarea>
-            <a class="button is-small is-light save"
-               href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}"
+            <button class="button is-small is-light save-note"
+               data-href="{{ path('participant_note_set', {'participantId': participant.getId(), 'note': ':note'}) }}"
             >
-                <span class="icon is-small">
-                    <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                <span class="icon is-small save-note">
+                    <i class="fas fa-floppy-disk save-note" aria-hidden="true"></i>
                 </span>
-            </a>
+            </button>
             <button class="button is-small is-light">
                 <span class="icon is-small">
                     <i class="fas fa-image" aria-hidden="true"></i>

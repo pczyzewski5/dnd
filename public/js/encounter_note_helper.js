@@ -4,10 +4,16 @@ class EncounterNoteHelper {
     }
 
     execute() {
-        $('.button.save-note').on('click', function(e) {
+        $('.save-note').on('click', function(e) {
             e.preventDefault()
 
-            let $notes = $(e.target).closest('.participant').find('#notes').val();
+            let $target = $(e.target);
+
+            if ($target.hasClass('button') === false) {
+                $target = $target.closest('.save-note.button');
+            }
+
+            let $notes = $target.closest('.participant').find('#notes').val();
 
             if ($notes.length === 0) {
                 $notes = ':note';
@@ -15,7 +21,7 @@ class EncounterNoteHelper {
                 $notes = btoa($notes);
             }
 
-            window.location.href = $(e.target).attr('href').replaceAll(':note', $notes);
+            window.location.href = $target.data('href').replaceAll(':note', $notes);
         });
     }
 }
