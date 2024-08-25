@@ -7,6 +7,7 @@ namespace App\Encounter;
 use function abs;
 use function array_key_last;
 use function max;
+use function var_dump;
 
 class EncounterParticipantHp
 {
@@ -57,11 +58,17 @@ class EncounterParticipantHp
     {
         $hp = -1 * abs($hp);
 
-        if (0 === $hp) {
+        if (0 === $hp || $this->actualHp === 0) {
             return $this;
         }
 
-        $this->actualHp = max(0, $this->actualHp += $hp);
+        $diff = $this->actualHp + $hp;
+
+        if ($diff < 0) {
+            $hp = $hp - $diff;
+        }
+
+        $this->actualHp = $this->actualHp += $hp;
         $this->hpHistory[] = $hp;
 
         return $this;
