@@ -10,8 +10,9 @@
         <a class="button is-small is-danger" href="{{ path('encounter_delete') }}">Usuń potyczkę</a>
     </div>
 
+    {% set i = 1 %}
     {% set participants = encounter.getParticipants().getAll() %}
-    {% for key, participant in participants %}
+    {% for participant in participants %}
         {% if participant.getId() == participants|first.getId() %}
             <div class="columns">
         {% endif %}
@@ -21,15 +22,16 @@
             {{ include('encounter/image_modal.html.twig') }}
         </div>
 
-        {% if key is divisible by(4) %}
+        {% if i is divisible by(4) %}
             </div>
         {% endif %}
-        {% if key is divisible by(4) and participants|length > key %}
+        {% if i is divisible by(4) and participants|length > i %}
             <div class="columns">
         {% endif %}
         {% if participants|last.getId() == participant.getId() %}
             </div>
         {% endif %}
+        {% set i = i + 1 %}
     {% endfor %}
 
     {{ include('encounter/swap_modal.html.twig') }}
