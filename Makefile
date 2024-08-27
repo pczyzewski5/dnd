@@ -70,11 +70,3 @@ generate-migration:
 
 migration:
 	$(PHPCLI) php ./bin/console doctrine:migrations:migrate
-
-
-##################################################################################################################
-# DEPLOY
-##################################################################################################################
-
-deploy:
-	$(PHPCLI) vendor/deployer/deployer/dep deploy

@@ -10,12 +10,14 @@ class MonsterFactory
         string $name,
         int $armorClass,
         int $maxHp,
+        int $speed,
         string $image,
     ): Monster {
         return new Monster(
             $name,
             $armorClass,
             $maxHp,
+            $speed,
             $image,
         );
     }

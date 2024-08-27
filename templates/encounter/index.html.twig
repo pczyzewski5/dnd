@@ -5,10 +5,6 @@
             display: none;
         }
     </style>
-    <div class="buttons">
-        <a class="button is-small is-primary" href="{{ path('participant_add', {'monsterId': '33626136-3261-6332-2d36-3137352d3131'}) }}">Dodaj potworka</a>
-        <a class="button is-small is-danger" href="{{ path('encounter_delete') }}">Usuń potyczkę</a>
-    </div>
 
     {% set i = 1 %}
     {% set participants = encounter.getParticipants().getAll() %}

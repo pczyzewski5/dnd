@@ -46,7 +46,12 @@ class UploadImageType extends AbstractType
 
         $event->setData(null);
 
-        if (!$uploadedFile instanceof UploadedFile) {
+        if ($form->getConfig()->getOption('required') === false) {
+            return;
+        }
+
+        if (!$uploadedFile instanceof UploadedFile)
+        {
             $form->addError(
                 new FormError('Plik jest wymagany.')
             );

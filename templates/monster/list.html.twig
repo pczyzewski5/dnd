@@ -13,6 +13,8 @@
             <th>nazwa</th>
             <th>klasa pancerza</th>
             <th>punkty wytrzymałości</th>
+            <th>szybkość</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -21,7 +23,13 @@
                 <td>{{ key + 1 }}</td>
                 <td>{{ monster.getName() }}</td>
                 <td>{{ monster.getArmorClass() }}</td>
-                <td>{{ monster.getHitPoints() }}</td>
+                <td>{{ monster.getMaxHp() }}</td>
+                <td>10</td>
+                <td>
+                    <a class="button is-small is-info" href="{{ path('participant_add', {'monsterId': monster.getIdAsString()}) }}">dodaj do potyczki</a>
+                    <a class="button is-small is-warning" href="{{ path('monster_update', {'id': monster.getIdAsString()}) }}">Edytuj</a>
+                    <a class="button is-small is-danger" href="{{ path('monster_delete', {'id': monster.getIdAsString()}) }}">Usuń</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

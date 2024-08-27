@@ -56,11 +56,14 @@ class EncounterController extends AbstractController
     )]
     public function participantAdd
     (
+        Request $request,
         Uuid $monsterId,
         EntityService $entityService,
         EncounterCache $encounterCache,
     ): Response {
-        $encounter = $encounterCache->get();
+        $encounter = $encounterCache->isExist()
+            ? $encounterCache->get()
+            : new Encounter();
 
         $encounter->getParticipants()->add(
             EncounterParticipantFactory::createFromMonster(
@@ -70,7 +73,9 @@ class EncounterController extends AbstractController
 
         $encounterCache->save($encounter);
 
-        return $this->redirectToRoute('encounter');
+        $route = $request->headers->get('referer');
+
+        return $this->redirect($route);
     }
 
     #[Route(

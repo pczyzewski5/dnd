@@ -23,18 +23,22 @@ class Monster
     #[Mapping\Column(type: 'integer', length: 4, nullable: false)]
     private int $maxHp;
 
+    #[Mapping\Column(type: 'integer', length: 2, nullable: false)]
+    private int $speed;
+
     #[Mapping\Column(type: 'text', nullable: false)]
     private string $image;
 
     #[Mapping\Column(type: 'datetime_immutable', nullable: false)]
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(string $name, int $armorClass, int $maxHp, string $image)
+    public function __construct(string $name, int $armorClass, int $maxHp, int $speed, string $image)
     {
         $this->id = Uuid::v1();
         $this->name = $name;
         $this->armorClass = $armorClass;
         $this->maxHp = $maxHp;
+        $this->speed = $speed;
         $this->image = $image;
         $this->createdAt = new \DateTimeImmutable();
     }
@@ -79,6 +83,18 @@ class Monster
     public function setMaxHp(int $maxHp): Monster
     {
         $this->maxHp = $maxHp;
+        return $this;
+    }
+
+    public function getSpeed(): int
+    {
+        return $this->speed;
+    }
+
+    public function setSpeed(int $speed): Monster
+    {
+        $this->speed = $speed;
+
         return $this;
     }
 

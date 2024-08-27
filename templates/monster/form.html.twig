@@ -16,11 +16,19 @@
 </div>
 
 <div class="field">
-    <label class="label">{{ form_label(monsterForm.hit_points) }}</label>
+    <label class="label">{{ form_label(monsterForm.max_hp) }}</label>
     <div class="control">
-        {{ form_widget(monsterForm.hit_points) }}
+        {{ form_widget(monsterForm.max_hp) }}
     </div>
-    <p class="help is-danger">{{ form_errors(monsterForm.hit_points) }}</p>
+    <p class="help is-danger">{{ form_errors(monsterForm.max_hp) }}</p>
+</div>
+
+<div class="field">
+    <label class="label">{{ form_label(monsterForm.speed) }}</label>
+    <div class="control">
+        {{ form_widget(monsterForm.speed) }}
+    </div>
+    <p class="help is-danger">{{ form_errors(monsterForm.speed) }}</p>
 </div>
 
 <div class="field">

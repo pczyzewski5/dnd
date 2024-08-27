@@ -13,7 +13,8 @@
     <div class="columns">
         <div class="column">
             <div class="buttons">
-                <a class="button is-primary is-fullwidth" href="{{ path('monster_create') }}">Dodaj potworka</a>
+                <a class="button is-info is-fullwidth" href="{{ path('participant_add', {'monsterId': id}) }}">Dodaj do potyczki</a>
+                <a class="button is-primary is-fullwidth" href="{{ path('monster_create') }}">Dodaj kolejnego potworka</a>
                 <a class="button is-warning is-fullwidth" href="{{ path('monster_update', {'id': id}) }}">Edytuj</a>
                 <a class="button is-danger is-fullwidth" href="{{ path('monster_delete', {'id': id}) }}">Usuń</a>
             </div>
@@ -29,7 +30,11 @@
                     </tr>
                     <tr>
                         <td>Punkty wytrzymałości</td>
-                        <td>{{ monsterEntity.getHitPoints() }}</td>
+                        <td>{{ monsterEntity.getMaxHp() }}</td>
+                    </tr>
+                    <tr>
+                        <td>Szybkość w HEX</td>
+                        <td>{{ monsterEntity.getSpeed() }}</td>
                     </tr>
                 </table>
             </div>
