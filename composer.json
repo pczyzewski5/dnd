@@ -18,6 +18,7 @@
         "symfony/asset": "6.4.*",
         "symfony/config": "6.4.*",
         "symfony/console": "6.4.*",
+        "symfony/dotenv": "6.4.*",
         "symfony/form": "6.4.*",
         "symfony/mime": "6.4.*",
         "symfony/monolog-bundle": "^3.10",
@@ -78,6 +79,9 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.4.*"
+        },
+        "runtime": {
+            "dotenv_overload": true
         }
     },
     "require-dev": {

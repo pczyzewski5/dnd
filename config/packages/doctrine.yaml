@@ -1,11 +1,11 @@
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        host: '%dnd.mysql_host%'
-        port: '%dnd.mysql_port%'
-        dbname: '%dnd.mysql_database%'
-        user: '%dnd.mysql_user%'
-        password: '%dnd.mysql_password%'
+        host: '%env(dnd_mysql_host)%'
+        port: '%env(dnd_mysql_port)%'
+        dbname: '%env(dnd_mysql_database)%'
+        user: '%env(dnd_mysql_user)%'
+        password: '%env(dnd_mysql_password)%'
         charset: 'UTF8'
         server_version: '8.0'
         options:
