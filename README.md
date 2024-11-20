@@ -4,8 +4,6 @@ This project is the MVP version. This application allows you:
 * create item or spell cards
 * set the date of the next session by voting
 
-The application can be found at https://dnd.vxm.pl, after registration, please write me an e-mail at: p.czyzewski5@gmail.com to activate your account.
-
 ## Local environment requirements
 Console, docker, docker-compose, make, internet.
 
