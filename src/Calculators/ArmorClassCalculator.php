@@ -12,20 +12,23 @@ class ArmorClassCalculator
 {
     public static function calculate(Abilities $abilities, Skills $skills): int
     {
-        $acs = [$abilities->getDex()->getModifier() + 10];
+        $dexModifier = $abilities->getDex()->getModifier();
+
+        $results = [10 + $dexModifier];
 
         if ($skills->hasSkill(SkillEnum::UNARMORED_DEFENSE)) {
-            $acs[] = $abilities->getCon()->getModifier() + $abilities->getDex()->getModifier() + 10;
+            $results[] = $abilities->getCon()->getModifier() + $dexModifier + 10;
         }
         if ($skills->hasSkill(SkillEnum::NATURAL_ARMOR)) {
-            $acs[] = $abilities->getDex()->getModifier() + 13;
+            $results[] = $dexModifier + 13;
         }
 
-        $ac = \max($acs);
+        $armorClass = \max($results);
+
         if ($skills->hasSkill(SkillEnum::FIGHTING_STYLE_PROTECTION)) {
-            $ac += 1;
+            $armorClass += 1;
         }
 
-        return $ac;
+        return $armorClass;
     }
 }
