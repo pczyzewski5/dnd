@@ -8,6 +8,9 @@ use MyCLabs\Enum\Enum;
 
 class RaceEnum extends Enum
 {
+    const DWARF = 'dwarf';
+    const MOUNTAIN_DWARF = 'mountain dwarf';
+
     const HALFLING = 'halfling';
     const LIGHTFOOT_HALFLING = 'lightfoot halfling';
 

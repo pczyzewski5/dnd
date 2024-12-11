@@ -67,6 +67,8 @@ class ProficiencyEnum extends Enum
     const THIEF_TOOLS = 'thief tools';
     const TINKER_TOOLS = 'tinker tools';
     const COOK_TOOLS = 'cook tools';
+    const MASON_TOOLS = 'mason tools';
+    const CARTOGRAPHER_TOOLS = 'cartographer tools';
 
     // kits
     const HERBALISM_KIT = 'herbalism kit';
@@ -78,4 +80,5 @@ class ProficiencyEnum extends Enum
 
     // games
     const DICE_GAME = 'dice game';
+    const CARD_GAME = 'card game';
 }

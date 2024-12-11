@@ -80,4 +80,16 @@ class SkillEnum extends Enum
     const GRAPPLING = 'grappling';
     const SHOVE = 'shove';
     const JUAN_NOTES = 'juan notes';
+    const DUELING = 'dueling';
+    const DWARVEN_RESILIENCE = 'dwarven resilience';
+    const DWARVEN_COMBAT_TRAINING = 'dwarven combat training';
+    const DWARVEN_ARMOR_TRAINING = 'dwarven armor training';
+    const STONECUNNING = 'stonecunning';
+    const PARRY = 'parry';
+    const RIPOSTE = 'riposte';
+    const FEINTING_ATTACK = 'feinting attack';
+    const ELF_WEAPON_TRAINING = 'elf weapon training';
+    const CANTRIP = 'cantrip';
+    const BONUS_LANGUAGE = 'bonus language';
+    const NATURALLY_STEALTHY = 'naturally stealthy';
 }
