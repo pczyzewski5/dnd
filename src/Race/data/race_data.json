@@ -1,4 +1,13 @@
 {
+  "dwarf": {
+    "ASI": {
+      "con": 2
+    },
+    "skills": ["dwarven resilience", "dwarven combat training", "stonecunning"],
+    "languages": ["common", "dwarf"],
+    "speed_in_meters": 7.5,
+    "nightvision_in_meters": 18
+  },
   "halfling": {
     "ASI": {
       "dex": 2

@@ -21,11 +21,6 @@
         display: inline-block;
         opacity: 0.3;
     }
-    {% if opaqueStats %}
-    .opaque {
-        opacity: 0.1;
-    }
-    {% endif %}
     .tac {
         text-align: center;
     }
@@ -150,18 +145,5 @@
     }
 </style>
 <div id="character-card-front">
-    {{ titleSection|raw }}
-    {{ abilitiesSection|raw }}
-    {{ savingThrowsSection|raw }}
-    {{ statsSection|raw }}
-    {{ resistancesImmunitiesSection|raw }}
-    {{ abilitySkillsSection|raw }}
-    {{ passivePerceptionIntuitionSection|raw }}
-    {{ hpSection|raw }}
-    {{ hitDiceSection|raw }}
-    {{ dealtDmgSection|raw }}
-    {{ proficienciesLanguagesSection|raw }}
-    {{ skillsCounterSection|raw }}
-    {{ attacksTricksSection|raw }}
-    {{ skillsSection|raw }}
+    {{ simpleCharacterStats|raw }}
 </div>

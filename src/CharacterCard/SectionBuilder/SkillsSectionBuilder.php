@@ -8,7 +8,7 @@ use App\Skill\Skills\AbstractSkill;
 
 class SkillsSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $render = function (AbstractSkill $skill): string {
             return $this->twig->render(

@@ -1,0 +1,90 @@
+<style>
+    #simple-character-stats table {
+        border-collapse: collapse;
+    }
+    #simple-character-stats table tr td {
+        font-size: 10px !important;
+    }
+    #simple-character-stats table tr td {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 2px;
+        text-align: center;
+    }
+    .has-proficiency {
+        background-color: #E5E4E2;
+    }
+</style>
+<div id="simple-character-stats">
+    <table>
+        <tr>
+            <td colspan="7"><b>Statystyki</b></td>
+        </tr>
+        <tr>
+            <td></td>
+            {% for key, ability in abilities.toArray() %}
+                <td>{{ key|upper }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>wartość</td>
+            {% for key, ability in abilities.toArray() %}
+                <td>{{ ability.getValue() }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>modyfikator</td>
+            {% for key, ability in abilities.toArray() %}
+                <td>{{ ability.getModifier()|value }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>rzuty obronne</td>
+            {% for key, savingThrow in savingThrows.toArray() %}
+                <td class="{{ savingThrow.hasProficiency() ? 'has-proficiency' : '' }}">{{ savingThrow.getValue()|value }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>PW</td>
+            <td colspan="6">{{ hp }}</td>
+        </tr>
+        <tr>
+            <td>Premia z biegłości</td>
+            <td colspan="6">{{ proficiencyBonus|value }}</td>
+        </tr>
+        <tr>
+            <td>KP bez zbroi</td>
+            <td colspan="6">{{ acWithoutArmor }}</td>
+        </tr>
+        <tr>
+            <td>inicjatywa</td>
+            <td colspan="6">{{ initiative|value }}</td>
+        </tr>
+        <tr>
+            <td>widzenie w ciemności</td>
+            <td colspan="6">{{ nightvision == 0 ? 'n/d' : nightvision ~ ' hex' }}</td>
+        </tr>
+        <tr>
+            <td>szybkość</td>
+            <td colspan="6">{{ speed }} hex</td>
+        </tr>
+        <tr>
+            <td>pasywna percepcja</td>
+            <td colspan="6">{{ passive_perception }}</td>
+        </tr>
+        <tr>
+            <td>pasywna intuicja</td>
+            <td colspan="6">{{ passive_intuition }}</td>
+        </tr>
+        <tr>
+            <td colspan="7"><b>Umiejętności</b></td>
+        </tr>
+        {% for key, abilitySkill in abilitySkills.toArray() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td colspan="6" class="{{ abilitySkill.hasProficiency() ? 'has-proficiency' : '' }}">
+                    {{ abilitySkill.getValue()|value }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

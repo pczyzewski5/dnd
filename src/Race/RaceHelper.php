@@ -16,6 +16,7 @@ class RaceHelper
         RaceEnum::TIEFLING => [],
         RaceEnum::LIZARDFOLK => [],
         RaceEnum::ELF => [RaceEnum::HIGH_ELF],
+        RaceEnum::DWARF => [RaceEnum::MOUNTAIN_DWARF]
     ];
 
     public static function isBaseRace(RaceEnum $raceEnum): bool

@@ -45,8 +45,8 @@
         {% for key, ability in abilities.toArray() %}
             <div class="ability-background ability">
                 <div><b>{{ key|upper }}</b></div>
-                <div class="opaque">{{ ability.getModifier()|value }}</div>
-                <div class="opaque">{{ ability.getValue() }}</div>
+                <div class="opaque">{{ printMode is defined ? '&nbsp;' : ability.getModifier()|value }}</div>
+                <div class="opaque">{{ printMode is defined ? '&nbsp;' : ability.getValue() }}</div>
             </div>
         {% endfor %}
     </div>

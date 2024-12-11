@@ -39,3 +39,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Monster/Entity'
                 prefix: 'App\Monster\Entity'
                 alias: Monster
+
+            Skill:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Skill/Entity'
+                prefix: 'App\Skill\Entity'
+                alias: Skill

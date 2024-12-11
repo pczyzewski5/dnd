@@ -12,9 +12,10 @@ class ResistancesImmunitiesSectionBuilder extends AbstractSectionBuilder
         SkillEnum::ACID_RESISTANCE => 'acid',
         SkillEnum::DIVINE_HEALTH => 'diseases',
         SkillEnum::HELLISH_RESISTANCE => 'fire',
+        SkillEnum::DWARVEN_RESILIENCE => 'poison',
     ];
 
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $resistances = [];
 

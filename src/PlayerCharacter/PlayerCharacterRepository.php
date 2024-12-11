@@ -17,17 +17,6 @@ class PlayerCharacterRepository extends ServiceEntityRepository
         parent::__construct($registry, PlayerCharacter::class);
     }
 
-    public function getOneById(Uuid $id): PlayerCharacter
-    {
-        $entity = $this->find($id);
-
-        if (null === $entity) {
-            throw RepositoryException::notFound(PlayerCharacter::class, $id);
-        }
-
-        return $entity;
-    }
-
     /**
      * @return PlayerCharacter[]
      */

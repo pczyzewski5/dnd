@@ -13,5 +13,5 @@ abstract class AbstractSectionBuilder
     ) {
     }
 
-    abstract public function build(): string;
+    abstract public function build(bool $printMode = false): string;
 }

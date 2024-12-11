@@ -8,7 +8,7 @@ use App\Skill\Skills\Spellcasting;
 
 class AttacksTricksSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $context =  [
             'attackCount' => $this->character->getAttackCount(),

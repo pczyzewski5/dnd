@@ -68,29 +68,27 @@
     <div id="stats-container">
         <div class="stat-background stat">
             <div class="tac"><b>PW</b></div>
-            <div class="opaque">{{ hp }}</div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : hp }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>PROFICIENCY BONUS</b></div>
-            <div class="opaque">{{ proficiencyBonus|value }}</div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : proficiencyBonus|value }}</div>
         </div>
         <div id="armor-class" class="stat-background stat">
-            <div class="tac"><b>KP BEZ ZBROI</b></div>
-            <div class="opaque">{{ acWithoutArmor }}</div>
-            <div class="tac"><b>KP W ZBROI</b></div>
-            <div><span class="wide-rectangle"></span></div>
+            <div class="tac"><b>KP</b></div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : acWithoutArmor }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>INICJATYWA</b></div>
-            <div class="opaque">{{ initiative|value }}</div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : initiative|value }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>WIDZENIE W CIEMNOŚCI</b></div>
-            <div class="opaque">{{ nightvision == 0 ? 'n/d' : nightvision ~ ' hex' }}</div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : (nightvision == 0 ? 'n/d' : nightvision ~ ' hex') }}</div>
         </div>
         <div class="stat-background stat">
             <div class="tac"><b>SZYBKOŚĆ</b></div>
-            <div class="opaque">{{ speed }} hex</div>
+            <div class="opaque">{{ printMode is defined ? '&nbsp;' : speed }} {{ printMode is defined ? '&nbsp;' : 'hex' }}</div>
         </div>
     </div>
 </div>

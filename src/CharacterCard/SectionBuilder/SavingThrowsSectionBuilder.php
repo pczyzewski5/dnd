@@ -4,10 +4,11 @@ namespace App\CharacterCard\SectionBuilder;
 
 class SavingThrowsSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $context =  [
             'savingThrows' => $this->character->getSavingThrows(),
+            'printMode' => $printMode,
         ];
 
         return $this->twig->render(

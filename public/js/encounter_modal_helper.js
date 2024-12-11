@@ -5,7 +5,9 @@ class EncounterModalHelper {
 
     execute() {
         $('.button.image-modal').on('click', function(e) {
-            $('.modal.image-modal').addClass('is-active');
+            let $target = $(e.target);
+            let $modal = $target.closest('.participant-container').find('.modal.image-modal');
+            $modal.addClass('is-active');
         });
         $('.modal-background').on('click', function(e) {
             $('.modal').removeClass('is-active');

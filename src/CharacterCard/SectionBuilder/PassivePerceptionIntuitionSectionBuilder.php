@@ -7,7 +7,7 @@ use App\Calculators\PassivePerceptionCalculator;
 
 class PassivePerceptionIntuitionSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $abilities = $this->character->getAbilities();
         $proficiencies = $this->character->getProficiencies();
@@ -16,6 +16,7 @@ class PassivePerceptionIntuitionSectionBuilder extends AbstractSectionBuilder
         $context =  [
             'passive_perception' => PassivePerceptionCalculator::calculate($abilities, $proficiencies, $proficiencyBonus),
             'passive_intuition' => PassiveInsightCalculator::calculate($abilities, $proficiencies, $proficiencyBonus),
+            'printMode' => $printMode,
         ];
 
         return $this->twig->render(

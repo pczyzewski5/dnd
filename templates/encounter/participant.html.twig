@@ -69,6 +69,7 @@
     }
 </style>
 
+<span class="participant-container">
 <table class="participant" {{ participant.getHp().isDead() ? 'style="opacity: 30%"' : '' }}>
     <tr>
         <td rowspan="2" class="participant-id tac">
@@ -175,3 +176,5 @@
         </td>
     </tr>
 </table>
+    {{ include('encounter/image_modal.html.twig') }}
+</span>

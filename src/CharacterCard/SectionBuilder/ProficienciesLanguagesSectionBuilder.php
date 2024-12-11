@@ -7,7 +7,7 @@ use App\Enum\AbilitySkillEnum;
 
 class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $proficienciesToRender = [];
 

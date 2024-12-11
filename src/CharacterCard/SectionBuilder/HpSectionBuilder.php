@@ -4,7 +4,7 @@ namespace App\CharacterCard\SectionBuilder;
 
 class HpSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $context =  [];
 

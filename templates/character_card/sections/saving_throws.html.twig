@@ -30,7 +30,6 @@
       display: flex;
       align-items:center;
       justify-content:center;
-
    }
    .saving-throw div:nth-child(1) {
    {{ backgroundColor() }}
@@ -38,21 +37,12 @@
    }
    .saving-throw div:nth-child(2) {
    {{ backgroundColor() }}
-      width: 4mm;
+      width: 8mm;
    }
    .saving-throw div:nth-child(3) {
    {{ backgroundColor() }}
       font-size: 14px;
-      width: 4mm;
-   }
-   .saving-throw div:nth-child(4) {
-   {{ backgroundColor() }}
-      font-size: 14px;
-      width: 4mm;
-   }
-   .saving-throw div:nth-child(5) {
-   {{ backgroundColor() }}
-      width: 4mm;
+      width: 8mm;
    }
 </style>
 
@@ -62,10 +52,8 @@
          {% for key, savingThrow in savingThrows.toArray() %}
             <div class="saving-throw">
                <div><b>{{ key|upper }}</b></div>
-               <div>{{ savingThrow.hasProficiency()|dot }}</div>
-               <div class="opaque">{{ savingThrow.getValue()|value }}</div>
-               <div class="opaque">+</div>
-               <div><span class="rectangle"/></div>
+               <div>{{ printMode is defined ? false|dot : savingThrow.hasProficiency()|dot }}</div>
+               <div class="opaque">{{ printMode is defined ? '&nbsp;' : savingThrow.getValue()|value }}</div>
             </div>
          {% endfor %}
       </div>

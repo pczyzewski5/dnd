@@ -6,7 +6,7 @@ namespace App\CharacterCard\SectionBuilder;
 
 class TitleSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $className = \ucwords(
             $this->character->getCharacterClassCollection()->getMainClassName()

@@ -1,0 +1,46 @@
+{
+  "character_name": "Piękna",
+  "player_name": "Kasia",
+  "campaign_name": "Oneshot",
+  "origin": "przestępca",
+  "race": "mountain dwarf",
+  "alignment": "chaotic good",
+  "levels": {
+    "1": {
+      "class": "fighter"
+    },
+    "2": {
+      "class": "fighter"
+    },
+    "3": {
+      "class": "battle master"
+    },
+    "4": {
+      "class": "battle master"
+    }
+  },
+  "starting_abilities": {
+    "str": 15,
+    "dex": 14,
+    "con": 13,
+    "int": 12,
+    "wis": 10,
+    "cha": 8
+  },
+  "asi": {
+    "str": 2
+  },
+  "proficiencies": [
+    "perception",
+    "athletics",
+    "stealth",
+    "deception",
+    "mason tools",
+    "thief tools",
+    "card game"
+  ],
+  "expert_proficiencies": [],
+  "languages": ["common", "dwarf"],
+  "extra_skills": ["dueling", "parry", "riposte", "feinting attack"],
+  "feats": []
+}

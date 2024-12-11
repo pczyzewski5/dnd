@@ -1,4 +1,10 @@
 {
+  "mountain dwarf": {
+    "ASI": {
+      "str": 2
+    },
+    "skills": ["dwarven armor training"]
+  },
   "lightfoot halfling": {
     "ASI": {
       "cha": 1

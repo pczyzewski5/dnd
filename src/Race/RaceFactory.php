@@ -6,6 +6,8 @@ namespace App\Race;
 
 use App\Enum\RaceEnum;
 
+use function array_merge;
+
 class RaceFactory
 {
     public static function create(string $race): Race
@@ -26,7 +28,7 @@ class RaceFactory
             $raceData['nightvision_in_meters'],
             $raceData['languages'],
             $raceData['ASI'] + ($subraceData['ASI'] ?? []),
-            $raceData['skills'] + ($subraceData['skills'] ?? [])
+            array_merge($raceData['skills'], $subraceData['skills'] ?? [])
         );
     }
 }

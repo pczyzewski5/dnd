@@ -8,6 +8,6 @@ class ManeuverSaveDc extends AbstractSkill
 {
     public function getContext(): array
     {
-        return [];
+        return ['dc' => 8 + $this->character->getProficiencyBonus() + $this->character->getAbilities()->getStr()->getModifier()];
     }
 }

@@ -27,7 +27,7 @@
 
 <div id="passive-perception-intuition-section" class="character-card-section">
    <div id="passive-perception-intuition-background">
-      <div class="uc opaque">{{ passive_perception }}</div>
-      <div class="uc opaque">{{ passive_intuition }}</div>
+      <div class="uc opaque">{{ printMode is defined ? '&nbsp;' : passive_perception }}</div>
+      <div class="uc opaque">{{ printMode is defined ? '&nbsp;' : passive_intuition }}</div>
    </div>
 </div>

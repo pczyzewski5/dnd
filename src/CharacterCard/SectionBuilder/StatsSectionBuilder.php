@@ -4,7 +4,7 @@ namespace App\CharacterCard\SectionBuilder;
 
 class StatsSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $context = [
             'proficiencyBonus' => $this->character->getProficiencyBonus(),
@@ -13,6 +13,7 @@ class StatsSectionBuilder extends AbstractSectionBuilder
             'initiative' => $this->character->getInitiative(),
             'nightvision' => $this->character->getNightvision(),
             'speed' => $this->character->getSpeed(),
+            'printMode' => $printMode,
         ];
 
         return $this->twig->render(

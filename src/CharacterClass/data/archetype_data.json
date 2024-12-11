@@ -46,7 +46,7 @@
   },
   "battle master": {
     "skills": {
-      "3": ["trip attack", "precision attack", "distracting strike", "maneuver save dc", "superiority dice"],
+      "3": ["maneuver save dc", "superiority dice"],
       "7": ["know your enemy"]
     }
   },

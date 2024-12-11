@@ -8,7 +8,7 @@ use App\CaseConverter;
 use App\Character\Character;
 use App\PlayerCharacter\Entity\PlayerCharacter;
 use App\PlayerCharacter\Entity\PlayerCharacterFactory;
-use App\CharacterCard\CharacterCardBuilder;
+use App\CharacterCard\CharacterCardHtmlBuilder;
 use App\Validator\CharacterDataValidator;
 use App\Validator\Validators\AlignmentValidator;
 use App\Validator\Validators\CharacterNameValidator;
@@ -27,9 +27,9 @@ class CreateCharacterCardCommand extends Command
     private const CHARACTER_JSON_DIR = 'input/';
     private const OUTPUT_DIR = 'output/';
 
-    private CharacterCardBuilder $characterCardBuilder;
+    private CharacterCardHtmlBuilder $characterCardBuilder;
 
-    public function __construct(CharacterCardBuilder $characterCardBuilder)
+    public function __construct(CharacterCardHtmlBuilder $characterCardBuilder)
     {
         $this->characterCardBuilder = $characterCardBuilder;
 
@@ -91,6 +91,6 @@ class CreateCharacterCardCommand extends Command
             CaseConverter::normalToSnake($character->getCharacterName())
         );
 
-        \file_put_contents($filepath, $this->characterCardBuilder->build($character));
+        \file_put_contents($filepath, $this->characterCardBuilder->getFrontpage($character));
     }
 }

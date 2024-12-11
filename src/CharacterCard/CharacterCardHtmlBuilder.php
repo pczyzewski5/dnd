@@ -13,13 +13,14 @@ use App\CharacterCard\SectionBuilder\PassivePerceptionIntuitionSectionBuilder;
 use App\CharacterCard\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use App\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use App\CharacterCard\SectionBuilder\SavingThrowsSectionBuilder;
+use App\CharacterCard\SectionBuilder\SimpleCharacterStatsBuilder;
 use App\CharacterCard\SectionBuilder\SkillsCounterSectionBuilder;
 use App\CharacterCard\SectionBuilder\SkillsSectionBuilder;
 use App\CharacterCard\SectionBuilder\StatsSectionBuilder;
 use App\CharacterCard\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
 
-class CharacterCardBuilder
+class CharacterCardHtmlBuilder
 {
     private Environment $twig;
 
@@ -28,7 +29,7 @@ class CharacterCardBuilder
         $this->twig = $twig;
     }
 
-    public function build(Character $character, $opaqueStats = false): string
+    public function getFrontpage(Character $character, bool $printMode = false, $opaqueStats = false): string
     {
         $context = [
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
@@ -48,6 +49,15 @@ class CharacterCardBuilder
             'opaqueStats' => $opaqueStats
         ];
 
-        return $this->twig->render('character_card/character_card_front.html.twig', $context);
+        return $this->twig->render('character_card/character_card_frontpage.html.twig', $context);
+    }
+
+    public function getBackpage(Character $character, $opaqueStats = false): string
+    {
+        $context = [
+            'simpleCharacterStats' => (new SimpleCharacterStatsBuilder($character, $this->twig))->build(),
+        ];
+
+        return $this->twig->render('character_card/character_card_backpage.html.twig', $context);
     }
 }

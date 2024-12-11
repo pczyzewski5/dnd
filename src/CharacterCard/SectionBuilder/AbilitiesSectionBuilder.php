@@ -4,10 +4,11 @@ namespace App\CharacterCard\SectionBuilder;
 
 class AbilitiesSectionBuilder extends AbstractSectionBuilder
 {
-    public function build(): string
+    public function build(bool $printMode = false): string
     {
         $context =  [
             'abilities' => $this->character->getAbilities(),
+            'printMode' => $printMode,
         ];
 
         return $this->twig->render(
