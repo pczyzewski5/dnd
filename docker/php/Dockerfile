@@ -9,7 +9,7 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # install other soft
 RUN apt-get update
-RUN apt-get install -y git libzip-dev zip rsync
+RUN apt-get install -y git libzip-dev zip rsync iputils-ping
 RUN docker-php-ext-install zip
 
 RUN pecl install xdebug
