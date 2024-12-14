@@ -1,47 +1,24 @@
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        host: '%env(dnd_mysql_host)%'
-        port: '%env(dnd_mysql_port)%'
-        dbname: '%env(dnd_mysql_database)%'
-        user: '%env(dnd_mysql_user)%'
-        password: '%env(dnd_mysql_password)%'
+        host: '%env(MYSQL_HOST)%'
+        port: '%env(MYSQL_PORT)%'
+        dbname: '%env(MYSQL_DATABASE)%'
+        user: '%env(MYSQL_USER)%'
+        password: '%env(MYSQL_PASSWORD)%'
         charset: 'UTF8'
         server_version: '8.0'
         options:
           {1002: "SET NAMES utf8mb4;"}
 
     orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
+        auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            User:
+            App:
+                type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/User/Entity'
-                prefix: 'App\User\Entity'
-                alias: User
-
-            PlayerCharacter:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/PlayerCharacter/Entity'
-                prefix: 'App\PlayerCharacter\Entity'
-                alias: PlayerCharacter
-
-            ItemCard:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/ItemCard/Entity'
-                prefix: 'App\ItemCard\Entity'
-                alias: ItemCard
-
-            Monster:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Monster/Entity'
-                prefix: 'App\Monster\Entity'
-                alias: Monster
-
-            Skill:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Skill/Entity'
-                prefix: 'App\Skill\Entity'
-                alias: Skill
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
