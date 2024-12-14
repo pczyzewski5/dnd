@@ -1,72 +1,56 @@
-PHPCLI=docker-compose run --rm php-upstream
-MYSQL_LOG_FILE=/var/lib/mysql/general_log.log
-
 ##################################################################################################################
 # MAIN
 ##################################################################################################################
 
-start: stop build up init-db
+start: build init-db init-test-db
+	docker-compose up -d
 
 stop:
 	docker-compose stop
-	docker-compose rm -f -v
 
-up:
-	docker-compose up -d --remove-orphans
-
-build: build_local_clear build_docker_php
-	docker-compose down --remove-orphans -v
-
-build_local_clear:
+build:
 	rm -rf var/cache/*
-
-build_docker_php:
+	docker-compose down -v --remove-orphans
 	docker-compose build
-	$(PHPCLI) composer install --optimize-autoloader --ignore-platform-reqs
-	$(PHPCLI) php bin/console cache:clear
-	$(PHPCLI) php bin/console cache:warmup
+	docker-compose up -d
+	docker-compose exec php composer install --optimize-autoloader --ignore-platform-reqs
+	docker-compose exec php php bin/console cache:clear
+	docker-compose exec php php bin/console cache:warmup
+	docker-compose ps
+	sleep 20
 
-cli-php:
-	$(PHPCLI) bash
+php-cli:
+	docker-compose exec php bash
 
 ##################################################################################################################
 # TESTS
 ##################################################################################################################
 
-tests: start quick-tests
-	docker-compose stop
-	docker-compose rm -f -v
-
-quick-tests:
-	docker-compose run --rm php-upstream ./bin/phpunit --stop-on-failure
-
-dev-quick-tests:
-	docker-compose run --rm php-upstream-tests ./bin/phpunit --group=dev
+dev-test:
+	docker-compose exec php php ./vendor/phpunit/phpunit/phpunit --group=dev
 
 ##################################################################################################################
 # MYSQL
 ##################################################################################################################
 
 init-db:
-	sleep 20 # wait for mysql container
-	docker-compose exec -T mysql mysql -u root -proot123 -e 'SET GLOBAL general_log_file = "$(MYSQL_LOG_FILE)";'
-	docker-compose exec -T mysql mysql -u root -proot123 -e 'SET GLOBAL general_log = "ON";'
-	$(PHPCLI) php ./bin/console doctrine:cache:clear-metadata
-	$(PHPCLI) php ./bin/console doctrine:migrations:migrate
-	$(PHPCLI) php ./bin/console app:import-sql
+	docker-compose exec -T mysql mysql -u root -proot -e 'SET GLOBAL general_log_file = "/var/lib/mysql/general_log.log";'
+	docker-compose exec -T mysql mysql -u root -proot -e 'SET GLOBAL general_log = "ON";'
+	docker-compose exec php ./bin/console doctrine:cache:clear-metadata
+	docker-compose exec php ./bin/console doctrine:migrations:migrate
+	docker-compose exec php ./bin/console app:import-sql
 
-cli-mysql:
-	docker-compose -f docker-compose.yml exec mysql mysql -u dnd_management -D dnd --password=password123
-
-tail-mysql-logs:
-	docker-compose exec mysql tail -f $(MYSQL_LOG_FILE)
+init-test-db:
+	docker-compose exec -T mysql mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS dnd_test;'
+	docker-compose exec php ./bin/console doctrine:cache:clear-metadata --env=test
+	docker-compose exec php ./bin/console doctrine:migrations:migrate --env=test
 
 ##################################################################################################################
 # MIGRATION
 ##################################################################################################################
 
 generate-migration:
-	$(PHPCLI) php ./bin/console doctrine:migrations:generate
+	docker-compose exec php ./bin/console doctrine:migrations:generate
 
 migration:
-	$(PHPCLI) php ./bin/console doctrine:migrations:migrate
+	docker-compose exec php ./bin/console doctrine:migrations:migrate
