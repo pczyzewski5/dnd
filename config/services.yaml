@@ -3,10 +3,25 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/Kernel.php'
+    App\Service\:
+        resource: '../src/Service'
+        public: true
+
+    App\Calculator\:
+        resource: '../src/Calculator'
+        public: true
+
+    App\Repository\:
+        resource: '../src/Repository'
+        public: true
+
+    App\Builder\:
+        resource: '../src/Builder'
+        public: true
+
+    App\Cli\:
+        resource: '../src/Cli'
+        public: true
 
     App\Command\WriteFileCommand:
         arguments:
