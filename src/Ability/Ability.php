@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Ability;
 
-use App\Calculator\AbilityScoresModCalculator;
+use App\Calculator\AbilityModifierCalculator;
 use App\Enum\AbilityEnum;
 
 class Ability
@@ -18,7 +18,7 @@ class Ability
         $this->abilityEnum = $abilityEnum;
         $this->value = $value;
 
-        $this->modifier = AbilityScoresModCalculator::calculate($value);
+        $this->modifier = AbilityModifierCalculator::calculate($value);
     }
 
     public function getAbilityEnum(): AbilityEnum
