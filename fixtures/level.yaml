@@ -1,0 +1,26 @@
+App\Entity\Level:
+  barbarian_level_1:
+    __construct:
+      - 1
+      - '@barbarian'
+      - ['@rage', '@unarmored_defense']
+  barbarian_level_2:
+    __construct:
+      - 2
+      - '@barbarian'
+  berserker_level_3:
+    __construct:
+      - 3
+      - '@berserker'
+  berserker_level_4:
+    __construct:
+      - 4
+      - '@berserker'
+  berserker_level_5:
+    __construct:
+      - 5
+      - '@berserker'
+  berserker_level_6:
+    __construct:
+      - 6
+      - '@berserker'
