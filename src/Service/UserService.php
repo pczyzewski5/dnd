@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\User;
+namespace App\Service;
 
 use App\Exception\UserException;
+use App\Repository\UserRepository;
+use App\User\Entity\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use App\User\Entity\User;
 
-class UserProvider implements UserProviderInterface
+class UserService implements UserProviderInterface
 {
     public function __construct(private readonly UserRepository $userRepository)
     {

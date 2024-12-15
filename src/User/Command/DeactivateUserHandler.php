@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\User\Command;
 
+use App\Repository\UserRepository;
 use App\User\UserDTO;
 use App\User\UserPersister;
-use App\User\UserRepository;
 
 class DeactivateUserHandler
 {

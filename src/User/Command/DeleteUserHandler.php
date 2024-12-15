@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\User\Command;
 
+use App\Repository\UserRepository;
 use App\User\UserPersister;
-use App\User\UserRepository;
 
 class DeleteUserHandler
 {
