@@ -28,6 +28,9 @@ php-cli:
 # TESTS
 ##################################################################################################################
 
+test:
+	docker-compose exec php php ./vendor/phpunit/phpunit/phpunit
+
 dev-test:
 	docker-compose exec php php ./vendor/phpunit/phpunit/phpunit --group=dev
 
