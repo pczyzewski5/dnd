@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\User;
+namespace App\Repository;
 
 use App\Exception\RepositoryException;
+use App\User\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use App\User\Entity\User;
 
 class UserRepository extends ServiceEntityRepository
 {
