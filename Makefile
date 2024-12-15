@@ -2,7 +2,7 @@
 # MAIN
 ##################################################################################################################
 
-start: build init-db init-test-db
+start:
 	docker-compose up -d
 
 stop:
@@ -18,6 +18,8 @@ build:
 	docker-compose exec php php bin/console cache:warmup
 	docker-compose ps
 	sleep 20
+	$(MAKE) init-db
+	$(MAKE) init-test-db
 
 php-cli:
 	docker-compose exec php bash
@@ -37,13 +39,13 @@ init-db:
 	docker-compose exec -T mysql mysql -u root -proot -e 'SET GLOBAL general_log_file = "/var/lib/mysql/general_log.log";'
 	docker-compose exec -T mysql mysql -u root -proot -e 'SET GLOBAL general_log = "ON";'
 	docker-compose exec php ./bin/console doctrine:cache:clear-metadata
-	docker-compose exec php ./bin/console doctrine:migrations:migrate
+	docker-compose exec php ./bin/console doctrine:migrations:migrate -n
 	docker-compose exec php ./bin/console app:import-sql
 
 init-test-db:
 	docker-compose exec -T mysql mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS dnd_test;'
 	docker-compose exec php ./bin/console doctrine:cache:clear-metadata --env=test
-	docker-compose exec php ./bin/console doctrine:migrations:migrate --env=test
+	docker-compose exec php ./bin/console doctrine:migrations:migrate -n --env=test
 
 ##################################################################################################################
 # MIGRATION
