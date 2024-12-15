@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 use App\HitDice\HitDiceMapper;
 use App\Level\Levels;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 use App\Ability\Abilities;
 use App\Enum\SkillEnum;

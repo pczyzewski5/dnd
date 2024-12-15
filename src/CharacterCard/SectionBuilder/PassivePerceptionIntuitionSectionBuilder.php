@@ -2,8 +2,8 @@
 
 namespace App\CharacterCard\SectionBuilder;
 
-use App\Calculators\PassiveInsightCalculator;
-use App\Calculators\PassivePerceptionCalculator;
+use App\Calculator\PassiveInsightCalculator;
+use App\Calculator\PassivePerceptionCalculator;
 
 class PassivePerceptionIntuitionSectionBuilder extends AbstractSectionBuilder
 {

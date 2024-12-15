@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 use App\Ability\Abilities;
+use App\Ability\NewAbility;
+use App\Entity\Level;
 use App\HitDice\HitDiceMapper;
 use App\Level\Levels;
 
@@ -25,5 +27,14 @@ class HitPointsCalculator
         }
 
         return $hitPoints;
+    }
+
+    public function newCalculate(
+        NewAbility $condition,
+        Level $level
+    ): int {
+        return $level->getLevel() === 1
+            ? $level->getCharacterClass()->getHitDice() + $condition->modifier
+            : \ceil(($level->getCharacterClass()->getHitDice() + 1) / 2) + $condition->modifier;
     }
 }

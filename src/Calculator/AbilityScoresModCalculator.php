@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 class AbilityScoresModCalculator
 {

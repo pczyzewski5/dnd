@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 use App\Enum\SkillEnum;
 use App\Race\Race;

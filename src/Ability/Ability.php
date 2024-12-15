@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Ability;
 
-use App\Calculators\AbilityScoresModCalculator;
+use App\Calculator\AbilityScoresModCalculator;
 use App\Enum\AbilityEnum;
 
 class Ability
