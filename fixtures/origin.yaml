@@ -1,0 +1,4 @@
+App\Entity\Origin:
+  hero_folk:
+    __construct:
+      - 'hero folk'
