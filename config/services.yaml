@@ -19,6 +19,10 @@ services:
         resource: '../src/Builder'
         public: true
 
+    App\Mapper\:
+        resource: '../src/Mapper'
+        public: true
+
     App\Cli\:
         resource: '../src/Cli'
         public: true
