@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use function array_walk;
+
 #[ORM\Entity(repositoryClass: CharacterClassRepository::class)]
 #[ORM\UniqueConstraint(name: 'unique_level_class', columns: ['level', 'character_class_id'])]
 class Level
@@ -30,17 +32,27 @@ class Level
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $skills;
 
+    #[ORM\ManyToMany(targetEntity: Proficiency::class)]
+    #[ORM\JoinTable(name: 'proficiency_to_level')]
+    #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $proficiencies;
+
     public function __construct(
         int $level,
         CharacterClass $characterClass,
-        ?array $skills = []
+        ?array $skills = [],
+        ?array $proficiencies = []
     ) {
         $this->level = $level;
         $this->characterClass = $characterClass;
         $this->skills = new ArrayCollection();
+        $this->proficiencies = new ArrayCollection();
 
         array_walk($skills, function (Skill $skill) {
             $this->skills->contains($skill) ?: $this->skills->add($skill);
+        });
+        array_walk($proficiencies, function (Proficiency $proficiency) {
+            $this->proficiencies->contains($proficiency) ?: $this->proficiencies->add($proficiency);
         });
     }
 
@@ -57,5 +69,10 @@ class Level
     public function getSkills(): Collection
     {
         return $this->skills;
+    }
+
+    public function getProficiencies(): Collection
+    {
+        return $this->proficiencies;
     }
 }

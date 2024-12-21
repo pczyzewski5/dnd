@@ -45,7 +45,7 @@ class CharacterClass
         return $this->name;
     }
 
-    public function getBaseClass(): self
+    public function getBaseClass(): ?self
     {
         return $this->baseClass;
     }
