@@ -6,7 +6,7 @@ use App\Ability\Abilities;
 use App\Ability\NewAbility;
 use App\Entity\Level;
 use App\HitDice\HitDiceMapper;
-use App\Level\Levels;
+use App\Collection\Levels;
 
 class HitPointsCalculator
 {
@@ -30,11 +30,17 @@ class HitPointsCalculator
     }
 
     public function newCalculate(
-        NewAbility $condition,
-        Level $level
+        Levels $levels,
+        NewAbility $condition
     ): int {
-        return $level->getLevel() === 1
-            ? $level->getCharacterClass()->getHitDice() + $condition->modifier
-            : \ceil(($level->getCharacterClass()->getHitDice() + 1) / 2) + $condition->modifier;
+        $hitPoints = 0;
+
+        foreach ($levels as $level) {
+            $hitPoints += $level->getLevel() === 1
+                ? $level->getCharacterClass()->getHitDice() + $condition->modifier
+                : \ceil(($level->getCharacterClass()->getHitDice() + 1) / 2) + $condition->modifier;
+        }
+
+        return $hitPoints;
     }
 }
