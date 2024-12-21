@@ -28,7 +28,7 @@ final class Version20241214182108 extends AbstractMigration
                 level SMALLINT NOT NULL, 
                 UNIQUE (character_class_id, level),
                 PRIMARY KEY(id),
-                CONSTRAINT FK_CHARACTER_CLASS FOREIGN KEY (character_class_id) REFERENCES character_class (id)
+                CONSTRAINT FK_L_CHARACTER_CLASS FOREIGN KEY (character_class_id) REFERENCES character_class (id)
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
             SQL
         );
@@ -50,8 +50,8 @@ final class Version20241214182108 extends AbstractMigration
                 level_id INT NOT NULL,
                 skill_id INT NOT NULL,
                 PRIMARY KEY (level_id, skill_id),
-                CONSTRAINT FK_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE,
-                CONSTRAINT FK_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE
+                CONSTRAINT FK_STL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE,
+                CONSTRAINT FK_STL_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE
             );
             SQL
         );
