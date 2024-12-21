@@ -4,6 +4,7 @@ App\Entity\Level:
       - 1
       - '@barbarian'
       - ['@rage', '@unarmored_defense']
+      - ['@light_armors', '@medium_armors', '@shields', '@simple_weapons', '@martial_weapons', '@strength', '@constitution']
   barbarian_level_2:
     __construct:
       - 2

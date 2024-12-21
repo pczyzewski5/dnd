@@ -6,4 +6,4 @@ App\Entity\Skill:
   unarmored_defense:
     __construct:
       - unarmored defense
-      - unarmored defense desc
+      - jeśli nie nosisz zbroi, to twoja KP wynosi %s.

@@ -1,0 +1,53 @@
+App\Entity\Proficiency:
+  light_armors:
+    __construct:
+      - light armors
+      - armor
+  medium_armors:
+    __construct:
+      - medium armors
+      - armor
+  shields:
+    __construct:
+      - shields
+      - armor
+  simple_weapons:
+    __construct:
+      - simple weapons
+      - weapon
+  martial_weapons:
+    __construct:
+      - martial weapons
+      - weapon
+  strength:
+    __construct:
+      - strength
+      - saving throw
+  constitution:
+    __construct:
+      - constitution
+      - saving throw
+  animal_handling:
+    __construct:
+      - animal handling
+      - skill
+  athletics:
+    __construct:
+      - athletics
+      - skill
+  intimidation:
+    __construct:
+      - intimidation
+      - skill
+  nature:
+    __construct:
+      - nature
+      - skill
+  perception:
+    __construct:
+      - perception
+      - skill
+  survival:
+    __construct:
+      - survival
+      - skill

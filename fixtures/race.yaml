@@ -1,5 +1,5 @@
 App\Entity\Race:
   human:
     __construct:
-      - 'human'
+      - human
  

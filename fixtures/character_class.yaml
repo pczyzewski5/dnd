@@ -2,10 +2,10 @@ App\Entity\CharacterClass:
   barbarian:
     __construct:
       - 12
-      - 'barbarian'
+      - barbarian
       - ~
   berserker:
     __construct:
       - 12
-      - 'berserker'
+      - berserker
       - '@barbarian'
