@@ -6,7 +6,7 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class AbilitiesDto
+class AbilitiesConfigDto
 {
     #[Assert\NotBlank]
     #[Assert\Type('integer')]

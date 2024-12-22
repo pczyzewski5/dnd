@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Dto\AbilitiesDto;
+use App\Dto\AbilitiesConfigDto;
 
-class AbilitiesDtoMapper extends AbstractMapper
+class AbilitiesConfigDtoMapper extends AbstractMapper
 {
-    public function fromArray(array $data): AbilitiesDto
+    public function fromArray(array $data): AbilitiesConfigDto
     {
-        $dto = new AbilitiesDto(
+        $dto = new AbilitiesConfigDto(
             $this->getValueOrNull($data, 'str'),
             $this->getValueOrNull($data, 'dex'),
             $this->getValueOrNull($data, 'con'),

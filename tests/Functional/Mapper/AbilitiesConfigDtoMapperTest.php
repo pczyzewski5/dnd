@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Mapper;
 
-use App\Dto\AbilitiesDto;
-use App\Mapper\AbilitiesDtoMapper;
+use App\Dto\AbilitiesConfigDto;
+use App\Mapper\AbilitiesConfigDtoMapper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 #[Group('dev')]
-class AbilitiesDtoMapperTest extends KernelTestCase
+class AbilitiesConfigDtoMapperTest extends KernelTestCase
 {
     private const ABILITIES_CONFIG = [
         'str' => 10,
@@ -23,7 +23,7 @@ class AbilitiesDtoMapperTest extends KernelTestCase
         'cha' => 15,
     ];
 
-    private AbilitiesDtoMapper $testedObject;
+    private AbilitiesConfigDtoMapper $testedObject;
 
     protected function setUp(): void
     {
@@ -31,7 +31,7 @@ class AbilitiesDtoMapperTest extends KernelTestCase
 
         $container = self::getContainer();
 
-        $this->testedObject = $container->get(AbilitiesDtoMapper::class);
+        $this->testedObject = $container->get(AbilitiesConfigDtoMapper::class);
     }
 
     #[DataProvider('keyProvider')]
@@ -92,7 +92,7 @@ class AbilitiesDtoMapperTest extends KernelTestCase
 
     public function testFromArray(): void
     {
-        $expected = new AbilitiesDto(
+        $expected = new AbilitiesConfigDto(
             10,
             11,
             12,
