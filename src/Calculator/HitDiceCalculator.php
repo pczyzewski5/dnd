@@ -2,9 +2,9 @@
 
 namespace App\Calculator;
 
-use App\Collection\Levels;
 use App\Entity\Level;
 use App\HitDice\HitDiceMapper;
+use App\Level\Levels;
 
 class HitDiceCalculator
 {
@@ -22,7 +22,7 @@ class HitDiceCalculator
         return $result;
     }
 
-    public function newCalculate(Levels $levels): array
+    public function newCalculate(array $levels): array
     {
         $result = [];
 

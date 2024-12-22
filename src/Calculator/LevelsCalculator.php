@@ -2,15 +2,15 @@
 
 namespace App\Calculator;
 
-use App\Collection\Levels;
+use App\Entity\Level;
 
-// do read
 class LevelsCalculator
 {
-    public function calculate(Levels $levels): array
+    public function calculate(array $levels): array
     {
         $result = [];
 
+        /** @var Level $level */
         foreach ($levels as $level) {
             $className = $level->getCharacterClass()->getName();
             $baseClassName = $level->getCharacterClass()->getBaseClass()?->getName();
