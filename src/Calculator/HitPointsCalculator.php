@@ -3,10 +3,12 @@
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Ability\NewAbility;
 use App\Entity\Level;
 use App\HitDice\HitDiceMapper;
-use App\Collection\Levels;
+use App\Level\Levels;
+
+use function array_map;
+use function array_sum;
 
 class HitPointsCalculator
 {
@@ -30,17 +32,20 @@ class HitPointsCalculator
     }
 
     public function newCalculate(
-        Levels $levels,
-        NewAbility $condition
+        array $levels,
+        int $conModifier
     ): int {
-        $hitPoints = 0;
+        $hitPoints = array_map(
+            function (Level $level) use ($conModifier): int {
+                $hitDice = $level->getCharacterClass()->getHitDice();
 
-        foreach ($levels as $level) {
-            $hitPoints += $level->getLevel() === 1
-                ? $level->getCharacterClass()->getHitDice() + $condition->modifier
-                : \ceil(($level->getCharacterClass()->getHitDice() + 1) / 2) + $condition->modifier;
-        }
+                return $level->getLevel() === 1
+                    ? $hitDice + $conModifier
+                    : \ceil(($hitDice + 1) / 2) + $conModifier;
+            },
+            $levels
+        );
 
-        return $hitPoints;
+        return array_sum($hitPoints);
     }
 }
