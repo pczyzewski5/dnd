@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Mapper;
 
-use App\Dto\AbilitiesDto;
+use App\Dto\AbilitiesConfigDto;
 use App\Dto\CharacterConfigDto;
-use App\Dto\LevelDto;
+use App\Dto\LevelConfigDto;
 use App\Mapper\CharacterConfigDtoMapper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -43,21 +43,6 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
             ],
             [
                 'level' => 3,
-                'class' => 'berserker',
-            ],
-            [
-                'level' => 4,
-                'class' => 'berserker',
-                'asi' => [
-                    'con' => 2,
-                ],
-            ],
-            [
-                'level' => 5,
-                'class' => 'berserker',
-            ],
-            [
-                'level' => 6,
                 'class' => 'berserker',
             ],
         ],
@@ -134,20 +119,17 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
 
     public function testBuild(): void
     {
-        $levels = [
-          new LevelDto(
+        $levelConfigDtos = [
+          new LevelConfigDto(
               1,
               'barbarian',
               ['survival', 'animal handling'],
               ['Bel\'Quath Song'],
           ),
-          new LevelDto(2, 'barbarian'),
-          new LevelDto(3, 'berserker'),
-          new LevelDto(4, 'berserker'),
-          new LevelDto(5, 'berserker'),
-          new LevelDto(6, 'berserker'),
+          new LevelConfigDto(2, 'barbarian'),
+          new LevelConfigDto(3, 'berserker'),
         ];
-        $abilitiesDto = new AbilitiesDto(
+        $abilitiesConfigDto = new AbilitiesConfigDto(
             15,
             13,
             13,
@@ -162,8 +144,8 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
             'hero folk',
             'human',
             'chaotic good',
-            $levels,
-            $abilitiesDto,
+            $levelConfigDtos,
+            $abilitiesConfigDto,
         );
 
         $actual = $this->testedObject->fromJson(

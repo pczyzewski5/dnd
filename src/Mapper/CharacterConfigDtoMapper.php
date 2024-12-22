@@ -6,21 +6,16 @@ namespace App\Mapper;
 
 use App\Dto\CharacterConfigDto;
 
-use App\Dto\LevelDto;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-use function array_key_exists;
-use function array_map;
-use function is_array;
 use function json_decode;
 use function json_last_error;
-use function var_dump;
 
 class CharacterConfigDtoMapper extends AbstractMapper
 {
     public function __construct(
-        private readonly LevelDtoMapper $levelsDtoMapper,
-        private readonly AbilitiesDtoMapper $abilitiesDtoMapper,
+        private readonly LevelConfigDtoMapper $levelConfigDtoMapper,
+        private readonly AbilitiesConfigDtoMapper $abilitiesConfigDtoMapper,
         private readonly ValidatorInterface $validator
     ) {
         parent::__construct($this->validator);
@@ -37,10 +32,10 @@ class CharacterConfigDtoMapper extends AbstractMapper
             $this->getValueOrNull($data, 'origin'),
             $this->getValueOrNull($data, 'race'),
             $this->getValueOrNull($data, 'alignment'),
-            $this->levelsDtoMapper->manyFromArray(
+            $this->levelConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'levels')
             ),
-            $this->abilitiesDtoMapper->fromArray(
+            $this->abilitiesConfigDtoMapper->fromArray(
                 $this->getArray($data, 'abilities')
             )
         );
