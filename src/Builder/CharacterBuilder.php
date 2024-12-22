@@ -13,11 +13,14 @@ use App\NewCharacter\CharacterConfig;
 use App\NewCharacter\NewCharacter;
 use App\Service\SkillFinalizerService;
 
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 use function var_dump;
 
 class CharacterBuilder
 {
     public function __construct(
+
         private readonly HitDiceCalculator $hitDiceCalculator,
         private readonly HitPointsCalculator $hitPointsCalculator,
         private readonly LevelsCalculator $levelsCalculator,

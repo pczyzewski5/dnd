@@ -6,8 +6,6 @@ namespace App\Mapper;
 
 use App\Dto\AbilitiesDto;
 
-use function var_dump;
-
 class AbilitiesDtoMapper extends AbstractMapper
 {
     public function fromArray(array $data): AbilitiesDto
@@ -25,5 +23,4 @@ class AbilitiesDtoMapper extends AbstractMapper
 
         return $dto;
     }
-
 }

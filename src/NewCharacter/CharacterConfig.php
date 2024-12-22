@@ -21,5 +21,6 @@ class CharacterConfig
         public readonly Origin $origin,
         public readonly NewAbilities $abilities,
     ) {
+
     }
 }
