@@ -4,35 +4,34 @@ declare(strict_types=1);
 
 namespace App\Collection;
 
-use App\Entity\Level;
 use Iterator;
 
-class Levels implements Iterator
+class AbstractCollection implements Iterator
 {
-    private array $levels;
+    private array $items;
     private int $position;
 
     public function __construct()
     {
-        $this->levels = [];
+        $this->items = [];
         $this->position = 0;
     }
 
-    public function add(Level $level): self
+    protected function addItem(mixed ...$items): self
     {
-        $this->levels[] = $level;
+        $this->items[] = $items;
 
         return $this;
+    }
+
+    public function current(): mixed
+    {
+        return $this->items[$this->position];
     }
 
     public function rewind(): void
     {
         $this->position = 0;
-    }
-
-    public function current(): Level
-    {
-        return $this->levels[$this->position];
     }
 
     public function key(): mixed
@@ -48,12 +47,12 @@ class Levels implements Iterator
     public function valid(): bool
     {
         return isset(
-            $this->levels[$this->position]
+            $this->items[$this->position]
         );
     }
 
     public function toArray(): array
     {
-        return $this->levels;
+        return $this->items;
     }
 }
