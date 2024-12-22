@@ -8,33 +8,49 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class AbilitiesDto
 {
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $str;
+    public readonly mixed $str;
 
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $dex;
+    public readonly mixed $dex;
 
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $con;
+    public readonly mixed $con;
 
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $int;
+    public readonly mixed $int;
 
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $wis;
+    public readonly mixed $wis;
 
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Type('integer')]
     #[Assert\Range(min: 1, max: 20)]
-    public ?int $cha;
+    public readonly mixed $cha;
+
+    public function __construct(
+        mixed $str,
+        mixed $dex,
+        mixed $con,
+        mixed $int,
+        mixed $wis,
+        mixed $cha
+    ) {
+        $this->str = $str;
+        $this->dex = $dex;
+        $this->con = $con;
+        $this->int = $int;
+        $this->wis = $wis;
+        $this->cha = $cha;
+    }
 }

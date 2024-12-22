@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Dto;
+
+use Symfony\Component\Validator\Constraints as Assert;
+
+use function var_dump;
+
+class LevelDto
+{
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'integer')]
+    public readonly mixed $level;
+
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'string')]
+    public readonly mixed $class;
+
+    #[Assert\Type(type: 'array')]
+    public readonly mixed $proficiencies;
+
+    #[Assert\Type(type: 'array')]
+    public readonly mixed $skills;
+
+    public function __construct(
+        mixed $level,
+        mixed $class,
+        mixed $proficiencies = null,
+        mixed $skills = null
+    ) {
+        $this->level = $level;
+        $this->class = $class;
+        $this->proficiencies = $proficiencies ?? [];
+        $this->skills = $skills ?? [];
+    }
+}

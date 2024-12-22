@@ -11,20 +11,15 @@ use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
-use function array_keys;
-use function file_get_contents;
-use function json_decode;
-use function json_encode;
-
 #[Group('dev')]
 class AbilitiesDtoMapperTest extends KernelTestCase
 {
-    private const DATA = [
+    private const ABILITIES_CONFIG = [
         'str' => 10,
         'dex' => 11,
         'con' => 12,
-        'wis' => 13,
-        'int' => 14,
+        'int' => 13,
+        'wis' => 14,
         'cha' => 15,
     ];
 
@@ -40,9 +35,9 @@ class AbilitiesDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenMissingKeys(string $key): void
+    public function testFromArrayWhenMissingKey(string $key): void
     {
-        $data = self::DATA;
+        $data = self::ABILITIES_CONFIG;
         unset($data[$key]);
 
         $this->expectException(ValidationFailedException::class);
@@ -51,9 +46,9 @@ class AbilitiesDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenValueIsNull(string $key): void
+    public function testFromArrayWhenValueIsNull(string $key): void
     {
-        $data = self::DATA;
+        $data = self::ABILITIES_CONFIG;
         $data[$key] = null;
 
         $this->expectException(ValidationFailedException::class);
@@ -62,9 +57,9 @@ class AbilitiesDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenValueIsToSmall(string $key): void
+    public function testFromArrayWhenValueIsToSmall(string $key): void
     {
-        $data = self::DATA;
+        $data = self::ABILITIES_CONFIG;
         $data[$key] = 0;
 
         $this->expectException(ValidationFailedException::class);
@@ -73,9 +68,9 @@ class AbilitiesDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenValueIsToBig(string $key): void
+    public function testFromArrayWhenValueIsToBig(string $key): void
     {
-        $data = self::DATA;
+        $data = self::ABILITIES_CONFIG;
         $data[$key] = 21;
 
         $this->expectException(ValidationFailedException::class);
@@ -89,23 +84,24 @@ class AbilitiesDtoMapperTest extends KernelTestCase
             ['str'],
             ['dex'],
             ['con'],
-            ['wis'],
             ['int'],
+            ['wis'],
             ['cha'],
         ];
     }
 
-    public function testBuild(): void
+    public function testFromArray(): void
     {
-        $expected = new AbilitiesDto();
-        $expected->str = 10;
-        $expected->dex = 11;
-        $expected->con = 12;
-        $expected->wis = 13;
-        $expected->int = 14;
-        $expected->cha = 15;
+        $expected = new AbilitiesDto(
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+        );
 
-        $actual = $this->testedObject->fromArray(self::DATA);
+        $actual = $this->testedObject->fromArray(self::ABILITIES_CONFIG);
 
         $this->assertEquals($expected, $actual);
     }

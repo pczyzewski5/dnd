@@ -6,17 +6,20 @@ namespace App\Mapper;
 
 use App\Dto\AbilitiesDto;
 
+use function var_dump;
+
 class AbilitiesDtoMapper extends AbstractMapper
 {
     public function fromArray(array $data): AbilitiesDto
     {
-        $dto = new AbilitiesDto;
-        $dto->str = $data['str'] ?? null;
-        $dto->dex = $data['dex'] ?? null;
-        $dto->con = $data['con'] ?? null;
-        $dto->int = $data['int'] ?? null;
-        $dto->wis = $data['wis'] ?? null;
-        $dto->cha = $data['cha'] ?? null;
+        $dto = new AbilitiesDto(
+            $this->getValueOrNull($data, 'str'),
+            $this->getValueOrNull($data, 'dex'),
+            $this->getValueOrNull($data, 'con'),
+            $this->getValueOrNull($data, 'int'),
+            $this->getValueOrNull($data, 'wis'),
+            $this->getValueOrNull($data, 'cha')
+        );
 
         $this->validate($dto);
 
