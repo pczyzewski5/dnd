@@ -6,9 +6,7 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use function var_dump;
-
-class LevelDto
+class LevelConfigDto
 {
     #[Assert\NotBlank]
     #[Assert\Type(type: 'integer')]
