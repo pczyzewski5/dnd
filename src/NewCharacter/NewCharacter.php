@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\NewCharacter;
 
 use App\Ability\NewAbilities;
-use App\Entity\Origin;
-use App\Entity\Race;
 
 class NewCharacter
 {
@@ -29,4 +27,3 @@ class NewCharacter
     ) {
     }
 }
-;

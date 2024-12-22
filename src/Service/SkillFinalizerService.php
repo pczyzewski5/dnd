@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Ability\NewAbilities;
-use App\Collection\Levels;
 use App\Entity\Skill;
 use App\Service\SkillFinalizer\SkillFinalizerInterface;
 use App\Service\SkillFinalizer\UnarmoredDefense;
@@ -28,12 +27,12 @@ class SkillFinalizerService
 
     public function finalize(
         Skill $skill,
-        NewAbilities $newAbilities,
-        Levels $levels,
+        NewAbilities $abilities,
+        array $levels,
     ): FinalizedSkill {
         foreach ($this->finalizers as $finalizer) {
             if ($finalizer->supports($skill)) {
-                return $finalizer->finalize($skill, $newAbilities, $levels);
+                return $finalizer->finalize($skill, $abilities, $levels);
             }
         }
 
@@ -43,7 +42,7 @@ class SkillFinalizerService
     public function finalizeArray(
         array $skills,
         NewAbilities $newAbilities,
-        Levels $levels,
+        array $levels,
     ): array {
         // description będzie jak w kartach z tego edytora, czyli będzie to jakiś kod tego edytora,
         // nie robić żadnego mappera do twigów itd

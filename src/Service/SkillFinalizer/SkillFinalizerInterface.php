@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Service\SkillFinalizer;
 
 use App\Ability\NewAbilities;
-use App\Collection\Levels;
 use App\Entity\Skill;
 use App\Skill\FinalizedSkill;
 
@@ -16,6 +15,6 @@ interface SkillFinalizerInterface
     public function finalize(
         Skill $skill,
         NewAbilities $abilities,
-        Levels $levels
+        array $levels
     ): FinalizedSkill;
 }
