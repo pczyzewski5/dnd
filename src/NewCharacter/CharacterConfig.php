@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\NewCharacter;
 
-use App\Ability\NewAbilities;
-use App\Collection\Levels;
-use App\Entity\Origin;
-use App\Entity\Race;
+use App\Ability\AbilitiesConfig;
 
 class CharacterConfig
 {
@@ -16,10 +13,10 @@ class CharacterConfig
         public readonly string $playerName,
         public readonly string $campaignName,
         public readonly string $alignment,
-        public readonly Levels $levels,
-        public readonly Race $race,
-        public readonly Origin $origin,
-        public readonly NewAbilities $abilities,
+        public readonly string $race,
+        public readonly string $origin,
+        public readonly array $levelConfigs,
+        public readonly AbilitiesConfig $abilitiesConfig,
     ) {
 
     }
