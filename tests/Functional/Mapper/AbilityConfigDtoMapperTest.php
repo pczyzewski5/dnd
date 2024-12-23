@@ -4,26 +4,22 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Mapper;
 
-use App\Dto\AbilitiesConfigDto;
-use App\Mapper\AbilitiesConfigDtoMapper;
+use App\Dto\AbilityConfigDto;
+use App\Mapper\AbilityConfigDtoMapper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 #[Group('dev')]
-class AbilitiesConfigDtoMapperTest extends KernelTestCase
+class AbilityConfigDtoMapperTest extends KernelTestCase
 {
-    private const ABILITIES_CONFIG = [
-        'str' => 10,
-        'dex' => 11,
-        'con' => 12,
-        'int' => 13,
-        'wis' => 14,
-        'cha' => 15,
+    private const ABILITY_CONFIG = [
+        'ability' => 'str',
+        'value' => 11,
     ];
 
-    private AbilitiesConfigDtoMapper $testedObject;
+    private AbilityConfigDtoMapper $testedObject;
 
     protected function setUp(): void
     {
@@ -31,13 +27,13 @@ class AbilitiesConfigDtoMapperTest extends KernelTestCase
 
         $container = self::getContainer();
 
-        $this->testedObject = $container->get(AbilitiesConfigDtoMapper::class);
+        $this->testedObject = $container->get(AbilityConfigDtoMapper::class);
     }
 
     #[DataProvider('keyProvider')]
     public function testFromArrayWhenMissingKey(string $key): void
     {
-        $data = self::ABILITIES_CONFIG;
+        $data = self::ABILITY_CONFIG;
         unset($data[$key]);
 
         $this->expectException(ValidationFailedException::class);
@@ -48,7 +44,7 @@ class AbilitiesConfigDtoMapperTest extends KernelTestCase
     #[DataProvider('keyProvider')]
     public function testFromArrayWhenValueIsNull(string $key): void
     {
-        $data = self::ABILITIES_CONFIG;
+        $data = self::ABILITY_CONFIG;
         $data[$key] = null;
 
         $this->expectException(ValidationFailedException::class);
@@ -56,22 +52,30 @@ class AbilitiesConfigDtoMapperTest extends KernelTestCase
         $this->testedObject->fromArray($data);
     }
 
-    #[DataProvider('keyProvider')]
-    public function testFromArrayWhenValueIsToSmall(string $key): void
+    public function testFromArrayWhenAbilityIsInvalid(): void
     {
-        $data = self::ABILITIES_CONFIG;
-        $data[$key] = 0;
+        $data = self::ABILITY_CONFIG;
+        $data['ability'] = 'invalid';
 
         $this->expectException(ValidationFailedException::class);
 
         $this->testedObject->fromArray($data);
     }
 
-    #[DataProvider('keyProvider')]
-    public function testFromArrayWhenValueIsToBig(string $key): void
+    public function testFromArrayWhenValueIsToSmall(): void
     {
-        $data = self::ABILITIES_CONFIG;
-        $data[$key] = 21;
+        $data = self::ABILITY_CONFIG;
+        $data['value'] = 0;
+
+        $this->expectException(ValidationFailedException::class);
+
+        $this->testedObject->fromArray($data);
+    }
+
+    public function testFromArrayWhenValueIsToBig(): void
+    {
+        $data = self::ABILITY_CONFIG;
+        $data['value'] = 21;
 
         $this->expectException(ValidationFailedException::class);
 
@@ -81,27 +85,19 @@ class AbilitiesConfigDtoMapperTest extends KernelTestCase
     public static function keyProvider(): array
     {
         return [
-            ['str'],
-            ['dex'],
-            ['con'],
-            ['int'],
-            ['wis'],
-            ['cha'],
+            ['ability'],
+            ['value'],
         ];
     }
 
     public function testFromArray(): void
     {
-        $expected = new AbilitiesConfigDto(
-            10,
+        $expected = new AbilityConfigDto(
+            'str',
             11,
-            12,
-            13,
-            14,
-            15,
         );
 
-        $actual = $this->testedObject->fromArray(self::ABILITIES_CONFIG);
+        $actual = $this->testedObject->fromArray(self::ABILITY_CONFIG);
 
         $this->assertEquals($expected, $actual);
     }
