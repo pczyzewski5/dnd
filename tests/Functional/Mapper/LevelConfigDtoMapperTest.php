@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Mapper;
 
+use App\Dto\AbilityConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Mapper\LevelConfigDtoMapper;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,6 +25,16 @@ class LevelConfigDtoMapperTest extends KernelTestCase
         'skills' => [
             'Bel\'Quath Song',
         ],
+        'asi' => [
+            [
+                'ability' => 'str',
+                'value' => 10
+            ],
+            [
+                'ability' => 'cha',
+                'value' => 11
+            ],
+        ]
     ];
 
     private LevelConfigDtoMapper $testedObject;
@@ -104,6 +115,25 @@ class LevelConfigDtoMapperTest extends KernelTestCase
         return [
             ['proficiencies'],
             ['skills'],
+            ['asi'],
         ];
+    }
+
+    public function testFromArray(): void
+    {
+        $expected = new LevelConfigDto(
+            1,
+            'barbarian',
+            ['survival', 'animal handling'],
+            ['Bel\'Quath Song'],
+            [
+                new AbilityConfigDto('str', 10),
+                new AbilityConfigDto('cha', 11),
+            ]
+        );
+
+        $actual = $this->testedObject->fromArray(self::LEVEL_CONFIG);
+
+        $this->assertEquals($expected, $actual);
     }
 }

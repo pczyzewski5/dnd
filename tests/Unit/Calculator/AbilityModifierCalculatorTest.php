@@ -6,9 +6,11 @@ namespace App\Tests\Unit\Calculator;
 
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use App\Calculator\AbilityModifierCalculator;
 
+#[Group('dev')]
 class AbilityModifierCalculatorTest extends TestCase
 {
     #[DataProvider('calculateDataProvider')]

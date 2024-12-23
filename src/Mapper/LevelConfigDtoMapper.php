@@ -6,10 +6,19 @@ namespace App\Mapper;
 
 use App\Dto\LevelConfigDto;
 
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 use function array_map;
 
 class LevelConfigDtoMapper extends AbstractMapper
 {
+    public function __construct(
+        private readonly AbilityConfigDtoMapper $abilityConfigDtoMapper,
+        private readonly ValidatorInterface $validator
+    ) {
+        parent::__construct($this->validator);
+    }
+
     public function fromArray(array $data): LevelConfigDto
     {
         $dto = new LevelConfigDto(
@@ -17,6 +26,9 @@ class LevelConfigDtoMapper extends AbstractMapper
             $this->getValueOrNull($data, 'class'),
             $this->getValueOrNull($data, 'proficiencies'),
             $this->getValueOrNull($data, 'skills'),
+            $this->abilityConfigDtoMapper->manyFromArray(
+                $this->getArray($data, 'asi')
+            )
         );
 
         $this->validate($dto);

@@ -22,15 +22,21 @@ class LevelConfigDto
     #[Assert\Type(type: 'array')]
     public readonly mixed $skills;
 
+    #[Assert\Valid]
+    #[Assert\Type(type: 'array')]
+    public readonly mixed $asi;
+
     public function __construct(
         mixed $level,
         mixed $class,
         mixed $proficiencies = null,
-        mixed $skills = null
+        mixed $skills = null,
+        mixed $asi = null
     ) {
         $this->level = $level;
         $this->class = $class;
         $this->proficiencies = $proficiencies ?? [];
         $this->skills = $skills ?? [];
+        $this->asi = $asi ?? [];
     }
 }
