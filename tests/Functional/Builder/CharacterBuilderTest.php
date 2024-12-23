@@ -4,29 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Builder;
 
-use App\Ability\Abilities;
 use App\Ability\NewAbilities;
-use App\Ability\NewAbility;
 use App\Ability\NewAbilityFactory;
 use App\Builder\CharacterBuilder;
+use App\Dto\AbilitiesConfigDto;
+use App\Dto\CharacterConfigDto;
+use App\Dto\LevelConfigDto;
 use App\Enum\NewAbilityEnum;
-use App\Mapper\CharacterConfigMapper;
-use App\Repository\LevelRepository;
 use App\Skill\FinalizedSkill;
-use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-
-use function json_decode;
-use function var_dump;
 
 #[Group('dev')]
 class CharacterBuilderTest extends KernelTestCase
 {
-    use RefreshDatabaseTrait;
-
-    private CharacterConfigMapper $characterConfigMapper;
-    private LevelRepository $levelRepository;
     private CharacterBuilder $testedObject;
 
     protected function setUp(): void
@@ -35,24 +26,51 @@ class CharacterBuilderTest extends KernelTestCase
 
         $container = self::getContainer();
 
-        $this->characterConfigMapper = $container->get(CharacterConfigMapper::class);
-        $this->levelRepository = $container->get(LevelRepository::class);
         $this->testedObject = $container->get(CharacterBuilder::class);
     }
 
     public function testBuild(): void
     {
-        $characterConfig = $this->characterConfigMapper->mapFromJson(
-            file_get_contents(__DIR__ . '/../../Data/sydda_config.json'),
+        $firstLevelConfig = new LevelConfigDto(
+            1,
+            'barbarian',
+            ['light armors', 'medium armors'],
+            ['animal handling', 'stealth']
+        );
+        $secondLevelConfig = new LevelConfigDto(
+            2,
+            'barbarian',
+        );
+        $thirdLevelConfig = new LevelConfigDto(
+            3,
+            'berserker',
+        );
+        $abilitiesConfigDto = new AbilitiesConfigDto(
+            15,
+            13,
+            13,
+            7,
+            11,
+            9
+        );
+        $configDto = new CharacterConfigDto(
+            'Sydda',
+            'Bartek',
+            'Klątwa Sthrada',
+            'folk hero',
+            'human',
+            'chaotic good',
+            [$firstLevelConfig, $secondLevelConfig, $thirdLevelConfig],
+            $abilitiesConfigDto
         );
 
-        $actual = $this->testedObject->build($characterConfig);
+        $actual = $this->testedObject->build($configDto);
 
         $this->assertSame('Sydda', $actual->characterName);
-        $this->assertSame('Bartek J', $actual->playerName);
+        $this->assertSame('Bartek', $actual->playerName);
         $this->assertSame('Klątwa Sthrada', $actual->campaignName);
-        $this->assertSame([12 => 6], $actual->hitDices);
-        $this->assertSame(53, $actual->hitPoints);
+        $this->assertSame([12 => 3], $actual->hitDices);
+        $this->assertSame(29, $actual->hitPoints);
         $this->assertEquals(
             new NewAbilities(
                 NewAbilityFactory::create(NewAbilityEnum::STR, 15),
@@ -64,7 +82,7 @@ class CharacterBuilderTest extends KernelTestCase
             ),
             $actual->abilities
         );
-        $this->assertSame(['berserker' => 6], $actual->levels);
+        $this->assertSame(['berserker' => 3], $actual->levels);
         $this->assertEquals(
             [
                 new FinalizedSkill('rage', 'rage desc'),
@@ -72,7 +90,7 @@ class CharacterBuilderTest extends KernelTestCase
             ],
             $actual->skills
         );
-        $this->assertSame('hero folk', $actual->origin);
+        $this->assertSame('folk hero', $actual->origin);
         $this->assertSame('human', $actual->race);
         $this->assertSame(['light armors', 'medium armors', 'shields'], $actual->armorProficiencies);
         $this->assertSame(['simple weapons', 'martial weapons'], $actual->weaponProficiencies);
