@@ -1,3 +1,6 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     test: true
+
+    assets:
+        base_path: '/home/pczyzewski/src/dnd/public'
