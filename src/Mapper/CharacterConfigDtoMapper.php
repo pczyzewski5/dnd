@@ -15,7 +15,7 @@ class CharacterConfigDtoMapper extends AbstractMapper
 {
     public function __construct(
         private readonly LevelConfigDtoMapper $levelConfigDtoMapper,
-        private readonly AbilitiesConfigDtoMapper $abilitiesConfigDtoMapper,
+        private readonly AbilityConfigDtoMapper $abilityConfigDtoMapper,
         private readonly ValidatorInterface $validator
     ) {
         parent::__construct($this->validator);
@@ -35,7 +35,7 @@ class CharacterConfigDtoMapper extends AbstractMapper
             $this->levelConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'levels')
             ),
-            $this->abilitiesConfigDtoMapper->fromArray(
+            $this->abilityConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'abilities')
             )
         );

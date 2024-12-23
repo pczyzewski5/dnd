@@ -38,8 +38,9 @@ class CharacterConfigDto
     public readonly mixed $levelConfigDtos;
 
     #[Assert\Valid]
-    #[Assert\Type(type: AbilitiesConfigDto::class)]
-    public readonly mixed $abilitiesConfigDto;
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'array')]
+    public readonly mixed $abilityConfigDtos;
 
     public function __construct(
         mixed $characterName,
@@ -49,7 +50,7 @@ class CharacterConfigDto
         mixed $race,
         mixed $alignment,
         mixed $levelConfigDtos,
-        mixed $abilitiesConfigDto,
+        mixed $abilityConfigDtos,
     ) {
         $this->characterName = $characterName;
         $this->playerName = $playerName;
@@ -58,6 +59,6 @@ class CharacterConfigDto
         $this->race = $race;
         $this->alignment = $alignment;
         $this->levelConfigDtos = $levelConfigDtos;
-        $this->abilitiesConfigDto = $abilitiesConfigDto;
+        $this->abilityConfigDtos = $abilityConfigDtos;
     }
 }

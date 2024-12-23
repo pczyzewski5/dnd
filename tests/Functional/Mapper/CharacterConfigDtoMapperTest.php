@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Mapper;
 
-use App\Dto\AbilitiesConfigDto;
+use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Mapper\CharacterConfigDtoMapper;
@@ -47,12 +47,30 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
             ],
         ],
         'abilities' => [
-            'str' => 15,
-            'dex' => 13,
-            'con' => 13,
-            'int' => 7,
-            'wis' => 11,
-            'cha' => 9,
+            [
+                'ability' =>'str',
+                'value' => 15,
+            ],
+            [
+                'ability' =>'dex',
+                'value' => 13,
+            ],
+            [
+                'ability' =>'con',
+                'value' => 13,
+            ],
+            [
+                'ability' =>'int',
+                'value' =>  7,
+            ],
+            [
+                'ability' =>'wis',
+                'value' => 11,
+            ],
+            [
+                'ability' =>'cha',
+                'value' =>  9,
+            ],
         ],
     ];
 
@@ -68,7 +86,7 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenMissingKey(string $key): void
+    public function testFromJsonWhenMissingKey(string $key): void
     {
         $data = self::CHARACTER_CONFIG;
         unset($data[$key]);
@@ -80,7 +98,7 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenValueIsNull(string $key): void
+    public function testFromJsonWhenValueIsNull(string $key): void
     {
         $data = self::CHARACTER_CONFIG;
         $data[$key] = null;
@@ -92,7 +110,7 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
     }
 
     #[DataProvider('keyProvider')]
-    public function testBuildWhenValueIsInvalidType(string $key): void
+    public function testFromJsonWhenValueIsInvalidType(string $key): void
     {
         $data = self::CHARACTER_CONFIG;
         $data[$key] = 0.0;
@@ -117,26 +135,26 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
         ];
     }
 
-    public function testBuild(): void
+    public function testFromJson(): void
     {
         $levelConfigDtos = [
-          new LevelConfigDto(
-              1,
-              'barbarian',
-              ['survival', 'animal handling'],
-              ['Bel\'Quath Song'],
-          ),
-          new LevelConfigDto(2, 'barbarian'),
-          new LevelConfigDto(3, 'berserker'),
+            new LevelConfigDto(
+                1,
+                'barbarian',
+                ['survival', 'animal handling'],
+                ['Bel\'Quath Song'],
+            ),
+            new LevelConfigDto(2, 'barbarian'),
+            new LevelConfigDto(3, 'berserker'),
         ];
-        $abilitiesConfigDto = new AbilitiesConfigDto(
-            15,
-            13,
-            13,
-            7,
-            11,
-            9
-        );
+        $abilityConfigDtos = [
+            new AbilityConfigDto('str', 15),
+            new AbilityConfigDto('dex', 13),
+            new AbilityConfigDto('con', 13),
+            new AbilityConfigDto('int', 7),
+            new AbilityConfigDto('wis', 11),
+            new AbilityConfigDto('cha', 9),
+        ];
         $expected = new CharacterConfigDto(
             'Sydda',
             'Bartek J',
@@ -145,7 +163,7 @@ class CharacterConfigDtoMapperTest extends KernelTestCase
             'human',
             'chaotic good',
             $levelConfigDtos,
-            $abilitiesConfigDto,
+            $abilityConfigDtos,
         );
 
         $actual = $this->testedObject->fromJson(
