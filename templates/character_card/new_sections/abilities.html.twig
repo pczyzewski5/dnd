@@ -1,0 +1,76 @@
+<style>
+    #abilities-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: inherit;
+        width: inherit;
+    }
+    .ability-background {
+        background-image: url("{{ asset('images/ability.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .ability {
+        width: 16mm;
+        height: 23mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .ability div {
+        display: flex;
+        align-items:center;
+        justify-content:center;
+    }
+    .ability div:nth-child(1) {
+    {{ backgroundColor() }}
+        font-size: 8px;
+    }
+    .ability div:nth-child(2) {
+    {{ backgroundColor() }}
+        font-size: 20px;
+        height: 47px;
+    }
+    .ability div:nth-child(3) {
+    {{ backgroundColor() }}
+        font-size: 14px;
+        height: 25px;
+    }
+</style>
+
+<div id="abilities-section" class="character-card-section">
+    <div id="abilities-container">
+        <div class="ability-background ability">
+            <div><b>STR</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+        <div class="ability-background ability">
+            <div><b>DEX</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+        <div class="ability-background ability">
+            <div><b>CON</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+        <div class="ability-background ability">
+            <div><b>INT</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+        <div class="ability-background ability">
+            <div><b>WIS</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+        <div class="ability-background ability">
+            <div><b>CHA</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.modifier|value }}</div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : abilities.str.value }}</div>
+        </div>
+    </div>
+</div>
