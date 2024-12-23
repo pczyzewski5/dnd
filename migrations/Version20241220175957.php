@@ -35,6 +35,7 @@ final class Version20241220175957 extends AbstractMigration
             CREATE TABLE race (
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL UNIQUE,
+                config VARCHAR(510) NOT NULL,
                 PRIMARY KEY (id)
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
             SQL
