@@ -6,13 +6,16 @@ namespace App\Builder;
 
 use App\Ability\NewAbilities;
 use App\Ability\NewAbilitySkill;
+use App\Enum\NewAbilityEnum;
 use App\Enum\NewAbilitySkillEnum;
 use App\Proficiency\NewProficiencies;
+
+use App\SavingThrows\NewSavingThrow;
 
 use function array_map;
 use function in_array;
 
-class AbilitySkillsBuilder
+class SavingThrowsBuilder
 {
     private array $proficiencies;
     private int $proficiencyBonus;
@@ -20,7 +23,7 @@ class AbilitySkillsBuilder
 
     public function setProficiencies(NewProficiencies $proficiencies): self
     {
-        $this->proficiencies = $proficiencies->getAbilitySkillProficiencies();
+        $this->proficiencies = $proficiencies->getSavingThrowProficiencies();
 
         return $this;
     }
@@ -42,13 +45,13 @@ class AbilitySkillsBuilder
     public function build(): array
     {
         return array_map(
-            function (NewAbilitySkillEnum $abilitySkillEnum) {
+            function (NewAbilityEnum $abilityEnum) {
                 $ability = $this->abilities->getByAbilityEnum(
-                    $abilitySkillEnum->getAbilityEnum()
+                    $abilityEnum
                 );
 
                 $hasProficiency = in_array(
-                    $abilitySkillEnum->value,
+                    $abilityEnum->value,
                     $this->proficiencies
                 );
 
@@ -56,13 +59,13 @@ class AbilitySkillsBuilder
                     ? $ability->modifier + $this->proficiencyBonus
                     : $ability->modifier;
 
-                return new NewAbilitySkill(
-                    $abilitySkillEnum,
+                return new NewSavingThrow(
+                    $abilityEnum,
                     $value,
                     $hasProficiency
                 );
             },
-            NewAbilitySkillEnum::cases()
+            NewAbilityEnum::cases()
         );
     }
 }

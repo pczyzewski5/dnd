@@ -49,11 +49,11 @@
 <div id="saving-throws-section" class="character-card-section">
    <div id="saving-throws-background">
       <div id="saving-throws-container">
-         {% for key, savingThrow in savingThrows.toArray() %}
+         {% for savingThrow in savingThrows %}
             <div class="saving-throw">
-               <div><b>{{ key|upper }}</b></div>
-               <div>{{ printMode is defined ? false|dot : savingThrow.hasProficiency()|dot }}</div>
-               <div class="opaque">{{ printMode is defined ? '&nbsp;' : savingThrow.getValue()|value }}</div>
+               <div><b>{{ savingThrow.enum.value|upper }}</b></div>
+               <div>{{ printMode ? false|dot : savingThrow.hasProficiency|dot }}</div>
+               <div class="opaque">{{ printMode ? '&nbsp;' : savingThrow.value|value }}</div>
             </div>
          {% endfor %}
       </div>

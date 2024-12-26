@@ -21,11 +21,11 @@ App\Entity\Proficiency:
       - weapon
   strength:
     __construct:
-      - strength
+      - str
       - saving throw
   constitution:
     __construct:
-      - constitution
+      - con
       - saving throw
   animal_handling:
     __construct:

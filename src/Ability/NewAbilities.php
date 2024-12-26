@@ -31,4 +31,19 @@ class NewAbilities
 
         throw new Exception('Cannot match ability.');
     }
+
+    /**
+     * @return NewAbility[]
+     */
+    public function toArray(): array
+    {
+        return [
+            $this->str,
+            $this->dex,
+            $this->con,
+            $this->int,
+            $this->wis,
+            $this->cha,
+        ];
+    }
 }

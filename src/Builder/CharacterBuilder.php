@@ -7,6 +7,7 @@ namespace App\Builder;
 use App\Ability\NewAbilities;
 use App\Calculator\HitPointsCalculator;
 use App\Dto\CharacterConfigDto;
+use App\Enum\NewAbilityEnum;
 use App\Enum\NewAlignmentEnum;
 use App\Level\NewLevels;
 use App\NewCharacter\NewCharacter;
@@ -16,6 +17,7 @@ use App\Service\RaceService;
 use App\Service\SkillFinalizerService;
 
 use function count;
+use function in_array;
 use function var_dump;
 
 class CharacterBuilder
@@ -28,6 +30,7 @@ class CharacterBuilder
         private readonly HitPointsCalculator $hitPointsCalculator,
         private readonly LevelsBuilder $levelsBuilder,
         private readonly SkillFinalizerService $skillFinalizerService,
+        private readonly SavingThrowsBuilder $savingThrowsBuilder,
     ) {
     }
 
@@ -53,7 +56,7 @@ class CharacterBuilder
             $levels->proficiencies->getArmorProficiencies(),
             $levels->proficiencies->getWeaponProficiencies(),
             $levels->proficiencies->getToolProficiencies(),
-            $levels->proficiencies->getSavingThrowProficiencies(),
+            $this->getSavingThrows($abilities, $levels)
         );
     }
 
@@ -121,5 +124,16 @@ class CharacterBuilder
     private function getAlignment(CharacterConfigDto $config): string
     {
         return NewAlignmentEnum::tryFrom($config->alignment)->value;
+    }
+
+    private function getSavingThrows(
+        NewAbilities $abilities,
+        NewLevels $levels
+    ): array {
+        return $this->savingThrowsBuilder
+            ->setAbilities($abilities)
+            ->setProficiencies($levels->proficiencies)
+            ->setProficiencyBonus($levels->proficiencyBonus)
+            ->build();
     }
 }

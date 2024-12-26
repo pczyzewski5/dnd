@@ -9,6 +9,7 @@ use App\SectionBuilder\AbilitiesSectionBuilder;
 use App\SectionBuilder\AbilitySkillsSectionBuilder;
 use App\SectionBuilder\DealtDmgBuilder;
 use App\SectionBuilder\HpSectionBuilder;
+use App\SectionBuilder\SavingThrowsSectionBuilder;
 use App\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
 
@@ -26,7 +27,7 @@ class CharacterCardService
     public function getFrontpage(NewCharacter $character, $opaqueStats = false): string
     {
         $emptyContext = [
-            'savingThrowsSection' => '',
+
             'statsSection' => '',
             'resistancesImmunitiesSection' => '',
 
@@ -38,6 +39,7 @@ class CharacterCardService
             'skillsSection' => '',
         ];
         $newContext = [
+            'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
             'abilitySkillsSection' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
             'abilitiesSection' => (new AbilitiesSectionBuilder($character, $this->twig))->build(),
             'titleSection' => (new TitleSectionBuilder($character, $this->twig))->build(),
