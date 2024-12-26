@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\NewAbilities;
-use App\Ability\NewAbilityFactory;
+use App\Ability\Abilities;
+use App\Ability\AbilityFactory;
 use App\Dto\AbilityConfigDto;
 use App\Enum\NewAbilityEnum;
 
@@ -29,15 +29,15 @@ class AbilitiesBuilder
         return $this;
     }
 
-    public function build(): NewAbilities
+    public function build(): Abilities
     {
-        return new NewAbilities(
-            NewAbilityFactory::create(NewAbilityEnum::STR, $this->str),
-            NewAbilityFactory::create(NewAbilityEnum::DEX, $this->dex),
-            NewAbilityFactory::create(NewAbilityEnum::CON, $this->con),
-            NewAbilityFactory::create(NewAbilityEnum::INT, $this->int),
-            NewAbilityFactory::create(NewAbilityEnum::WIS, $this->wis),
-            NewAbilityFactory::create(NewAbilityEnum::CHA, $this->cha),
+        return new Abilities(
+            AbilityFactory::create(NewAbilityEnum::STR, $this->str),
+            AbilityFactory::create(NewAbilityEnum::DEX, $this->dex),
+            AbilityFactory::create(NewAbilityEnum::CON, $this->con),
+            AbilityFactory::create(NewAbilityEnum::INT, $this->int),
+            AbilityFactory::create(NewAbilityEnum::WIS, $this->wis),
+            AbilityFactory::create(NewAbilityEnum::CHA, $this->cha),
         );
     }
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Builder;
 
 
-use App\Ability\NewAbilities;
-use App\Ability\NewAbilityFactory;
+use App\Ability\Abilities;
+use App\Ability\AbilityFactory;
 use App\Builder\AbilitiesBuilder;
 use App\Dto\AbilityConfigDto;
 use App\Enum\NewAbilityEnum;
@@ -28,7 +28,7 @@ class AbilitiesBuilderTest extends TestCase
     #[DataProvider('validAbilityConfigProvider')]
     public function testBuild(
         array $configs,
-        NewAbilities $expected
+        Abilities $expected
     ): void {
         $this->testedObject->add(...$configs);
 
@@ -49,13 +49,13 @@ class AbilitiesBuilderTest extends TestCase
                     new AbilityConfigDto('wis', 10),
                     new AbilityConfigDto('cha', 10)
                 ],
-                'expected' => new NewAbilities(
-                    NewAbilityFactory::create(NewAbilityEnum::STR, 10),
-                    NewAbilityFactory::create(NewAbilityEnum::DEX, 10),
-                    NewAbilityFactory::create(NewAbilityEnum::CON, 10),
-                    NewAbilityFactory::create(NewAbilityEnum::INT, 10),
-                    NewAbilityFactory::create(NewAbilityEnum::WIS, 10),
-                    NewAbilityFactory::create(NewAbilityEnum::CHA, 10),
+                'expected' => new Abilities(
+                    AbilityFactory::create(NewAbilityEnum::STR, 10),
+                    AbilityFactory::create(NewAbilityEnum::DEX, 10),
+                    AbilityFactory::create(NewAbilityEnum::CON, 10),
+                    AbilityFactory::create(NewAbilityEnum::INT, 10),
+                    AbilityFactory::create(NewAbilityEnum::WIS, 10),
+                    AbilityFactory::create(NewAbilityEnum::CHA, 10),
                 )
             ],
             'doubled configs' => [
@@ -73,13 +73,13 @@ class AbilitiesBuilderTest extends TestCase
                     new AbilityConfigDto('cha', 10),
                     new AbilityConfigDto('cha', 6),
                 ],
-                'expected' => new NewAbilities(
-                    NewAbilityFactory::create(NewAbilityEnum::STR, 11),
-                    NewAbilityFactory::create(NewAbilityEnum::DEX, 12),
-                    NewAbilityFactory::create(NewAbilityEnum::CON, 13),
-                    NewAbilityFactory::create(NewAbilityEnum::INT, 14),
-                    NewAbilityFactory::create(NewAbilityEnum::WIS, 15),
-                    NewAbilityFactory::create(NewAbilityEnum::CHA, 16),
+                'expected' => new Abilities(
+                    AbilityFactory::create(NewAbilityEnum::STR, 11),
+                    AbilityFactory::create(NewAbilityEnum::DEX, 12),
+                    AbilityFactory::create(NewAbilityEnum::CON, 13),
+                    AbilityFactory::create(NewAbilityEnum::INT, 14),
+                    AbilityFactory::create(NewAbilityEnum::WIS, 15),
+                    AbilityFactory::create(NewAbilityEnum::CHA, 16),
                 )
             ]
         ];

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Ability\NewAbilities;
+use App\Ability\Abilities;
 use App\Enum\SkillEnum;
 use App\Proficiency\NewProficiencies;
 use App\Skill\Skills;
@@ -37,7 +37,7 @@ class ArmorClassCalculator
     }
 
     public static function newCalculate(
-        NewAbilities $abilities,
+        Abilities $abilities,
     ): int {
         $baseValue = 10;
 

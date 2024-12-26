@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Builder;
 
-use App\Ability\NewAbilities;
-use App\Ability\NewAbilityFactory;
+use App\Ability\Abilities;
+use App\Ability\AbilityFactory;
 use App\Builder\CharacterBuilder;
 use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
@@ -75,13 +75,13 @@ class CharacterBuilderTest extends KernelTestCase
         $this->assertSame([12 => 3], $actual->hitDices);
         $this->assertSame(32, $actual->hitPoints);
         $this->assertEquals(
-            new NewAbilities(
-                NewAbilityFactory::create(NewAbilityEnum::STR, 16),
-                NewAbilityFactory::create(NewAbilityEnum::DEX, 14),
-                NewAbilityFactory::create(NewAbilityEnum::CON, 14),
-                NewAbilityFactory::create(NewAbilityEnum::INT, 8),
-                NewAbilityFactory::create(NewAbilityEnum::WIS, 12),
-                NewAbilityFactory::create(NewAbilityEnum::CHA, 10),
+            new Abilities(
+                AbilityFactory::create(NewAbilityEnum::STR, 16),
+                AbilityFactory::create(NewAbilityEnum::DEX, 14),
+                AbilityFactory::create(NewAbilityEnum::CON, 14),
+                AbilityFactory::create(NewAbilityEnum::INT, 8),
+                AbilityFactory::create(NewAbilityEnum::WIS, 12),
+                AbilityFactory::create(NewAbilityEnum::CHA, 10),
             ),
             $actual->abilities
         );

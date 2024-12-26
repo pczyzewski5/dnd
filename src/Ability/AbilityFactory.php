@@ -7,11 +7,11 @@ namespace App\Ability;
 use App\Calculator\AbilityModifierCalculator;
 use App\Enum\NewAbilityEnum;
 
-class NewAbilityFactory
+class AbilityFactory
 {
-    public static function create(NewAbilityEnum $ability, int $value): NewAbility
+    public static function create(NewAbilityEnum $ability, int $value): Ability
     {
-        return new NewAbility(
+        return new Ability(
             $ability,
             $value,
             AbilityModifierCalculator::calculate($value)

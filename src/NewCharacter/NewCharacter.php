@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\NewCharacter;
 
-use App\Ability\NewAbilities;
+use App\Ability\Abilities;
 use App\Proficiency\NewProficiencies;
 
 class NewCharacter
@@ -15,7 +15,7 @@ class NewCharacter
         public readonly string $campaignName, // used
         public readonly array $hitDices,
         public readonly int $hitPoints,
-        public readonly NewAbilities $abilities,
+        public readonly Abilities $abilities,
         public readonly array $simpleLevels,
         public readonly array $skills,
         public readonly array $abilitySkills,

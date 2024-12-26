@@ -6,7 +6,7 @@ namespace App\Ability;
 
 use App\Enum\NewAbilityEnum;
 
-class NewAbility
+class Ability
 {
     public function __construct(
         public readonly NewAbilityEnum $abilityEnum,

@@ -9,19 +9,20 @@ use App\Enum\NewAbilityEnum;
 use Exception;
 use function get_object_vars;
 
-class NewAbilities
+class Abilities
 {
+    // to zmienic na array
     public function __construct(
-        public readonly NewAbility $str,
-        public readonly NewAbility $dex,
-        public readonly NewAbility $con,
-        public readonly NewAbility $int,
-        public readonly NewAbility $wis,
-        public readonly NewAbility $cha
+        public readonly Ability $str,
+        public readonly Ability $dex,
+        public readonly Ability $con,
+        public readonly Ability $int,
+        public readonly Ability $wis,
+        public readonly Ability $cha
     ) {
     }
 
-    public function getByAbilityEnum(NewAbilityEnum $abilityEnum): NewAbility
+    public function getByAbilityEnum(NewAbilityEnum $abilityEnum): Ability
     {
         foreach (get_object_vars($this) as $ability) {
             if ($ability->abilityEnum === $abilityEnum) {
@@ -33,7 +34,7 @@ class NewAbilities
     }
 
     /**
-     * @return NewAbility[]
+     * @return Ability[]
      */
     public function toArray(): array
     {

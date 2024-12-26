@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Ability\NewAbilities;
+use App\Ability\Abilities;
 use App\Entity\Skill;
 use App\Service\SkillFinalizer\SkillFinalizerInterface;
 use App\Service\SkillFinalizer\UnarmoredDefense;
@@ -26,7 +26,7 @@ class SkillFinalizerService
     }
 
     public function finalize(
-        NewAbilities $abilities,
+        Abilities $abilities,
         Skill $skill,
         int $level,
     ): FinalizedSkill {
@@ -40,7 +40,7 @@ class SkillFinalizerService
     }
 
     public function finalizeArray(
-        NewAbilities $abilities,
+        Abilities $abilities,
         array $skills,
         int $level,
     ): array {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\NewAbilities;
-use App\Ability\NewAbilitySkill;
+use App\Ability\Abilities;
+use App\Ability\AbilitySkill;
 use App\Enum\NewAbilitySkillEnum;
 use App\Proficiency\NewProficiencies;
 
@@ -16,7 +16,7 @@ class AbilitySkillsBuilder
 {
     private array $proficiencies;
     private int $proficiencyBonus;
-    private NewAbilities $abilities;
+    private Abilities $abilities;
 
     public function setProficiencies(NewProficiencies $proficiencies): self
     {
@@ -32,7 +32,7 @@ class AbilitySkillsBuilder
         return $this;
     }
 
-    public function setAbilities(NewAbilities $abilities): self
+    public function setAbilities(Abilities $abilities): self
     {
         $this->abilities = $abilities;
 
@@ -56,7 +56,7 @@ class AbilitySkillsBuilder
                     ? $ability->modifier + $this->proficiencyBonus
                     : $ability->modifier;
 
-                return new NewAbilitySkill(
+                return new AbilitySkill(
                     $abilitySkillEnum,
                     $value,
                     $hasProficiency

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\NewAbilities;
+use App\Ability\Abilities;
 use App\Calculator\ArmorClassCalculator;
 use App\Calculator\HitPointsCalculator;
 use App\Calculator\PassiveInsightCalculator;
@@ -79,7 +79,7 @@ class CharacterBuilder
     private function getAbilities(
         CharacterConfigDto $characterConfigDto,
         RaceConfig $raceConfig
-    ): NewAbilities {
+    ): Abilities {
         $abilitiesBuilder = $this->abilitiesBuilder
             ->add(...$characterConfigDto->abilityConfigDtos)
             ->add(...$raceConfig->asi);
@@ -99,7 +99,7 @@ class CharacterBuilder
     }
 
     private function getFinalizedSkills(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels
     ): array {
         return $this->skillFinalizerService->finalizeArray(
@@ -110,7 +110,7 @@ class CharacterBuilder
     }
 
     private function getHitPoints(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels
     ): int {
         return $this->hitPointsCalculator->newCalculate(
@@ -120,7 +120,7 @@ class CharacterBuilder
     }
 
     private function getAbilitySkills(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels,
     ): array {
         return $this->abilitySkillsBuilder
@@ -136,7 +136,7 @@ class CharacterBuilder
     }
 
     private function getSavingThrows(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels
     ): array {
         return $this->savingThrowsBuilder
@@ -147,7 +147,7 @@ class CharacterBuilder
     }
 
     public function getPassivePerception(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels
     ): int {
         return $this->passivePerceptionCalculator->newCalculate(
@@ -158,7 +158,7 @@ class CharacterBuilder
     }
 
     public function getPassiveInsights(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewLevels $levels
     ): int {
         return $this->passiveInsightCalculator->newCalculate(
@@ -169,7 +169,7 @@ class CharacterBuilder
     }
 
     public function getArmorClass(
-        NewAbilities $abilities,
+        Abilities $abilities,
     ): int {
         return $this->armorClassCalculator->newCalculate($abilities);
     }

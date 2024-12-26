@@ -3,7 +3,7 @@
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Ability\NewAbilities;
+use App\Ability\Abilities;
 use App\Enum\ProficiencyEnum;
 use App\Proficiency\NewProficiencies;
 use App\Proficiency\Proficiencies;
@@ -24,7 +24,7 @@ class PassiveInsightCalculator
     }
 
     public static function newCalculate(
-        NewAbilities $abilities,
+        Abilities $abilities,
         NewProficiencies $proficiencies,
         int $proficiencyBonus
     ): int {
