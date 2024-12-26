@@ -14,18 +14,21 @@
       height: 154px;
       width: 179px;
       font-size: 10px;
-   }
-   #proficiencies-languages-container div {
    {{ backgroundColor() }}
-      height: 50%;
    }
 </style>
 
 <div id="proficiencies-languages-section" class="character-card-section">
    <div id="proficiencies-languages-background">
       <div id="proficiencies-languages-container">
-         <div><b>Biegłości:</b> {{ proficiencies }}.</div>
-         <div><b>Języki:</b> {{ languages }}.</div>
+         <div class="tac"><b>Biegłości</b></div>
+         <div>Zbroje: {{ proficiencies.getArmorProficiencies()|join(', ') }}</div>
+         <div>Bronie: {{ proficiencies.getWeaponProficiencies()|join(', ') }}</div>
+         {% if proficiencies.getToolProficiencies() is not empty %}
+            <div>Narzędzia: {{ proficiencies.getToolProficiencies()|join(', ') }}</div>
+         {% endif %}
+         <div class="tac"><b>Języki</b></div>
+         <div>{{ languages|join(', ') }}</div>
       </div>
    </div>
 </div>

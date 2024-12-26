@@ -53,10 +53,9 @@ class CharacterBuilder
             $config->origin,
             $config->race,
             $this->getAlignment($config),  // do testów!!!
-            $levels->proficiencies->getArmorProficiencies(),
-            $levels->proficiencies->getWeaponProficiencies(),
-            $levels->proficiencies->getToolProficiencies(),
-            $this->getSavingThrows($abilities, $levels)
+            $levels->proficiencies,
+            $this->getSavingThrows($abilities, $levels),
+            ['polski, angielski']
         );
     }
 

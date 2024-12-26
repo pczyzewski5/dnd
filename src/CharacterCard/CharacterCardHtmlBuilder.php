@@ -10,13 +10,13 @@ use App\CharacterCard\SectionBuilder\DealtDmgBuilder;
 use App\CharacterCard\SectionBuilder\HitDiceSectionBuilder;
 use App\CharacterCard\SectionBuilder\HpSectionBuilder;
 use App\CharacterCard\SectionBuilder\PassivePerceptionIntuitionSectionBuilder;
-use App\CharacterCard\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use App\CharacterCard\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use App\CharacterCard\SectionBuilder\SimpleCharacterStatsBuilder;
 use App\CharacterCard\SectionBuilder\SkillsCounterSectionBuilder;
 use App\CharacterCard\SectionBuilder\SkillsSectionBuilder;
 use App\CharacterCard\SectionBuilder\StatsSectionBuilder;
 use App\CharacterCard\SectionBuilder\TitleSectionBuilder;
+use App\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use App\SectionBuilder\SavingThrowsSectionBuilder;
 use Twig\Environment;
 

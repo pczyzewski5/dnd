@@ -9,6 +9,7 @@ use App\SectionBuilder\AbilitiesSectionBuilder;
 use App\SectionBuilder\AbilitySkillsSectionBuilder;
 use App\SectionBuilder\DealtDmgBuilder;
 use App\SectionBuilder\HpSectionBuilder;
+use App\SectionBuilder\ProficienciesLanguagesSectionBuilder;
 use App\SectionBuilder\SavingThrowsSectionBuilder;
 use App\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
@@ -33,12 +34,13 @@ class CharacterCardService
 
             'passivePerceptionIntuitionSection' => '',
             'hitDiceSection' => '',
-            'proficienciesLanguagesSection' => '',
+
             'skillsCounterSection' => '',
             'attacksTricksSection' => '',
             'skillsSection' => '',
         ];
         $newContext = [
+            'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
             'abilitySkillsSection' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
             'abilitiesSection' => (new AbilitiesSectionBuilder($character, $this->twig))->build(),

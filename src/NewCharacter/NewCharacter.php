@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\NewCharacter;
 
 use App\Ability\NewAbilities;
+use App\Proficiency\NewProficiencies;
 
 class NewCharacter
 {
@@ -21,10 +22,9 @@ class NewCharacter
         public readonly string $origin,
         public readonly string $race, // used
         public readonly string $alignment, // used
-        public readonly array $armorProficiencies,
-        public readonly array $weaponProficiencies,
-        public readonly array $toolProficiencies,
-        public readonly array $savingThrows
+        public readonly NewProficiencies $proficiencies,
+        public readonly array $savingThrows,
+        public readonly array $languages,
     ) {
     }
 }
