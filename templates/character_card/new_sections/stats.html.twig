@@ -1,0 +1,94 @@
+<style>
+    #stats-container {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        justify-content: space-between;
+    }
+    #armor-class {
+    }
+    #armor-class div:nth-child(odd) {
+    {{ backgroundColor() }}
+        font-size: 6px;
+        margin-top: 5px;
+        height: 10px;
+    }
+    #armor-class div:nth-child(even) {
+    {{ backgroundColor() }}
+        font-size: 14px;
+        height: 23px;
+        padding: 0 !important;
+    }
+    #armor-class div:nth-child(3) {
+        margin: 0 !important;
+    }
+    .stat-background {
+        background-image: url("{{ asset('images/stat.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 16mm;
+        height: 23mm;
+    }
+    .stat {
+        width: 16mm;
+        height: 20mm;
+        display: flex;
+        flex-direction: column;
+    }
+    .stat div {
+        display: flex;
+        align-items:center;
+        justify-content:center;
+    }
+    .stat div:nth-child(1) {
+    {{ backgroundColor() }}
+        font-size: 6px;
+        margin-top: 9px;
+        height: 14px;
+    }
+    .stat div:nth-child(2) {
+    {{ backgroundColor() }}
+        font-size: 16px;
+        height: 44px;
+        padding-bottom: 20px;
+    }
+    .wide-rectangle {
+        height: 4mm;
+        width: 10mm;
+        border: 1px solid black;
+        display: inline-block;
+        opacity: 0.3;
+    }
+</style>
+
+<div id="stats-section" class="character-card-section">
+    <div id="stats-container">
+        <div class="stat-background stat">
+            <div class="tac"><b>PW</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : hp }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>PROFICIENCY BONUS</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : proficiencyBonus|value }}</div>
+        </div>
+        <div id="armor-class" class="stat-background stat">
+            <div class="tac"><b>KP</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : acWithoutArmor }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>INICJATYWA</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : initiative|value }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>WIDZENIE W CIEMNOŚCI</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : (nightvision == 0 ? 'n/d' : nightvision ~ ' hex') }}</div>
+        </div>
+        <div class="stat-background stat">
+            <div class="tac"><b>SZYBKOŚĆ</b></div>
+            <div class="opaque">{{ printMode ? '&nbsp;' : speed }} {{ printMode ? '&nbsp;' : 'hex' }}</div>
+        </div>
+    </div>
+</div>

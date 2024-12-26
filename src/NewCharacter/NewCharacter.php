@@ -25,6 +25,10 @@ class NewCharacter
         public readonly NewProficiencies $proficiencies,
         public readonly array $savingThrows,
         public readonly array $languages,
+        public readonly int $passivePerception,
+        public readonly int $passiveInsight,
+        public readonly int $proficiencyBonus,
+        public readonly int $armorClass
     ) {
     }
 }

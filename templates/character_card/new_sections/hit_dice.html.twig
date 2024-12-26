@@ -1,0 +1,51 @@
+<style>
+    #hit-dice-background {
+        background-image: url("{{ asset('images/hit_dice.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #hit-dice-background div {
+        position: absolute;
+        font-size: 14px;
+    }
+    .hit-dice-count {
+        width: 24px;
+        height: 18px
+    }
+    .hit-dice-type {
+        width: 43px;
+        height: 18px
+    }
+    #hit-dice-background div:nth-child(1) {
+    {{ backgroundColor() }}
+        top: 14px;
+        left: 5px;
+    }
+    #hit-dice-background div:nth-child(2) {
+    {{ backgroundColor() }}
+        top: 14px;
+        left: 33px;
+    }
+    #hit-dice-background div:nth-child(3) {
+    {{ backgroundColor() }}
+        top: 35px;
+        left: 5px;
+    }
+    #hit-dice-background div:nth-child(4) {
+    {{ backgroundColor() }}
+        top: 35px;
+        left: 33px;
+    }
+</style>
+
+<div id="hit-dice-section" class="character-card-section">
+    <div id="hit-dice-background">
+        {% for hitDice, count in hitDices %}
+            <div class="hit-dice-count uc">{{ count }}</div>
+            <div class="hit-dice-type uc">{{ hitDice }}</div>
+        {% endfor %}
+    </div>
+</div>

@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Calculator;
 
 use App\Ability\Abilities;
+use App\Ability\NewAbilities;
 use App\Enum\SkillEnum;
+use App\Proficiency\NewProficiencies;
 use App\Skill\Skills;
+
+use function in_array;
 
 class ArmorClassCalculator
 {
@@ -30,5 +34,13 @@ class ArmorClassCalculator
         }
 
         return $armorClass;
+    }
+
+    public static function newCalculate(
+        NewAbilities $abilities,
+    ): int {
+        $baseValue = 10;
+
+        return $baseValue + $abilities->dex->modifier;
     }
 }

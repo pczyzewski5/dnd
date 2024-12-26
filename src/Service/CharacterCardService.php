@@ -7,10 +7,17 @@ use App\CharacterCard\SectionBuilder\SimpleCharacterStatsBuilder;
 use App\NewCharacter\NewCharacter;
 use App\SectionBuilder\AbilitiesSectionBuilder;
 use App\SectionBuilder\AbilitySkillsSectionBuilder;
+use App\SectionBuilder\AttacksTricksSectionBuilder;
 use App\SectionBuilder\DealtDmgBuilder;
+use App\SectionBuilder\HitDiceSectionBuilder;
 use App\SectionBuilder\HpSectionBuilder;
+use App\SectionBuilder\Passives;
 use App\SectionBuilder\ProficienciesLanguagesSectionBuilder;
+use App\SectionBuilder\ResistancesImmunitiesSectionBuilder;
 use App\SectionBuilder\SavingThrowsSectionBuilder;
+use App\SectionBuilder\SkillsCounterSectionBuilder;
+use App\SectionBuilder\SkillsSectionBuilder;
+use App\SectionBuilder\StatsSectionBuilder;
 use App\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
 
@@ -27,19 +34,14 @@ class CharacterCardService
 
     public function getFrontpage(NewCharacter $character, $opaqueStats = false): string
     {
-        $emptyContext = [
-
-            'statsSection' => '',
-            'resistancesImmunitiesSection' => '',
-
-            'passivePerceptionIntuitionSection' => '',
-            'hitDiceSection' => '',
-
-            'skillsCounterSection' => '',
-            'attacksTricksSection' => '',
-            'skillsSection' => '',
-        ];
-        $newContext = [
+        $context = [
+            'statsSection' => (new StatsSectionBuilder($character, $this->twig))->build(),
+            'attacksTricksSection' => (new AttacksTricksSectionBuilder($character, $this->twig))->build(),
+            'skillsCounterSection' => (new SkillsCounterSectionBuilder($character, $this->twig))->build(),
+            'skillsSection' => (new SkillsSectionBuilder($character, $this->twig))->build(),
+            'hitDiceSection' => (new HitDiceSectionBuilder($character, $this->twig))->build(),
+            'passivePerceptionIntuitionSection' => (new Passives($character, $this->twig))->build(),
+            'resistancesImmunitiesSection' => (new ResistancesImmunitiesSectionBuilder($character, $this->twig))->build(),
             'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
             'abilitySkillsSection' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
@@ -49,8 +51,6 @@ class CharacterCardService
             'hpSection' => (new HpSectionBuilder($character, $this->twig))->build(),
             'opaqueStats' => $opaqueStats
         ];
-
-        $context = array_merge($emptyContext, $newContext);
 
         return $this->twig->render('character_card/character_card_frontpage.html.twig', $context);
     }

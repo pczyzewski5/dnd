@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Ability\NewAbilities;
+use App\Calculator\ArmorClassCalculator;
 use App\Calculator\HitPointsCalculator;
+use App\Calculator\PassiveInsightCalculator;
+use App\Calculator\PassivePerceptionCalculator;
 use App\Dto\CharacterConfigDto;
 use App\Enum\NewAbilityEnum;
 use App\Enum\NewAlignmentEnum;
@@ -31,6 +34,9 @@ class CharacterBuilder
         private readonly LevelsBuilder $levelsBuilder,
         private readonly SkillFinalizerService $skillFinalizerService,
         private readonly SavingThrowsBuilder $savingThrowsBuilder,
+        private readonly PassiveInsightCalculator $passiveInsightCalculator,
+        private readonly PassivePerceptionCalculator $passivePerceptionCalculator,
+        private readonly ArmorClassCalculator $armorClassCalculator,
     ) {
     }
 
@@ -55,7 +61,11 @@ class CharacterBuilder
             $this->getAlignment($config),  // do testów!!!
             $levels->proficiencies,
             $this->getSavingThrows($abilities, $levels),
-            ['polski, angielski']
+            ['polski, angielski'],
+            $this->getPassivePerception($abilities, $levels),
+            $this->getPassiveInsights($abilities, $levels),
+            $levels->proficiencyBonus,
+            $this->getArmorClass($abilities)
         );
     }
 
@@ -134,5 +144,33 @@ class CharacterBuilder
             ->setProficiencies($levels->proficiencies)
             ->setProficiencyBonus($levels->proficiencyBonus)
             ->build();
+    }
+
+    public function getPassivePerception(
+        NewAbilities $abilities,
+        NewLevels $levels
+    ): int {
+        return $this->passivePerceptionCalculator->newCalculate(
+            $abilities,
+            $levels->proficiencies,
+            $levels->proficiencyBonus
+        );
+    }
+
+    public function getPassiveInsights(
+        NewAbilities $abilities,
+        NewLevels $levels
+    ): int {
+        return $this->passiveInsightCalculator->newCalculate(
+            $abilities,
+            $levels->proficiencies,
+            $levels->proficiencyBonus
+        );
+    }
+
+    public function getArmorClass(
+        NewAbilities $abilities,
+    ): int {
+        return $this->armorClassCalculator->newCalculate($abilities);
     }
 }

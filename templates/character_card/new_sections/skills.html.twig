@@ -1,0 +1,50 @@
+<style>
+    #skills-background {
+        background-image: url("{{ asset('images/skills.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #skills-container {
+    {{ backgroundColor() }}
+        position: absolute;
+        top: 8px;
+        left: 13px;
+        height: 725px;
+        width: 391px;
+        font-size: 9px;
+    }
+    #skills-container ul {
+        margin: 0;
+        padding-left: 15px;
+    }
+    #skills-container p {
+        margin-top: 0;
+        margin-bottom: 2px;
+    }
+    #skills-container table {
+        font-size: xx-small;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #skills-container table tr td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<div id="skills-section" class="character-card-section">
+    <div id="skills-background">
+        <div id="skills-container">
+            {% for skill in activeSkills %}
+                <p>{{ skill|raw }}</p>
+            {% endfor %}
+            <hr>
+            {% for skill in passiveSkills %}
+                <p>{{ skill|raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
