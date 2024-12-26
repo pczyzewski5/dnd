@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\NewCharacter;
 
 use App\Ability\Abilities;
-use App\Proficiency\NewProficiencies;
+use App\Proficiency\Proficiencies;
 
 class NewCharacter
 {
@@ -22,13 +22,16 @@ class NewCharacter
         public readonly string $origin,
         public readonly string $race, // used
         public readonly string $alignment, // used
-        public readonly NewProficiencies $proficiencies,
+        public readonly Proficiencies $proficiencies,
         public readonly array $savingThrows,
         public readonly array $languages,
         public readonly int $passivePerception,
         public readonly int $passiveInsight,
         public readonly int $proficiencyBonus,
-        public readonly int $armorClass
+        public readonly int $armorClass,
+        public readonly int $speed,
+        public readonly int $darkvision,
+        public readonly int $initiative
     ) {
     }
 }

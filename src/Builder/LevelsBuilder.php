@@ -10,7 +10,7 @@ use App\Calculator\SimpleLevelsCalculator;
 use App\Dto\LevelConfigDto;
 use App\Entity\Level;
 use App\Level\NewLevels;
-use App\Proficiency\NewProficiencies;
+use App\Proficiency\Proficiencies;
 use App\Repository\LevelRepository;
 use App\Repository\ProficiencyRepository;
 use App\Repository\SkillRepository;
@@ -77,7 +77,7 @@ class LevelsBuilder
     private function getProficiencies(
         array $levels,
         array $levelConfigDtos
-    ): NewProficiencies {
+    ): Proficiencies {
         $proficiencies = array_merge(
             ...array_map(
                 fn (Level $level): array
@@ -91,7 +91,7 @@ class LevelsBuilder
             )
         );
 
-        return new NewProficiencies(...$proficiencies);
+        return new Proficiencies(...$proficiencies);
     }
 
     private function getSkills(

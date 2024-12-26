@@ -24,7 +24,10 @@ class RaceService
        $config = $this->decodeJson($race->getConfig());
 
         return new RaceConfig(
-            $this->getAsi($config)
+            $this->getAsi($config),
+            $config['languages'],
+            $config['speed_in_meters'],
+            $config['darkvision_in_meters']
         );
     }
 

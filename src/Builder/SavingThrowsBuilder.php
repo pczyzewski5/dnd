@@ -8,7 +8,7 @@ use App\Ability\Abilities;
 use App\Ability\AbilitySkill;
 use App\Enum\NewAbilityEnum;
 use App\Enum\NewAbilitySkillEnum;
-use App\Proficiency\NewProficiencies;
+use App\Proficiency\Proficiencies;
 
 use App\SavingThrows\NewSavingThrow;
 
@@ -21,7 +21,7 @@ class SavingThrowsBuilder
     private int $proficiencyBonus;
     private Abilities $abilities;
 
-    public function setProficiencies(NewProficiencies $proficiencies): self
+    public function setProficiencies(Proficiencies $proficiencies): self
     {
         $this->proficiencies = $proficiencies->getSavingThrowProficiencies();
 

@@ -1,0 +1,32 @@
+{
+  "mountain dwarf": {
+    "ASI": {
+      "str": 2
+    },
+    "skills": ["dwarven armor training"]
+  },
+  "lightfoot halfling": {
+    "ASI": {
+      "cha": 1
+    },
+    "skills": ["naturally stealthy"]
+  },
+  "human variant": {
+    "ASI": {},
+    "skills": []
+  },
+  "copper dragonborn": {
+    "ASI": {},
+    "skills": ["acid breath", "acid resistance"]
+  },
+  "high elf": {
+    "ASI": {
+      "int": 1
+    },
+    "skills": ["elf weapon training", "cantrip", "bonus language"]
+  },
+  "lizardfolk": {
+    "ASI": {},
+    "skills": []
+  }
+}

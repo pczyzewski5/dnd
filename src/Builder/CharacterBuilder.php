@@ -7,8 +7,10 @@ namespace App\Builder;
 use App\Ability\Abilities;
 use App\Calculator\ArmorClassCalculator;
 use App\Calculator\HitPointsCalculator;
+use App\Calculator\InitiativeCalculator;
 use App\Calculator\PassiveInsightCalculator;
 use App\Calculator\PassivePerceptionCalculator;
+use App\Calculator\SpeedCalculator;
 use App\Dto\CharacterConfigDto;
 use App\Enum\NewAbilityEnum;
 use App\Enum\NewAlignmentEnum;
@@ -37,6 +39,8 @@ class CharacterBuilder
         private readonly PassiveInsightCalculator $passiveInsightCalculator,
         private readonly PassivePerceptionCalculator $passivePerceptionCalculator,
         private readonly ArmorClassCalculator $armorClassCalculator,
+        private readonly SpeedCalculator $speedCalculator,
+        private readonly InitiativeCalculator $initiativeCalculator,
     ) {
     }
 
@@ -65,7 +69,10 @@ class CharacterBuilder
             $this->getPassivePerception($abilities, $levels),
             $this->getPassiveInsights($abilities, $levels),
             $levels->proficiencyBonus,
-            $this->getArmorClass($abilities)
+            $this->getArmorClass($abilities),
+            $this->getSpeed($raceConfig),
+            $raceConfig->darkvision,
+            $this->getInitiative($abilities)
         );
     }
 
@@ -172,5 +179,17 @@ class CharacterBuilder
         Abilities $abilities,
     ): int {
         return $this->armorClassCalculator->newCalculate($abilities);
+    }
+
+    public function getSpeed(
+        RaceConfig $raceConfig,
+    ): int {
+        return $this->speedCalculator->calculate($raceConfig);
+    }
+
+    public function getInitiative(
+        Abilities $abilities,
+    ): int {
+        return $this->initiativeCalculator->calculate($abilities);
     }
 }

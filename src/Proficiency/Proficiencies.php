@@ -4,7 +4,7 @@ namespace App\Proficiency;
 
 use App\Entity\Proficiency;
 
-class NewProficiencies
+class Proficiencies
 {
     private array $proficiencies;
 

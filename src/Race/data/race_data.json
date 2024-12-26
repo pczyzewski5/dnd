@@ -1,0 +1,80 @@
+{
+  "dwarf": {
+    "ASI": {
+      "con": 2
+    },
+    "skills": ["dwarven resilience", "dwarven combat training", "stonecunning"],
+    "languages": ["common", "dwarf"],
+    "speed_in_meters": 7.5,
+    "nightvision_in_meters": 18
+  },
+  "halfling": {
+    "ASI": {
+      "dex": 2
+    },
+    "skills": ["lucky", "brave", "nimble"],
+    "languages": ["common", "halfling"],
+    "speed_in_meters": 7.5,
+    "nightvision_in_meters": 0
+  },
+  "human": {
+    "ASI": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "skills": [],
+    "languages": ["common"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
+  },
+  "human variant": {
+    "ASI": {},
+    "skills": [],
+    "languages": ["common"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
+  },
+  "dragonborn": {
+    "ASI": {
+      "str": 2,
+      "cha": 1
+    },
+    "skills": [],
+    "languages": ["common", "draconic"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
+  },
+  "lizardfolk": {
+    "ASI": {
+      "con": 2,
+      "dex": 1
+    },
+    "skills": ["bite", "hold breath", "hungry jaws", "natural armor", "nature intuition"],
+    "languages": ["common"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 0
+  },
+  "tiefling": {
+    "ASI": {
+      "int": 1,
+      "cha": 2
+    },
+    "skills": ["infernal legacy", "hellish resistance"],
+    "languages": ["common", "infernal"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 18
+  },
+  "elf": {
+    "ASI": {
+      "dex": 2
+    },
+    "skills": ["fey ancestry", "trance", "keen senses"],
+    "languages": ["common", "elf"],
+    "speed_in_meters": 9,
+    "nightvision_in_meters": 18
+  }
+}

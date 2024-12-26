@@ -10,9 +10,9 @@ class StatsSectionBuilder extends AbstractSectionBuilder
             'proficiencyBonus' => $this->character->proficiencyBonus,
             'acWithoutArmor' => $this->character->armorClass,
             'hp' => $this->character->hitPoints,
-            'initiative' => 99,
-            'nightvision' => 99,
-            'speed' => 99,
+            'initiative' => $this->character->initiative,
+            'darkvision' => $this->character->darkvision,
+            'speed' => $this->character->speed,
             'printMode' => $printMode,
         ];
 

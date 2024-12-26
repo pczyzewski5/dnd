@@ -3,7 +3,7 @@
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Proficiency\NewProficiencies;
+use App\Proficiency\Proficiencies;
 
 use function in_array;
 
@@ -11,7 +11,7 @@ class PassiveInsightCalculator
 {
     public static function newCalculate(
         Abilities $abilities,
-        NewProficiencies $proficiencies,
+        Proficiencies $proficiencies,
         int $proficiencyBonus
     ): int {
         $baseValue = 10;

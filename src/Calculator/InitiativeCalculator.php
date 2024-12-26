@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Enum\SkillEnum;
-use App\Skill\Skills;
 
 class InitiativeCalculator
 {
-    public static function calculate(Abilities $abilities, Skills $skills): int
+    public static function calculate(Abilities $abilities): int
     {
-       $initiative = $abilities->getDex()->getModifier();
+       $initiative = $abilities->dex->modifier;
 
-       if ($skills->hasSkill(SkillEnum::FEAT_ALERT)) {
-           $initiative += 5;
-       }
+//       if ($skills->hasSkill(SkillEnum::FEAT_ALERT)) {
+//           $initiative += 5;
+//       }
 
        return $initiative;
     }
