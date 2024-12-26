@@ -18,16 +18,15 @@ class ProficiencyDot extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('dot', [$this, 'putProficiencyDot'])
+            new TwigFilter('dot', [$this, 'proficiencyDot'])
         ];
     }
 
-    public function putProficiencyDot(bool $hasProficiency): Markup
+    public function proficiencyDot(bool $hasProficiency): Markup
     {
-        $cssClass = 'empty-dot';
-        if ($hasProficiency) {
-            $cssClass = 'black-dot';
-        }
+        $cssClass = $hasProficiency
+            ? 'black-dot'
+            : 'empty-dot';
 
         return new Markup(
             '<span class="' . $cssClass . '"/>',

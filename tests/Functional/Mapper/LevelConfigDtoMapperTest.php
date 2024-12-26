@@ -12,7 +12,6 @@ use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
-#[Group('dev')]
 class LevelConfigDtoMapperTest extends KernelTestCase
 {
     private const LEVEL_CONFIG = [

@@ -7,17 +7,19 @@ namespace App\Tests\Functional\Builder;
 use App\Ability\NewAbilities;
 use App\Ability\NewAbilityFactory;
 use App\Builder\CharacterBuilder;
-use App\Dto\AbilitiesConfigDto;
+use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Enum\NewAbilityEnum;
 use App\Skill\FinalizedSkill;
+use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-#[Group('dev')]
 class CharacterBuilderTest extends KernelTestCase
 {
+    use RefreshDatabaseTrait;
+
     private CharacterBuilder $testedObject;
 
     protected function setUp(): void
@@ -31,28 +33,29 @@ class CharacterBuilderTest extends KernelTestCase
 
     public function testBuild(): void
     {
-        $firstLevelConfig = new LevelConfigDto(
-            1,
-            'barbarian',
-            ['light armors', 'medium armors'],
-            ['animal handling', 'stealth']
-        );
-        $secondLevelConfig = new LevelConfigDto(
-            2,
-            'barbarian',
-        );
-        $thirdLevelConfig = new LevelConfigDto(
-            3,
-            'berserker',
-        );
-        $abilitiesConfigDto = new AbilitiesConfigDto(
-            15,
-            13,
-            13,
-            7,
-            11,
-            9
-        );
+        $levelConfigDtos = [
+            new LevelConfigDto(
+                1,
+                'barbarian',
+                ['animal handling', 'stealth']
+            ),
+            new LevelConfigDto(
+                2,
+                'barbarian',
+            ),
+            new LevelConfigDto(
+                3,
+                'berserker',
+            )
+        ];
+        $abilityConfigDtos = [
+            new AbilityConfigDto('str', 15),
+            new AbilityConfigDto('dex', 13),
+            new AbilityConfigDto('con', 13),
+            new AbilityConfigDto('int', 7),
+            new AbilityConfigDto('wis', 11),
+            new AbilityConfigDto('cha', 9)
+        ];
         $configDto = new CharacterConfigDto(
             'Sydda',
             'Bartek',
@@ -60,8 +63,8 @@ class CharacterBuilderTest extends KernelTestCase
             'folk hero',
             'human',
             'chaotic good',
-            [$firstLevelConfig, $secondLevelConfig, $thirdLevelConfig],
-            $abilitiesConfigDto
+            $levelConfigDtos,
+            $abilityConfigDtos
         );
 
         $actual = $this->testedObject->build($configDto);
@@ -70,23 +73,23 @@ class CharacterBuilderTest extends KernelTestCase
         $this->assertSame('Bartek', $actual->playerName);
         $this->assertSame('Klątwa Sthrada', $actual->campaignName);
         $this->assertSame([12 => 3], $actual->hitDices);
-        $this->assertSame(29, $actual->hitPoints);
+        $this->assertSame(32, $actual->hitPoints);
         $this->assertEquals(
             new NewAbilities(
-                NewAbilityFactory::create(NewAbilityEnum::STR, 15),
-                NewAbilityFactory::create(NewAbilityEnum::DEX, 13),
-                NewAbilityFactory::create(NewAbilityEnum::CON, 13),
-                NewAbilityFactory::create(NewAbilityEnum::INT, 7),
-                NewAbilityFactory::create(NewAbilityEnum::WIS, 11),
-                NewAbilityFactory::create(NewAbilityEnum::CHA, 9),
+                NewAbilityFactory::create(NewAbilityEnum::STR, 16),
+                NewAbilityFactory::create(NewAbilityEnum::DEX, 14),
+                NewAbilityFactory::create(NewAbilityEnum::CON, 14),
+                NewAbilityFactory::create(NewAbilityEnum::INT, 8),
+                NewAbilityFactory::create(NewAbilityEnum::WIS, 12),
+                NewAbilityFactory::create(NewAbilityEnum::CHA, 10),
             ),
             $actual->abilities
         );
-        $this->assertSame(['berserker' => 3], $actual->levels);
+        $this->assertSame(['berserker' => 3], $actual->simpleLevels);
         $this->assertEquals(
             [
                 new FinalizedSkill('rage', 'rage desc'),
-                new FinalizedSkill('unarmored defense', 'jeśli nie nosisz zbroi, to twoja KP wynosi 12.')
+                new FinalizedSkill('unarmored defense', 'jeśli nie nosisz zbroi, to twoja KP wynosi 14.')
             ],
             $actual->skills
         );
@@ -96,6 +99,5 @@ class CharacterBuilderTest extends KernelTestCase
         $this->assertSame(['simple weapons', 'martial weapons'], $actual->weaponProficiencies);
         $this->assertSame([], $actual->toolProficiencies);
         $this->assertSame(['strength', 'constitution'], $actual->savingThrowProficiencies);
-        $this->assertSame([], $actual->skillProficiencies);
     }
 }

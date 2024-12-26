@@ -7,6 +7,8 @@ use App\Entity\Level;
 use App\HitDice\HitDiceMapper;
 use App\Level\Levels;
 
+use App\Level\NewLevels;
+
 use function array_map;
 use function array_sum;
 
@@ -32,7 +34,7 @@ class HitPointsCalculator
     }
 
     public function newCalculate(
-        array $levels,
+        NewLevels $levels,
         int $conModifier
     ): int {
         $hitPoints = array_map(
@@ -43,7 +45,7 @@ class HitPointsCalculator
                     ? $hitDice + $conModifier
                     : \ceil(($hitDice + 1) / 2) + $conModifier;
             },
-            $levels
+            $levels->levels
         );
 
         return array_sum($hitPoints);

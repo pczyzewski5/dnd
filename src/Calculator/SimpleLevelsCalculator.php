@@ -4,7 +4,7 @@ namespace App\Calculator;
 
 use App\Entity\Level;
 
-class LevelsCalculator
+class SimpleLevelsCalculator
 {
     public function calculate(array $levels): array
     {

@@ -11,7 +11,6 @@ use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
-#[Group('dev')]
 class AbilityConfigDtoMapperTest extends KernelTestCase
 {
     private const ABILITY_CONFIG = [

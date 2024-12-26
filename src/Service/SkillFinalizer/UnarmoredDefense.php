@@ -18,9 +18,9 @@ class UnarmoredDefense implements SkillFinalizerInterface
     }
 
     public function finalize(
-        Skill $skill,
         NewAbilities $abilities,
-        array $levels,
+        Skill $skill,
+        int $level,
     ): FinalizedSkill {
         return new FinalizedSkill(
             $skill->getName(),

@@ -5,121 +5,121 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Ability\NewAbilities;
-use App\Ability\NewAbilityFactory;
-use App\Calculator\HitDiceCalculator;
 use App\Calculator\HitPointsCalculator;
-use App\Calculator\LevelsCalculator;
-use App\Dto\AbilitiesConfigDto;
 use App\Dto\CharacterConfigDto;
-use App\Dto\LevelConfigDto;
-use App\Entity\Level;
-use App\Enum\NewAbilityEnum;
+use App\Enum\NewAlignmentEnum;
+use App\Level\NewLevels;
 use App\NewCharacter\NewCharacter;
-use App\Repository\LevelRepository;
+use App\Race\RaceConfig;
+use App\Repository\RaceRepository;
+use App\Service\RaceService;
 use App\Service\SkillFinalizerService;
+
+use function count;
+use function var_dump;
 
 class CharacterBuilder
 {
     public function __construct(
-        private readonly LevelRepository $levelRepository,
-        private readonly HitDiceCalculator $hitDiceCalculator,
+        private readonly RaceRepository $raceRepository,
+        private readonly RaceService $raceService,
+        private readonly AbilitiesBuilder $abilitiesBuilder,
+        private readonly AbilitySkillsBuilder $abilitySkillsBuilder,
         private readonly HitPointsCalculator $hitPointsCalculator,
-        private readonly LevelsCalculator $levelsCalculator,
+        private readonly LevelsBuilder $levelsBuilder,
         private readonly SkillFinalizerService $skillFinalizerService,
     ) {
     }
 
     public function build(CharacterConfigDto $config): NewCharacter
     {
-        $levels = $this->getLevels($config->levelConfigDtos);
-        $abilities = $this->getAbilities($config->abilitiesConfigDto);
+        $raceConfig = $this->getRaceConfig($config);
+        $levels = $this->getLevels($config);
+        $abilities = $this->getAbilities($config, $raceConfig);
 
         return new NewCharacter(
             $config->characterName,
             $config->playerName,
             $config->campaignName,
-            $this->getHitDices($levels),
-            $this->getHitPoints($levels, $abilities),
+            $levels->hitDices,
+            $this->getHitPoints($abilities, $levels),
             $abilities,
-            $this->getSimpleLevels($levels),
-            $this->getSkills($abilities, $levels),
+            $levels->simpleLevels,
+            $this->getFinalizedSkills($abilities, $levels),
+            $this->getAbilitySkills($abilities, $levels),
             $config->origin,
             $config->race,
-            $this->getProficiencies($levels, 'armor'),
-            $this->getProficiencies($levels, 'weapon'),
-            $this->getProficiencies($levels, 'tool'),
-            $this->getProficiencies($levels, 'saving throw'),
-            $this->getProficiencies($levels, 'skill'),
+            $this->getAlignment($config),  // do testów!!!
+            $levels->proficiencies->getArmorProficiencies(),
+            $levels->proficiencies->getWeaponProficiencies(),
+            $levels->proficiencies->getToolProficiencies(),
+            $levels->proficiencies->getSavingThrowProficiencies(),
         );
     }
 
-    private function getLevels(array $configs): array
+    private function getRaceConfig(CharacterConfigDto $config): RaceConfig
     {
-        return array_map(
-            fn (LevelConfigDto $config)
-            => $this->levelRepository->getByLevelAndCharacterClass(
-                $config->level,
-                $config->class
-            ),
-            $configs
+        return $this->raceService->getRaceConfig(
+            $this->raceRepository->findOneBy(['name' => $config->race])
         );
     }
 
-    private function getAbilities(AbilitiesConfigDto $config): NewAbilities
-    {
-        return new NewAbilities(
-            NewAbilityFactory::create(NewAbilityEnum::STR, $config->str),
-            NewAbilityFactory::create(NewAbilityEnum::DEX, $config->dex),
-            NewAbilityFactory::create(NewAbilityEnum::CON, $config->con),
-            NewAbilityFactory::create(NewAbilityEnum::INT, $config->int),
-            NewAbilityFactory::create(NewAbilityEnum::WIS, $config->wis),
-            NewAbilityFactory::create(NewAbilityEnum::CHA, $config->cha),
-        );
-    }
+    private function getAbilities(
+        CharacterConfigDto $characterConfigDto,
+        RaceConfig $raceConfig
+    ): NewAbilities {
+        $abilitiesBuilder = $this->abilitiesBuilder
+            ->add(...$characterConfigDto->abilityConfigDtos)
+            ->add(...$raceConfig->asi);
 
-    private function getHitDices(array $levels): array
-    {
-        return $this->hitDiceCalculator->newCalculate($levels);
-    }
-
-    private function getHitPoints(array $levels, NewAbilities $abilities): int
-    {
-        return $this->hitPointsCalculator->newCalculate($levels, $abilities->con->modifier);
-    }
-
-    private function getSimpleLevels(array $levels): array
-    {
-        return $this->levelsCalculator->calculate($levels);
-    }
-
-    private function getSkills(NewAbilities $abilities, array $levels): array
-    {
-        $result = [];
-
-        foreach ($levels as $level) {
-            $result += $this->skillFinalizerService->finalizeArray(
-                $level->getSkills()->toArray(),
-                $abilities,
-                $levels
-            );
+        foreach ($characterConfigDto->levelConfigDtos as $dto) {
+            $abilitiesBuilder->add(...$dto->asi);
         }
 
-        return $result;
+        return $abilitiesBuilder->build();
     }
 
-    private function getProficiencies(array $levels, string $category): array
+    private function getLevels(CharacterConfigDto $config): NewLevels
     {
-        $result = [];
+        return $this->levelsBuilder
+            ->setLevelConfigDtos($config->levelConfigDtos)
+            ->build();
+    }
 
-        /** @var Level $level */
-        foreach ($levels as $level) {
-            foreach ($level->getProficiencies() as $proficiency) {
-                if ($proficiency->getCategory() === $category) {
-                    $result[] = $proficiency->getName();
-                }
-            }
-        }
+    private function getFinalizedSkills(
+        NewAbilities $abilities,
+        NewLevels $levels
+    ): array {
+        return $this->skillFinalizerService->finalizeArray(
+            $abilities,
+            $levels->skills,
+            count($levels->levels),
+        );
+    }
 
-        return $result;
+    private function getHitPoints(
+        NewAbilities $abilities,
+        NewLevels $levels
+    ): int {
+        return $this->hitPointsCalculator->newCalculate(
+            $levels,
+            $abilities->con->modifier
+        );
+    }
+
+    private function getAbilitySkills(
+        NewAbilities $abilities,
+        NewLevels $levels,
+    ): array {
+        return $this->abilitySkillsBuilder
+            ->setAbilities($abilities)
+            ->setProficiencies($levels->proficiencies)
+            ->setProficiencyBonus($levels->proficiencyBonus)
+            ->build();
+    }
+
+    private function getAlignment(CharacterConfigDto $config): string
+    {
+        return NewAlignmentEnum::tryFrom($config->alignment)->value;
     }
 }

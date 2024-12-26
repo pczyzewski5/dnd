@@ -25,7 +25,6 @@ class NewCharacter
         public readonly array $weaponProficiencies,
         public readonly array $toolProficiencies,
         public readonly array $savingThrowProficiencies,
-        public readonly array $skillProficiencies,
     ) {
     }
 }

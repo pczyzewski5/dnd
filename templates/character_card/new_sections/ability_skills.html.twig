@@ -1,0 +1,55 @@
+<style>
+    #ability-skills-background {
+        background-image: url("{{ asset('images/ability_skills.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #ability-skills-container {
+    {{ backgroundColor() }}
+        width: 135px;
+        height: 336px;
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        left: 15px;
+        top: 12px;
+    }
+    .ability-skill {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ability-skill div {
+        display: flex;
+        align-items:center;
+        justify-content:center;
+
+    }
+    .ability-skill div:nth-child(1) {
+    {{ backgroundColor() }}
+    }
+    .ability-skill div:nth-child(2) {
+    {{ backgroundColor() }}
+    }
+    .ability-skill div:nth-child(3) {
+    {{ backgroundColor() }}
+    }
+</style>
+
+<div id="ability-skills-section" class="character-card-section">
+    <div id="ability-skills-background">
+        <div id="ability-skills-container">
+            {% for abilitySkill in abilitySkills %}
+                <div class="ability-skill">
+                    <div>{{ printMode ? false|dot : abilitySkill.hasProficiency|dot }}</div>
+                    <div class="opaque">&nbsp;&nbsp;{{ printMode is defined ? '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : abilitySkill.getValue()|value }}&nbsp;&nbsp;</div>
+                    <div>{{ abilitySkill.enum.value|capitalize }} ({{ abilitySkill.enum.getAbilityEnum().value }})</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

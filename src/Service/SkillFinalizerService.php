@@ -26,13 +26,13 @@ class SkillFinalizerService
     }
 
     public function finalize(
-        Skill $skill,
         NewAbilities $abilities,
-        array $levels,
+        Skill $skill,
+        int $level,
     ): FinalizedSkill {
         foreach ($this->finalizers as $finalizer) {
             if ($finalizer->supports($skill)) {
-                return $finalizer->finalize($skill, $abilities, $levels);
+                return $finalizer->finalize($abilities, $skill, $level);
             }
         }
 
@@ -40,14 +40,14 @@ class SkillFinalizerService
     }
 
     public function finalizeArray(
+        NewAbilities $abilities,
         array $skills,
-        NewAbilities $newAbilities,
-        array $levels,
+        int $level,
     ): array {
         // description będzie jak w kartach z tego edytora, czyli będzie to jakiś kod tego edytora,
         // nie robić żadnego mappera do twigów itd
         return array_map(
-            fn (Skill $skill): FinalizedSkill => $this->finalize($skill, $newAbilities, $levels),
+            fn (Skill $skill): FinalizedSkill => $this->finalize($abilities, $skill, $level),
             $skills
         );
     }

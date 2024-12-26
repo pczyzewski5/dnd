@@ -15,7 +15,6 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Exception;
 
-#[Group('dev')]
 class AbilitiesBuilderTest extends TestCase
 {
     private AbilitiesBuilder $testedObject;

@@ -30,24 +30,24 @@ App\Entity\Proficiency:
   animal_handling:
     __construct:
       - animal handling
-      - skill
+      - ability skill
   athletics:
     __construct:
       - athletics
-      - skill
+      - ability skill
   intimidation:
     __construct:
       - intimidation
-      - skill
+      - ability skill
   nature:
     __construct:
       - nature
-      - skill
+      - ability skill
   perception:
     __construct:
       - perception
-      - skill
+      - ability skill
   survival:
     __construct:
       - survival
-      - skill
+      - ability skill

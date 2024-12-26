@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Collection;
 
+use Countable;
 use Iterator;
 
-class AbstractCollection implements Iterator
+class Collection implements Iterator, Countable
 {
     private array $items;
     private int $position;
@@ -54,5 +55,10 @@ class AbstractCollection implements Iterator
     public function toArray(): array
     {
         return $this->items;
+    }
+
+    public function count(): int
+    {
+        return count($this->items);
     }
 }

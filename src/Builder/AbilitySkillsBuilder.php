@@ -7,9 +7,11 @@ namespace App\Builder;
 use App\Ability\NewAbilities;
 use App\Ability\NewAbilitySkill;
 use App\Enum\NewAbilitySkillEnum;
+use App\Proficiency\NewProficiencies;
 
 use function array_map;
 use function in_array;
+use function var_dump;
 
 class AbilitySkillsBuilder
 {
@@ -17,9 +19,9 @@ class AbilitySkillsBuilder
     private int $proficiencyBonus;
     private NewAbilities $abilities;
 
-    public function setProficiencies(array $proficiencies): self
+    public function setProficiencies(NewProficiencies $proficiencies): self
     {
-        $this->proficiencies = $proficiencies;
+        $this->proficiencies = $proficiencies->getAbilitySkillProficiencies();
 
         return $this;
     }
@@ -45,10 +47,12 @@ class AbilitySkillsBuilder
                 $ability = $this->abilities->getByAbilityEnum(
                     $abilitySkillEnum->getAbilityEnum()
                 );
+
                 $hasProficiency = in_array(
                     $abilitySkillEnum->value,
                     $this->proficiencies
                 );
+
                 $value = $hasProficiency
                     ? $ability->modifier + $this->proficiencyBonus
                     : $ability->modifier;

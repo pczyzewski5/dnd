@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 use function json_encode;
 
-#[Group('dev')]
 class CharacterConfigDtoMapperTest extends KernelTestCase
 {
     private const CHARACTER_CONFIG = [

@@ -13,8 +13,8 @@ interface SkillFinalizerInterface
     public function supports(Skill $skill): bool;
 
     public function finalize(
-        Skill $skill,
         NewAbilities $abilities,
-        array $levels
+        Skill $skill,
+        int $level
     ): FinalizedSkill;
 }
