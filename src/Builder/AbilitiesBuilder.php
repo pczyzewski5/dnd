@@ -7,7 +7,7 @@ namespace App\Builder;
 use App\Ability\Abilities;
 use App\Ability\AbilityFactory;
 use App\Dto\AbilityConfigDto;
-use App\Enum\NewAbilityEnum;
+use App\Enum\AbilityEnum;
 
 class AbilitiesBuilder
 {
@@ -32,12 +32,12 @@ class AbilitiesBuilder
     public function build(): Abilities
     {
         return new Abilities(
-            AbilityFactory::create(NewAbilityEnum::STR, $this->str),
-            AbilityFactory::create(NewAbilityEnum::DEX, $this->dex),
-            AbilityFactory::create(NewAbilityEnum::CON, $this->con),
-            AbilityFactory::create(NewAbilityEnum::INT, $this->int),
-            AbilityFactory::create(NewAbilityEnum::WIS, $this->wis),
-            AbilityFactory::create(NewAbilityEnum::CHA, $this->cha),
+            AbilityFactory::create(AbilityEnum::STR, $this->str),
+            AbilityFactory::create(AbilityEnum::DEX, $this->dex),
+            AbilityFactory::create(AbilityEnum::CON, $this->con),
+            AbilityFactory::create(AbilityEnum::INT, $this->int),
+            AbilityFactory::create(AbilityEnum::WIS, $this->wis),
+            AbilityFactory::create(AbilityEnum::CHA, $this->cha),
         );
     }
 }

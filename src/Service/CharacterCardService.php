@@ -3,8 +3,6 @@
 namespace App\Service;
 
 use App\Character\Character;
-use App\CharacterCard\SectionBuilder\SimpleCharacterStatsBuilder;
-use App\NewCharacter\NewCharacter;
 use App\SectionBuilder\AbilitiesSectionBuilder;
 use App\SectionBuilder\AbilitySkillsSectionBuilder;
 use App\SectionBuilder\AttacksTricksSectionBuilder;
@@ -21,8 +19,6 @@ use App\SectionBuilder\StatsSectionBuilder;
 use App\SectionBuilder\TitleSectionBuilder;
 use Twig\Environment;
 
-use function array_merge;
-
 class CharacterCardService
 {
     private Environment $twig;
@@ -32,7 +28,7 @@ class CharacterCardService
         $this->twig = $twig;
     }
 
-    public function getFrontpage(NewCharacter $character, $opaqueStats = false): string
+    public function getFrontpage(Character $character, $opaqueStats = false): string
     {
         $context = [
             'statsSection' => (new StatsSectionBuilder($character, $this->twig))->build(),

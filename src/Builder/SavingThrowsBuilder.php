@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Ability\Abilities;
-use App\Ability\AbilitySkill;
-use App\Enum\NewAbilityEnum;
-use App\Enum\NewAbilitySkillEnum;
-use App\Proficiency\Proficiencies;
-
-use App\SavingThrows\NewSavingThrow;
+use App\Character\Proficiencies;
+use App\Character\SavingThrow;
+use App\Enum\AbilityEnum;
 
 use function array_map;
 use function in_array;
@@ -45,7 +42,7 @@ class SavingThrowsBuilder
     public function build(): array
     {
         return array_map(
-            function (NewAbilityEnum $abilityEnum) {
+            function (AbilityEnum $abilityEnum) {
                 $ability = $this->abilities->getByAbilityEnum(
                     $abilityEnum
                 );
@@ -59,13 +56,13 @@ class SavingThrowsBuilder
                     ? $ability->modifier + $this->proficiencyBonus
                     : $ability->modifier;
 
-                return new NewSavingThrow(
+                return new SavingThrow(
                     $abilityEnum,
                     $value,
                     $hasProficiency
                 );
             },
-            NewAbilityEnum::cases()
+            AbilityEnum::cases()
         );
     }
 }

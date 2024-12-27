@@ -3,7 +3,7 @@
 namespace App\Calculator;
 
 use App\Ability\Abilities;
-use App\Proficiency\Proficiencies;
+use App\Character\Proficiencies;
 
 use function in_array;
 

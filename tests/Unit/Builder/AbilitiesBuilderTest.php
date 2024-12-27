@@ -9,7 +9,7 @@ use App\Ability\Abilities;
 use App\Ability\AbilityFactory;
 use App\Builder\AbilitiesBuilder;
 use App\Dto\AbilityConfigDto;
-use App\Enum\NewAbilityEnum;
+use App\Enum\AbilityEnum;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -50,12 +50,12 @@ class AbilitiesBuilderTest extends TestCase
                     new AbilityConfigDto('cha', 10)
                 ],
                 'expected' => new Abilities(
-                    AbilityFactory::create(NewAbilityEnum::STR, 10),
-                    AbilityFactory::create(NewAbilityEnum::DEX, 10),
-                    AbilityFactory::create(NewAbilityEnum::CON, 10),
-                    AbilityFactory::create(NewAbilityEnum::INT, 10),
-                    AbilityFactory::create(NewAbilityEnum::WIS, 10),
-                    AbilityFactory::create(NewAbilityEnum::CHA, 10),
+                    AbilityFactory::create(AbilityEnum::STR, 10),
+                    AbilityFactory::create(AbilityEnum::DEX, 10),
+                    AbilityFactory::create(AbilityEnum::CON, 10),
+                    AbilityFactory::create(AbilityEnum::INT, 10),
+                    AbilityFactory::create(AbilityEnum::WIS, 10),
+                    AbilityFactory::create(AbilityEnum::CHA, 10),
                 )
             ],
             'doubled configs' => [
@@ -74,12 +74,12 @@ class AbilitiesBuilderTest extends TestCase
                     new AbilityConfigDto('cha', 6),
                 ],
                 'expected' => new Abilities(
-                    AbilityFactory::create(NewAbilityEnum::STR, 11),
-                    AbilityFactory::create(NewAbilityEnum::DEX, 12),
-                    AbilityFactory::create(NewAbilityEnum::CON, 13),
-                    AbilityFactory::create(NewAbilityEnum::INT, 14),
-                    AbilityFactory::create(NewAbilityEnum::WIS, 15),
-                    AbilityFactory::create(NewAbilityEnum::CHA, 16),
+                    AbilityFactory::create(AbilityEnum::STR, 11),
+                    AbilityFactory::create(AbilityEnum::DEX, 12),
+                    AbilityFactory::create(AbilityEnum::CON, 13),
+                    AbilityFactory::create(AbilityEnum::INT, 14),
+                    AbilityFactory::create(AbilityEnum::WIS, 15),
+                    AbilityFactory::create(AbilityEnum::CHA, 16),
                 )
             ]
         ];

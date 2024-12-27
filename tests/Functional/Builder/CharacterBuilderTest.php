@@ -10,7 +10,7 @@ use App\Builder\CharacterBuilder;
 use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
-use App\Enum\NewAbilityEnum;
+use App\Enum\AbilityEnum;
 use App\Skill\FinalizedSkill;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -76,12 +76,12 @@ class CharacterBuilderTest extends KernelTestCase
         $this->assertSame(32, $actual->hitPoints);
         $this->assertEquals(
             new Abilities(
-                AbilityFactory::create(NewAbilityEnum::STR, 16),
-                AbilityFactory::create(NewAbilityEnum::DEX, 14),
-                AbilityFactory::create(NewAbilityEnum::CON, 14),
-                AbilityFactory::create(NewAbilityEnum::INT, 8),
-                AbilityFactory::create(NewAbilityEnum::WIS, 12),
-                AbilityFactory::create(NewAbilityEnum::CHA, 10),
+                AbilityFactory::create(AbilityEnum::STR, 16),
+                AbilityFactory::create(AbilityEnum::DEX, 14),
+                AbilityFactory::create(AbilityEnum::CON, 14),
+                AbilityFactory::create(AbilityEnum::INT, 8),
+                AbilityFactory::create(AbilityEnum::WIS, 12),
+                AbilityFactory::create(AbilityEnum::CHA, 10),
             ),
             $actual->abilities
         );

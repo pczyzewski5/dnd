@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Level;
+namespace App\Character;
 
-use App\Proficiency\Proficiencies;
-
-class NewLevels
+class Levels
 {
     public function __construct(
         public readonly Proficiencies $proficiencies,

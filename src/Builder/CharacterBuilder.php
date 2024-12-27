@@ -11,19 +11,16 @@ use App\Calculator\InitiativeCalculator;
 use App\Calculator\PassiveInsightCalculator;
 use App\Calculator\PassivePerceptionCalculator;
 use App\Calculator\SpeedCalculator;
+use App\Character\Character;
+use App\Character\Levels;
 use App\Dto\CharacterConfigDto;
-use App\Enum\NewAbilityEnum;
-use App\Enum\NewAlignmentEnum;
-use App\Level\NewLevels;
-use App\NewCharacter\NewCharacter;
+use App\Enum\AlignmentEnum;
 use App\Race\RaceConfig;
 use App\Repository\RaceRepository;
 use App\Service\RaceService;
 use App\Service\SkillFinalizerService;
 
 use function count;
-use function in_array;
-use function var_dump;
 
 class CharacterBuilder
 {
@@ -44,34 +41,34 @@ class CharacterBuilder
     ) {
     }
 
-    public function build(CharacterConfigDto $config): NewCharacter
+    public function build(CharacterConfigDto $config): Character
     {
         $raceConfig = $this->getRaceConfig($config);
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
 
-        return new NewCharacter(
+        return new Character(
+            $abilities,
             $config->characterName,
             $config->playerName,
             $config->campaignName,
-            $levels->hitDices,
-            $this->getHitPoints($abilities, $levels),
-            $abilities,
-            $levels->simpleLevels,
-            $this->getFinalizedSkills($abilities, $levels),
-            $this->getAbilitySkills($abilities, $levels),
             $config->origin,
             $config->race,
-            $this->getAlignment($config),  // do testów!!!
             $levels->proficiencies,
+            $levels->hitDices,
+            $levels->simpleLevels,
+            $levels->proficiencyBonus,
+            $this->getHitPoints($abilities, $levels),
+            $this->getFinalizedSkills($abilities, $levels),
+            $this->getAbilitySkills($abilities, $levels),
             $this->getSavingThrows($abilities, $levels),
-            ['polski, angielski'],
             $this->getPassivePerception($abilities, $levels),
             $this->getPassiveInsights($abilities, $levels),
-            $levels->proficiencyBonus,
+            $raceConfig->languages,
+            $raceConfig->darkvision,
+            $this->getAlignment($config),  // do testów!!!
             $this->getArmorClass($abilities),
             $this->getSpeed($raceConfig),
-            $raceConfig->darkvision,
             $this->getInitiative($abilities)
         );
     }
@@ -98,7 +95,7 @@ class CharacterBuilder
         return $abilitiesBuilder->build();
     }
 
-    private function getLevels(CharacterConfigDto $config): NewLevels
+    private function getLevels(CharacterConfigDto $config): Levels
     {
         return $this->levelsBuilder
             ->setLevelConfigDtos($config->levelConfigDtos)
@@ -107,7 +104,7 @@ class CharacterBuilder
 
     private function getFinalizedSkills(
         Abilities $abilities,
-        NewLevels $levels
+        Levels $levels
     ): array {
         return $this->skillFinalizerService->finalizeArray(
             $abilities,
@@ -118,9 +115,9 @@ class CharacterBuilder
 
     private function getHitPoints(
         Abilities $abilities,
-        NewLevels $levels
+        Levels $levels
     ): int {
-        return $this->hitPointsCalculator->newCalculate(
+        return $this->hitPointsCalculator->calculate(
             $levels,
             $abilities->con->modifier
         );
@@ -128,7 +125,7 @@ class CharacterBuilder
 
     private function getAbilitySkills(
         Abilities $abilities,
-        NewLevels $levels,
+        Levels $levels,
     ): array {
         return $this->abilitySkillsBuilder
             ->setAbilities($abilities)
@@ -139,12 +136,12 @@ class CharacterBuilder
 
     private function getAlignment(CharacterConfigDto $config): string
     {
-        return NewAlignmentEnum::tryFrom($config->alignment)->value;
+        return AlignmentEnum::tryFrom($config->alignment)->value;
     }
 
     private function getSavingThrows(
         Abilities $abilities,
-        NewLevels $levels
+        Levels $levels
     ): array {
         return $this->savingThrowsBuilder
             ->setAbilities($abilities)
@@ -155,7 +152,7 @@ class CharacterBuilder
 
     public function getPassivePerception(
         Abilities $abilities,
-        NewLevels $levels
+        Levels $levels
     ): int {
         return $this->passivePerceptionCalculator->newCalculate(
             $abilities,
@@ -166,7 +163,7 @@ class CharacterBuilder
 
     public function getPassiveInsights(
         Abilities $abilities,
-        NewLevels $levels
+        Levels $levels
     ): int {
         return $this->passiveInsightCalculator->newCalculate(
             $abilities,

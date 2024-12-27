@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-enum NewAbilityEnum: string
+enum AbilityEnum: string
 {
     case STR = 'str';
     case DEX = 'dex';

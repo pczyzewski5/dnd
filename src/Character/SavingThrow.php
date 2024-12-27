@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\SavingThrows;
+namespace App\Character;
 
-use App\Enum\NewAbilityEnum;
+use App\Enum\AbilityEnum;
 
-class NewSavingThrow
+class SavingThrow
 {
     public function __construct(
-        public readonly NewAbilityEnum $enum,
+        public readonly AbilityEnum $enum,
         public readonly int $value,
         public readonly bool $hasProficiency
     ) {

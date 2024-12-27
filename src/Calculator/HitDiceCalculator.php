@@ -2,9 +2,8 @@
 
 namespace App\Calculator;
 
+use App\Character\Levels;
 use App\Entity\Level;
-use App\HitDice\HitDiceMapper;
-use App\Level\Levels;
 
 class HitDiceCalculator
 {

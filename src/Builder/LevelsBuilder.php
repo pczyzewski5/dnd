@@ -7,10 +7,10 @@ namespace App\Builder;
 use App\Calculator\HitDiceCalculator;
 use App\Calculator\ProficiencyBonusCalculator;
 use App\Calculator\SimpleLevelsCalculator;
+use App\Character\Levels;
+use App\Character\Proficiencies;
 use App\Dto\LevelConfigDto;
 use App\Entity\Level;
-use App\Level\NewLevels;
-use App\Proficiency\Proficiencies;
 use App\Repository\LevelRepository;
 use App\Repository\ProficiencyRepository;
 use App\Repository\SkillRepository;
@@ -43,7 +43,7 @@ class LevelsBuilder
         return $this;
     }
 
-    public function build(): NewLevels
+    public function build(): Levels
     {
         $levels = $this->getLevels($this->levelConfigDtos);
         $skills = $this->getSkills($levels, $this->levelConfigDtos);
@@ -52,7 +52,7 @@ class LevelsBuilder
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
         $hitDices = $this->hitDiceCalculator->newCalculate($levels);
 
-        return new NewLevels(
+        return new Levels(
             $proficiencies,
             $proficiencyBonus,
             $levels,
@@ -78,20 +78,23 @@ class LevelsBuilder
         array $levels,
         array $levelConfigDtos
     ): Proficiencies {
-        $proficiencies = array_merge(
-            ...array_map(
-                fn (Level $level): array
-                => $level->getProficiencies()->toArray(),
-                $levels
-        ),
-            ...array_map(
-                fn (LevelConfigDto $dto): array
-                => $this->proficiencyRepository->getByNames($dto->proficiencies),
-                $levelConfigDtos
-            )
+        $proficienciesFromLevels = array_map(
+            fn (Level $level): array
+            => $level->getProficiencies()->toArray(),
+            $levels
+        );
+        $proficienciesFromLevelConfigs = array_map(
+            fn (LevelConfigDto $dto): array
+            => $this->proficiencyRepository->getByNames($dto->proficiencies),
+            $levelConfigDtos
         );
 
-        return new Proficiencies(...$proficiencies);
+        return new Proficiencies(
+            ...array_merge(
+                ...$proficienciesFromLevels,
+                ...$proficienciesFromLevelConfigs
+            )
+        );
     }
 
     private function getSkills(
@@ -100,9 +103,9 @@ class LevelsBuilder
     ): array {
         return array_merge(
             ...array_map(
-                fn (Level $level): array
-                => $level->getSkills()->toArray(),
-                $levels
+            fn (Level $level): array
+            => $level->getSkills()->toArray(),
+            $levels
         ),
             ...array_map(
                 fn (LevelConfigDto $dto): array

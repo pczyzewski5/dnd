@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Ability;
 
-use App\Enum\NewAbilityEnum;
+use App\Enum\AbilityEnum;
 
 use Exception;
 use function get_object_vars;
@@ -22,7 +22,7 @@ class Abilities
     ) {
     }
 
-    public function getByAbilityEnum(NewAbilityEnum $abilityEnum): Ability
+    public function getByAbilityEnum(AbilityEnum $abilityEnum): Ability
     {
         foreach (get_object_vars($this) as $ability) {
             if ($ability->abilityEnum === $abilityEnum) {

@@ -6,8 +6,8 @@ namespace App\Builder;
 
 use App\Ability\Abilities;
 use App\Ability\AbilitySkill;
-use App\Enum\NewAbilitySkillEnum;
-use App\Proficiency\Proficiencies;
+use App\Character\Proficiencies;
+use App\Enum\AbilitySkillEnum;
 
 use function array_map;
 use function in_array;
@@ -42,7 +42,7 @@ class AbilitySkillsBuilder
     public function build(): array
     {
         return array_map(
-            function (NewAbilitySkillEnum $abilitySkillEnum) {
+            function (AbilitySkillEnum $abilitySkillEnum) {
                 $ability = $this->abilities->getByAbilityEnum(
                     $abilitySkillEnum->getAbilityEnum()
                 );
@@ -62,7 +62,7 @@ class AbilitySkillsBuilder
                     $hasProficiency
                 );
             },
-            NewAbilitySkillEnum::cases()
+            AbilitySkillEnum::cases()
         );
     }
 }

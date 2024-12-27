@@ -2,13 +2,13 @@
 
 namespace App\SectionBuilder;
 
-use App\NewCharacter\NewCharacter;
+use App\Character\Character;
 use Twig\Environment;
 
 abstract class AbstractSectionBuilder
 {
     public function __construct(
-        protected readonly NewCharacter $character,
+        protected readonly Character $character,
         protected readonly Environment $twig
     ) {
     }

@@ -6,7 +6,7 @@ namespace App\Enum;
 
 use MyCLabs\Enum\Enum;
 
-enum NewAlignmentEnum: string
+enum AlignmentEnum: string
 {
     case LAWFUL_GOOD = 'lawful good';
     case CHAOTIC_GOOD = 'chaotic good';
