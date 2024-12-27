@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\Abilities;
 use App\Calculator\ArmorClassCalculator;
 use App\Calculator\HitPointsCalculator;
 use App\Calculator\InitiativeCalculator;
 use App\Calculator\PassiveInsightCalculator;
 use App\Calculator\PassivePerceptionCalculator;
 use App\Calculator\SpeedCalculator;
+use App\Character\Abilities;
 use App\Character\Character;
 use App\Character\Levels;
 use App\Dto\CharacterConfigDto;

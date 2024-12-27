@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Builder;
 
-use App\Ability\Abilities;
-use App\Ability\AbilityFactory;
 use App\Builder\CharacterBuilder;
+use App\Character\Abilities;
+use App\Character\AbilityFactory;
 use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Enum\AbilityEnum;
 use App\Skill\FinalizedSkill;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
-use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CharacterBuilderTest extends KernelTestCase

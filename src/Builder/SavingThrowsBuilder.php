@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\Abilities;
+use App\Character\Abilities;
 use App\Character\Proficiencies;
 use App\Character\SavingThrow;
 use App\Enum\AbilityEnum;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Ability;
+namespace App\Character;
 
 use App\Enum\AbilityEnum;
-
 use Exception;
+
 use function get_object_vars;
 
 class Abilities

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Character;
 
-use App\Ability\Abilities;
-
 class Character
 {
     public function __construct(

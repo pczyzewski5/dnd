@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\SkillFinalizer;
 
-use App\Ability\Abilities;
+use App\Character\Abilities;
 use App\Entity\Skill;
 use App\Skill\FinalizedSkill;
 

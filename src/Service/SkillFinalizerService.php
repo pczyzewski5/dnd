@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Ability\Abilities;
+use App\Character\Abilities;
 use App\Entity\Skill;
 use App\Service\SkillFinalizer\SkillFinalizerInterface;
 use App\Service\SkillFinalizer\UnarmoredDefense;

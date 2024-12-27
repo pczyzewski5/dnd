@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\Abilities;
-use App\Ability\AbilitySkill;
+use App\Character\Abilities;
+use App\Character\AbilitySkill;
 use App\Character\Proficiencies;
 use App\Enum\AbilitySkillEnum;
 

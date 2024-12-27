@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Calculator;
 
-use App\Ability\Abilities;
+use App\Character\Abilities;
 
 class ArmorClassCalculator
 {

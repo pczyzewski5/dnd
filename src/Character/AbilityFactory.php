@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ability;
+namespace App\Character;
 
 use App\Calculator\AbilityModifierCalculator;
 use App\Enum\AbilityEnum;

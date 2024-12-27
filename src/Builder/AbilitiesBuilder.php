@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Ability\Abilities;
-use App\Ability\AbilityFactory;
+use App\Character\Abilities;
+use App\Character\AbilityFactory;
 use App\Dto\AbilityConfigDto;
 use App\Enum\AbilityEnum;
 

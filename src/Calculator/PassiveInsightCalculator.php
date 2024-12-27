@@ -2,7 +2,7 @@
 
 namespace App\Calculator;
 
-use App\Ability\Abilities;
+use App\Character\Abilities;
 use App\Character\Proficiencies;
 
 use function in_array;
