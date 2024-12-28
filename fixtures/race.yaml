@@ -34,10 +34,24 @@ parameters:
         "speed_in_meters": 9,
         "darkvision_in_meters": 0
       }'
+  human_variant_config:
+    '{
+        "asi": [],
+        "skills": [],
+        "languages": [
+            "common"
+        ],
+        "speed_in_meters": 9,
+        "darkvision_in_meters": 0
+      }'
 
 App\Entity\Race:
   human:
     __construct:
       - human
       - <{human_config}>
+  human_variant:
+    __construct:
+      - human*
+      - <{human_variant_config}>
  

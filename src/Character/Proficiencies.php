@@ -17,9 +17,9 @@ class Proficiencies
         return $this;
     }
 
-    public function getToolProficiencies(): array
+    public function getOtherProficiencies(): array
     {
-        return $this->proficiencies['tool'] ?? [];
+        return $this->proficiencies['other'] ?? [];
     }
 
     public function getArmorProficiencies(): array

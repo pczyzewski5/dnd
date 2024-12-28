@@ -5,7 +5,10 @@ namespace App\Calculator;
 use App\Character\Abilities;
 use App\Character\Proficiencies;
 
+use App\Enum\AbilitySkillEnum;
+
 use function in_array;
+use function var_dump;
 
 class PassivePerceptionCalculator
 {
@@ -16,7 +19,7 @@ class PassivePerceptionCalculator
     ): int {
         $baseValue = 10;
 
-        if (in_array('perception', $proficiencies->getAbilitySkillProficiencies())) {
+        if (in_array(AbilitySkillEnum::PERCEPTION->value, $proficiencies->getAbilitySkillProficiencies())) {
             $baseValue += $proficiencyBonus;
         }
 

@@ -22,44 +22,110 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
         'player_name' => 'Bartek J',
         'campaign_name' => 'Klątwa Sthrada',
         'origin' => 'folk hero',
-        'race' => 'human',
+        'race' => 'human*',
         'alignment' => 'chaotic good',
         'levels' => [
             [
                 'level' => 1,
                 'class' => 'barbarian',
                 'proficiencies' => [
-                    'survival',
-                    'animal handling',
+                    'survival', // z folk hero
+                    'animal handling', // z folk hero
+                    'athletics', // z rasy
+                    'perception', // z rasy
+                    'stealth', // z human variant
+                    'land vehicles', // z folk hero
+                    'tinker tools', // z folk hero
                 ],
                 'skills' => [
-                    'Bel\'Quath Song',
+                    'BelQuath Song',
+                ],
+            ],
+            [
+                'level' => 2,
+                'class' => 'barbarian',
+                'skills' => [
+                    'reckless attack',
+                    'danger sense',
+                ],
+            ],
+            [
+                'level' => 3,
+                'class' => 'berserker',
+                'skills' => [
+                    'frenzy',
+                ],
+            ],
+            [
+                'level' => 4,
+                'class' => 'berserker',
+                'asi' => [
+                    [
+                        'ability' => 'con',
+                        'value'=> 2
+                    ]
+                ],
+            ],
+            [
+                'level' => 5,
+                'class' => 'berserker',
+                'skills' => [
+                    'extra attack',
+                    'fast movement'
+                ],
+            ],
+            [
+                'level' => 6,
+                'class' => 'berserker',
+                'skills' => [
+                    'mindless rage'
+                ],
+            ],
+            [
+                'level' => 7,
+                'class' => 'berserker',
+                'skills' => [
+                    'feral instinct'
+                ],
+            ],
+            [
+                'level' => 8,
+                'class' => 'berserker',
+                'skills' => [
+                    'great weapon mastery'
+                ],
+            ],
+            [
+                'level' => 9,
+                'class' => 'berserker',
+                'skills' => [
+                    'brutal critical'
                 ],
             ],
         ],
         'abilities' => [
             [
-                'ability' =>'str',
+                'ability' => 'str',
                 'value' => 15,
             ],
             [
-                'ability' =>'dex',
+                'ability' => 'dex',
                 'value' => 13,
             ],
             [
-                'ability' =>'con',
+                'ability' => 'con',
                 'value' => 13,
             ],
             [
-                'ability' =>'int',
+                'ability' => 'int',
                 'value' =>  7,
             ],
             [
-                'ability' =>'wis',
+                'ability' => 'wis',
                 'value' => 11,
             ],
             [
-                'ability' =>'cha',
+                'ability' => 'cha',
                 'value' =>  9,
             ],
         ]

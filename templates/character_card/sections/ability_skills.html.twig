@@ -46,7 +46,7 @@
             {% for abilitySkill in abilitySkills %}
                 <div class="ability-skill">
                     <div>{{ printMode ? false|dot : abilitySkill.hasProficiency|dot }}</div>
-                    <div class="opaque">&nbsp;&nbsp;{{ printMode is defined ? '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : abilitySkill.getValue()|value }}&nbsp;&nbsp;</div>
+                    <div class="opaque">&nbsp;&nbsp;{{ printMode ? '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : abilitySkill.value|value }}&nbsp;&nbsp;</div>
                     <div>{{ abilitySkill.enum.value|capitalize }} ({{ abilitySkill.enum.getAbilityEnum().value }})</div>
                 </div>
             {% endfor %}

@@ -13,6 +13,7 @@ use function array_diff;
 use function array_map;
 use function implode;
 use function sprintf;
+use function var_dump;
 
 class SkillRepository extends ServiceEntityRepository
 {
@@ -23,6 +24,11 @@ class SkillRepository extends ServiceEntityRepository
 
     public function getByNames(array $names): array
     {
+        $names = array_map(
+            fn ($name): string => strtolower($name),
+            $names,
+        );
+
         $result = $this->createQueryBuilder('s')
             ->where('s.name IN (:names)')
             ->setParameter('names', $names)

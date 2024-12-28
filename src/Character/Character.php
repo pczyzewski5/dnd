@@ -23,11 +23,11 @@ class Character
         public readonly array $savingThrows,
         public readonly int $passivePerception,
         public readonly int $passiveInsight,
+        public readonly int $armorClass,
+        public readonly int $speed,
         public readonly array $languages,
         public readonly int $darkvision,
         public readonly string $alignment, // used
-        public readonly int $armorClass,
-        public readonly int $speed,
         public readonly int $initiative
     ) {
     }

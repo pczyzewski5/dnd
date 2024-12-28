@@ -51,3 +51,15 @@ App\Entity\Proficiency:
     __construct:
       - survival
       - ability skill
+  tinker_tools:
+    __construct:
+      - tinker tools
+      - other
+  land_vehicles:
+    __construct:
+      - land vehicles
+      - other
+  stealth:
+    __construct:
+      - stealth
+      - ability skill

@@ -7,11 +7,11 @@ namespace App\Tests\Functional\Builder;
 use App\Builder\CharacterBuilder;
 use App\Character\Abilities;
 use App\Character\AbilityFactory;
+use App\Character\Skill;
 use App\Dto\AbilityConfigDto;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Enum\AbilityEnum;
-use App\Skill\FinalizedSkill;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -87,8 +87,8 @@ class CharacterBuilderTest extends KernelTestCase
         $this->assertSame(['berserker' => 3], $actual->simpleLevels);
         $this->assertEquals(
             [
-                new FinalizedSkill('rage', 'rage desc'),
-                new FinalizedSkill('unarmored defense', 'jeśli nie nosisz zbroi, to twoja KP wynosi 14.')
+                new Skill('rage', 'rage desc'),
+                new Skill('unarmored defense', 'jeśli nie nosisz zbroi, to twoja KP wynosi 14.')
             ],
             $actual->skills
         );

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Character\Abilities;
-use App\Entity\Skill;
+use App\Character\Skill;
+use App\Character\Skills;
+use App\Entity\Skill as SkillEntity;
 use App\Service\SkillFinalizer\SkillFinalizerInterface;
 use App\Service\SkillFinalizer\UnarmoredDefense;
-use App\Skill\FinalizedSkill;
 
 use function array_map;
 
@@ -29,26 +30,27 @@ class SkillFinalizerService
         Abilities $abilities,
         Skill $skill,
         int $level,
-    ): FinalizedSkill {
-        foreach ($this->finalizers as $finalizer) {
-            if ($finalizer->supports($skill)) {
-                return $finalizer->finalize($abilities, $skill, $level);
-            }
-        }
-
-        return new FinalizedSkill($skill->getName(), $skill->getDescription());
+    ): Skill {
+//        foreach ($this->finalizers as $finalizer) {
+//            if ($finalizer->supports($skill)) {
+//                return $finalizer->finalize($abilities, $skill, $level);
+//            }
+//        }
+//
+//        return new Skill($skill->name, $skill->getDescription());
+        return $skill;
     }
 
     public function finalizeArray(
         Abilities $abilities,
-        array $skills,
+        Skills $skills,
         int $level,
     ): array {
         // description będzie jak w kartach z tego edytora, czyli będzie to jakiś kod tego edytora,
         // nie robić żadnego mappera do twigów itd
         return array_map(
-            fn (Skill $skill): FinalizedSkill => $this->finalize($abilities, $skill, $level),
-            $skills
+            fn (Skill $skill): Skill => $this->finalize($abilities, $skill, $level),
+            $skills->toArray()
         );
     }
 }

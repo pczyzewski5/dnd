@@ -9,15 +9,20 @@ use App\Calculator\ProficiencyBonusCalculator;
 use App\Calculator\SimpleLevelsCalculator;
 use App\Character\Levels;
 use App\Character\Proficiencies;
+use App\Character\SkillFactory;
+use App\Character\Skills;
 use App\Dto\LevelConfigDto;
 use App\Entity\Level;
+use App\Entity\Skill as SkillEntity;
 use App\Repository\LevelRepository;
 use App\Repository\ProficiencyRepository;
 use App\Repository\SkillRepository;
+use App\Character\Skill;
 
 use function array_map;
 use function array_merge;
 use function count;
+use function var_dump;
 
 class LevelsBuilder
 {
@@ -100,18 +105,27 @@ class LevelsBuilder
     private function getSkills(
         array $levels,
         array $levelConfigDtos
-    ): array {
-        return array_merge(
-            ...array_map(
-            fn (Level $level): array
-            => $level->getSkills()->toArray(),
-            $levels
-        ),
-            ...array_map(
-                fn (LevelConfigDto $dto): array
-                => $this->skillRepository->getByNames($dto->proficiencies),
-                $levelConfigDtos
-            )
-        );
+    ): Skills {
+        $skills = [];
+
+        foreach ($levelConfigDtos as $dto) {
+            $skills = array_merge(
+                SkillFactory::createManyFromEntity(
+                    $this->skillRepository->getByNames($dto->skills)
+                ),
+                $skills
+            );
+        }
+
+        foreach ($levels as $level) {
+            $skills = array_merge(
+                SkillFactory::createManyFromEntity(
+                    $level->getSkills()->toArray()
+                ),
+                $skills
+            );
+        }
+
+        return new Skills(...$skills);
     }
 }

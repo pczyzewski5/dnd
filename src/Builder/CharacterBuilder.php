@@ -64,11 +64,11 @@ class CharacterBuilder
             $this->getSavingThrows($abilities, $levels),
             $this->getPassivePerception($abilities, $levels),
             $this->getPassiveInsights($abilities, $levels),
+            $this->getArmorClass($abilities, $levels),
+            $this->getSpeed($raceConfig, $levels),
             $raceConfig->languages,
             $raceConfig->darkvision,
             $this->getAlignment($config),  // do testów!!!
-            $this->getArmorClass($abilities),
-            $this->getSpeed($raceConfig),
             $this->getInitiative($abilities)
         );
     }
@@ -174,14 +174,22 @@ class CharacterBuilder
 
     public function getArmorClass(
         Abilities $abilities,
+        Levels $levels
     ): int {
-        return $this->armorClassCalculator->newCalculate($abilities);
+        return $this->armorClassCalculator->newCalculate(
+            $abilities,
+            $levels->skills
+        );
     }
 
     public function getSpeed(
         RaceConfig $raceConfig,
+        Levels $levels
     ): int {
-        return $this->speedCalculator->calculate($raceConfig);
+        return $this->speedCalculator->calculate(
+            $raceConfig,
+            $levels->skills
+        );
     }
 
     public function getInitiative(

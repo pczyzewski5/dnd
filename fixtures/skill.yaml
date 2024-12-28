@@ -7,3 +7,43 @@ App\Entity\Skill:
     __construct:
       - unarmored defense
       - <{unarmored_defense_desc}>
+  belquath_song:
+    __construct:
+      - belquath song
+      - <{belquath_song_desc}>
+  reckless_attack:
+    __construct:
+      - reckless attack
+      - <{reckless_attack_desc}>
+  danger_sense:
+    __construct:
+      - danger sense
+      - <{danger_sense_desc}>
+  frenzy:
+    __construct:
+      - frenzy
+      - <{frenzy_desc}>
+  extra_attack:
+    __construct:
+      - extra attack
+      - <{extra_attack_desc}>
+  fast_movement:
+    __construct:
+      - fast movement
+      - <{fast_movement_desc}>
+  mindless_rage:
+    __construct:
+      - mindless rage
+      - <{mindless_rage_desc}>
+  feral_instinct:
+    __construct:
+      - feral instinct
+      - <{feral_instinct_desc}>
+  brutal_critical:
+    __construct:
+      - brutal critical
+      - <{brutal_critical_desc}>
+  exhaustion:
+    __construct:
+      - exhaustion
+      - <{exhaustion_desc}>

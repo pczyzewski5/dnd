@@ -1,4 +1,6 @@
 parameters:
+  extra_attack_desc:
+    '<b>Dodatkowy atak</b> - zyskujesz dodatkowy atak.'
   acid_breath_desc:
     '<b>Zionięcie kwasem</b> - w ramach akcji możesz zionąć kwasem. Obszar
     działania to prosta 1x6 hex, {{ dmg }} obrażeń od kwasu, połowa obrażeń po udanym
@@ -38,8 +40,8 @@ parameters:
     all damage except psychic damage. The spirit of the bear makes you tough enough
     to stand up to any punishment.'
   belquath_song_desc:
-    '<b>Pieśn Bel"Quatha</b> - raz dziennie możesz zaśpiewać pieśn o tym,
-    jak twoja postać pokonała Bel"Quatha, zyskujesz dzięki temu dodatkowy atak.'
+    "<b>Pieśn Bel'Quatha</b> - raz dziennie możesz zaśpiewać pieśn o tym,
+    jak twoja postać pokonała Bel'Quatha, zyskujesz dzięki temu dodatkowy atak."
   bend_luck_desc:
     '<b>Naginanie szczęścia</b> - kiedy istota, którą widzisz, wykonuje test
     ataku, cechy lub rzut obronny, możesz w ramach swojej reakcji wydać 2 pkt zaklinania,
@@ -454,7 +456,7 @@ parameters:
     istocie, która jest przez ciebie pochwycona.'
   unarmored_defense_desc:
     '<b>Obrona bez pancerza</b> - jeśli nie nosisz zbroi, to twoja KP wynosi
-    {{ ac }}.'
+    {{ ac }}. Możesz do KP doliczyć wartość z tarczy.'
   uncanny_dodge_desc:
     '<b>Niesamowity unik (PHB 79)</b> - gdy trafi mnie przeciwnik, którego
     widzę, w ramach reakcji mogę zmniejszyć o połowę otrzymane obrażenia.'

@@ -5,7 +5,10 @@ namespace App\Calculator;
 use App\Character\Abilities;
 use App\Character\Proficiencies;
 
+use App\Enum\AbilitySkillEnum;
+
 use function in_array;
+use function var_dump;
 
 class PassiveInsightCalculator
 {
@@ -16,7 +19,7 @@ class PassiveInsightCalculator
     ): int {
         $baseValue = 10;
 
-        if (in_array('insight', $proficiencies->getAbilitySkillProficiencies())) {
+        if (in_array(AbilitySkillEnum::INSIGHT->value, $proficiencies->getAbilitySkillProficiencies())) {
             $baseValue += $proficiencyBonus;
         }
 

@@ -9,10 +9,12 @@ App\Entity\Level:
     __construct:
       - 2
       - '@barbarian'
+      - ['@reckless_attack', '@danger_sense']
   berserker_level_3:
     __construct:
       - 3
       - '@berserker'
+      - ['@frenzy', '@exhaustion']
   berserker_level_4:
     __construct:
       - 4
@@ -21,7 +23,23 @@ App\Entity\Level:
     __construct:
       - 5
       - '@berserker'
+      - ['@extra_attack', '@fast_movement']
   berserker_level_6:
     __construct:
       - 6
       - '@berserker'
+      - ['@mindless_rage']
+  berserker_level_7:
+    __construct:
+      - 7
+      - '@berserker'
+      - ['@feral_instinct']
+  berserker_level_8:
+    __construct:
+      - 8
+      - '@berserker'
+  berserker_level_9:
+    __construct:
+      - 9
+      - '@berserker'
+      - ['@brutal_critical']

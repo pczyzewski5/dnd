@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Skill;
+namespace App\Character;
 
-class FinalizedSkill
+class Skill
 {
     public function __construct(
         public readonly string $name,

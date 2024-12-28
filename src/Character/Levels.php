@@ -12,7 +12,7 @@ class Levels
         public readonly array $levels,
         public readonly array $hitDices,
         public readonly array $simpleLevels,
-        public readonly array $skills
+        public readonly Skills $skills
     ) {
 
     }
