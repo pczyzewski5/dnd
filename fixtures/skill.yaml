@@ -2,8 +2,8 @@ App\Entity\Skill:
   rage:
     __construct:
       - rage
-      - rage desc
+      - <{rage_desc}>
   unarmored_defense:
     __construct:
       - unarmored defense
-      - jeśli nie nosisz zbroi, to twoja KP wynosi %s.
+      - <{unarmored_defense_desc}>

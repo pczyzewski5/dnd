@@ -13,7 +13,7 @@ class AttacksTricksSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/attacks_tricks.html.twig',
+            'character_card/sections/attacks_tricks.html.twig',
             $context
         );
     }

@@ -38,7 +38,7 @@ final class Version20241214182108 extends AbstractMigration
             CREATE TABLE skill (
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL UNIQUE,
-                description VARCHAR(255) NOT NULL,
+                description TEXT NOT NULL,
                 PRIMARY KEY (id)
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
             SQL

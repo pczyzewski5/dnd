@@ -12,7 +12,7 @@ class ProficienciesLanguagesSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/proficiencies_languages.html.twig',
+            'character_card/sections/proficiencies_languages.html.twig',
             $context
         );
     }

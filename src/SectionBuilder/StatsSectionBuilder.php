@@ -17,7 +17,7 @@ class StatsSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/stats.html.twig',
+            'character_card/sections/stats.html.twig',
             $context
         );
     }

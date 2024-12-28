@@ -16,7 +16,7 @@ class Passives extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/passives.html.twig',
+            'character_card/sections/passives.html.twig',
             $context
         );
     }

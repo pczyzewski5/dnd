@@ -9,7 +9,7 @@ class DealtDmgBuilder extends AbstractSectionBuilder
         $context =  [];
 
         return $this->twig->render(
-            'character_card/new_sections/dealt_dmg.html.twig',
+            'character_card/sections/dealt_dmg.html.twig',
             $context
         );
     }

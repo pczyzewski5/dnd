@@ -9,7 +9,7 @@ class HpSectionBuilder extends AbstractSectionBuilder
         $context =  [];
 
         return $this->twig->render(
-            'character_card/new_sections/hp.html.twig',
+            'character_card/sections/hp.html.twig',
             $context
         );
     }

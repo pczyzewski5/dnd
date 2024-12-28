@@ -11,7 +11,7 @@ class HitDiceSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/hit_dice.html.twig',
+            'character_card/sections/hit_dice.html.twig',
             $context
         );
     }

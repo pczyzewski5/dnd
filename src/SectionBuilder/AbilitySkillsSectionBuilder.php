@@ -14,7 +14,7 @@ class AbilitySkillsSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/ability_skills.html.twig',
+            'character_card/sections/ability_skills.html.twig',
             $context
         );
     }

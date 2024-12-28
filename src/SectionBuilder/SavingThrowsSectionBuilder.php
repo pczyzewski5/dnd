@@ -14,7 +14,7 @@ class SavingThrowsSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/saving_throws.html.twig',
+            'character_card/sections/saving_throws.html.twig',
             $context
         );
     }

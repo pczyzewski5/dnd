@@ -1,5 +1,39 @@
 parameters:
-  human_config: '{"asi":[{"ability":"str","value":1},{"ability":"dex","value":1},{"ability":"con","value":1},{"ability":"int","value":1},{"ability":"wis","value":1},{"ability":"cha","value":1}],"skills":[],"languages":["common"],"speed_in_meters":9,"darkvision_in_meters":0}'
+  human_config:
+    '{
+        "asi": [
+            {
+                "ability": "str",
+                "value": 1
+            },
+            {
+                "ability": "dex",
+                "value": 1
+            },
+            {
+                "ability": "con",
+                "value": 1
+            },
+            {
+                "ability": "int",
+                "value": 1
+            },
+            {
+                "ability": "wis",
+                "value": 1
+            },
+            {
+                "ability": "cha",
+                "value": 1
+            }
+        ],
+        "skills": [],
+        "languages": [
+            "common"
+        ],
+        "speed_in_meters": 9,
+        "darkvision_in_meters": 0
+      }'
 
 App\Entity\Race:
   human:

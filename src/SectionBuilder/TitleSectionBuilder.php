@@ -25,7 +25,7 @@ class TitleSectionBuilder extends AbstractSectionBuilder
         ];
 
         return $this->twig->render(
-            'character_card/new_sections/title.html.twig',
+            'character_card/sections/title.html.twig',
             $context
         );
     }

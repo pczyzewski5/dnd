@@ -38,13 +38,13 @@
 <div id="skills-section" class="character-card-section">
     <div id="skills-background">
         <div id="skills-container">
-            {% for skill in activeSkills %}
-                <p>{{ skill|raw }}</p>
+            {% for skill in skills %}
+                <p>{{ skill.description|raw }}</p>
             {% endfor %}
-            <hr>
-            {% for skill in passiveSkills %}
-                <p>{{ skill|raw }}</p>
-            {% endfor %}
+{#            <hr>#}
+{#            {% for skill in passiveSkills %}#}
+{#                <p>{{ skill|raw }}</p>#}
+{#            {% endfor %}#}
         </div>
     </div>
 </div>
