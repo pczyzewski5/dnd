@@ -46,12 +46,12 @@ final class Version20241214182108 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
-            CREATE TABLE skill_to_level (
+            CREATE TABLE pivot_skill_to_level (
                 level_id INT NOT NULL,
                 skill_id INT NOT NULL,
                 PRIMARY KEY (level_id, skill_id),
-                CONSTRAINT FK_STL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE,
-                CONSTRAINT FK_STL_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE
+                CONSTRAINT FK_PSTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PSTL_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE
             );
             SQL
         );

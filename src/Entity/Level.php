@@ -28,12 +28,12 @@ class Level
     private CharacterClass $characterClass;
 
     #[ORM\ManyToMany(targetEntity: Skill::class)]
-    #[ORM\JoinTable(name: 'skill_to_level')]
+    #[ORM\JoinTable(name: 'pivot_skill_to_level')]
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $skills;
 
     #[ORM\ManyToMany(targetEntity: Proficiency::class)]
-    #[ORM\JoinTable(name: 'proficiency_to_level')]
+    #[ORM\JoinTable(name: 'pivot_proficiency_to_level')]
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $proficiencies;
 
@@ -48,12 +48,18 @@ class Level
         $this->skills = new ArrayCollection();
         $this->proficiencies = new ArrayCollection();
 
-        array_walk($skills, function (Skill $skill) {
-            $this->skills->contains($skill) ?: $this->skills->add($skill);
-        });
-        array_walk($proficiencies, function (Proficiency $proficiency) {
-            $this->proficiencies->contains($proficiency) ?: $this->proficiencies->add($proficiency);
-        });
+        array_walk(
+            $skills,
+            fn (Skill $skill)
+            => $this->skills->contains($skill)
+                ?: $this->skills->add($skill)
+        );
+        array_walk(
+            $proficiencies,
+            fn (Proficiency $proficiency)
+            => $this->proficiencies->contains($proficiency)
+                ?: $this->proficiencies->add($proficiency)
+        );
     }
 
     public function getLevel(): int

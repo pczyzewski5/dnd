@@ -55,12 +55,48 @@ final class Version20241220175957 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
-            CREATE TABLE proficiency_to_level (
-                level_id INT NOT NULL,
+            CREATE TABLE pivot_proficiency_to_level (
                 proficiency_id INT NOT NULL,
-                PRIMARY KEY (level_id, proficiency_id),
-                CONSTRAINT FK_PTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE,
-                CONSTRAINT FK_PTL_PROFICIENCY FOREIGN KEY (proficiency_id) REFERENCES proficiency (id) ON DELETE CASCADE
+                level_id INT NOT NULL,
+                PRIMARY KEY (proficiency_id, level_id),
+                CONSTRAINT FK_PPTL_PROFICIENCY FOREIGN KEY (proficiency_id) REFERENCES proficiency (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PPTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE requirement (
+                id INT NOT NULL AUTO_INCREMENT,
+                name VARCHAR(255) NOT NULL,
+                config VARCHAR(510) NULL,
+                PRIMARY KEY (id),
+                UNIQUE (name)
+            ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE pivot_requirement_to_race (
+                requirement_id INT NOT NULL,
+                race_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, race_id),
+                CONSTRAINT FK_PRTR_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTR_RACE FOREIGN KEY (race_id) REFERENCES race (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE pivot_requirement_to_character_class (
+                requirement_id INT NOT NULL,
+                character_class_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, character_class_id),
+                CONSTRAINT FK_PRTCC_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTCC_CHARACTER_CLASS FOREIGN KEY (character_class_id) REFERENCES character_class (id) ON DELETE CASCADE
             );
             SQL
         );
