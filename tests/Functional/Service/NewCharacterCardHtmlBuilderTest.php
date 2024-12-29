@@ -29,13 +29,34 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 'level' => 1,
                 'class' => 'barbarian',
                 'proficiencies' => [
-                    'survival', // z folk hero
-                    'animal handling', // z folk hero
-                    'athletics', // z rasy
-                    'perception', // z rasy
-                    'stealth', // z human variant
-                    'land vehicles', // z folk hero
-                    'tinker tools', // z folk hero
+                    [
+                        'name' => 'survival',
+                        'source' => 'origin'
+                    ],
+                    [
+                        'name' => 'animal handling',
+                        'source' => 'origin'
+                    ],
+                    [
+                        'name' => 'land vehicles',
+                        'source' => 'origin'
+                    ],
+                    [
+                        'name' => 'tinker tools',
+                        'source' => 'origin'
+                    ],
+                    [
+                        'name' => 'athletics',
+                        'source' => 'character_class'
+                    ],
+                    [
+                        'name' => 'perception',
+                        'source' => 'character_class'
+                    ],
+                    [
+                        'name' => 'stealth',
+                        'source' => 'race'
+                    ],
                 ],
                 'skills' => [
                     'BelQuath Song',

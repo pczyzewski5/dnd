@@ -13,6 +13,7 @@ use function array_map;
 class LevelConfigDtoMapper extends AbstractMapper
 {
     public function __construct(
+        private readonly ProficiencyDtoMapper $proficiencyDtoMapper,
         private readonly AbilityConfigDtoMapper $abilityConfigDtoMapper,
         private readonly ValidatorInterface $validator
     ) {
@@ -24,7 +25,9 @@ class LevelConfigDtoMapper extends AbstractMapper
         $dto = new LevelConfigDto(
             $this->getValueOrNull($data, 'level'),
             $this->getValueOrNull($data, 'class'),
-            $this->getValueOrNull($data, 'proficiencies'),
+            $this->proficiencyDtoMapper->manyFromArray(
+                $this->getArray($data, 'proficiencies')
+            ),
             $this->getValueOrNull($data, 'skills'),
             $this->abilityConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'asi')

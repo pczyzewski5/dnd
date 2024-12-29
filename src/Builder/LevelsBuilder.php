@@ -12,8 +12,8 @@ use App\Character\Proficiencies;
 use App\Character\SkillFactory;
 use App\Character\Skills;
 use App\Dto\LevelConfigDto;
+use App\Dto\ProficiencyDto;
 use App\Entity\Level;
-use App\Entity\Skill as SkillEntity;
 use App\Repository\LevelRepository;
 use App\Repository\ProficiencyRepository;
 use App\Repository\SkillRepository;
@@ -55,7 +55,7 @@ class LevelsBuilder
         $proficiencies = $this->getProficiencies($levels, $this->levelConfigDtos);
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
-        $hitDices = $this->hitDiceCalculator->newCalculate($levels);
+        $hitDices = $this->hitDiceCalculator->calculate($levels);
 
         return new Levels(
             $proficiencies,
@@ -83,23 +83,28 @@ class LevelsBuilder
         array $levels,
         array $levelConfigDtos
     ): Proficiencies {
-        $proficienciesFromLevels = array_map(
-            fn (Level $level): array
-            => $level->getProficiencies()->toArray(),
-            $levels
-        );
-        $proficienciesFromLevelConfigs = array_map(
-            fn (LevelConfigDto $dto): array
-            => $this->proficiencyRepository->getByNames($dto->proficiencies),
-            $levelConfigDtos
-        );
+        $proficiencies = [];
 
-        return new Proficiencies(
-            ...array_merge(
-                ...$proficienciesFromLevels,
-                ...$proficienciesFromLevelConfigs
-            )
-        );
+        foreach ($levels as $level) {
+            $proficiencies = array_merge(
+                $level->getProficiencies()->toArray(),
+                $proficiencies
+            );
+        }
+
+        foreach ($levelConfigDtos as $dto) {
+            $names = array_map(
+                fn (ProficiencyDto $dto) => $dto->name,
+                $dto->proficiencies
+            );
+
+            $proficiencies = array_merge(
+                $this->proficiencyRepository->getByNames($names),
+                $proficiencies
+            );
+        }
+
+        return new Proficiencies(...$proficiencies);
     }
 
     private function getSkills(
@@ -108,19 +113,19 @@ class LevelsBuilder
     ): Skills {
         $skills = [];
 
-        foreach ($levelConfigDtos as $dto) {
+        foreach ($levels as $level) {
             $skills = array_merge(
                 SkillFactory::createManyFromEntity(
-                    $this->skillRepository->getByNames($dto->skills)
+                    $level->getSkills()->toArray()
                 ),
                 $skills
             );
         }
 
-        foreach ($levels as $level) {
+        foreach ($levelConfigDtos as $dto) {
             $skills = array_merge(
                 SkillFactory::createManyFromEntity(
-                    $level->getSkills()->toArray()
+                    $this->skillRepository->getByNames($dto->skills)
                 ),
                 $skills
             );
