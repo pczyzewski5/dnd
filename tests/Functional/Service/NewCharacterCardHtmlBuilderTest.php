@@ -30,14 +30,6 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 'class' => 'barbarian',
                 'proficiencies' => [
                     [
-                        'name' => 'survival',
-                        'source' => 'origin'
-                    ],
-                    [
-                        'name' => 'animal handling',
-                        'source' => 'origin'
-                    ],
-                    [
                         'name' => 'land vehicles',
                         'source' => 'origin'
                     ],

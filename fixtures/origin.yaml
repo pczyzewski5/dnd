@@ -2,3 +2,4 @@ App\Entity\Origin:
   origin_hero_folk:
     __construct:
       - hero folk
+      - ['@proficiency_animal_handling', '@proficiency_survival']

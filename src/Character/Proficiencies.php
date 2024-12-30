@@ -8,11 +8,13 @@ class Proficiencies
 {
     private array $proficiencies;
 
-    public function __construct(Proficiency ...$proficiencies)
+    public function __construct(array $proficiencies)
     {
-        foreach ($proficiencies as $proficiency) {
-            $this->proficiencies[$proficiency->getCategory()][] = $proficiency->getName();
-        }
+        array_walk(
+            $proficiencies,
+            fn (Proficiency $proficiency)
+            => $this->proficiencies[$proficiency->getCategory()] = $proficiency->getName()
+        );
 
         return $this;
     }
