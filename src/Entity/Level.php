@@ -37,16 +37,23 @@ class Level
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $proficiencies;
 
+    #[ORM\ManyToMany(targetEntity: Requirement::class)]
+    #[ORM\JoinTable(name: 'pivot_requirement_to_level')]
+    #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $requirements;
+
     public function __construct(
         int $level,
         CharacterClass $characterClass,
         ?array $skills = [],
-        ?array $proficiencies = []
+        ?array $proficiencies = [],
+        ?array $requirements = []
     ) {
         $this->level = $level;
         $this->characterClass = $characterClass;
         $this->skills = new ArrayCollection();
         $this->proficiencies = new ArrayCollection();
+        $this->requirements = new ArrayCollection();
 
         array_walk(
             $skills,
@@ -59,6 +66,12 @@ class Level
             fn (Proficiency $proficiency)
             => $this->proficiencies->contains($proficiency)
                 ?: $this->proficiencies->add($proficiency)
+        );
+        array_walk(
+            $requirements,
+            fn (Requirement $requirement)
+            => $this->requirements->contains($requirement)
+                ?: $this->requirements->add($requirement)
         );
     }
 

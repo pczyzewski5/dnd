@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\RequirementRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: RequirementRepository::class)]
 class Requirement
 {
     #[ORM\Id]
@@ -17,12 +18,12 @@ class Requirement
     #[ORM\Column(type: 'string', nullable: false, unique: true, length: 255)]
     private string $name;
 
-    #[ORM\Column(type: 'string', nullable: false, unique: true, length: 510)]
-    private string $config;
+    #[ORM\Column(type: 'string', nullable: true, unique: true, length: 510)]
+    private ?string $config;
 
     public function __construct(
         string $name,
-        string $config
+        ?string $config = null
     ) {
         $this->name = $name;
         $this->config = $config;

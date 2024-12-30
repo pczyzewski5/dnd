@@ -29,28 +29,14 @@ class CharacterClass
     #[ORM\JoinColumn(nullable: true)]
     private ?self $baseClass;
 
-    #[ORM\ManyToMany(targetEntity: Requirement::class)]
-    #[ORM\JoinTable(name: 'pivot_requirement_to_character_class')]
-    #[ORM\JoinColumn(name: 'race_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private Collection $requirements;
-
     public function __construct(
         int $hitDice,
         string $name,
         ?self $baseClass = null,
-        ?array $requirements = []
     ) {
         $this->hitDice = $hitDice;
         $this->name = $name;
         $this->baseClass = $baseClass;
-        $this->requirements = new ArrayCollection();
-
-        array_walk(
-            $requirements,
-            fn (Requirement $requirement)
-            => $this->requirements->contains($requirement)
-                ?: $this->requirements->add($requirement)
-        );
     }
 
     public function getHitDice(): int
