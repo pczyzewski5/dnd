@@ -1,11 +1,11 @@
 App\Entity\CharacterClass:
-  barbarian:
+  character_class_barbarian:
     __construct:
       - 12
       - barbarian
       - ~
-  berserker:
+  character_class_berserker:
     __construct:
       - 12
       - berserker
-      - '@barbarian'
+      - '@character_class_barbarian'

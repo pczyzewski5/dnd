@@ -1,0 +1,22 @@
+parameters:
+  character_class_proficiency_config:
+    '{
+         "required_count": 2,
+         "available_proficiencies": [
+             "animal handling",
+             "athletics",
+             "intimidation",
+             "nature",
+             "perception",
+             "survival"
+         ]
+     }'
+
+App\Entity\Requirement:
+  requirement_human_variant_proficiency:
+    __construct:
+      - human_variant_proficiency
+  requirement_barbarian_class_proficiency:
+    __construct:
+      - character_class_proficiency
+      - <{character_class_proficiency_config}>

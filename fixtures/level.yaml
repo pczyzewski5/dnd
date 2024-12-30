@@ -1,45 +1,54 @@
 App\Entity\Level:
-  barbarian_level_1:
+  level_1_barbarian:
     __construct:
       - 1
-      - '@barbarian'
-      - ['@rage', '@unarmored_defense']
-      - ['@light_armors', '@medium_armors', '@shields', '@simple_weapons', '@martial_weapons', '@strength', '@constitution']
-  barbarian_level_2:
+      - '@character_class_barbarian'
+      - ['@skill_rage', '@skill_unarmored_defense']
+      - [
+          '@proficiency_light_armors',
+          '@proficiency_medium_armors',
+          '@proficiency_shields',
+          '@proficiency_simple_weapons',
+          '@proficiency_martial_weapons',
+          '@proficiency_strength',
+          '@proficiency_constitution'
+        ]
+      - ['@requirement_barbarian_class_proficiency']
+  level_2_barbarian:
     __construct:
       - 2
-      - '@barbarian'
-      - ['@reckless_attack', '@danger_sense']
-  berserker_level_3:
+      - '@character_class_barbarian'
+      - ['@skill_reckless_attack', '@skill_danger_sense']
+  level_3_berserker:
     __construct:
       - 3
-      - '@berserker'
-      - ['@frenzy', '@exhaustion']
-  berserker_level_4:
+      - '@character_class_berserker'
+      - ['@skill_frenzy', '@skill_exhaustion']
+  level_4_berserker:
     __construct:
       - 4
-      - '@berserker'
-  berserker_level_5:
+      - '@character_class_berserker'
+  level_5_berserker:
     __construct:
       - 5
-      - '@berserker'
-      - ['@extra_attack', '@fast_movement']
-  berserker_level_6:
+      - '@character_class_berserker'
+      - ['@skill_extra_attack', '@skill_fast_movement']
+  level_6_berserker:
     __construct:
       - 6
-      - '@berserker'
-      - ['@mindless_rage']
-  berserker_level_7:
+      - '@character_class_berserker'
+      - ['@skill_mindless_rage']
+  level_7_berserker:
     __construct:
       - 7
-      - '@berserker'
-      - ['@feral_instinct']
-  berserker_level_8:
+      - '@character_class_berserker'
+      - ['@skill_feral_instinct']
+  level_8_berserker:
     __construct:
       - 8
-      - '@berserker'
-  berserker_level_9:
+      - '@character_class_berserker'
+  level_9_berserker:
     __construct:
       - 9
-      - '@berserker'
-      - ['@brutal_critical']
+      - '@character_class_berserker'
+      - ['@skill_brutal_critical']

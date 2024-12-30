@@ -46,12 +46,13 @@ parameters:
       }'
 
 App\Entity\Race:
-  human:
+  race_human:
     __construct:
       - human
       - <{human_config}>
-  human_variant:
+  race_human_variant:
     __construct:
       - human*
       - <{human_variant_config}>
+      - ['@requirement_human_variant_proficiency']
  
