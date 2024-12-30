@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Mapper;
 
 use App\Dto\CharacterConfigDto;
-
+use App\Service\Requirement\RequirementProcessorService;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use function json_decode;
@@ -16,7 +16,8 @@ class CharacterConfigDtoMapper extends AbstractMapper
     public function __construct(
         private readonly LevelConfigDtoMapper $levelConfigDtoMapper,
         private readonly AbilityConfigDtoMapper $abilityConfigDtoMapper,
-        private readonly ValidatorInterface $validator
+        private readonly ValidatorInterface $validator,
+        private readonly RequirementProcessorService $requirementProcessor,
     ) {
         parent::__construct($this->validator);
     }
@@ -41,6 +42,7 @@ class CharacterConfigDtoMapper extends AbstractMapper
         );
 
         $this->validate($dto);
+        $this->requirementProcessor->process($dto);
 
         return $dto;
     }
