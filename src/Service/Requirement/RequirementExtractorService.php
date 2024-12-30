@@ -30,11 +30,11 @@ class RequirementExtractorService
     {
         $result = [];
 
-        /** @var LevelConfigDto $configDto */
-        foreach ($dto->levelConfigDtos as $configDto) {
+        /** @var LevelConfigDto $config */
+        foreach ($dto->levelConfigs as $config) {
             $requirements = $this->repository->findRequirementsByLevelAndCharacterClass(
-                $configDto->level,
-                $configDto->class
+                $config->level,
+                $config->class
             );
             $result = array_merge($requirements, $result);
         }

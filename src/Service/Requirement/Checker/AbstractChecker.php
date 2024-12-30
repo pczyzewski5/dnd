@@ -36,11 +36,11 @@ abstract class AbstractChecker
     ): array {
         $result = [];
 
-        foreach ($configDto->levelConfigDtos as $levelConfig) {
-            if ($levelConfig->level === 1) {
-                foreach ($levelConfig->proficiencies as $proficiency) {
+        foreach ($configDto->levelConfigs as $config) {
+            if ($config->level === 1) {
+                foreach ($config->proficiencies as $proficiency) {
                     if ($proficiency->source === $source) {
-                        $result[] =$proficiency->name;
+                        $result[] = $proficiency->name;
                     }
                 }
             }

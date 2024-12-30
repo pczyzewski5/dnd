@@ -18,13 +18,16 @@ class AbilitiesBuilder
     private int $wis = 0;
     private int $cha = 0;
 
-    public function add(AbilityConfigDto ...$dto): self
+    public function addMany(array $abilityDto): self
     {
-        foreach ($dto as $item) {
-            $ability = $item->ability;
+        array_walk(
+            $abilityDto,
+            function (AbilityConfigDto $dto): void {
+                $ability = $dto->ability;
 
-            $this->$ability += $item->value;
-        }
+                $this->$ability += $dto->value;
+            }
+        );
         
         return $this;
     }

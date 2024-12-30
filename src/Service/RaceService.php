@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Dto\RaceConfigDto;
 use App\Entity\Race;
-use App\Race\RaceConfig;
 use App\Mapper\AbilityConfigDtoMapper;
 
 use function json_decode;
@@ -19,11 +19,12 @@ class RaceService
 
     }
 
-    public function getRaceConfig(Race $race): RaceConfig
+    // do przeniesienia bo dto chyba mapuje mapper?
+    public function getRaceConfig(Race $race): RaceConfigDto
     {
        $config = $this->decodeJson($race->getConfig());
 
-        return new RaceConfig(
+        return new RaceConfigDto(
             $this->getAsi($config),
             $config['languages'],
             $config['speed_in_meters'],

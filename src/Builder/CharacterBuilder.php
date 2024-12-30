@@ -14,8 +14,8 @@ use App\Character\Abilities;
 use App\Character\Character;
 use App\Character\Levels;
 use App\Dto\CharacterConfigDto;
+use App\Dto\RaceConfigDto;
 use App\Enum\AlignmentEnum;
-use App\Race\RaceConfig;
 use App\Repository\RaceRepository;
 use App\Service\RaceService;
 use App\Service\SkillFinalizerService;
@@ -73,7 +73,7 @@ class CharacterBuilder
         );
     }
 
-    private function getRaceConfig(CharacterConfigDto $config): RaceConfig
+    private function getRaceConfig(CharacterConfigDto $config): RaceConfigDto
     {
         return $this->raceService->getRaceConfig(
             $this->raceRepository->findOneBy(['name' => $config->race])
@@ -82,14 +82,14 @@ class CharacterBuilder
 
     private function getAbilities(
         CharacterConfigDto $characterConfigDto,
-        RaceConfig $raceConfig
+        RaceConfigDto $raceConfigDto
     ): Abilities {
         $abilitiesBuilder = $this->abilitiesBuilder
-            ->add(...$characterConfigDto->abilityConfigDtos)
-            ->add(...$raceConfig->asi);
+            ->addMany($characterConfigDto->abilityConfigs)
+            ->addMany($raceConfigDto->asi);
 
-        foreach ($characterConfigDto->levelConfigDtos as $dto) {
-            $abilitiesBuilder->add(...$dto->asi);
+        foreach ($characterConfigDto->levelConfigs as $dto) {
+            $abilitiesBuilder->addMany($dto->asi);
         }
 
         return $abilitiesBuilder->build();
@@ -98,7 +98,7 @@ class CharacterBuilder
     private function getLevels(CharacterConfigDto $config): Levels
     {
         return $this->levelsBuilder
-            ->setLevelConfigDtos($config->levelConfigDtos)
+            ->setLevelConfigs($config->levelConfigs)
             ->build();
     }
 
@@ -183,7 +183,7 @@ class CharacterBuilder
     }
 
     public function getSpeed(
-        RaceConfig $raceConfig,
+        RaceConfigDto $raceConfig,
         Levels $levels
     ): int {
         return $this->speedCalculator->calculate(

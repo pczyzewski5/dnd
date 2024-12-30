@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Calculator;
 
 use App\Character\Skills;
-use App\Race\RaceConfig;
+use App\Dto\RaceConfigDto;
 
 class SpeedCalculator
 {
     public function calculate(
-        RaceConfig $race,
+        RaceConfigDto $raceConfig,
         Skills $skills
     ): int {
-        $speed = DistanceCalculator::metersToHex($race->speed);
+        $speed = DistanceCalculator::metersToHex($raceConfig->speed);
 
         if ($skills->hasSkill('fast movement')) {
             $speed += 2;

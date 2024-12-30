@@ -29,7 +29,7 @@ class AbilitiesBuilderTest extends TestCase
         array $configs,
         Abilities $expected
     ): void {
-        $this->testedObject->add(...$configs);
+        $this->testedObject->addMany($configs);
 
         $actual = $this->testedObject->build();
 
@@ -86,7 +86,7 @@ class AbilitiesBuilderTest extends TestCase
 
     #[DataProvider('invalidAbilityConfigProvider')]
     public function testBuildWithInvalidData(array $configs): void {
-        $this->testedObject->add(...$configs);
+        $this->testedObject->addMany($configs);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Ability value must be between 1 and 30.');

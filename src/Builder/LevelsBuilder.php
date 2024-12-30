@@ -38,7 +38,7 @@ class LevelsBuilder
     ) {
     }
 
-    public function setLevelConfigDtos(array $dtos): self
+    public function setLevelConfigs(array $dtos): self
     {
         $this->levelConfigDtos = array_map(
             fn (LevelConfigDto $dto) => $dto,
