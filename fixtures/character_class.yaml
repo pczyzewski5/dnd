@@ -4,6 +4,7 @@ App\Entity\CharacterClass:
       - 12
       - barbarian
       - ~
+      - ['@requirement_barbarian_class_proficiency']
   character_class_berserker:
     __construct:
       - 12

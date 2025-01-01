@@ -21,22 +21,21 @@ class RequirementExtractorService
     public function extract(CharacterConfigDto $dto): array
     {
         return array_merge(
-            $this->getLevelsRequirements($dto),
+            $this->getCharacterClassRequirements($dto),
             $this->getRaceRequirements($dto)
         );
     }
 
-    private function getLevelsRequirements(CharacterConfigDto $dto): array
+    private function getCharacterClassRequirements(CharacterConfigDto $dto): array
     {
         $result = [];
 
         /** @var LevelConfigDto $config */
         foreach ($dto->levelConfigs as $config) {
-            $requirements = $this->repository->findRequirementsByLevelAndCharacterClass(
-                $config->level,
-                $config->class
+            $result = array_merge(
+                $this->repository->findRequirementsByCharacterClass($config->class),
+                $result
             );
-            $result = array_merge($requirements, $result);
         }
 
         return $result;

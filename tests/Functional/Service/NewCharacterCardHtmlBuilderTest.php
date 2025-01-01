@@ -22,7 +22,7 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
         'player_name' => 'Bartek J',
         'campaign_name' => 'Klątwa Sthrada',
         'origin' => 'folk hero',
-        'race' => 'human*',
+        'race' => 'human variant',
         'alignment' => 'chaotic good',
         'levels' => [
             [
@@ -39,11 +39,11 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                     ],
                     [
                         'name' => 'athletics',
-                        'source' => 'character_class'
+                        'source' => 'character class'
                     ],
                     [
                         'name' => 'perception',
-                        'source' => 'character_class'
+                        'source' => 'character class'
                     ],
                     [
                         'name' => 'stealth',
@@ -53,21 +53,20 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 'skills' => [
                     'BelQuath Song',
                 ],
+                'languages' => [
+                    [
+                        'language' => 'English',
+                        'source' => 'race'
+                    ]
+                ]
             ],
             [
                 'level' => 2,
                 'class' => 'barbarian',
-                'skills' => [
-                    'reckless attack',
-                    'danger sense',
-                ],
             ],
             [
                 'level' => 3,
                 'class' => 'berserker',
-                'skills' => [
-                    'frenzy',
-                ],
             ],
             [
                 'level' => 4,
@@ -82,24 +81,14 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             [
                 'level' => 5,
                 'class' => 'berserker',
-                'skills' => [
-                    'extra attack',
-                    'fast movement'
-                ],
             ],
             [
                 'level' => 6,
                 'class' => 'berserker',
-                'skills' => [
-                    'mindless rage'
-                ],
             ],
             [
                 'level' => 7,
                 'class' => 'berserker',
-                'skills' => [
-                    'feral instinct'
-                ],
             ],
             [
                 'level' => 8,
@@ -111,9 +100,6 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             [
                 'level' => 9,
                 'class' => 'berserker',
-                'skills' => [
-                    'brutal critical'
-                ],
             ],
         ],
         'abilities' => [

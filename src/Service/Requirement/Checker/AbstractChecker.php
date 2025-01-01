@@ -5,47 +5,66 @@ declare(strict_types=1);
 namespace App\Service\Requirement\Checker;
 
 use App\Dto\CharacterConfigDto;
+use App\Dto\LevelConfigDto;
 use App\Entity\Requirement;
+use Exception;
 
+use function array_filter;
+use function current;
 use function json_decode;
 use function json_last_error;
+use function sprintf;
 
 abstract class AbstractChecker
 {
+    private CharacterConfigDto $characterConfigDto;
+    private array $requirementConfig;
+
     abstract public function supports(Requirement $requirement): bool;
 
-    abstract public function check(
-        Requirement $requirement,
-        CharacterConfigDto $configDto
-    ): void;
+    abstract public function check(): void;
 
-    protected function getRequirementConfig(Requirement $requirement): array
-    {
-        $config = json_decode($requirement->getConfig(), true);
+    public function setCharacterConfig(
+        CharacterConfigDto $characterConfigDto
+    ): self {
+        $this->characterConfigDto = $characterConfigDto;
+
+        return $this;
+    }
+
+    public function setRequirement(
+        Requirement $requirement
+    ): self {
+        $result = json_decode($requirement->getConfig(), true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \Exception('Invalid JSON with requirement config.');
         }
 
-        return $config;
+        $this->requirementConfig = $result;
+
+        return $this;
     }
 
-    protected function getFirstLevelProficienciesBySource(
-        CharacterConfigDto $configDto,
-        string $source //source do zmiany na enuma?
-    ): array {
-        $result = [];
+    protected function getLevelConfig(int $level): LevelConfigDto
+    {
+        return current(
+            array_filter(
+                $this->characterConfigDto->levelConfigs,
+                fn (LevelConfigDto $levelConfig): bool
+                => $levelConfig->level === $level
+            )
+        );
+    }
 
-        foreach ($configDto->levelConfigs as $config) {
-            if ($config->level === 1) {
-                foreach ($config->proficiencies as $proficiency) {
-                    if ($proficiency->source === $source) {
-                        $result[] = $proficiency->name;
-                    }
-                }
-            }
+    protected function getConfigValue(string $key): string|array|int
+    {
+        if (array_key_exists($key, $this->requirementConfig)) {
+            return $this->requirementConfig[$key];
         }
 
-        return $result;
+        throw new Exception(
+            sprintf('Value for: %s, not found in requirement config.', $key)
+        );
     }
 }

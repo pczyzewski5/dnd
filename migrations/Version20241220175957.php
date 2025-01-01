@@ -71,8 +71,7 @@ final class Version20241220175957 extends AbstractMigration
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL,
                 config VARCHAR(510) NULL,
-                PRIMARY KEY (id),
-                UNIQUE (name)
+                PRIMARY KEY (id)
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
             SQL
         );
@@ -91,12 +90,12 @@ final class Version20241220175957 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
-            CREATE TABLE pivot_requirement_to_level (
+            CREATE TABLE pivot_requirement_to_character_class (
                 requirement_id INT NOT NULL,
-                level_id INT NOT NULL,
-                PRIMARY KEY (requirement_id, level_id),
-                CONSTRAINT FK_PRTL_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
-                CONSTRAINT FK_PRTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE
+                character_class_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, character_class_id),
+                CONSTRAINT FK_PRTCC_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTCC_CHARACTER_CLASS FOREIGN KEY (character_class_id) REFERENCES character_class (id) ON DELETE CASCADE
             );
             SQL
         );

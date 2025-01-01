@@ -6,8 +6,7 @@ namespace App\Service\Requirement;
 
 use App\Dto\CharacterConfigDto;
 use App\Service\Requirement\Checker\AbstractChecker;
-use App\Service\Requirement\Checker\CharacterClassProficiency;
-use App\Service\Requirement\Checker\HumanVariantProficiency;
+use App\Service\Requirement\Checker\Proficiency;
 
 class RequirementCheckerService
 {
@@ -17,8 +16,7 @@ class RequirementCheckerService
     public function __construct()
     {
         $this->checkers = [
-            new CharacterClassProficiency(),
-            new HumanVariantProficiency()
+            new Proficiency()
         ];
     }
 
@@ -29,7 +27,9 @@ class RequirementCheckerService
         foreach ($requirements as $requirement) {
             foreach ($this->checkers as $checker) {
                 if ($checker->supports($requirement)) {
-                    $checker->check($requirement, $dto);
+                    $checker->setRequirement($requirement)
+                        ->setCharacterConfig($dto)
+                        ->check();
                 }
             }
         }

@@ -19,20 +19,18 @@ class RequirementRepository extends ServiceEntityRepository
     /**
      * @return Requirement[]
      */
-    public function findRequirementsByLevelAndCharacterClass(int $level, string $name): array
+    public function findRequirementsByCharacterClass(string $name): array
     {
         $sql =
             <<<SQL
             SELECT * FROM requirement r
-                INNER JOIN pivot_requirement_to_level prtl ON r.id = prtl.requirement_id
-                INNER JOIN level l ON prtl.level_id = l.id
-                INNER JOIN character_class cc ON l.character_class_id = cc.id
-            WHERE l.level = :level AND cc.name = :name
+                INNER JOIN pivot_requirement_to_character_class prtcc ON r.id = prtcc.requirement_id
+                INNER JOIN character_class cc ON prtcc.character_class_id = cc.id
+            WHERE cc.name = :name
             SQL;
 
         return $this->getEntityManager()
             ->createNativeQuery($sql, $this->getResultSetMapping())
-            ->setParameter('level', $level)
             ->setParameter('name', $name)
             ->getResult();
     }

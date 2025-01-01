@@ -13,7 +13,6 @@ App\Entity\Level:
           '@proficiency_strength',
           '@proficiency_constitution'
         ]
-      - ['@requirement_barbarian_class_proficiency']
   level_2_barbarian:
     __construct:
       - 2

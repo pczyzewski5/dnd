@@ -6,27 +6,26 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ProficiencyDto
+class LanguageDto
 {
     #[Assert\NotBlank]
     #[Assert\Type(type: 'string')]
-    public readonly mixed $name;
+    public readonly mixed $language;
 
     #[Assert\NotBlank]
     #[Assert\Choice(
         choices: [
             'origin',
-            'character class',
             'race',
         ]
     )]
     public readonly mixed $source;
 
     public function __construct(
-        mixed $name,
+        mixed $language,
         mixed $source,
     ) {
-        $this->name = $name;
+        $this->language = $language;
         $this->source = $source;
     }
 }

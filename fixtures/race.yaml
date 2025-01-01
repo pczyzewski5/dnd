@@ -52,7 +52,7 @@ App\Entity\Race:
       - <{human_config}>
   race_human_variant:
     __construct:
-      - human*
+      - human variant
       - <{human_variant_config}>
       - ['@requirement_human_variant_proficiency']
  
