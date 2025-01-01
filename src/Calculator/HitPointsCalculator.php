@@ -2,7 +2,6 @@
 
 namespace App\Calculator;
 
-use App\Character\Levels;
 use App\Entity\Level;
 
 use function array_map;
@@ -11,7 +10,7 @@ use function array_sum;
 class HitPointsCalculator
 {
     public function calculate(
-        Levels $levels,
+        array $levels,
         int $conModifier
     ): int {
         $hitPoints = array_map(
@@ -22,7 +21,7 @@ class HitPointsCalculator
                     ? $hitDice + $conModifier
                     : \ceil(($hitDice + 1) / 2) + $conModifier;
             },
-            $levels->levels
+            $levels
         );
 
         return array_sum($hitPoints);

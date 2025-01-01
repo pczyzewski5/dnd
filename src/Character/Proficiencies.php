@@ -4,6 +4,8 @@ namespace App\Character;
 
 use App\Entity\Proficiency;
 
+use function var_dump;
+
 class Proficiencies
 {
     private array $proficiencies;
@@ -13,7 +15,7 @@ class Proficiencies
         array_walk(
             $proficiencies,
             fn (Proficiency $proficiency)
-            => $this->proficiencies[$proficiency->getCategory()] = $proficiency->getName()
+            => $this->proficiencies[$proficiency->getCategory()][] = $proficiency->getName()
         );
 
         return $this;

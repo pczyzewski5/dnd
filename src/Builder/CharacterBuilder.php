@@ -5,32 +5,46 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Calculator\ArmorClassCalculator;
+use App\Calculator\HitDiceCalculator;
 use App\Calculator\HitPointsCalculator;
 use App\Calculator\InitiativeCalculator;
 use App\Calculator\PassiveInsightCalculator;
 use App\Calculator\PassivePerceptionCalculator;
+use App\Calculator\ProficiencyBonusCalculator;
+use App\Calculator\SimpleLevelsCalculator;
 use App\Calculator\SpeedCalculator;
 use App\Character\Abilities;
 use App\Character\Character;
-use App\Character\Levels;
+use App\Character\Proficiencies;
+use App\Character\SkillFactory;
+use App\Character\Skills;
 use App\Dto\CharacterConfigDto;
+use App\Dto\LevelConfigDto;
 use App\Dto\RaceConfigDto;
+use App\Entity\Level;
+use App\Entity\Origin;
 use App\Enum\AlignmentEnum;
+use App\Repository\LevelRepository;
+use App\Repository\OriginRepository;
 use App\Repository\RaceRepository;
+use App\Repository\SkillRepository;
 use App\Service\RaceService;
 use App\Service\SkillFinalizerService;
 
+use function array_map;
+use function array_merge;
 use function count;
 
 class CharacterBuilder
 {
     public function __construct(
+        private readonly ProficienciesBuilder $proficienciesBuilder,
+        private readonly OriginRepository $originRepository,
         private readonly RaceRepository $raceRepository,
         private readonly RaceService $raceService,
         private readonly AbilitiesBuilder $abilitiesBuilder,
         private readonly AbilitySkillsBuilder $abilitySkillsBuilder,
         private readonly HitPointsCalculator $hitPointsCalculator,
-        private readonly LevelsBuilder $levelsBuilder,
         private readonly SkillFinalizerService $skillFinalizerService,
         private readonly SavingThrowsBuilder $savingThrowsBuilder,
         private readonly PassiveInsightCalculator $passiveInsightCalculator,
@@ -38,14 +52,25 @@ class CharacterBuilder
         private readonly ArmorClassCalculator $armorClassCalculator,
         private readonly SpeedCalculator $speedCalculator,
         private readonly InitiativeCalculator $initiativeCalculator,
+        private readonly LevelRepository $levelRepository,
+        private readonly SkillRepository $skillRepository,
+        private readonly ProficiencyBonusCalculator $proficiencyBonusCalculator,
+        private readonly HitDiceCalculator $hitDiceCalculator,
+        private readonly SimpleLevelsCalculator $simpleLevelsCalculator,
     ) {
     }
 
     public function build(CharacterConfigDto $config): Character
     {
+        $origin = $this->getOrigin($config);
         $raceConfig = $this->getRaceConfig($config);
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
+        $proficiencies = $this->getProficiencies($config, $levels, $origin);
+        $skills = $this->getSkills($config, $levels);
+        $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
+        $hitDices = $this->hitDiceCalculator->calculate($levels);
+        $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
 
         return new Character(
             $abilities,
@@ -54,23 +79,40 @@ class CharacterBuilder
             $config->campaignName,
             $config->origin,
             $config->race,
-            $levels->proficiencies,
-            $levels->hitDices,
-            $levels->simpleLevels,
-            $levels->proficiencyBonus,
+            $proficiencies,
+            $hitDices,
+            $simpleLevels,
+            $proficiencyBonus,
             $this->getHitPoints($abilities, $levels),
-            $this->getFinalizedSkills($abilities, $levels),
-            $this->getAbilitySkills($abilities, $levels),
-            $this->getSavingThrows($abilities, $levels),
-            $this->getPassivePerception($abilities, $levels),
-            $this->getPassiveInsights($abilities, $levels),
-            $this->getArmorClass($abilities, $levels),
-            $this->getSpeed($raceConfig, $levels),
+            $this->getFinalizedSkills($abilities, $skills, $levels),
+            $this->getAbilitySkills($abilities, $proficiencies, $proficiencyBonus),
+            $this->getSavingThrows($abilities, $proficiencyBonus, $proficiencies),
+            $this->getPassivePerception($abilities, $proficiencyBonus, $proficiencies),
+            $this->getPassiveInsights($abilities, $proficiencyBonus, $proficiencies),
+            $this->getArmorClass($abilities, $skills),
+            $this->getSpeed($raceConfig, $skills),
             $raceConfig->languages,
             $raceConfig->darkvision,
-            $this->getAlignment($config),  // do testów!!!
+            $this->getAlignment($config),
             $this->getInitiative($abilities)
         );
+    }
+
+    private function getOrigin(CharacterConfigDto $config): Origin
+    {
+        return $this->originRepository->getOneByName($config->origin);
+    }
+
+    private function getProficiencies(
+        CharacterConfigDto $config,
+        array $levels,
+        Origin $origin,
+    ): Proficiencies {
+        return $this->proficienciesBuilder
+            ->setLevels($levels)
+            ->setOrigin($origin)
+            ->setLevelConfigs($config->levelConfigs)
+            ->build();
     }
 
     private function getRaceConfig(CharacterConfigDto $config): RaceConfigDto
@@ -78,6 +120,45 @@ class CharacterBuilder
         return $this->raceService->getRaceConfig(
             $this->raceRepository->findOneBy(['name' => $config->race])
         );
+    }
+
+    private function getLevels(CharacterConfigDto $config): array
+    {
+        return array_map(
+            fn (LevelConfigDto $dto): Level => $this->levelRepository
+                ->getByLevelAndCharacterClass(
+                    $dto->level,
+                    $dto->class
+                ),
+            $config->levelConfigs
+        );
+    }
+
+    private function getSkills(
+        CharacterConfigDto $config,
+        array $levels,
+    ): Skills {
+        $skills = [];
+
+        foreach ($levels as $level) {
+            $skills = array_merge(
+                SkillFactory::createManyFromEntity(
+                    $level->getSkills()->toArray()
+                ),
+                $skills
+            );
+        }
+
+        foreach ($config->levelConfigs as $dto) {
+            $skills = array_merge(
+                SkillFactory::createManyFromEntity(
+                    $this->skillRepository->getByNames($dto->skills)
+                ),
+                $skills
+            );
+        }
+
+        return new Skills(...$skills);
     }
 
     private function getAbilities(
@@ -95,27 +176,21 @@ class CharacterBuilder
         return $abilitiesBuilder->build();
     }
 
-    private function getLevels(CharacterConfigDto $config): Levels
-    {
-        return $this->levelsBuilder
-            ->setLevelConfigs($config->levelConfigs)
-            ->build();
-    }
-
     private function getFinalizedSkills(
         Abilities $abilities,
-        Levels $levels
+        Skills $skills,
+        array $levels
     ): array {
         return $this->skillFinalizerService->finalizeArray(
             $abilities,
-            $levels->skills,
-            count($levels->levels),
+            $skills,
+            count($levels),
         );
     }
 
     private function getHitPoints(
         Abilities $abilities,
-        Levels $levels
+        array $levels
     ): int {
         return $this->hitPointsCalculator->calculate(
             $levels,
@@ -125,12 +200,13 @@ class CharacterBuilder
 
     private function getAbilitySkills(
         Abilities $abilities,
-        Levels $levels,
+        Proficiencies $proficiencies,
+        int $proficiencyBonus
     ): array {
         return $this->abilitySkillsBuilder
             ->setAbilities($abilities)
-            ->setProficiencies($levels->proficiencies)
-            ->setProficiencyBonus($levels->proficiencyBonus)
+            ->setProficiencies($proficiencies)
+            ->setProficiencyBonus($proficiencyBonus)
             ->build();
     }
 
@@ -141,54 +217,57 @@ class CharacterBuilder
 
     private function getSavingThrows(
         Abilities $abilities,
-        Levels $levels
+        int $proficiencyBonus,
+        Proficiencies $proficiencies
     ): array {
         return $this->savingThrowsBuilder
             ->setAbilities($abilities)
-            ->setProficiencies($levels->proficiencies)
-            ->setProficiencyBonus($levels->proficiencyBonus)
+            ->setProficiencies($proficiencies)
+            ->setProficiencyBonus($proficiencyBonus)
             ->build();
     }
 
     public function getPassivePerception(
         Abilities $abilities,
-        Levels $levels
+        int $proficiencyBonus,
+        Proficiencies $proficiencies
     ): int {
         return $this->passivePerceptionCalculator->newCalculate(
             $abilities,
-            $levels->proficiencies,
-            $levels->proficiencyBonus
+            $proficiencies,
+            $proficiencyBonus
         );
     }
 
     public function getPassiveInsights(
         Abilities $abilities,
-        Levels $levels
+        int $proficiencyBonus,
+        Proficiencies $proficiencies
     ): int {
         return $this->passiveInsightCalculator->newCalculate(
             $abilities,
-            $levels->proficiencies,
-            $levels->proficiencyBonus
+            $proficiencies,
+            $proficiencyBonus
         );
     }
 
     public function getArmorClass(
         Abilities $abilities,
-        Levels $levels
+        Skills $skills
     ): int {
         return $this->armorClassCalculator->newCalculate(
             $abilities,
-            $levels->skills
+            $skills
         );
     }
 
     public function getSpeed(
         RaceConfigDto $raceConfig,
-        Levels $levels
+        Skills $skills
     ): int {
         return $this->speedCalculator->calculate(
             $raceConfig,
-            $levels->skills
+            $skills
         );
     }
 
