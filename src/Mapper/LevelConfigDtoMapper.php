@@ -16,6 +16,7 @@ class LevelConfigDtoMapper extends AbstractMapper
         private readonly ProficiencyDtoMapper $proficiencyDtoMapper,
         private readonly AsiConfigDtoMapper $asiConfigDtoMapper,
         private readonly LanguageDtoMapper $languageDtoMapper,
+        private readonly FeatDtoMapper $featDtoMapper,
         private readonly ValidatorInterface $validator
     ) {
         parent::__construct($this->validator);
@@ -23,9 +24,15 @@ class LevelConfigDtoMapper extends AbstractMapper
 
     public function fromArray(array $data): LevelConfigDto
     {
+        $feat = $this->getValueOrNull($data, 'feat');
+        $feat = empty($feat)
+            ? null
+            : $this->featDtoMapper->fromArray($feat);
+
         $dto = new LevelConfigDto(
             $this->getValueOrNull($data, 'level'),
             $this->getValueOrNull($data, 'class'),
+            $feat,
             $this->proficiencyDtoMapper->manyFromArray(
                 $this->getArray($data, 'proficiencies')
             ),

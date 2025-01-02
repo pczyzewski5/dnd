@@ -16,6 +16,10 @@ class LevelConfigDto
     #[Assert\Type(type: 'string')]
     public readonly mixed $class;
 
+    #[Assert\Valid]
+    #[Assert\Type(type: FeatDto::class)]
+    public readonly mixed $feat;
+
     #[Assert\Type(type: 'array')]
     public readonly mixed $proficiencies;
 
@@ -33,13 +37,15 @@ class LevelConfigDto
     public function __construct(
         mixed $level,
         mixed $class,
+        mixed $feat = null,
         mixed $proficiencies = null,
         mixed $skills = null,
         mixed $asi = null,
-        mixed $languages = null
+        mixed $languages = null,
     ) {
         $this->level = $level;
         $this->class = $class;
+        $this->feat = $feat;
         $this->proficiencies = $proficiencies ?? [];
         $this->skills = $skills ?? [];
         $this->asi = $asi ?? [];

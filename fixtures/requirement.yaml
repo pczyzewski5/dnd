@@ -12,6 +12,12 @@ parameters:
          "two_different": true,
          "level": 1
      }'
+  requirement_human_variant_feat_config:
+    '{
+         "source": "race",
+         "allow_asi": true,
+         "level": 1
+     }'
   requirement_barbarian_class_proficiency_config:
     '{
          "source": "character class",
@@ -42,6 +48,10 @@ App\Entity\Requirement:
     __construct:
       - asi
       - <{requirement_human_variant_asi_config}>
+  requirement_human_variant_feat:
+    __construct:
+      - feat
+      - <{requirement_human_variant_feat_config}>
   requirement_barbarian_class_proficiency:
     __construct:
       - proficiency

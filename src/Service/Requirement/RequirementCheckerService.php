@@ -7,6 +7,7 @@ namespace App\Service\Requirement;
 use App\Dto\CharacterConfigDto;
 use App\Service\Requirement\Checker\AbstractChecker;
 use App\Service\Requirement\Checker\Asi;
+use App\Service\Requirement\Checker\Feat;
 use App\Service\Requirement\Checker\Language;
 use App\Service\Requirement\Checker\Proficiency;
 
@@ -20,7 +21,8 @@ class RequirementCheckerService
         $this->checkers = [
             new Proficiency(),
             new Language(),
-            new Asi()
+            new Asi(),
+            new Feat()
         ];
     }
 
