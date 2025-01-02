@@ -13,7 +13,7 @@ class LanguageDtoMapper extends AbstractMapper
     public function fromArray(array $data): LanguageDto
     {
         $dto = new LanguageDto(
-            $this->getValueOrNull($data, 'language'),
+            $this->getValueOrNull($data, 'name'),
             $this->getValueOrNull($data, 'source'),
         );
 

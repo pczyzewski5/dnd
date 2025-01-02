@@ -53,9 +53,13 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 'skills' => [
                     'BelQuath Song',
                 ],
+                'feat' => [
+                    'name' => 'great weapon mastery',
+                    'source' => 'race'
+                ],
                 'languages' => [
                     [
-                        'language' => 'elf',
+                        'name' => 'elf',
                         'source' => 'race'
                     ]
                 ],
@@ -106,9 +110,6 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             [
                 'level' => 8,
                 'class' => 'berserker',
-                'skills' => [
-                    'great weapon mastery'
-                ],
             ],
             [
                 'level' => 9,

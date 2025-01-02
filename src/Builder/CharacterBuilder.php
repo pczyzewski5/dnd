@@ -106,7 +106,7 @@ class CharacterBuilder
 
         foreach ($characterConfig->levelConfigs as $levelConfig) {
             foreach ($levelConfig->languages as $language) {
-                $result[] = $language->language;
+                $result[] = $language->name;
             }
         }
 

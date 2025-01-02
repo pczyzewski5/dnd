@@ -10,7 +10,7 @@ class LanguageDto
 {
     #[Assert\NotBlank]
     #[Assert\Type(type: 'string')]
-    public readonly mixed $language;
+    public readonly mixed $name;
 
     #[Assert\NotBlank]
     #[Assert\Choice(
@@ -22,10 +22,10 @@ class LanguageDto
     public readonly mixed $source;
 
     public function __construct(
-        mixed $language,
+        mixed $name,
         mixed $source,
     ) {
-        $this->language = $language;
+        $this->name = $name;
         $this->source = $source;
     }
 }
