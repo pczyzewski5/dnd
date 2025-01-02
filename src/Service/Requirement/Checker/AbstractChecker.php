@@ -57,7 +57,7 @@ abstract class AbstractChecker
         );
     }
 
-    protected function getConfigValue(string $key): string|array|int
+    protected function getConfigValue(string $key): string|array|bool|int
     {
         if (array_key_exists($key, $this->requirementConfig)) {
             return $this->requirementConfig[$key];

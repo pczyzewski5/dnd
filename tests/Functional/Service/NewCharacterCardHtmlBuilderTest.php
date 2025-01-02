@@ -58,7 +58,19 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                         'language' => 'elf',
                         'source' => 'race'
                     ]
-                ]
+                ],
+                'asi' => [
+                    [
+                        'ability' => 'con',
+                        'value' => 1,
+                        'source' => 'race'
+                    ],
+                    [
+                        'ability' => 'str',
+                        'value' => 1,
+                        'source' => 'race'
+                    ]
+                ],
             ],
             [
                 'level' => 2,
@@ -74,7 +86,8 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 'asi' => [
                     [
                         'ability' => 'con',
-                        'value'=> 2
+                        'value' => 2,
+                        'source' => 'level'
                     ]
                 ],
             ],

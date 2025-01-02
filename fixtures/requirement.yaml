@@ -6,6 +6,12 @@ parameters:
          "pool": [],
          "level": 1
      }'
+  requirement_human_variant_asi_config:
+    '{
+         "source": "race",
+         "two_different": true,
+         "level": 1
+     }'
   requirement_barbarian_class_proficiency_config:
     '{
          "source": "character class",
@@ -32,6 +38,10 @@ App\Entity\Requirement:
     __construct:
       - proficiency
       - <{requirement_human_variant_proficiency_config}>
+  requirement_human_variant_asi:
+    __construct:
+      - asi
+      - <{requirement_human_variant_asi_config}>
   requirement_barbarian_class_proficiency:
     __construct:
       - proficiency
