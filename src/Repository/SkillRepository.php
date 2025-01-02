@@ -13,7 +13,7 @@ use function array_diff;
 use function array_map;
 use function implode;
 use function sprintf;
-use function var_dump;
+use function strtolower;
 
 class SkillRepository extends ServiceEntityRepository
 {
@@ -33,7 +33,8 @@ class SkillRepository extends ServiceEntityRepository
             ->where('s.name IN (:names)')
             ->setParameter('names', $names)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
 
         $missingSkills = array_diff(
             array_map(
@@ -53,5 +54,23 @@ class SkillRepository extends ServiceEntityRepository
                 implode(', ', $missingSkills)
             )
         );
+    }
+
+    public function getByName(string $name): Skill
+    {
+        $result = $this->createQueryBuilder('s')
+            ->where('s.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        if ($result === null) {
+            throw new Exception(
+                sprintf('Skill: %s, not found.', $name)
+            );
+        }
+
+        return $result;
     }
 }

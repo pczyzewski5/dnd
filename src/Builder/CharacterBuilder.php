@@ -173,6 +173,20 @@ class CharacterBuilder
             );
         }
 
+        foreach ($config->levelConfigs as $dto) {
+            $feat = $dto->feat;
+
+            if (null === $feat) {
+                continue;
+            }
+
+            $skills[] = SkillFactory::createFromEntity(
+                $this->skillRepository->getByName(
+                    $feat->name
+                )
+            );
+        }
+
         return new Skills(...$skills);
     }
 
