@@ -15,7 +15,7 @@ class Requirement
     #[ORM\Column(type: 'integer', nullable: false, options: ['unsigned' => false])]
     private int $id;
 
-    #[ORM\Column(type: 'string', nullable: false, unique: true, length: 255)]
+    #[ORM\Column(type: 'string', nullable: false, unique: false, length: 255)]
     private string $name;
 
     #[ORM\Column(type: 'string', nullable: true, unique: true, length: 510)]
@@ -27,6 +27,11 @@ class Requirement
     ) {
         $this->name = $name;
         $this->config = $config;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getName(): string

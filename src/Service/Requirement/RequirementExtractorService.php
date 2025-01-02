@@ -9,6 +9,7 @@ use App\Dto\LevelConfigDto;
 use App\Repository\RequirementRepository;
 
 use function array_merge;
+use function crc32;
 
 class RequirementExtractorService
 {
@@ -20,10 +21,20 @@ class RequirementExtractorService
 
     public function extract(CharacterConfigDto $dto): array
     {
-        return array_merge(
+        $result = [];
+
+        $requirements = array_merge(
+            $this->getRaceRequirements($dto),
             $this->getCharacterClassRequirements($dto),
-            $this->getRaceRequirements($dto)
         );
+
+        foreach ($requirements as $requirement) {
+            $key = crc32($requirement->getConfig() . $requirement->getId());
+
+            $result[$key] = $requirement;
+        }
+
+        return $result;
     }
 
     private function getCharacterClassRequirements(CharacterConfigDto $dto): array

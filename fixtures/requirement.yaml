@@ -20,9 +20,15 @@ parameters:
          ],
          "level": 1
      }'
+  requirement_any_race_single_language_config:
+    '{
+         "source": "race",
+         "required_count": 1,
+         "level": 1
+     }'
 
 App\Entity\Requirement:
-  requirement_human_variant_proficiency:
+  requirement_human_variant_race_proficiency:
     __construct:
       - proficiency
       - <{requirement_human_variant_proficiency_config}>
@@ -30,3 +36,7 @@ App\Entity\Requirement:
     __construct:
       - proficiency
       - <{requirement_barbarian_class_proficiency_config}>
+  requirement_any_race_single_language:
+    __construct:
+      - language
+      - <{requirement_any_race_single_language_config}>

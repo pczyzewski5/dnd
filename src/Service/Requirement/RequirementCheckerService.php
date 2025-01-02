@@ -6,6 +6,7 @@ namespace App\Service\Requirement;
 
 use App\Dto\CharacterConfigDto;
 use App\Service\Requirement\Checker\AbstractChecker;
+use App\Service\Requirement\Checker\Language;
 use App\Service\Requirement\Checker\Proficiency;
 
 class RequirementCheckerService
@@ -16,7 +17,8 @@ class RequirementCheckerService
     public function __construct()
     {
         $this->checkers = [
-            new Proficiency()
+            new Proficiency(),
+            new Language()
         ];
     }
 

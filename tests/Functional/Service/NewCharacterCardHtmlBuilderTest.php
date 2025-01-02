@@ -55,7 +55,7 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 ],
                 'languages' => [
                     [
-                        'language' => 'English',
+                        'language' => 'elf',
                         'source' => 'race'
                     ]
                 ]

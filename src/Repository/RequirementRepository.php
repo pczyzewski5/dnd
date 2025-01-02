@@ -23,7 +23,7 @@ class RequirementRepository extends ServiceEntityRepository
     {
         $sql =
             <<<SQL
-            SELECT * FROM requirement r
+            SELECT r.* FROM requirement r
                 INNER JOIN pivot_requirement_to_character_class prtcc ON r.id = prtcc.requirement_id
                 INNER JOIN character_class cc ON prtcc.character_class_id = cc.id
             WHERE cc.name = :name
@@ -42,7 +42,7 @@ class RequirementRepository extends ServiceEntityRepository
     {
         $sql =
             <<<SQL
-            SELECT * FROM requirement r
+            SELECT r.* FROM requirement r
                 INNER JOIN pivot_requirement_to_race prtr ON r.id = prtr.requirement_id 
                 INNER JOIN race rc ON prtr.race_id = rc.id
             WHERE rc.name = :name
