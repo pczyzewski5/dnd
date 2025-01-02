@@ -10,6 +10,7 @@ use App\Repository\RequirementRepository;
 
 use function array_merge;
 use function crc32;
+use function var_dump;
 
 class RequirementExtractorService
 {
@@ -26,6 +27,7 @@ class RequirementExtractorService
         $requirements = array_merge(
             $this->getRaceRequirements($dto),
             $this->getCharacterClassRequirements($dto),
+            $this->getLevelRequirements($dto)
         );
 
         foreach ($requirements as $requirement) {
@@ -55,5 +57,23 @@ class RequirementExtractorService
     private function getRaceRequirements(CharacterConfigDto $dto): array
     {
         return $this->repository->findRequirementsByRace($dto->race);
+    }
+
+    private function getLevelRequirements(CharacterConfigDto $dto): array
+    {
+        $result = [];
+
+        /** @var LevelConfigDto $config */
+        foreach ($dto->levelConfigs as $config) {
+            $result = array_merge(
+                $this->repository->findRequirementsByLevelAndCharacterClass(
+                    $config->level,
+                    $config->class
+                ),
+                $result
+            );
+        }
+
+        return $result;
     }
 }

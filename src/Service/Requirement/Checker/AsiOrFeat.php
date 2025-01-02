@@ -9,12 +9,13 @@ use App\Exception\RequirementException;
 
 use function sprintf;
 use function ucfirst;
+use function var_dump;
 
-class Feat extends AbstractChecker
+class AsiOrFeat extends AbstractChecker
 {
     public function supports(Requirement $requirement): bool
     {
-        return 'feat' === $requirement->getName();
+        return 'asi or feat' === $requirement->getName();
     }
 
     public function check(): void
@@ -23,11 +24,14 @@ class Feat extends AbstractChecker
         $level = $this->getConfigValue('level');
 
         $level = $this->getLevelConfig($level);
+        $feat = $level->feat->source === $source
+            ? $level->feat
+            : null;
 
-        if (null === $level->feat || $level->feat->source !== $source) {
+        if ($feat === null && [] === $level->asi) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    '%s require to pick feat.',
+                    '%s require to pick feat or ability score increase.',
                     ucfirst($source),
                 )
             );

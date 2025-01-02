@@ -15,7 +15,6 @@ parameters:
   requirement_human_variant_feat_config:
     '{
          "source": "race",
-         "allow_asi": true,
          "level": 1
      }'
   requirement_barbarian_class_proficiency_config:
@@ -32,11 +31,16 @@ parameters:
          ],
          "level": 1
      }'
-  requirement_any_race_single_language_config:
+  requirement_race_single_language_config:
     '{
          "source": "race",
          "required_count": 1,
          "level": 1
+     }'
+  requirement_asi_or_feat_level_4_config:
+    '{
+         "source": "level",
+         "level": 4
      }'
 
 App\Entity\Requirement:
@@ -56,7 +60,11 @@ App\Entity\Requirement:
     __construct:
       - proficiency
       - <{requirement_barbarian_class_proficiency_config}>
-  requirement_any_race_single_language:
+  requirement_race_single_language:
     __construct:
       - language
-      - <{requirement_any_race_single_language_config}>
+      - <{requirement_race_single_language_config}>
+  requirement_asi_or_feat_level_4:
+    __construct:
+      - asi or feat
+      - <{requirement_asi_or_feat_level_4_config}>

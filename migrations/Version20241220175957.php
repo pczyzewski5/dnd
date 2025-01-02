@@ -90,6 +90,18 @@ final class Version20241220175957 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
+            CREATE TABLE pivot_requirement_to_level (
+                requirement_id INT NOT NULL,
+                level_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, level_id),
+                CONSTRAINT FK_PRTL_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
             CREATE TABLE pivot_requirement_to_character_class (
                 requirement_id INT NOT NULL,
                 character_class_id INT NOT NULL,

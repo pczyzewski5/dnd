@@ -54,7 +54,7 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                     'BelQuath Song',
                 ],
                 'feat' => [
-                    'name' => 'great weapon mastery',
+                    'name' => 'lucky',
                     'source' => 'race'
                 ],
                 'languages' => [
@@ -65,12 +65,12 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                 ],
                 'asi' => [
                     [
-                        'ability' => 'con',
+                        'ability' => 'str',
                         'value' => 1,
                         'source' => 'race'
                     ],
                     [
-                        'ability' => 'str',
+                        'ability' => 'con',
                         'value' => 1,
                         'source' => 'race'
                     ]

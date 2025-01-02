@@ -47,3 +47,11 @@ App\Entity\Skill:
     __construct:
       - exhaustion
       - <{exhaustion_desc}>
+  feat_great_weapon_mastery:
+    __construct:
+      - great weapon mastery
+      - <{feat_great_weapon_master_desc}>
+  feat_lucky:
+    __construct:
+      - lucky
+      - <{feat_lucky_desc}>
