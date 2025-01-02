@@ -91,11 +91,26 @@ class CharacterBuilder
             $this->getPassiveInsights($abilities, $proficiencyBonus, $proficiencies),
             $this->getArmorClass($abilities, $skills),
             $this->getSpeed($raceConfig, $skills),
-            $raceConfig->languages,
+            $this->getLanguages($config, $raceConfig),
             $raceConfig->darkvision,
             $this->getAlignment($config),
             $this->getInitiative($abilities)
         );
+    }
+
+    private function getLanguages(
+        CharacterConfigDto $characterConfig,
+        RaceConfigDto $raceConfig
+    ): array {
+        $result = $raceConfig->languages;
+
+        foreach ($characterConfig->levelConfigs as $levelConfig) {
+            foreach ($levelConfig->languages as $language) {
+                $result[] = $language->language;
+            }
+        }
+
+        return $result;
     }
 
     private function getOrigin(CharacterConfigDto $config): Origin
