@@ -42,6 +42,11 @@ parameters:
          "source": "level",
          "level": 4
      }'
+  requirement_asi_or_feat_level_8_config:
+    '{
+         "source": "level",
+         "level": 8
+     }'
 
 App\Entity\Requirement:
   requirement_human_variant_race_proficiency:
@@ -68,3 +73,7 @@ App\Entity\Requirement:
     __construct:
       - asi or feat
       - <{requirement_asi_or_feat_level_4_config}>
+  requirement_asi_or_feat_level_8:
+    __construct:
+      - asi or feat
+      - <{requirement_asi_or_feat_level_8_config}>

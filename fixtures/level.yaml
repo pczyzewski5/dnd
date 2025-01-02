@@ -49,6 +49,9 @@ App\Entity\Level:
     __construct:
       - 8
       - '@character_class_berserker'
+      - []
+      - []
+      - ['@requirement_asi_or_feat_level_8']
   level_9_berserker:
     __construct:
       - 9

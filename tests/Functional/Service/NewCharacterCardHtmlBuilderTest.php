@@ -110,6 +110,10 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             [
                 'level' => 8,
                 'class' => 'berserker',
+                'feat' => [
+                    'name' => 'great weapon mastery',
+                    'source' => 'level'
+                ],
             ],
             [
                 'level' => 9,
@@ -123,7 +127,7 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             ],
             [
                 'ability' => 'dex',
-                'value' => 13,
+                'value' => 14,
             ],
             [
                 'ability' => 'con',
@@ -131,15 +135,15 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
             ],
             [
                 'ability' => 'int',
-                'value' =>  7,
+                'value' =>  8,
             ],
             [
                 'ability' => 'wis',
-                'value' => 11,
+                'value' => 12,
             ],
             [
                 'ability' => 'cha',
-                'value' =>  9,
+                'value' =>  10,
             ],
         ]
     ];
