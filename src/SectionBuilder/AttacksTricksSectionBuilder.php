@@ -9,7 +9,7 @@ class AttacksTricksSectionBuilder extends AbstractSectionBuilder
     public function build(bool $printMode = false): string
     {
         $context =  [
-            'attackCount' => 2,
+            'attackCount' => $this->character->attackCount,
         ];
 
         return $this->twig->render(

@@ -28,7 +28,8 @@ class Character
         public readonly array $languages,
         public readonly int $darkvision,
         public readonly string $alignment,
-        public readonly int $initiative
+        public readonly int $initiative,
+        public readonly int $attackCount
     ) {
     }
 }
