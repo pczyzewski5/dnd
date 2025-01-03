@@ -11,7 +11,6 @@ use function get_object_vars;
 
 class Abilities
 {
-    // to zmienic na array
     public function __construct(
         public readonly Ability $str,
         public readonly Ability $dex,

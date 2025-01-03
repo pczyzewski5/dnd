@@ -9,7 +9,7 @@ use App\Character\Skills;
 
 class ArmorClassCalculator
 {
-    public static function newCalculate(
+    public static function calculate(
         Abilities $abilities,
         Skills $skills,
     ): int {

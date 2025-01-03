@@ -8,11 +8,11 @@ class Character
 {
     public function __construct(
         public readonly Abilities $abilities,
-        public readonly string $characterName, // used
-        public readonly string $playerName, // used
-        public readonly string $campaignName, // used
+        public readonly string $characterName,
+        public readonly string $playerName,
+        public readonly string $campaignName,
         public readonly string $origin,
-        public readonly string $race, // used
+        public readonly string $race,
         public readonly Proficiencies $proficiencies,
         public readonly array $hitDices,
         public readonly array $simpleLevels,
@@ -27,7 +27,7 @@ class Character
         public readonly int $speed,
         public readonly array $languages,
         public readonly int $darkvision,
-        public readonly string $alignment, // used
+        public readonly string $alignment,
         public readonly int $initiative
     ) {
     }

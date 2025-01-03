@@ -49,30 +49,11 @@ class ProficienciesBuilder
     {
         return new Proficiencies(
             array_merge(
+                $this->getProficienciesFromLevelConfigs($this->levelConfigs),
                 $this->getProficienciesFromLevels($this->levels),
                 $this->getProficienciesFromOrigin($this->origin),
-                $this->getProficienciesFromLevelConfigs($this->levelConfigs),
             )
         );
-    }
-
-    private function getProficienciesFromLevels(array $levels): array
-    {
-        $proficiencies = [];
-
-        foreach ($levels as $level) {
-            $proficiencies = array_merge(
-                $level->getProficiencies()->toArray(),
-                $proficiencies
-            );
-        }
-
-        return $proficiencies;
-    }
-
-    private function getProficienciesFromOrigin(Origin $origin): array
-    {
-        return $origin->getProficiencies()->toArray();
     }
 
     private function getProficienciesFromLevelConfigs(array $levelConfigs): array
@@ -92,5 +73,24 @@ class ProficienciesBuilder
         }
 
         return $result;
+    }
+
+    private function getProficienciesFromLevels(array $levels): array
+    {
+        $proficiencies = [];
+
+        foreach ($levels as $level) {
+            $proficiencies = array_merge(
+                $level->getProficiencies()->toArray(),
+                $proficiencies
+            );
+        }
+
+        return $proficiencies;
+    }
+
+    private function getProficienciesFromOrigin(Origin $origin): array
+    {
+        return $origin->getProficiencies()->toArray();
     }
 }

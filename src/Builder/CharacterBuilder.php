@@ -284,7 +284,7 @@ class CharacterBuilder
         Abilities $abilities,
         Skills $skills
     ): int {
-        return $this->armorClassCalculator->newCalculate(
+        return $this->armorClassCalculator->calculate(
             $abilities,
             $skills
         );
