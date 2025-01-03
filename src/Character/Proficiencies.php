@@ -12,7 +12,7 @@ class Proficiencies
     {
         /** @var Proficiency $proficiency */
         foreach ($proficiencies as $proficiency) {
-            $this->proficiencies[$proficiency->getCategory()] = $proficiency->getName();
+            $this->proficiencies[$proficiency->getCategory()][] = $proficiency->getName();
         }
 
         return $this;
