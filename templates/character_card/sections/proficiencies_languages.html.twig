@@ -22,13 +22,13 @@
    <div id="proficiencies-languages-background">
       <div id="proficiencies-languages-container">
          <div class="tac"><b>Biegłości</b></div>
-         <div>Zbroje: {{ proficiencies.getArmorProficiencies()|join(', ') }}</div>
-         <div>Bronie: {{ proficiencies.getWeaponProficiencies()|join(', ') }}</div>
+         <div>Zbroje: {{ proficiencies.getArmorProficiencies()|join(', ') }}.</div>
+         <div>Bronie: {{ proficiencies.getWeaponProficiencies()|join(', ') }}.</div>
          {% if proficiencies.getOtherProficiencies() is not empty %}
-            <div>Pozostałe: {{ proficiencies.getOtherProficiencies()|join(', ') }}</div>
+            <div>Pozostałe: {{ proficiencies.getOtherProficiencies()|join(', ') }}.</div>
          {% endif %}
          <div class="tac"><b>Języki</b></div>
-         <div>{{ languages|join(', ') }}</div>
+         <div>{{ languages|join(', ') }}.</div>
       </div>
    </div>
 </div>
