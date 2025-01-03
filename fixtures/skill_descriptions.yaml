@@ -127,14 +127,14 @@ parameters:
     '<b>Odskok (PHB 79)</b> - po udanym rzucie obronnym na zręczność nie otrzymuje
     żadnych obrażeń, a po nie udanym połowę.'
   exhaustion_desc:
-    '<table><tr><td colspan="2" style="text-align: center;"><b>Wyczerpanie</b></td></tr><tr><td>Poziom</td><td
-    style="text-align: center;">Efekt</td></tr><tr><td>1</td><td>Utrudnienie
-    w testach cech</td></tr><tr><td>2</td><td>Szybkość
-    zmniejszona o połowę</td></tr><tr><td>3</td><td>Utrudnienie
-    w testach ataku i rzutach obronnych</td></tr><tr><td>4</td><td>Maksymalne
-    PW zmniejszone o połowę</td></tr><tr><td>5</td><td>Szybkość
-    zmniejszona do 0</td></tr><tr><td>6</td><td>Śmierć</td></tr>
-    </table>'
+    '<table><tr><td colspan="3" style="text-align:center"><b>Wyczerpanie</b></td></tr>
+    <tr><td style="text-align:center">poziom</td><td style="text-align:center">efekt</td>
+    <td style="text-align:center">status</td></tr><tr><td>1</td><td>utrudnienie w testach cech</td>
+    <td></td></tr><tr><td>2</td><td>szybkość zmniejszona o połowę</td><td></td></tr>
+    <tr><td>3</td><td>utrudnienie w testach ataku i rzutach obronnych</td><td></td></tr>
+    <tr><td>4</td><td>maksymalne PW zmniejszone o połowę</td><td></td></tr><tr><td>5</td>
+    <td>szybkość zmniejszona do 0</td><td></td></tr><tr><td>6</td><td>śmierć</td><td></td>
+    </tr></table>'
   expertise_desc:
     '<b>Znawstwo (PHB 79)</b> - na 1szym oraz 6tym poziomie mogę wybrać dwie
     umiejętności, w których jestem biegły, od tego czasu premia z biegłości dla
@@ -367,12 +367,12 @@ parameters:
     i obrażenia.'
   rage_desc:
     '<b>Szał</b> - zużyj akcję dodatkową aby wejść w szał, który trwa 1 minutę,
-    zyskujesz: <ul><li>+{{ damage}} obrażeń do broni opartych na sile,</li><li>{{
+    zyskujesz: <ul><li>+{{ damage }} obrażeń do broni opartych na sile,</li><li>{{
     resistances }},</li><li>rzuty obronne na siłę i testy siły wykonujesz z
     ułatwieniem.</li></ul><p>Szał kończy się, jeśli stracisz przytomność albo
-    jeśli twoja tura skończy się, a ty nie zaatakowałaś wrogiej istoty lub nie
-    otrzymałaś obrażeń. Możesz także zakończyć szał akcją dodatkową. Zdolność odnawia
-    się po długim odpoczynku.</p>'
+    jeśli twoja tura skończy się, a ty nie zaatakowałeś wrogiej istoty lub nie
+    otrzymałeś obrażeń. Możesz także zakończyć szał akcją dodatkową. Podczas szału 
+    nie możesz rzucać czarów. Zdolność odnawia się po długim odpoczynku.</p>'
   reckless_attack_desc:
     '<b>Szaleńczy atak</b> - przy pierwszym ataku w swojej turze możesz zdecydować
     się na szaleńczy atak. Daje ci on do końca tej tury ułatwienie w testach ataku
@@ -456,7 +456,7 @@ parameters:
     istocie, która jest przez ciebie pochwycona.'
   unarmored_defense_desc:
     '<b>Obrona bez pancerza</b> - jeśli nie nosisz zbroi, to twoja KP wynosi
-    {{ ac }}. Możesz do KP doliczyć wartość z tarczy.'
+    10 + mod ze zręczności + mod z kondycji. Możesz do KP doliczyć wartość z tarczy.'
   uncanny_dodge_desc:
     '<b>Niesamowity unik (PHB 79)</b> - gdy trafi mnie przeciwnik, którego
     widzę, w ramach reakcji mogę zmniejszyć o połowę otrzymane obrażenia.'

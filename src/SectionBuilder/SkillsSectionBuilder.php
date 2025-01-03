@@ -11,7 +11,7 @@ class SkillsSectionBuilder extends AbstractSectionBuilder
     public function build(bool $printMode = false): string
     {
         $context = [
-            'skills' => $this->character->skills
+            'skills' => $this->character->skills->all()
         ];
 
         return $this->twig->render(

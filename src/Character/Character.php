@@ -18,7 +18,7 @@ class Character
         public readonly array $simpleLevels,
         public readonly int $proficiencyBonus,
         public readonly int $hitPoints,
-        public readonly array $skills,
+        public readonly Skills $skills,
         public readonly array $abilitySkills,
         public readonly array $savingThrows,
         public readonly int $passivePerception,

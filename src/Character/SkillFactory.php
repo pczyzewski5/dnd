@@ -8,21 +8,30 @@ use App\Entity\Skill as SkillEntity;
 
 class SkillFactory
 {
+    public static function create(
+        string $name,
+        string $description,
+        ?int $usageCount = null
+    ): Skill {
+        return new Skill(
+            $name,
+            $description,
+            $usageCount
+        );
+    }
+
     public static function createFromEntity(SkillEntity $skill): Skill
     {
         return new Skill(
             $skill->getName(),
-            $skill->getDescription()
+            $skill->getDescription(),
         );
     }
 
-    /**
-     * @return Skill[]
-     */
-    public static function createManyFromEntity(array $skills): array
+    public static function createManyFromEntities(array $skills): array
     {
         return array_map(
-            fn (SkillEntity $skill) => self::createFromEntity($skill),
+            fn (SkillEntity $skill): Skill => self::createFromEntity($skill),
             $skills
         );
     }

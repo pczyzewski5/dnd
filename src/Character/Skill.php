@@ -8,7 +8,8 @@ class Skill
 {
     public function __construct(
         public readonly string $name,
-        public readonly string $description
+        public readonly string $description,
+        public readonly ?int $usageCount = null
     ) {
     }
 }

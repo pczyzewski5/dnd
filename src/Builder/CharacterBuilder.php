@@ -16,7 +16,6 @@ use App\Calculator\SpeedCalculator;
 use App\Character\Abilities;
 use App\Character\Character;
 use App\Character\Proficiencies;
-use App\Character\SkillFactory;
 use App\Character\Skills;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
@@ -27,12 +26,9 @@ use App\Enum\AlignmentEnum;
 use App\Repository\LevelRepository;
 use App\Repository\OriginRepository;
 use App\Repository\RaceRepository;
-use App\Repository\SkillRepository;
 use App\Service\RaceService;
-use App\Service\SkillFinalizerService;
 
 use function array_map;
-use function array_merge;
 use function count;
 
 class CharacterBuilder
@@ -45,7 +41,6 @@ class CharacterBuilder
         private readonly AbilitiesBuilder $abilitiesBuilder,
         private readonly AbilitySkillsBuilder $abilitySkillsBuilder,
         private readonly HitPointsCalculator $hitPointsCalculator,
-        private readonly SkillFinalizerService $skillFinalizerService,
         private readonly SavingThrowsBuilder $savingThrowsBuilder,
         private readonly PassiveInsightCalculator $passiveInsightCalculator,
         private readonly PassivePerceptionCalculator $passivePerceptionCalculator,
@@ -53,10 +48,10 @@ class CharacterBuilder
         private readonly SpeedCalculator $speedCalculator,
         private readonly InitiativeCalculator $initiativeCalculator,
         private readonly LevelRepository $levelRepository,
-        private readonly SkillRepository $skillRepository,
         private readonly ProficiencyBonusCalculator $proficiencyBonusCalculator,
         private readonly HitDiceCalculator $hitDiceCalculator,
         private readonly SimpleLevelsCalculator $simpleLevelsCalculator,
+        private readonly SkillsBuilder $skillsBuilder,
     ) {
     }
 
@@ -67,7 +62,7 @@ class CharacterBuilder
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
         $proficiencies = $this->getProficiencies($config, $levels, $origin);
-        $skills = $this->getSkills($config, $levels);
+        $skills = $this->getSkills($config, $abilities, $levels);
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
         $hitDices = $this->hitDiceCalculator->calculate($levels);
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
@@ -84,7 +79,7 @@ class CharacterBuilder
             $simpleLevels,
             $proficiencyBonus,
             $this->getHitPoints($abilities, $levels),
-            $this->getFinalizedSkills($abilities, $skills, $levels),
+            $skills,
             $this->getAbilitySkills($abilities, $proficiencies, $proficiencyBonus),
             $this->getSavingThrows($abilities, $proficiencyBonus, $proficiencies),
             $this->getPassivePerception($abilities, $proficiencyBonus, $proficiencies),
@@ -96,6 +91,18 @@ class CharacterBuilder
             $this->getAlignment($config),
             $this->getInitiative($abilities)
         );
+    }
+
+    private function getSkills(
+        CharacterConfigDto $config,
+        Abilities $abilities,
+        array $levels
+    ): Skills {
+        return $this->skillsBuilder
+            ->setCharacterConfigDto($config)
+            ->setAbilities($abilities)
+            ->setLevels($levels)
+            ->build();
     }
 
     private function getLanguages(
@@ -149,47 +156,6 @@ class CharacterBuilder
         );
     }
 
-    private function getSkills(
-        CharacterConfigDto $config,
-        array $levels,
-    ): Skills {
-        $skills = [];
-
-        foreach ($levels as $level) {
-            $skills = array_merge(
-                SkillFactory::createManyFromEntity(
-                    $level->getSkills()->toArray()
-                ),
-                $skills
-            );
-        }
-
-        foreach ($config->levelConfigs as $dto) {
-            $skills = array_merge(
-                SkillFactory::createManyFromEntity(
-                    $this->skillRepository->getByNames($dto->skills)
-                ),
-                $skills
-            );
-        }
-
-        foreach ($config->levelConfigs as $dto) {
-            $feat = $dto->feat;
-
-            if (null === $feat) {
-                continue;
-            }
-
-            $skills[] = SkillFactory::createFromEntity(
-                $this->skillRepository->getByName(
-                    $feat->name
-                )
-            );
-        }
-
-        return new Skills(...$skills);
-    }
-
     private function getAbilities(
         CharacterConfigDto $characterConfigDto,
         RaceConfigDto $raceConfigDto
@@ -203,18 +169,6 @@ class CharacterBuilder
         }
 
         return $abilitiesBuilder->build();
-    }
-
-    private function getFinalizedSkills(
-        Abilities $abilities,
-        Skills $skills,
-        array $levels
-    ): array {
-        return $this->skillFinalizerService->finalizeArray(
-            $abilities,
-            $skills,
-            count($levels),
-        );
     }
 
     private function getHitPoints(

@@ -54,7 +54,7 @@ class NewCharacterCardHtmlBuilderTest extends KernelTestCase
                     'BelQuath Song',
                 ],
                 'feat' => [
-                    'name' => 'lucky',
+                    'name' => 'feat lucky',
                     'source' => 'race'
                 ],
                 'languages' => [

@@ -53,5 +53,5 @@ App\Entity\Skill:
       - <{feat_great_weapon_master_desc}>
   feat_lucky:
     __construct:
-      - lucky
+      - feat lucky
       - <{feat_lucky_desc}>
