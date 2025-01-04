@@ -52,8 +52,8 @@ class CharacterCardHtmlBuilderTest extends KernelTestCase
         => file_get_contents(__DIR__ . '/../../Data/' . $configFile);
 
         return [
-            'Sydda' => [$getConfig('character_config_sydda.json')],
-            'Mordimer' => [$getConfig('character_config_sydda.json')],
+            'Sydda config' => [$getConfig('character_config_sydda.json')],
+            'Mordimer config' => [$getConfig('character_config_mordimer.json')],
         ];
     }
 }

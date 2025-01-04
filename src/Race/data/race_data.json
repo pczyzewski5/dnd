@@ -8,15 +8,6 @@
     "speed_in_meters": 7.5,
     "nightvision_in_meters": 18
   },
-  "halfling": {
-    "ASI": {
-      "dex": 2
-    },
-    "skills": ["lucky", "brave", "nimble"],
-    "languages": ["common", "halfling"],
-    "speed_in_meters": 7.5,
-    "nightvision_in_meters": 0
-  },
   "human": {
     "ASI": {
       "str": 1,

@@ -1,10 +1,4 @@
 {
-  "character_name": "Mordimer Madderdin",
-  "player_name": "Paweł",
-  "campaign_name": "Klątwa Sthrada",
-  "origin": "akolita",
-  "race": "lightfoot halfling",
-  "alignment": "neutral evil",
   "levels": {
     "1": {
       "class": "rouge"
@@ -60,7 +54,5 @@
     "performance",
     "persuasion"
   ],
-  "languages": [],
-  "extra_skills": [],
   "feats": ["alert", "sharpshooter"]
 }

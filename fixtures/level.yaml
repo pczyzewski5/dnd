@@ -57,3 +57,41 @@ App\Entity\Level:
       - 9
       - '@character_class_berserker'
       - ['@skill_brutal_critical']
+
+  level_1_rouge:
+    __construct:
+      - 1
+      - '@character_class_rouge'
+  level_2_rouge:
+    __construct:
+      - 2
+      - '@character_class_rouge'
+  level_3_assassin:
+    __construct:
+      - 3
+      - '@character_class_assassin'
+  level_4_assassin:
+    __construct:
+      - 4
+      - '@character_class_assassin'
+  level_5_assassin:
+    __construct:
+      - 5
+      - '@character_class_assassin'
+  level_6_assassin:
+    __construct:
+      - 6
+      - '@character_class_assassin'
+  level_7_assassin:
+    __construct:
+      - 7
+      - '@character_class_assassin'
+  level_8_assassin:
+    __construct:
+      - 8
+      - '@character_class_assassin'
+
+  level_1_ranger:
+    __construct:
+      - 1
+      - '@character_class_ranger'

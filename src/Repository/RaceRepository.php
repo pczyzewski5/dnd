@@ -17,4 +17,17 @@ class RaceRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Race::class);
     }
+
+    public function getOneByName(string $name): Race
+    {
+        $result = $this->findOneBy(['name' => $name]);
+
+        if (null === $result) {
+            throw new \Exception(
+                sprintf('Missing race record for: %s.', $name)
+            );
+        }
+
+        return $result;
+    }
 }

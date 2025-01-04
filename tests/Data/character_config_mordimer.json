@@ -1,0 +1,72 @@
+{
+    "character_name": "Mordimer Madderdin",
+    "player_name": "Paweł",
+    "campaign_name": "Klątwa Sthrada",
+    "origin": "acolyte",
+    "race": "lightfoot halfling",
+    "alignment": "neutral evil",
+    "levels": [
+        {
+            "level": 1,
+            "class": "rouge"
+        },
+        {
+            "level": 2,
+            "class": "rouge"
+        },
+        {
+            "level": 3,
+            "class": "assassin"
+        },
+        {
+            "level": 4,
+            "class": "assassin"
+        },
+        {
+            "level": 5,
+            "class": "assassin"
+        },
+        {
+            "level": 6,
+            "class": "assassin"
+        },
+        {
+            "level": 7,
+            "class": "assassin"
+        },
+        {
+            "level": 8,
+            "class": "assassin"
+        },
+        {
+            "level": 9,
+            "class": "ranger"
+        }
+    ],
+    "abilities": [
+        {
+            "ability": "str",
+            "value": 9
+        },
+        {
+            "ability": "dex",
+            "value": 16
+        },
+        {
+            "ability": "con",
+            "value": 13
+        },
+        {
+            "ability": "int",
+            "value": 11
+        },
+        {
+            "ability": "wis",
+            "value": 13
+        },
+        {
+            "ability": "cha",
+            "value": 15
+        }
+    ]
+}

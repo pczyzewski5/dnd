@@ -10,3 +10,18 @@ App\Entity\CharacterClass:
       - 12
       - berserker
       - '@character_class_barbarian'
+
+  character_class_rouge:
+    __construct:
+      - 8
+      - rouge
+  character_class_assassin:
+    __construct:
+      - 8
+      - assassin
+      - '@character_class_rouge'
+
+  character_class_ranger:
+    __construct:
+      - 10
+      - ranger

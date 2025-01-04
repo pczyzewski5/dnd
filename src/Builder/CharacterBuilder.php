@@ -153,7 +153,7 @@ class CharacterBuilder
     private function getRaceConfig(CharacterConfigDto $config): RaceConfigDto
     {
         return $this->raceService->getRaceConfig(
-            $this->raceRepository->findOneBy(['name' => $config->race])
+            $this->raceRepository->getOneByName($config->race)
         );
     }
 
