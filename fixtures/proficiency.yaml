@@ -23,9 +23,17 @@ App\Entity\Proficiency:
     __construct:
       - str
       - saving throw
+  proficiency_dexterity:
+    __construct:
+      - dex
+      - saving throw
   proficiency_constitution:
     __construct:
       - con
+      - saving throw
+  proficiency_intelligence:
+    __construct:
+      - int
       - saving throw
   proficiency_animal_handling:
     __construct:
@@ -34,6 +42,18 @@ App\Entity\Proficiency:
   proficiency_athletics:
     __construct:
       - athletics
+      - ability skill
+  proficiency_acrobatics:
+    __construct:
+      - acrobatics
+      - ability skill
+  proficiency_deception:
+    __construct:
+      - deception
+      - ability skill
+  proficiency_insight:
+    __construct:
+      - insight
       - ability skill
   proficiency_intimidation:
     __construct:
@@ -63,3 +83,23 @@ App\Entity\Proficiency:
     __construct:
       - stealth
       - ability skill
+  proficiency_hand_crossbows:
+    __construct:
+      - hand crossbows
+      - weapon
+  proficiency_long_swords:
+    __construct:
+      - long swords
+      - weapon
+  proficiency_rapiers:
+    __construct:
+      - rapiers
+      - weapon
+  proficiency_short_swords:
+    __construct:
+      - short swords
+      - weapon
+  proficiency_thieves_tools:
+    __construct:
+      - thieves tools
+      - other

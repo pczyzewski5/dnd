@@ -8,7 +8,25 @@
     "levels": [
         {
             "level": 1,
-            "class": "rouge"
+            "class": "rouge",
+            "proficiencies": [
+                {
+                    "name": "acrobatics",
+                    "source": "character class"
+                },
+                {
+                    "name": "athletics",
+                    "source": "character class"
+                },
+                {
+                    "name": "deception",
+                    "source": "character class"
+                },
+                {
+                    "name": "insight",
+                    "source": "character class"
+                }
+            ]
         },
         {
             "level": 2,

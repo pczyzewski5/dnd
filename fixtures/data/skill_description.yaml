@@ -136,8 +136,8 @@ parameters:
     <td>szybkość zmniejszona do 0</td><td></td></tr><tr><td>6</td><td>śmierć</td><td></td>
     </tr></table>'
   expertise_desc:
-    '<b>Znawstwo (PHB 79)</b> - na 1szym oraz 6tym poziomie mogę wybrać dwie
-    umiejętności, w których jestem biegły, od tego czasu premia z biegłości dla
+    '<b>Znawstwo (PHB 79)</b> - na 1szym oraz 6tym poziomie możesz wybrać dwie
+    umiejętności, w których jesteś biegły, od tego czasu premia z biegłości dla
     tych umiejętności jest podwojona.'
   fast_movement_desc:
     '<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość
@@ -400,17 +400,17 @@ parameters:
     znajduje się 1 hex od celu, w innym wypadku atak wykonywany jest z utrudnieniem.</li>
     </ul>'
   sneak_attack_desc:
-    '<b>Ukradkowy Atak</b> - <i style="color: gray;">raz na turę</i> mogę
-    zadać {{ sneakAttackDiceCount }}k6 dodatkowych obrażeń podczas ataku, pod warunkiem
-    że: <ul><li>koło mojego celu znajduje się przytomny sojusznik lub mam ułatwienie
-    w ataku,</li><li>używam broni finezyjnej lub dystansowej,</li><li>w
-    wypadku ataku krytycznego rzucam kośćmi ukradkowego ataku dwukrotnie (PHB 196),</li><li>jeśli
-    przy ataku okazyjnym, spełniam warunki ukradkowego ataku, to mogę go użyć zgodnie
+    '<b>Ukradkowy Atak</b> - <i style="color: gray;">raz na turę</i> możesz
+    zadać {{ sneakAttackDiceCount }}k6 dodatkowych obrażeń:
+    <ul><li>gdy koło celu znajduje się przytomny sojusznik lub masz ułatwienie
+    w ataku,</li><li>gdy używasz broni finezyjnej lub dystansowej,</li><li>w
+    wypadku ataku krytycznego rzucasz kośćmi ukradkowego ataku dwukrotnie (PHB 196),</li><li>jeśli
+    przy ataku okazyjnym, spełniasz warunki ukradkowego ataku, to możesz go użyć zgodnie
     z zasadą "raz na turę",</li><li>w przypadku ataku z zaskoczenia przy ataku
-    bronią dystansową i strzelając w cel w długim zasięgu broni, mogę użyć tej zdolności,
-    ponieważ posiadam disadvantage do trafienia, ale nie do zaskoczenia (advantage),</li><li>gdy
-    używam dwóch broni naraz, to jeśli nie zużyję ukradkowego ataku podczas pierwszego
-    ataku, bo np. nie trafię, to mogę go użyć przy ataku drugą ręką.</li></ul>'
+    bronią dystansową i strzelając w cel w długim zasięgu broni, możesz użyć tej zdolności,
+    ponieważ posiadasz disadvantage do trafienia, ale nie do zaskoczenia,</li><li>gdy
+    używasz dwóch broni naraz, jeśli nie użyjesz ukradkowego ataku podczas pierwszego
+    ataku, bo np. nie trafisz, to możesz go użyć przy ataku drugą ręką.</li></ul>'
   spellcasting_desc:
     '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
     odpoczynku. <table><tr><td></td> {% for spellCircle in
@@ -436,11 +436,11 @@ parameters:
   superiority_dice_desc:
     '<b>Kości przewagi</b> - są to cztery kości k8.'
   thieves_cant_desc:
-    '<b>Grypsera (PHB 79)</b> - mogę komunikować się za pomocą grypsery, potrafię
-    również rozpoznać symbole używane do przekazania informacji takich jak: czy
+    '<b>Grypsera (PHB 79)</b> - możesz komunikować się za pomocą grypsery, potrafisz
+    rozpoznać symbole używane do przekazania informacji takich jak: czy
     obszar jest niebezpieczny, czy terytorium należy do gildii złodziei, czy w pobliżu
     znajduje się potencjalny łup, czy w okolicy znajdują się łatwe ofiary lub sojusznicy,
-    którzy mogą mnie ukryć.'
+    którzy mogą cię ukryć.'
   tides_of_chaos_desc:
     '<b>Pływy chaosu</b> - raz na długi odpoczynek możesz zyskać ułatwienie
     w jednym teście ataku lub cechy albo w rzucie obronnym.'

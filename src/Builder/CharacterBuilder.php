@@ -28,7 +28,7 @@ use App\Repository\OriginRepository;
 use App\Repository\RaceRepository;
 use App\Service\RaceService;
 
-use function array_map;
+use function array_merge;
 use function count;
 
 class CharacterBuilder
@@ -91,7 +91,7 @@ class CharacterBuilder
             $this->getAlignment($config),
             $this->getInitiative($abilities),
             $this->getAttackCount($skills),
-            // spellcasting do implementacji
+        // spellcasting do implementacji
         );
     }
 
@@ -157,16 +157,28 @@ class CharacterBuilder
         );
     }
 
-    private function getLevels(CharacterConfigDto $config): array
+    private function getLevels(CharacterConfigDto $characterConfig): array
     {
-        return array_map(
-            fn (LevelConfigDto $dto): Level => $this->levelRepository
-                ->getByLevelAndCharacterClass(
-                    $dto->level,
-                    $dto->class
-                ),
-            $config->levelConfigs
-        );
+        $data = [];
+
+        /** @var LevelConfigDto $config */
+        foreach ($characterConfig->levelConfigs as $config) {
+            isset($data[$config->class])
+                ? $data[$config->class]++
+                : $data[$config->class] = 1;
+
+        }
+
+        $result = [];
+
+        foreach ($data as $class => $level) {
+            $result = array_merge(
+                $this->levelRepository->getByLevelAndCharacterClass($level, $class),
+                $result
+            );
+        }
+
+        return $result;
     }
 
     private function getAbilities(

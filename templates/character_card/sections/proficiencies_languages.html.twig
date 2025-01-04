@@ -1,34 +1,40 @@
 <style>
-   #proficiencies-languages-background {
-      background-image: url("{{ asset('images/proficiencies_languages.jpg') }}");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: inherit;
-      height: inherit;
-   }
-   #proficiencies-languages-container {
-      position: absolute;
-      top: 8px;
-      left: 5px;
-      height: 154px;
-      width: 179px;
-      font-size: 10px;
-   {{ backgroundColor() }}
-   }
+    #proficiencies-languages-background {
+        background-image: url("{{ asset('images/proficiencies_languages.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: inherit;
+        height: inherit;
+    }
+    #proficiencies-languages-container {
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        height: 154px;
+        width: 179px;
+        font-size: 10px;
+    {{ backgroundColor() }}
+    }
 </style>
 
 <div id="proficiencies-languages-section" class="character-card-section">
-   <div id="proficiencies-languages-background">
-      <div id="proficiencies-languages-container">
-         <div class="tac"><b>Biegłości</b></div>
-         <div>Zbroje: {{ proficiencies.getArmorProficiencies()|join(', ') }}.</div>
-         <div>Bronie: {{ proficiencies.getWeaponProficiencies()|join(', ') }}.</div>
-         {% if proficiencies.getOtherProficiencies() is not empty %}
-            <div>Pozostałe: {{ proficiencies.getOtherProficiencies()|join(', ') }}.</div>
-         {% endif %}
-         <div class="tac"><b>Języki</b></div>
-         <div>{{ languages|join(', ') }}.</div>
-      </div>
-   </div>
+    <div id="proficiencies-languages-background">
+        <div id="proficiencies-languages-container">
+            {% if proficiencies.getArmorProficiencies() is not empty %}
+                <div class="tac"><b>Biegłości</b></div>
+                <div>Zbroje: {{ proficiencies.getArmorProficiencies()|join(', ') }}.</div>
+            {% endif %}
+            {% if proficiencies.getWeaponProficiencies() is not empty %}
+                <div>Bronie: {{ proficiencies.getWeaponProficiencies()|join(', ') }}.</div>
+            {% endif %}
+            {% if proficiencies.getOtherProficiencies() is not empty %}
+                <div>Pozostałe: {{ proficiencies.getOtherProficiencies()|join(', ') }}.</div>
+            {% endif %}
+            {% if languages is not empty %}
+                <div class="tac"><b>Języki</b></div>
+                <div>{{ languages|join(', ')|capitalize }}.</div>
+            {% endif %}
+        </div>
+    </div>
 </div>

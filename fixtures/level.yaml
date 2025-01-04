@@ -5,14 +5,14 @@ App\Entity\Level:
       - '@character_class_barbarian'
       - ['@skill_rage', '@skill_unarmored_defense']
       - [
-          '@proficiency_light_armors',
-          '@proficiency_medium_armors',
-          '@proficiency_shields',
-          '@proficiency_simple_weapons',
-          '@proficiency_martial_weapons',
-          '@proficiency_strength',
-          '@proficiency_constitution'
-        ]
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_martial_weapons',
+        '@proficiency_strength',
+        '@proficiency_constitution'
+      ]
   level_2_barbarian:
     __construct:
       - 2
@@ -62,10 +62,24 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_rouge'
+      - []
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_simple_weapons',
+        '@proficiency_hand_crossbows',
+        '@proficiency_long_swords',
+        '@proficiency_rapiers',
+        '@proficiency_short_swords',
+        '@proficiency_thieves_tools',
+        '@proficiency_dexterity',
+        '@proficiency_intelligence',
+        '@proficiency_thieves_tools'
+      ]
   level_2_rouge:
     __construct:
       - 2
       - '@character_class_rouge'
+      - ['@skill_expertise', '@skill_sneak_attack', '@skill_thieves_cant']
   level_3_assassin:
     __construct:
       - 3
