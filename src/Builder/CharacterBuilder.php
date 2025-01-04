@@ -89,8 +89,21 @@ class CharacterBuilder
             $this->getLanguages($config, $raceConfig),
             $raceConfig->darkvision,
             $this->getAlignment($config),
-            $this->getInitiative($abilities)
+            $this->getInitiative($abilities),
+            $this->getAttackCount($skills),
+            // spellcasting do implementacji
         );
+    }
+
+    private function getAttackCount(Skills $skills): int
+    {
+        $count = 1;
+
+        if ($skills->hasSkill('bonus attack')) {
+            $count++;
+        }
+
+        return $count;
     }
 
     private function getSkills(
