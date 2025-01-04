@@ -38,7 +38,11 @@
         },
         {
             "level": 4,
-            "class": "assassin"
+            "class": "assassin",
+            "feat": {
+                "name": "alert",
+                "source": "level"
+            }
         },
         {
             "level": 5,
@@ -54,10 +58,14 @@
         },
         {
             "level": 8,
-            "class": "assassin"
+            "class": "assassin",
+            "feat": {
+                "name": "sharpshooter",
+                "source": "level"
+            }
         },
         {
-            "level": 9,
+            "level": 1,
             "class": "ranger"
         }
     ],

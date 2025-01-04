@@ -21,10 +21,10 @@ parameters:
     resistance to the damage dealt by the attack. The effect on the target ends
     early if your rage ends.'
   assassin_proficiencies_desc:
-    '<b>Dodatkowe biegłości</b> - zyskujesz biegłość w posługiwaniu się zestawem
+    '<b>Biegłości skrytobójcy</b> - zyskujesz biegłość w posługiwaniu się zestawem
     do charakteryzacji oraz zestawem truciciela.'
-  assassination_desc:
-    '<b>Skrytobójstwo (PHB 81)</b> - zyskuję następującą przewagę: <ul><li>automatyczne
+  assassinate_desc:
+    '<b>Skrytobójstwo (PHB 81)</b> - zyskujesz następującą przewagę: <ul><li>automatyczne
     trafienia krytyczne w zaskoczone (PHB 189) istoty</li><li>ułatwienie w
     testach ataku przeciwko istotom, które jeszcze nie wykonały swojej tury w całej
     walce.</li></ul>'
@@ -85,7 +85,7 @@ parameters:
   cook_tools_desc:
     'cook tools'
   cunning_action_desc:
-    '<b>Chytre zagranie (PHB 79)</b> - w ramach akcji dodatkowej mogę wykonać
+    '<b>Chytre zagranie (PHB 79)</b> - w ramach akcji dodatkowej możesz wykonać
     odstąpienie, sprint lub ukrycie się.'
   danger_sense_desc:
     '<b>Wyczucie zagrożenia</b> - masz ułatwienie w rzutach obronnych na zrc
@@ -124,8 +124,8 @@ parameters:
     '<b>Elfia szkoła walki</b> - masz biegłość w używaniu krótkiego i długiego
     łuku oraz miecza długiego i krótkiego.'
   evasion_desc:
-    '<b>Odskok (PHB 79)</b> - po udanym rzucie obronnym na zręczność nie otrzymuje
-    żadnych obrażeń, a po nie udanym połowę.'
+    '<b>Odskok (PHB 79)</b> - po udanym rzucie obronnym na zręczność nie otrzymujesz
+    żadnych obrażeń, a po nieudanym połowę.'
   exhaustion_desc:
     '<table><tr><td colspan="3" style="text-align:center"><b>Wyczerpanie</b></td></tr>
     <tr><td style="text-align:center">poziom</td><td style="text-align:center">efekt</td>
@@ -183,11 +183,11 @@ parameters:
     '<b>Strzelec wyborowy</b> - mistrzowsko posługujesz się bronią strzelecką
     i potrafisz oddawać strzały, które inni uważają za niemożliwe. Zyskujesz poniższe
     korzyści: <ul><li> nie otrzymujesz utrudnienia w testach ataku
-    za strzelanie do celów na dalekim dystansie. Twoje ataki bronią dystansową
-    ignorują korzyści z osłony połowicznej lub w trzech czwartych, </li><li> Zanim
+    za strzelanie do celów na dalekim dystansie,</li><li>twoje ataki bronią dystansową
+    ignorują korzyści z osłony połowicznej lub w trzech czwartych,</li><li>zanim
     wykonasz atak bronią dystansową, w której masz biegłość, możesz zdecydować się
-    przyjąć karę -5 do testu ataku. Jeśli trafisz, otrzymujesz premię +10
-    do rzutu na obrażenia. </li></ul>'
+    przyjąć karę -5 do trafienia. Jeśli trafisz, otrzymujesz premię +10
+    do obrażeń.</li></ul>'
   feat_skill_expert_desc:
     '<b>Expert (TCOE | Feat)</b> - podnieś jedną statystykę o 1, wybierz jedną
     umiejętność - otrzymujesz w niej biegłość oraz ekspertyzę.'
@@ -458,8 +458,8 @@ parameters:
     '<b>Obrona bez pancerza</b> - jeśli nie nosisz zbroi, to twoja KP wynosi
     10 + mod ze zręczności + mod z kondycji. Możesz do KP doliczyć wartość z tarczy.'
   uncanny_dodge_desc:
-    '<b>Niesamowity unik (PHB 79)</b> - gdy trafi mnie przeciwnik, którego
-    widzę, w ramach reakcji mogę zmniejszyć o połowę otrzymane obrażenia.'
+    '<b>Niesamowity unik (PHB 79)</b> - gdy trafi cię przeciwnik, którego
+    widzisz, w ramach reakcji możesz zmniejszyć o połowę otrzymane obrażenia.'
   unwavering_mark_desc:
     '<b>Niezachwiany cel</b> - gdy trafiasz stworzenie atakiem wręcz bronią,
     możesz oznaczyć je do końca swojej następnej tury. Efekt kończy się wcześniej,

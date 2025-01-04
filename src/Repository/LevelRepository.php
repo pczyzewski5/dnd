@@ -24,16 +24,16 @@ class LevelRepository extends ServiceEntityRepository
     public function getByLevelAndCharacterClass(
         int $level,
         string $characterClass
-    ): array {
+    ): Level {
         try {
             return $this->createQueryBuilder('l')
                 ->join('l.characterClass', 'cc')
                 ->where('cc.name = :name')
-                ->andWhere('l.level <= :level')
+                ->andWhere('l.level = :level')
                 ->setParameter('name', $characterClass)
                 ->setParameter('level', $level)
                 ->getQuery()
-                ->getResult()
+                ->getSingleResult()
             ;
         } catch (NoResultException $e) {
             throw new \Exception(

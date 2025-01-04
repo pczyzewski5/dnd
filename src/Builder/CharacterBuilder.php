@@ -157,28 +157,16 @@ class CharacterBuilder
         );
     }
 
-    private function getLevels(CharacterConfigDto $characterConfig): array
+    private function getLevels(CharacterConfigDto $config): array
     {
-        $data = [];
-
-        /** @var LevelConfigDto $config */
-        foreach ($characterConfig->levelConfigs as $config) {
-            isset($data[$config->class])
-                ? $data[$config->class]++
-                : $data[$config->class] = 1;
-
-        }
-
-        $result = [];
-
-        foreach ($data as $class => $level) {
-            $result = array_merge(
-                $this->levelRepository->getByLevelAndCharacterClass($level, $class),
-                $result
-            );
-        }
-
-        return $result;
+        return array_map(
+            fn (LevelConfigDto $dto): Level => $this->levelRepository
+                ->getByLevelAndCharacterClass(
+                    $dto->level,
+                    $dto->class
+                ),
+            $config->levelConfigs
+        );
     }
 
     private function getAbilities(

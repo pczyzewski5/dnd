@@ -67,3 +67,31 @@ App\Entity\Skill:
     __construct:
       - thieves cant
       - <{thieves_cant_desc}>
+  skill_cunning_action:
+    __construct:
+      - cunning action
+      - <{cunning_action_desc}>
+  skill_uncanny_dodge:
+    __construct:
+      - uncanny dodge
+      - <{uncanny_dodge_desc}>
+  skill_evasion:
+    __construct:
+      - evasion
+      - <{evasion_desc}>
+  skill_assassin_proficiencies:
+    __construct:
+      - assassin proficiencies
+      - <{assassin_proficiencies_desc}>
+  skill_assassinate:
+    __construct:
+      - assassinate
+      - <{assassinate_desc}>
+  feat_alert:
+    __construct:
+      - alert
+      - <{feat_alert_desc}>
+  feat_sharpshooter:
+    __construct:
+      - sharpshooter
+      - <{feat_sharpshooter_desc}>
