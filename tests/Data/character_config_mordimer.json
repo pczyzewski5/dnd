@@ -15,15 +15,15 @@
                     "source": "character class"
                 },
                 {
-                    "name": "athletics",
-                    "source": "character class"
-                },
-                {
                     "name": "deception",
                     "source": "character class"
                 },
                 {
-                    "name": "insight",
+                    "name": "perception",
+                    "source": "character class"
+                },
+                {
+                    "name": "stealth",
                     "source": "character class"
                 }
             ]
@@ -40,7 +40,7 @@
             "level": 4,
             "class": "assassin",
             "feat": {
-                "name": "alert",
+                "name": "feat alert",
                 "source": "level"
             }
         },
@@ -60,7 +60,7 @@
             "level": 8,
             "class": "assassin",
             "feat": {
-                "name": "sharpshooter",
+                "name": "feat sharpshooter",
                 "source": "level"
             }
         },

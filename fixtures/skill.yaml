@@ -89,11 +89,11 @@ App\Entity\Skill:
       - <{assassinate_desc}>
   feat_alert:
     __construct:
-      - alert
+      - feat alert
       - <{feat_alert_desc}>
   feat_sharpshooter:
     __construct:
-      - sharpshooter
+      - feat sharpshooter
       - <{feat_sharpshooter_desc}>
   skill_lucky:
     __construct:

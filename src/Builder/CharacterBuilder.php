@@ -91,7 +91,7 @@ class CharacterBuilder
             $this->getLanguages($config, $raceConfig),
             $raceConfig->darkvision,
             $this->getAlignment($config),
-            $this->getInitiative($abilities),
+            $this->getInitiative($abilities, $skills),
             $this->getAttackCount($skills),
         // spellcasting do implementacji
         );
@@ -276,7 +276,8 @@ class CharacterBuilder
 
     public function getInitiative(
         Abilities $abilities,
+        Skills $skills
     ): int {
-        return $this->initiativeCalculator->calculate($abilities);
+        return $this->initiativeCalculator->calculate($abilities, $skills);
     }
 }
