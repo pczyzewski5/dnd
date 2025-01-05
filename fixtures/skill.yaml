@@ -83,6 +83,7 @@ App\Entity\Skill:
     __construct:
       - assassin proficiencies
       - <{assassin_proficiencies_desc}>
+      - ['@proficiency_poisoner_kit', '@proficiency_disguise_kit']
   skill_assassinate:
     __construct:
       - assassinate

@@ -25,6 +25,11 @@ class Skill
     #[ORM\Column(type: 'string', nullable: false)]
     private string $description;
 
+    #[ORM\ManyToMany(targetEntity: Proficiency::class)]
+    #[ORM\JoinTable(name: 'pivot_proficiency_to_skill')]
+    #[ORM\JoinColumn(name: 'skill_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $proficiencies;
+
     #[ORM\ManyToMany(targetEntity: Requirement::class)]
     #[ORM\JoinTable(name: 'pivot_requirement_to_skill')]
     #[ORM\JoinColumn(name: 'skill_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
@@ -33,12 +38,20 @@ class Skill
     public function __construct(
         string $name,
         string $description,
+        ?array $proficiencies = [],
         ?array $requirements = []
     ) {
         $this->name = $name;
         $this->description = $description;
+        $this->proficiencies = new ArrayCollection();
         $this->requirements = new ArrayCollection();
 
+        array_walk(
+            $proficiencies,
+            fn (Proficiency $proficiency)
+            => $this->proficiencies->contains($proficiency)
+                ?: $this->proficiencies->add($proficiency)
+        );
         array_walk(
             $requirements,
             fn (Requirement $requirement)

@@ -37,6 +37,11 @@ class Skills
         return $this->skills;
     }
 
+    public function getSkillIndex(): array
+    {
+        return $this->skillIndex;
+    }
+
     public function withUsageCount(): array
     {
         return $this->usageCountSkills;

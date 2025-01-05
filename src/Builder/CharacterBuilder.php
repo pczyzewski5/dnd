@@ -63,8 +63,8 @@ class CharacterBuilder
         $raceConfig = $this->getRaceConfig($race);
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
-        $proficiencies = $this->getProficiencies($config, $levels, $origin);
         $skills = $this->getSkills($config, $abilities, $race, $levels);
+        $proficiencies = $this->getProficiencies($config, $levels, $origin, $skills);
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
         $hitDices = $this->hitDiceCalculator->calculate($levels);
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
@@ -146,11 +146,13 @@ class CharacterBuilder
         CharacterConfigDto $config,
         array $levels,
         Origin $origin,
+        Skills $skills
     ): Proficiencies {
         return $this->proficienciesBuilder
             ->setLevels($levels)
             ->setOrigin($origin)
             ->setLevelConfigs($config->levelConfigs)
+            ->setSkills($skills)
             ->build();
     }
 

@@ -111,3 +111,11 @@ App\Entity\Proficiency:
     __construct:
       - thieves tools
       - other
+  proficiency_poisoner_kit:
+    __construct:
+      - poisoner kit
+      - other
+  proficiency_disguise_kit:
+    __construct:
+      - disguise kit
+      - other

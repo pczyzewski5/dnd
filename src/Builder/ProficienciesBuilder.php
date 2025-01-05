@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Character\Proficiencies;
+use App\Character\Skills;
 use App\Dto\ProficiencyDto;
 use App\Entity\Origin;
 
@@ -18,6 +19,7 @@ class ProficienciesBuilder
     private Origin $origin;
     private array $levels;
     private array $levelConfigs;
+    private Skills $skills;
 
     public function __construct(
         private readonly ProficiencyRepository $proficiencyRepository,
@@ -45,6 +47,13 @@ class ProficienciesBuilder
         return $this;
     }
 
+    public function setSkills(Skills $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
     public function build(): Proficiencies
     {
         return new Proficiencies(
@@ -52,6 +61,7 @@ class ProficienciesBuilder
                 $this->getProficienciesFromLevelConfigs($this->levelConfigs),
                 $this->getProficienciesFromLevels($this->levels),
                 $this->getProficienciesFromOrigin($this->origin),
+                $this->getProficienciesFromSkills($this->skills),
             )
         );
     }
@@ -92,5 +102,12 @@ class ProficienciesBuilder
     private function getProficienciesFromOrigin(Origin $origin): array
     {
         return $origin->getProficiencies()->toArray();
+    }
+
+    private function getProficienciesFromSkills(Skills $skills): array
+    {
+        return $this->proficiencyRepository->findBySkills(
+            $skills->getSkillIndex()
+        );
     }
 }
