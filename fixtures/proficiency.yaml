@@ -67,6 +67,14 @@ App\Entity\Proficiency:
     __construct:
       - perception
       - ability skill
+  proficiency_persuasion:
+    __construct:
+      - persuasion
+      - ability skill
+  proficiency_performance:
+    __construct:
+      - performance
+      - ability skill
   proficiency_survival:
     __construct:
       - survival

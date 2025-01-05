@@ -14,6 +14,7 @@ use App\Character\Skills;
 use App\Dto\CharacterConfigDto;
 use App\Entity\Level;
 use App\Character\Skill;
+use App\Entity\Race;
 use App\Repository\SkillRepository;
 
 use function array_map;
@@ -28,6 +29,8 @@ class SkillsBuilder
 
     /** @var Level[] */
     private array $levels;
+
+    private Race $race;
 
     /** @var AbstractSkillFinisher */
     private array $finishers = [];
@@ -62,6 +65,13 @@ class SkillsBuilder
         return $this;
     }
 
+    public function setRace(Race $race): self
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
     public function getSkillEntities(): array
     {
         $result = [];
@@ -87,6 +97,11 @@ class SkillsBuilder
 
             $result[] = $this->skillRepository->getByName($feat->name);
         }
+
+        $result = array_merge(
+            $this->race->getSkills()->toArray(),
+            $result
+        );
 
         return $result;
     }

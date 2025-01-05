@@ -3,10 +3,12 @@ App\Entity\Race:
     __construct:
       - human
       - <{human_config}>
+
   race_human_variant:
     __construct:
       - human variant
       - <{human_variant_config}>
+      - []
       - ['@requirement_human_variant_race_proficiency',
          '@requirement_race_single_language',
          '@requirement_human_variant_asi',
@@ -16,4 +18,8 @@ App\Entity\Race:
     __construct:
       - lightfoot halfling
       - <{lightfoot_halfling_config}>
+      - ['@skill_lucky',
+         '@skill_brave',
+         '@skill_nimble',
+         '@skill_naturally_stealthy']
  

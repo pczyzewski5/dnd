@@ -95,3 +95,20 @@ App\Entity\Skill:
     __construct:
       - sharpshooter
       - <{feat_sharpshooter_desc}>
+  skill_lucky:
+    __construct:
+      - lucky
+      - <{lucky_desc}>
+  skill_brave:
+    __construct:
+      - brave
+      - <{brave_desc}>
+  skill_nimble:
+    __construct:
+      - nimble
+      - <{nimble_desc}>
+  skill_naturally_stealthy:
+    __construct:
+      - naturally stealthy
+      - <{naturally_stealthy_desc}>
+

@@ -27,7 +27,6 @@ parameters:
                  "value": 1
              }
          ],
-         "skills": [],
          "languages": ["common"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 0
@@ -36,7 +35,6 @@ parameters:
   human_variant_config:
     '{
          "asi": [],
-         "skills": [],
          "languages": ["common"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 0
@@ -54,16 +52,7 @@ parameters:
                  "value": 1
              }
          ],
-         "skills": [
-             "lucky",
-             "brave",
-             "nimble",
-             "naturally stealthy"
-         ],
-         "languages": [
-             "common",
-             "halfling"
-         ],
+         "languages": ["common", "halfling"],
          "speed_in_meters": 7.5,
          "darkvision_in_meters": 0
      }'

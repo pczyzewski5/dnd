@@ -67,7 +67,7 @@ parameters:
     metrów to możesz wylądować na nogach, o ile nie jesteś obezwładniony. Wsiadanie
     i zsiadanie z wierzchowca kosztuje cię 1.5 m twojej szybkości.'
   brave_desc:
-    '<b>Odwaga (PHB 31)</b> - mam ułatwienie w rzutach obronnych przeciw przerażeniu.'
+    '<b>Odwaga (PHB 31)</b> - masz ułatwienie w rzutach obronnych przeciw przerażeniu.'
   brutal_critical_desc:
     '<b>Brutalne obrażenia</b> - podczas trafienia krytycznego możesz rzucić
     dodatkową kością obrażeń.'
@@ -284,8 +284,8 @@ parameters:
     zużyte punkty. Opcjonalnie możesz wydać 5 punktów z puli, aby uleczyć kogoś
     z jednej choroby lub zneutralizować jedną truciznę.'
   lucky_desc:
-    '<b>Szczęście (PHB 31)</b> - kiedy wyrzucę 1 w teście ataku/cechy/rzucie
-    obronnym, mogę przerzucić kość i muszę zaakceptować nowy wynik.'
+    '<b>Szczęście (PHB 31)</b> - kiedy wyrzucisz 1 w teście ataku/cechy/rzucie
+    obronnym, możesz przerzucić kość i musisz zaakceptować nowy wynik.'
   maneuver_save_dc_desc:
     '<b>ST przeciw manewrom</b> - wynosi {{ dc }}.'
   metamagic_desc:
@@ -321,16 +321,16 @@ parameters:
     learn their exact number, their sizes, and how long ago they passed through
     the area.</li></ul> My favs are: mountains, forests.'
   naturally_stealthy_desc:
-    '<b>Niezauważalny (PHB 31)</b> - mogę próbować się ukryć, gdy zasłania
-    mnie istota, która jest większego rozmiaru niż ja.'
+    '<b>Niezauważalny (PHB 31)</b> - możesz próbować się ukryć, gdy zasłania
+    cię istota, która jest większego rozmiaru niż ja.'
   nature_intuition_desc:
     '<b>Nature intuition</b> - Thanks to your mystical connection to nature,
     you gain proficiency with two of the following skills of your choice: Animal
     Handling, Medicine, Nature, Perception, Stealth, or Survival..'
   nimble_desc:
-    '<b>Niziołcza zwinność (PHB 31)</b> - mogę przemieścić się przez pole
-    zajmowane przez inną istotę, która jest większego rozmiaru niż ja.
-    oath_of_the_ancients_paladin_channel_divinity_desc:
+    '<b>Niziołcza zwinność (PHB 31)</b> - możesz przemieścić się przez pole
+    zajmowane przez inną istotę, która jest większego rozmiaru niż ty.'
+  oath_of_the_ancients_paladin_channel_divinity_desc:
     '<b>Akty wiary</b> - możesz wykonać jeden akt wiary, użycie odnawia się
     po krótkim lub długim odpoczynku. <ul><li><b>Gniew Natury</b>
     - powodujesz wzrost widmowych pnączy sięgających po istotę, którą widzisz w

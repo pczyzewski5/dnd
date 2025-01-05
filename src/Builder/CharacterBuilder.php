@@ -22,6 +22,7 @@ use App\Dto\LevelConfigDto;
 use App\Dto\RaceConfigDto;
 use App\Entity\Level;
 use App\Entity\Origin;
+use App\Entity\Race;
 use App\Enum\AlignmentEnum;
 use App\Repository\LevelRepository;
 use App\Repository\OriginRepository;
@@ -58,11 +59,12 @@ class CharacterBuilder
     public function build(CharacterConfigDto $config): Character
     {
         $origin = $this->getOrigin($config);
-        $raceConfig = $this->getRaceConfig($config);
+        $race = $this->getRace($config);
+        $raceConfig = $this->getRaceConfig($race);
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
         $proficiencies = $this->getProficiencies($config, $levels, $origin);
-        $skills = $this->getSkills($config, $abilities, $levels);
+        $skills = $this->getSkills($config, $abilities, $race, $levels);
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
         $hitDices = $this->hitDiceCalculator->calculate($levels);
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
@@ -109,12 +111,14 @@ class CharacterBuilder
     private function getSkills(
         CharacterConfigDto $config,
         Abilities $abilities,
+        Race $race,
         array $levels
     ): Skills {
         return $this->skillsBuilder
             ->setCharacterConfigDto($config)
             ->setAbilities($abilities)
             ->setLevels($levels)
+            ->setRace($race)
             ->build();
     }
 
@@ -150,11 +154,14 @@ class CharacterBuilder
             ->build();
     }
 
-    private function getRaceConfig(CharacterConfigDto $config): RaceConfigDto
+    private function getRace(CharacterConfigDto $config): Race
     {
-        return $this->raceService->getRaceConfig(
-            $this->raceRepository->getOneByName($config->race)
-        );
+        return $this->raceRepository->getOneByName($config->race);
+    }
+
+    private function getRaceConfig(Race $race): RaceConfigDto
+    {
+        return $this->raceService->getRaceConfig($race);
     }
 
     private function getLevels(CharacterConfigDto $config): array
