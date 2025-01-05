@@ -31,3 +31,11 @@ App\Entity\Requirement:
     __construct:
       - asi or feat
       - <{requirement_asi_or_feat_level_8_config}>
+  requirement_skill_expertise_I:
+    __construct:
+      - expertise
+      - <{requirement_skill_expertise_I_config}>
+  requirement_skill_expertise_II:
+    __construct:
+      - expertise
+      - <{requirement_skill_expertise_II_config}>

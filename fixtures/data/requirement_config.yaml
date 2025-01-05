@@ -66,3 +66,13 @@ parameters:
          "source": "level",
          "level": 8
      }'
+  requirement_skill_expertise_I_config:
+    '{
+        "required_count": 2,
+        "level": 1
+    }'
+  requirement_skill_expertise_II_config:
+    '{
+        "required_count": 2,
+        "level": 6
+    }'

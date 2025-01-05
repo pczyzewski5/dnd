@@ -19,7 +19,7 @@ class RequirementRepository extends ServiceEntityRepository
     /**
      * @return Requirement[]
      */
-    public function findRequirementsByCharacterClass(string $name): array
+    public function findCharacterClassRequirements(string $name): array
     {
         $sql =
             <<<SQL
@@ -38,7 +38,7 @@ class RequirementRepository extends ServiceEntityRepository
     /**
      * @return Requirement[]
      */
-    public function findRequirementsByRace(string $name): array
+    public function findRaceRequirements(string $name): array
     {
         $sql =
             <<<SQL
@@ -57,13 +57,33 @@ class RequirementRepository extends ServiceEntityRepository
     /**
      * @return Requirement[]
      */
-    public function findRequirementsByLevelAndCharacterClass(int $level, string $name): array
+    public function findLevelRequirements(int $level, string $name): array
     {
         $sql =
             <<<SQL
             SELECT r.* FROM requirement r
                 INNER JOIN pivot_requirement_to_level prtl ON r.id = prtl.requirement_id
                 INNER JOIN level l ON prtl.level_id = l.id
+                INNER JOIN character_class cc ON l.character_class_id = cc.id
+            WHERE l.level = :level AND cc.name = :name
+            SQL;
+
+        return $this->getEntityManager()
+            ->createNativeQuery($sql, $this->getResultSetMapping())
+            ->setParameter('level', $level)
+            ->setParameter('name', $name)
+            ->getResult();
+    }
+
+    public function findSkillRequirements(int $level, string $name): array
+    {
+        $sql =
+            <<<SQL
+            SELECT r.* FROM requirement r
+                INNER JOIN pivot_requirement_to_skill prts ON r.id = prts.requirement_id
+                INNER JOIN pivot_skill_to_level stl ON prts.skill_id = stl.skill_id
+                INNER JOIN skill s ON stl.skill_id = s.id
+                INNER JOIN level l ON stl.level_id = l.id
                 INNER JOIN character_class cc ON l.character_class_id = cc.id
             WHERE l.level = :level AND cc.name = :name
             SQL;

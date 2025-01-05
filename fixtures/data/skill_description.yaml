@@ -135,10 +135,12 @@ parameters:
     <tr><td>4</td><td>maksymalne PW zmniejszone o połowę</td><td></td></tr><tr><td>5</td>
     <td>szybkość zmniejszona do 0</td><td></td></tr><tr><td>6</td><td>śmierć</td><td></td>
     </tr></table>'
-  expertise_desc:
-    '<b>Znawstwo (PHB 79)</b> - na 1szym oraz 6tym poziomie możesz wybrać dwie
-    umiejętności, w których jesteś biegły, od tego czasu premia z biegłości dla
-    tych umiejętności jest podwojona.'
+  skill_expertise_I_desc:
+    '<b>Znawstwo I (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
+     od tego czasu premia z biegłości dla tych umiejętności jest podwojona.'
+  skill_expertise_II_desc:
+    '<b>Znawstwo II (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
+     od tego czasu premia z biegłości dla tych umiejętności jest podwojona.'
   fast_movement_desc:
     '<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość
     jest zwiększona o 2 hex.'

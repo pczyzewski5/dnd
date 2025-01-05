@@ -27,7 +27,8 @@ class RequirementExtractorService
         $requirements = array_merge(
             $this->getRaceRequirements($dto),
             $this->getCharacterClassRequirements($dto),
-            $this->getLevelRequirements($dto)
+            $this->getLevelRequirements($dto),
+            $this->getSkillsRequirements($dto)
         );
 
         foreach ($requirements as $requirement) {
@@ -46,7 +47,7 @@ class RequirementExtractorService
         /** @var LevelConfigDto $config */
         foreach ($dto->levelConfigs as $config) {
             $result = array_merge(
-                $this->repository->findRequirementsByCharacterClass($config->class),
+                $this->repository->findCharacterClassRequirements($config->class),
                 $result
             );
         }
@@ -56,7 +57,7 @@ class RequirementExtractorService
 
     private function getRaceRequirements(CharacterConfigDto $dto): array
     {
-        return $this->repository->findRequirementsByRace($dto->race);
+        return $this->repository->findRaceRequirements($dto->race);
     }
 
     private function getLevelRequirements(CharacterConfigDto $dto): array
@@ -66,7 +67,25 @@ class RequirementExtractorService
         /** @var LevelConfigDto $config */
         foreach ($dto->levelConfigs as $config) {
             $result = array_merge(
-                $this->repository->findRequirementsByLevelAndCharacterClass(
+                $this->repository->findLevelRequirements(
+                    $config->level,
+                    $config->class
+                ),
+                $result
+            );
+        }
+
+        return $result;
+    }
+
+    private function getSkillsRequirements(CharacterConfigDto $dto): array
+    {
+        $result = [];
+
+        /** @var LevelConfigDto $config */
+        foreach ($dto->levelConfigs as $config) {
+            $result = array_merge(
+                $this->repository->findSkillRequirements(
                     $config->level,
                     $config->class
                 ),

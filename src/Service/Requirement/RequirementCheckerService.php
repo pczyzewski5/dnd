@@ -8,6 +8,7 @@ use App\Dto\CharacterConfigDto;
 use App\Service\Requirement\Checker\AbstractChecker;
 use App\Service\Requirement\Checker\Asi;
 use App\Service\Requirement\Checker\AsiOrFeat;
+use App\Service\Requirement\Checker\Expertise;
 use App\Service\Requirement\Checker\Feat;
 use App\Service\Requirement\Checker\Language;
 use App\Service\Requirement\Checker\Proficiency;
@@ -24,7 +25,8 @@ class RequirementCheckerService
             new Language(),
             new Asi(),
             new Feat(),
-            new AsiOrFeat()
+            new AsiOrFeat(),
+            new Expertise()
         ];
     }
 

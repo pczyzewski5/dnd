@@ -62,7 +62,7 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_rouge'
-      - ['@skill_expertise', '@skill_sneak_attack', '@skill_thieves_cant']
+      - ['@skill_expertise_I', '@skill_sneak_attack', '@skill_thieves_cant']
       - [
         '@proficiency_light_armors',
         '@proficiency_simple_weapons',
@@ -101,6 +101,7 @@ App\Entity\Level:
     __construct:
       - 6
       - '@character_class_assassin'
+      - ['@skill_expertise_II']
   level_7_assassin:
     __construct:
       - 7

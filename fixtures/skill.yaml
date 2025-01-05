@@ -55,10 +55,18 @@ App\Entity\Skill:
     __construct:
       - feat lucky
       - <{feat_lucky_desc}>
-  skill_expertise:
+  skill_expertise_I:
     __construct:
-      - expertise
-      - <{expertise_desc}>
+      - skill expertise I
+      - <{skill_expertise_I_desc}>
+      - []
+      - ['@requirement_skill_expertise_I']
+  skill_expertise_II:
+    __construct:
+      - skill expertise II
+      - <{skill_expertise_II_desc}>
+      - []
+      - ['@requirement_skill_expertise_II']
   skill_sneak_attack:
     __construct:
       - sneak attack
