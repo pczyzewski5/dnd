@@ -30,6 +30,30 @@ final class Version20241230085419 extends AbstractMigration
             );
             SQL
         );
+
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE pivot_requirement_to_skill (
+                requirement_id INT NOT NULL,
+                skill_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, skill_id),
+                CONSTRAINT FK_PRTS_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTS_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE pivot_skill_to_race (
+                skill_id INT NOT NULL,
+                race_id INT NOT NULL,
+                PRIMARY KEY (skill_id, race_id),
+                CONSTRAINT FK_PSTR_SKILL FOREIGN KEY (skill_id) REFERENCES skill (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PSTR_RACE FOREIGN KEY (race_id) REFERENCES race (id) ON DELETE CASCADE
+            );
+            SQL
+        );
     }
 
     public function down(Schema $schema): void

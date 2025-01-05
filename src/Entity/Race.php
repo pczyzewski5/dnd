@@ -23,6 +23,11 @@ class Race
     #[ORM\Column(type: 'string', nullable: false, unique: true, length: 510)]
     private string $config;
 
+    #[ORM\ManyToMany(targetEntity: Skill::class)]
+    #[ORM\JoinTable(name: 'pivot_skill_to_race')]
+    #[ORM\JoinColumn(name: 'race_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $skills;
+
     #[ORM\ManyToMany(targetEntity: Requirement::class)]
     #[ORM\JoinTable(name: 'pivot_requirement_to_race')]
     #[ORM\JoinColumn(name: 'race_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
@@ -31,11 +36,20 @@ class Race
     public function __construct(
         string $name,
         string $config,
+        ?array $skills = [],
         ?array $requirements = []
     ) {
         $this->name = $name;
         $this->config = $config;
+        $this->skills = new ArrayCollection();
         $this->requirements = new ArrayCollection();
+
+        array_walk(
+            $skills,
+            fn (Skill $skill)
+            => $this->skills->contains($skill)
+                ?: $this->skills->add($skill)
+        );
 
         array_walk(
             $requirements,
@@ -53,5 +67,10 @@ class Race
     public function getConfig(): string
     {
         return $this->config;
+    }
+
+    public function getSkills(): Collection
+    {
+        return $this->skills;
     }
 }
