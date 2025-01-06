@@ -26,6 +26,10 @@
                     "name": "stealth",
                     "source": "character class"
                 }
+            ],
+            "expertises": [
+                "persuasion",
+                "stealth"
             ]
         },
         {
@@ -50,7 +54,11 @@
         },
         {
             "level": 6,
-            "class": "assassin"
+            "class": "assassin",
+            "expertises": [
+                "investigation",
+                "perception"
+            ]
         },
         {
             "level": 7,
@@ -66,7 +74,13 @@
         },
         {
             "level": 1,
-            "class": "ranger"
+            "class": "ranger",
+            "proficiencies": [
+                {
+                    "name": "acrobatics",
+                    "source": "character class"
+                }
+            ]
         }
     ],
     "abilities": [

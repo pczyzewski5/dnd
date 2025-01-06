@@ -68,6 +68,7 @@ class CharacterBuilder
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
         $hitDices = $this->hitDiceCalculator->calculate($levels);
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
+        $expertises = $this->getExpertises($config);
 
         return new Character(
             $abilities,
@@ -82,7 +83,7 @@ class CharacterBuilder
             $proficiencyBonus,
             $this->getHitPoints($abilities, $levels),
             $skills,
-            $this->getAbilitySkills($abilities, $proficiencies, $proficiencyBonus),
+            $this->getAbilitySkills($abilities, $proficiencies, $proficiencyBonus, $expertises),
             $this->getSavingThrows($abilities, $proficiencyBonus, $proficiencies),
             $this->getPassivePerception($abilities, $proficiencyBonus, $proficiencies),
             $this->getPassiveInsights($abilities, $proficiencyBonus, $proficiencies),
@@ -178,6 +179,17 @@ class CharacterBuilder
         );
     }
 
+    private function getExpertises(CharacterConfigDto $config): array
+    {
+        $result = [];
+
+        foreach ($config->levelConfigs as $levelConfig) {
+            $result = array_merge($result, $levelConfig->expertises);
+        }
+
+        return $result;
+    }
+
     private function getAbilities(
         CharacterConfigDto $characterConfigDto,
         RaceConfigDto $raceConfigDto
@@ -206,12 +218,14 @@ class CharacterBuilder
     private function getAbilitySkills(
         Abilities $abilities,
         Proficiencies $proficiencies,
-        int $proficiencyBonus
+        int $proficiencyBonus,
+        array $expertises
     ): array {
         return $this->abilitySkillsBuilder
             ->setAbilities($abilities)
             ->setProficiencies($proficiencies)
             ->setProficiencyBonus($proficiencyBonus)
+            ->setExpertises($expertises)
             ->build();
     }
 

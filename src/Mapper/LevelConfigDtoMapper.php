@@ -40,6 +40,7 @@ class LevelConfigDtoMapper extends AbstractMapper
             $this->asiConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'asi')
             ),
+            $this->getValueOrNull($data, 'expertises'),
             $this->languageDtoMapper->manyFromArray(
                 $this->getArray($data, 'languages')
             )

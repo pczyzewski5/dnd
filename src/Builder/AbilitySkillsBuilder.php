@@ -17,6 +17,7 @@ class AbilitySkillsBuilder
     private array $proficiencies;
     private int $proficiencyBonus;
     private Abilities $abilities;
+    private array $expertises;
 
     public function setProficiencies(Proficiencies $proficiencies): self
     {
@@ -39,6 +40,13 @@ class AbilitySkillsBuilder
         return $this;
     }
 
+    public function setExpertises(array $expertises): self
+    {
+        $this->expertises = $expertises;
+
+        return $this;
+    }
+
     public function build(): array
     {
         return array_map(
@@ -55,6 +63,15 @@ class AbilitySkillsBuilder
                 $value = $hasProficiency
                     ? $ability->modifier + $this->proficiencyBonus
                     : $ability->modifier;
+
+                $hasExpertise = in_array(
+                    $abilitySkillEnum->value,
+                    $this->expertises
+                );
+
+                $value = $hasExpertise
+                    ? $value + $this->proficiencyBonus
+                    : $value;
 
                 return new AbilitySkill(
                     $abilitySkillEnum,

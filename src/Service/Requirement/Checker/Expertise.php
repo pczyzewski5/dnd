@@ -8,7 +8,6 @@ use App\Dto\ProficiencyDto;
 use App\Entity\Requirement;
 use App\Exception\RequirementException;
 
-use function array_filter;
 use function count;
 use function sprintf;
 
@@ -23,13 +22,10 @@ class Expertise extends AbstractChecker
         $requiredCount = $this->getConfigValue('required_count');
         $level = $this->getConfigValue('level');
 
-        $expertProficiencies = array_filter(
-            $this->getLevelConfig($level)->proficiencies,
-            fn (ProficiencyDto $dto): bool => $dto->isExpert === true
-        );
+        $expertises =$this->getLevelConfig($level)->expertises;
 
         $this->checkCount(
-            count($expertProficiencies),
+            count($expertises),
             $requiredCount,
             $level
         );
