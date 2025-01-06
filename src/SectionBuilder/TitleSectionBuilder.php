@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace App\SectionBuilder;
 
-use function key;
-use function reset;
+use function implode;
 
 class TitleSectionBuilder extends AbstractSectionBuilder
 {
     public function build(bool $printMode = false): string
     {
-        $simpleLevels = $this->character->simpleLevels;
+        $classAndLevel = [];
+
+        foreach ($this->character->simpleLevels as $characterClass => $level) {
+            $classAndLevel[] = $characterClass . ' ' . $level;
+        }
 
         $context = [
             'characterName' => $this->character->characterName,
-            'className' => key($simpleLevels),
-            'level' => reset($simpleLevels),
+            'classAndLevel' => implode(' | ', $classAndLevel),
             'origin' => $this->character->origin,
             'playerName' => $this->character->playerName,
             'race' => $this->character->race,
