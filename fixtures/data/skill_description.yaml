@@ -137,10 +137,10 @@ parameters:
     </tr></table>'
   skill_expertise_I_desc:
     '<b>Znawstwo I (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
-     od tego czasu premia z biegłości dla tych umiejętności jest podwojona.'
+     premia z biegłości dla tych umiejętności jest podwojona.'
   skill_expertise_II_desc:
     '<b>Znawstwo II (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
-     od tego czasu premia z biegłości dla tych umiejętności jest podwojona.'
+     premia z biegłości dla tych umiejętności jest podwojona.'
   fast_movement_desc:
     '<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość
     jest zwiększona o 2 hex.'
@@ -324,7 +324,7 @@ parameters:
     the area.</li></ul> My favs are: mountains, forests.'
   naturally_stealthy_desc:
     '<b>Niezauważalny (PHB 31)</b> - możesz próbować się ukryć, gdy zasłania
-    cię istota, która jest większego rozmiaru niż ja.'
+    cię istota, która jest większego rozmiaru niż ty.'
   nature_intuition_desc:
     '<b>Nature intuition</b> - Thanks to your mystical connection to nature,
     you gain proficiency with two of the following skills of your choice: Animal

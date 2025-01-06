@@ -8,6 +8,7 @@ use App\Builder\SkillBuilder\BelQuathSong;
 use App\Builder\SkillBuilder\FeatLucky;
 use App\Builder\SkillBuilder\Rage;
 use App\Builder\SkillBuilder\AbstractSkillFinisher;
+use App\Builder\SkillBuilder\SneakAttack;
 use App\Character\Abilities;
 use App\Character\SkillFactory;
 use App\Character\Skills;
@@ -40,7 +41,8 @@ class SkillsBuilder
         $this->finishers = [
             new Rage(),
             new FeatLucky(),
-            new BelQuathSong()
+            new BelQuathSong(),
+            new SneakAttack()
         ];
     }
 
@@ -109,15 +111,15 @@ class SkillsBuilder
     public function finishSkills(
         array $skills,
         array $skillIndex,
-        int $level
+        array $levels
     ): array {
-        $finish = function (Skill $skill) use ($skillIndex, $level): Skill {
+        $finish = function (Skill $skill) use ($skillIndex, $levels): Skill {
             foreach ($this->finishers as $finisher) {
                 if ($finisher->supports($skill)) {
                     $skill = $finisher->setup(
                         $this->abilities,
                         $skillIndex,
-                        $level
+                        $levels
                     )->finish($skill);
                 }
             }
@@ -142,7 +144,7 @@ class SkillsBuilder
         $skills = $this->finishSkills(
             $skills,
             $skillIndex,
-            count($this->levels),
+            $this->levels,
         );
 
         return new Skills(...$skills);

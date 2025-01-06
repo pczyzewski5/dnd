@@ -6,15 +6,17 @@ namespace App\Builder\SkillBuilder;
 
 use App\Character\Abilities;
 use App\Character\Skill;
+use App\Entity\Level;
+
 
 use function str_replace;
 
 abstract class AbstractSkillFinisher
 {
     protected Abilities $abilities;
-    protected int $level;
 
     private array $skillIndex;
+    private array $levels;
 
     abstract public function supports(Skill $skill): bool;
 
@@ -23,13 +25,29 @@ abstract class AbstractSkillFinisher
     public function setup(
         Abilities $abilities,
         array $skillIndex,
-        int $level
+        array $levels
     ): self {
         $this->abilities = $abilities;
         $this->skillIndex = $skillIndex;
-        $this->level = $level;
+        $this->levels = $levels;
 
         return $this;
+    }
+
+    protected function getLevel(string $characterClass = null): int
+    {
+        $result = 0;
+
+        /** @var Level $level */
+        foreach ($this->levels as $level) {
+            if ($level->getCharacterClass()->getName() === $characterClass
+                || null === $characterClass
+            ) {
+                $result++;
+            }
+        }
+
+        return $result;
     }
 
     protected function hasSkill(string $name): bool
