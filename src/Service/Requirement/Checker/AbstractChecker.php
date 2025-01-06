@@ -57,6 +57,17 @@ abstract class AbstractChecker
         );
     }
 
+    protected function getClassLevelConfig(int $level, string $class): LevelConfigDto
+    {
+        return current(
+            array_filter(
+                $this->characterConfigDto->levelConfigs,
+                fn (LevelConfigDto $levelConfig): bool
+                => $levelConfig->level === $level && $levelConfig->class === $class
+            )
+        );
+    }
+
     protected function getConfigValue(string $key): string|array|bool|int
     {
         if (array_key_exists($key, $this->requirementConfig)) {

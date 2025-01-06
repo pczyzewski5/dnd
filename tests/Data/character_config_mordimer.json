@@ -92,7 +92,8 @@
                     "name": "martial weapons",
                     "source": "multiclass"
                 }
-            ]
+            ],
+            "expertises": ["deception"]
         },
         {
             "level": 2,

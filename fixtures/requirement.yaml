@@ -39,3 +39,7 @@ App\Entity\Requirement:
     __construct:
       - expertise
       - <{requirement_skill_expertise_II_config}>
+  requirement_skill_canny_expertise:
+    __construct:
+      - expertise
+      - <{requirement_skill_canny_expertise_config}>

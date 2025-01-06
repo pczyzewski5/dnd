@@ -128,4 +128,9 @@ App\Entity\Skill:
     __construct:
       - natural explorer
       - <{natural_explorer_desc}>
-
+  skill_canny:
+    __construct:
+      - canny
+      - <{canny_desc}>
+      - []
+      - ['@requirement_skill_canny_expertise']
