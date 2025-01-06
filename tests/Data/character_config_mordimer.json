@@ -93,6 +93,10 @@
                     "source": "multiclass"
                 }
             ]
+        },
+        {
+            "level": 2,
+            "class": "ranger"
         }
     ],
     "abilities": [

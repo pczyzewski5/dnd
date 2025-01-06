@@ -119,6 +119,7 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_ranger'
+      - ['@skill_favored_enemy', '@skill_natural_explorer']
   level_2_ranger:
     __construct:
       - 2

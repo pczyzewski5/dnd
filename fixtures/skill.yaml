@@ -120,4 +120,12 @@ App\Entity\Skill:
     __construct:
       - naturally stealthy
       - <{naturally_stealthy_desc}>
+  skill_favored_enemy:
+    __construct:
+      - favored enemy
+      - <{favored_enemy_desc}>
+  skill_natural_explorer:
+    __construct:
+      - natural explorer
+      - <{natural_explorer_desc}>
 

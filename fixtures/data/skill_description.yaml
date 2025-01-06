@@ -145,7 +145,7 @@ parameters:
     '<b>Szybki ruch</b> - gdy nie nosisz ciężkiego pancerza, twoja szybkość
     jest zwiększona o 2 hex.'
   favored_enemy_desc:
-    '<b>Favored enemy</b> - You have advantage on wisdom (survival) checks
+    '<b>Favored enemy</b> - you have advantage on wisdom (survival) checks
     to track your favored enemies, as well as on intelligence checks to recall information
     about them. My favs are: undead, monstrosities.'
   feat_alert_desc:
