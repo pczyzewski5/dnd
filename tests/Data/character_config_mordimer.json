@@ -77,8 +77,20 @@
             "class": "ranger",
             "proficiencies": [
                 {
-                    "name": "acrobatics",
-                    "source": "character class"
+                    "name": "investigation",
+                    "source": "multiclass"
+                },
+                {
+                    "name": "medium armors",
+                    "source": "multiclass"
+                },
+                {
+                    "name": "shields",
+                    "source": "multiclass"
+                },
+                {
+                    "name": "martial weapons",
+                    "source": "multiclass"
                 }
             ]
         }

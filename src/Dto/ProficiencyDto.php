@@ -18,6 +18,7 @@ class ProficiencyDto
             'origin',
             'character class',
             'race',
+            'multiclass'
         ]
     )]
     public readonly mixed $source;

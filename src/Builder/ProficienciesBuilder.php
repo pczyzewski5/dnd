@@ -13,6 +13,7 @@ use App\Repository\ProficiencyRepository;
 
 use function array_map;
 use function array_merge;
+use function var_dump;
 
 class ProficienciesBuilder
 {
@@ -71,15 +72,11 @@ class ProficienciesBuilder
         $result = [];
 
         foreach ($levelConfigs as $dto) {
-            $names = array_map(
-                fn (ProficiencyDto $dto) => $dto->name,
-                $dto->proficiencies
-            );
-
-            $result = array_merge(
-                $this->proficiencyRepository->getByNames($names),
-                $result
-            );
+            foreach ($dto->proficiencies as $proficiency) {
+                $result[] = $this->proficiencyRepository->getByName(
+                    $proficiency->name
+                );
+            }
         }
 
         return $result;

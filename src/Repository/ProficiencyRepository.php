@@ -23,32 +23,21 @@ class ProficiencyRepository extends ServiceEntityRepository
         parent::__construct($registry, Proficiency::class);
     }
 
-    public function getByNames(array $names): array
+    public function getByName(string $name): Proficiency
     {
         $result = $this->createQueryBuilder('p')
-            ->where('p.name IN (:names)')
-            ->setParameter('names', $names)
+            ->where('p.name = :name')
+            ->setParameter('name', $name)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
 
-        $missingProficiencies = array_diff(
-            array_map(
-                fn (Proficiency $proficiency): string => $proficiency->getName(),
-                $result
-            ),
-            $names
-        );
-
-        if ($missingProficiencies === []) {
-            return $result;
+        if ($result === null) {
+            throw new Exception(
+                sprintf('Proficiency: %s, not found.', $name)
+            );
         }
 
-        throw new Exception(
-            sprintf(
-                'Proficiencies: %s, not found.',
-                implode(', ', $missingProficiencies)
-            )
-        );
+        return $result;
     }
 
     public function findBySkills(array $skills): array
