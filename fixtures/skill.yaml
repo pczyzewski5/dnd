@@ -134,3 +134,7 @@ App\Entity\Skill:
       - <{canny_desc}>
       - []
       - ['@requirement_skill_canny_expertise']
+  skill_archery_fighting_style:
+    __construct:
+      - archery fighting style
+      - <{skill_archery_fighting_style_desc}>

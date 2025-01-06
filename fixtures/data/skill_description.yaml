@@ -491,3 +491,5 @@ parameters:
   canny_desc:
     '<b>Sprytny</b> - wybierz jedną umiejętność, podwój premia z biegłości dla tej umiejętności.
     Poznajesz dwa języki, zaimplementować requirement.'
+  skill_archery_fighting_style_desc:
+    '<b>Dystansowy styl walki</b> - otrzymujesz premię +2 do trafienia gdy korzystasz z broni dystansowych.'
