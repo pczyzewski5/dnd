@@ -11,7 +11,7 @@ class RequirementException extends \Exception
     public static function requirementNotMet(string $message): self
     {
         return new self(
-            sprintf('Requirements not met. %s', $message)
+            sprintf('Requirement not met. %s', $message)
         );
     }
 }

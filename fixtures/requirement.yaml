@@ -43,3 +43,7 @@ App\Entity\Requirement:
     __construct:
       - expertise
       - <{requirement_skill_canny_expertise_config}>
+  requirement_fighting_style_ranger:
+    __construct:
+      - fighting style
+      - <{requirement_fighting_style_ranger_config}>

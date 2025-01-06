@@ -10,6 +10,7 @@ use App\Service\Requirement\Checker\Asi;
 use App\Service\Requirement\Checker\AsiOrFeat;
 use App\Service\Requirement\Checker\Expertise;
 use App\Service\Requirement\Checker\Feat;
+use App\Service\Requirement\Checker\FightingStyle;
 use App\Service\Requirement\Checker\Language;
 use App\Service\Requirement\Checker\Proficiency;
 
@@ -26,7 +27,8 @@ class RequirementCheckerService
             new Asi(),
             new Feat(),
             new AsiOrFeat(),
-            new Expertise()
+            new Expertise(),
+            new FightingStyle()
         ];
     }
 

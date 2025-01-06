@@ -23,7 +23,7 @@ class Expertise extends AbstractChecker
         $level = $this->getConfigValue('level');
         $class = $this->getConfigValue('class');
 
-        $expertises =$this->getClassLevelConfig($level, $class)->expertises;
+        $expertises = $this->getClassLevelConfig($level, $class)->expertises;
 
         $this->checkCount(
             count($expertises),

@@ -120,6 +120,8 @@ App\Entity\Level:
       - 1
       - '@character_class_ranger'
       - ['@skill_favored_enemy', '@skill_canny']
+      - []
+      - ['@requirement_fighting_style_ranger']
   level_2_ranger:
     __construct:
       - 2

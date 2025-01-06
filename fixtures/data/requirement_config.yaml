@@ -84,3 +84,10 @@ parameters:
         "level": 1,
         "class": "ranger"
     }'
+  requirement_fighting_style_ranger_config:
+    '{
+         "error_message": "As ranger you need to pick up one fighting style from: archery, defense, dueling, two-weapon fighting.",
+         "level": 1,
+         "class": "ranger",
+         "pool": ["archery fighting style", "defense fighting style", "dueling fighting style", "two-weapon fighting fighting style"]
+     }'

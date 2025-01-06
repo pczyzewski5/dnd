@@ -93,6 +93,7 @@
                     "source": "multiclass"
                 }
             ],
+            "skills": ["archery fighting style"],
             "expertises": ["deception"]
         },
         {
