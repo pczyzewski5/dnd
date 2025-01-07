@@ -6,10 +6,13 @@ namespace App\Builder;
 
 use App\Builder\SkillBuilder\BelQuathSong;
 use App\Builder\SkillBuilder\FeatLucky;
+use App\Builder\SkillBuilder\FontOfMagic;
 use App\Builder\SkillBuilder\IntimidatingPresence;
+use App\Builder\SkillBuilder\MysticWisdom;
 use App\Builder\SkillBuilder\Rage;
 use App\Builder\SkillBuilder\AbstractSkillFinisher;
 use App\Builder\SkillBuilder\SneakAttack;
+use App\Builder\SkillBuilder\TidesOfChaos;
 use App\Character\Abilities;
 use App\Character\SkillFactory;
 use App\Character\Skills;
@@ -46,7 +49,10 @@ class SkillsBuilder
             new FeatLucky(),
             new BelQuathSong(),
             new SneakAttack(),
-            new IntimidatingPresence()
+            new IntimidatingPresence(),
+            new FontOfMagic(),
+            new MysticWisdom(),
+            new TidesOfChaos()
         ];
     }
 

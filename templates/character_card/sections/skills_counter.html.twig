@@ -71,7 +71,7 @@
             {% for i in 0..9 %}
                 <div class="skill-counter">
                     {% if skills[i] is defined %}
-                        <div class="cv">{{ skills[i].name|capitalize }}</div>
+                        <div class="cv">{{ skills[i].name|trans|capitalize }}</div>
                         <div class="uc">{{ skills[i].usageCount }}</div>
                     {% else %}
                         <div></div>

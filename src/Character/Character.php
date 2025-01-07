@@ -29,7 +29,9 @@ class Character
         public readonly int $darkvision,
         public readonly string $alignment,
         public readonly int $initiative,
-        public readonly int $attackCount
+        public readonly int $attackCount,
+        public readonly array $resistances,
+        public readonly ?Spellcasting $spellcasting
     ) {
     }
 }

@@ -23,17 +23,17 @@
         <div id="proficiencies-languages-container">
             {% if proficiencies.getArmorProficiencies() is not empty %}
                 <div class="tac"><b>Biegłości</b></div>
-                <div>Zbroje - {{ proficiencies.getArmorProficiencies()|join(', ') }}.</div>
+                <div>Zbroje - {{ proficiencies.getArmorProficiencies()|map((value, key) => value|trans)|join(', ') }}.</div>
             {% endif %}
             {% if proficiencies.getWeaponProficiencies() is not empty %}
-                <div>Bronie - {{ proficiencies.getWeaponProficiencies()|join(', ') }}.</div>
+                <div>Bronie - {{ proficiencies.getWeaponProficiencies()|map((value, key) => value|trans)|join(', ') }}.</div>
             {% endif %}
             {% if proficiencies.getOtherProficiencies() is not empty %}
-                <div>Pozostałe - {{ proficiencies.getOtherProficiencies()|join(', ') }}.</div>
+                <div>Pozostałe - {{ proficiencies.getOtherProficiencies()|map((value, key) => value|trans)|join(', ') }}.</div>
             {% endif %}
             {% if languages is not empty %}
                 <div class="tac"><b>Języki</b></div>
-                <div>{{ languages|join(', ')|capitalize }}.</div>
+                <div>{{ languages|map((value, key) => value|trans)|join(', ')|capitalize }}.</div>
             {% endif %}
         </div>
     </div>

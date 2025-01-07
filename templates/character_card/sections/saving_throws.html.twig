@@ -51,7 +51,7 @@
       <div id="saving-throws-container">
          {% for savingThrow in savingThrows %}
             <div class="saving-throw">
-               <div><b>{{ savingThrow.enum.value|upper }}</b></div>
+               <div><b>{{ savingThrow.enum.value|trans|upper }}</b></div>
                <div>{{ printMode ? false|dot : savingThrow.hasProficiency|dot }}</div>
                <div class="opaque">{{ printMode ? '&nbsp;' : savingThrow.value|value }}</div>
             </div>

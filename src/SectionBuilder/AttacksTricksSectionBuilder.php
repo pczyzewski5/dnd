@@ -10,6 +10,7 @@ class AttacksTricksSectionBuilder extends AbstractSectionBuilder
     {
         $context =  [
             'attackCount' => $this->character->attackCount,
+            'spellcasting' => $this->character->spellcasting,
         ];
 
         return $this->twig->render(

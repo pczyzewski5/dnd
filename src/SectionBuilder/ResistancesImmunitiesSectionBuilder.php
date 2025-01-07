@@ -10,7 +10,7 @@ class ResistancesImmunitiesSectionBuilder extends AbstractSectionBuilder
     {
         return $this->twig->render(
             'character_card/sections/resistances_immunities.html.twig', [
-            'resistances' => \implode(', ', []),
+            'resistances' => $this->character->resistances,
             'immunities' => []
         ]);
     }

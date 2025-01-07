@@ -18,6 +18,7 @@ use App\Character\Abilities;
 use App\Character\Character;
 use App\Character\Proficiencies;
 use App\Character\Skills;
+use App\Character\Spellcasting;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Dto\RaceConfigDto;
@@ -32,6 +33,8 @@ use App\Service\RaceService;
 
 use function array_merge;
 use function count;
+use function in_array;
+use function ob_flush;
 
 class CharacterBuilder
 {
@@ -95,8 +98,30 @@ class CharacterBuilder
             $this->getAlignment($config),
             $this->getInitiative($abilities, $skills),
             $this->getAttackCount($skills),
+            $this->getResistances($skills),
+            $this->getSpellcasting($config),
         // spellcasting do implementacji
         );
+    }
+
+    private function getSpellcasting(CharacterConfigDto $config): ?Spellcasting
+    {
+        if (in_array($config->characterName, ['Sathoris'])) {
+            return new Spellcasting($config->characterName);
+        }
+
+        return null;
+    }
+
+    private function getResistances(Skills $skills): array
+    {
+        $result = [];
+
+        if ($skills->hasSkill('hellish resistance')) {
+            $result[] = 'fire';
+        }
+
+        return $result;
     }
 
     private function getAttackCount(Skills $skills): int
