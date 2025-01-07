@@ -57,6 +57,11 @@ App\Entity\Level:
       - 9
       - '@character_class_berserker'
       - ['@skill_brutal_critical']
+  level_10_berserker:
+    __construct:
+      - 10
+      - '@character_class_berserker'
+      - ['@skill_intimidating_presence']
 
   level_1_rouge:
     __construct:

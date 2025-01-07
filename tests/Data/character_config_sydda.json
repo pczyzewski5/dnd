@@ -99,6 +99,10 @@
         {
             "level": 9,
             "class": "berserker"
+        },
+        {
+            "level": 10,
+            "class": "berserker"
         }
     ],
     "abilities": [

@@ -57,6 +57,18 @@ final class Version20241230085419 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
+            CREATE TABLE pivot_requirement_to_origin (
+                requirement_id INT NOT NULL,
+                origin_id INT NOT NULL,
+                PRIMARY KEY (requirement_id, origin_id),
+                CONSTRAINT FK_PRTO_REQUIREMENT FOREIGN KEY (requirement_id) REFERENCES requirement (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PRTO_ORIGIN FOREIGN KEY (origin_id) REFERENCES origin (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
             CREATE TABLE pivot_skill_to_race (
                 skill_id INT NOT NULL,
                 race_id INT NOT NULL,

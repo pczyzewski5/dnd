@@ -39,6 +39,10 @@ App\Entity\Proficiency:
     __construct:
       - animal handling
       - ability skill
+  proficiency_history:
+    __construct:
+      - history
+      - ability skill
   proficiency_athletics:
     __construct:
       - athletics
@@ -74,6 +78,10 @@ App\Entity\Proficiency:
   proficiency_persuasion:
     __construct:
       - persuasion
+      - ability skill
+  proficiency_arcana:
+    __construct:
+      - arcana
       - ability skill
   proficiency_performance:
     __construct:
@@ -122,4 +130,32 @@ App\Entity\Proficiency:
   proficiency_disguise_kit:
     __construct:
       - disguise kit
+      - other
+  proficiency_daggers:
+    __construct:
+      - daggers
+      - weapon
+  proficiency_darts:
+    __construct:
+      - darts
+      - weapon
+  proficiency_slings:
+    __construct:
+      - slings
+      - weapon
+  proficiency_quarterstaffs:
+    __construct:
+      - quarterstaffs
+      - weapon
+  proficiency_light_crossbow:
+    __construct:
+      - light crossbows
+      - weapon
+  proficiency_charisma:
+    __construct:
+      - cha
+      - saving throw
+  proficiency_dice_game:
+    __construct:
+      - dice game
       - other

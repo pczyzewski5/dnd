@@ -27,18 +27,31 @@ class Origin
     #[ORM\JoinColumn(name: 'origin_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $proficiencies;
 
+    #[ORM\ManyToMany(targetEntity: Requirement::class)]
+    #[ORM\JoinTable(name: 'pivot_requirement_to_origin')]
+    #[ORM\JoinColumn(name: 'origin_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $requirements;
+
     public function __construct(
         string $name,
         ?array $proficiencies = [],
+        ?array $requirements = [],
     ) {
         $this->name = $name;
         $this->proficiencies = new ArrayCollection();
+        $this->requirements = new ArrayCollection();
 
         array_walk(
             $proficiencies,
             fn (Proficiency $proficiency)
             => $this->proficiencies->contains($proficiency)
                 ?: $this->proficiencies->add($proficiency)
+        );
+        array_walk(
+            $requirements,
+            fn (Requirement $requirement)
+            => $this->requirements->contains($requirement)
+                ?: $this->requirements->add($requirement)
         );
     }
 

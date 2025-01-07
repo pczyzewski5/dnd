@@ -19,10 +19,18 @@ App\Entity\Requirement:
     __construct:
       - proficiency
       - <{requirement_rouge_class_proficiency_config}>
+  requirement_sorcerer_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_sorcerer_class_proficiency_config}>
   requirement_race_single_language:
     __construct:
       - language
       - <{requirement_race_single_language_config}>
+  requirement_origin_single_language:
+    __construct:
+      - language
+      - <{requirement_origin_single_language_config}>
   requirement_asi_or_feat_level_4:
     __construct:
       - asi or feat

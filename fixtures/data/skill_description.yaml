@@ -51,8 +51,6 @@ parameters:
     '<b>Ugryzienie</b> - możesz użyć swoich ostrych zębów, aby wykonać akcję
     ataku i ugryźć przeciwnika, modyfikator do trafienia wynosi +{{ attack_mod }},
     jeśli trafisz zadajesz 1k6{{ bonus_dmg }} obrażeń ciętych.'
-  bonus_attack_desc:
-    '<b>Dodatkowy atak</b> - tu dodać info ile ataków.'
   bonus_language_desc:
     '<b>Dodatkowy język</b> - potrafisz mówić, czytać i pisać w dodatkowym
     języku.'
@@ -135,10 +133,10 @@ parameters:
     <tr><td>4</td><td>maksymalne PW zmniejszone o połowę</td><td></td></tr><tr><td>5</td>
     <td>szybkość zmniejszona do 0</td><td></td></tr><tr><td>6</td><td>śmierć</td><td></td>
     </tr></table>'
-  skill_expertise_I_desc:
+  expertise_I_desc:
     '<b>Znawstwo I (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
      premia z biegłości dla tych umiejętności jest podwojona.'
-  skill_expertise_II_desc:
+  expertise_II_desc:
     '<b>Znawstwo II (PHB 79)</b> - możesz wybrać dwie umiejętności, w których jesteś biegły,
      premia z biegłości dla tych umiejętności jest podwojona.'
   fast_movement_desc:
@@ -190,7 +188,7 @@ parameters:
     wykonasz atak bronią dystansową, w której masz biegłość, możesz zdecydować się
     przyjąć karę -5 do trafienia. Jeśli trafisz, otrzymujesz premię +10
     do obrażeń.</li></ul>'
-  feat_skill_expert_desc:
+  feat_expert_desc:
     '<b>Expert (TCOE | Feat)</b> - podnieś jedną statystykę o 1, wybierz jedną
     umiejętność - otrzymujesz w niej biegłość oraz ekspertyzę.'
   feat_spell_sniper_desc:
@@ -219,10 +217,10 @@ parameters:
   fighting_style_protection_desc:
     '<b>Defensywny styl walki</b> - gdy nosisz pancerz, zyskujesz +1 do KP.'
   font_of_magic_desc:
-    '<b>Punkty zaklinania</b> - posiadasz {{ pointsCount }} punkty zaklinania,
-    odzyskujesz je po długim odpoczynku. <b>Elastyczne czarowanie</b> - możesz wykorzystywać
+    '<b>Punkty zaklinania</b> - posiadasz 10 punkty zaklinania,
+    odzyskujesz je po długim odpoczynku. <p><b>Elastyczne czarowanie</b> - możesz wykorzystywać
     punkty zaklinania do odzyskiwania komórek czarów i odwrotnie, możesz poświęcać
-    komórki czarów, by otrzymać w ten sposób punkty zaklinania. <p><b>Tworzenie
+    komórki czarów, by otrzymać w ten sposób punkty zaklinania. </p><p><b>Tworzenie
     komórek czarów</b> - w ramach akcji dodatkowej w swojej turze możesz przekształcić
     niewydane jeszcze punkty zaklinania w komórkę czaru. Koszt utworzenia komórki
     danego kręgu zawiera tabela Tworzenie komórek czarów. Możesz stworzyć komórkę
@@ -291,13 +289,14 @@ parameters:
   maneuver_save_dc_desc:
     '<b>ST przeciw manewrom</b> - wynosi {{ dc }}.'
   metamagic_desc:
-    '<b>Metamagia</b> - otrzymujesz dwie metamagiczne możliwości, gdy rzucasz
+    '<b>Metamagia</b> - otrzymujesz trzy metamagiczne możliwości, gdy rzucasz
     czar możesz użyć tylko jednej opcji metamagii, chyba że określono inaczej. <p><b>Wzmocnione
     zaklęcie</b> - za 1 pkt zaklinania przerzucasz 1 kość obrażeń, nie możesz przerzucić
     więcej kości niż twój mod z charyzmy, musisz przyjąć nowy wynik. Możesz skorzystać
     ze wzmocnionego zaklęcia, nawet jeśli już skorzystałeś z innej opcji metamagii.</p>
     <p><b>Przedłużone zaklęcie</b> - za 1 pkt zaklinania podwajasz czas działania
-    czaru, maksymalnie do 24 godzin.</p> '
+    czaru, maksymalnie do 24 godzin.</p><p><b>Przyspieszone zaklęcie</b> - za 2 pkt
+     zaklinania możesz skrócić czas rzucania czaru z akcji głównej do akcji dodatkowej.</p>'
   mindless_rage_desc:
     '<b>Bezmyślny szał</b> - podczas szału nie możesz zostać zauroczony ani
     przerażony. Jeśli jesteś zauroczony lub przerażony w momencie wpadania w szał,
@@ -413,14 +412,35 @@ parameters:
     ponieważ posiadasz disadvantage do trafienia, ale nie do zaskoczenia,</li><li>gdy
     używasz dwóch broni naraz, jeśli nie użyjesz ukradkowego ataku podczas pierwszego
     ataku, bo np. nie trafisz, to możesz go użyć przy ataku drugą ręką.</li></ul>'
-  spellcasting_desc:
+  sathoris_spellcasting_desc:
     '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
-    odpoczynku. <table><tr><td></td> {% for spellCircle in
-      spellCircles %} <td>{{ spellCircle["circle"] }}</td> {%
-    endfor %} </tr><tr><td>max</td> {% for spellCircle
-      in spellCircles %} <td>{{ spellCircle["count"] }}</td> {%
-    endfor %} </tr><tr><td>użyte</td> {% for spellCircle
-    in spellCircles %} <td></td> {% endfor %} </tr></table>'
+    odpoczynku. 
+    <table>
+        <tr>
+          <td></td>
+          <td>I</td>
+          <td>II</td>
+          <td>III</td>
+          <td>IV</td>
+          <td>V</td>
+        </tr>
+        <tr>
+          <td><strong>max</strong></td>
+          <td>4</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td><strong>użyte</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+    </table>'
   spirit_seeker_desc:
     '<b>Duchowy wędrowiec</b> - twoja ścieżka wiedzie cię ku harmonii z przyrodą,
     zyskujesz możliwość rzucania czarów zwierzęce zmysły oraz rozmawianie ze zwierzętami,
@@ -491,5 +511,12 @@ parameters:
   canny_desc:
     '<b>Sprytny</b> - wybierz jedną umiejętność, podwój premia z biegłości dla tej umiejętności.
     Poznajesz dwa języki, zaimplementować requirement.'
-  skill_archery_fighting_style_desc:
+  archery_fighting_style_desc:
     '<b>Dystansowy styl walki</b> - otrzymujesz premię +2 do trafienia gdy korzystasz z broni dystansowych.'
+  intimidating_presence_desc:
+    '<b>Złowroga postawa</b> - możesz użyć swojej akcji, aby przestraszyć kogoś swoją groźną postawą. 
+    Wybierz jedną istotę znajdującą się do 6 hex od ciebie. Jeżeli cię widzi lub słyszy, musi wykonać rzut obronny
+    na mądrość o ST {{ wisDc }}. W przypadku niepowodzenia cel staje się przerażony do końca twojej następnej tury.
+    W następnych turach możesz w ramach swojej akcji przedłużać działanie efektu o kolejną turę. Efekt kończy się,
+    jeśli przerażona istota zakończy swoją turę poza zasięgiem wzroku lub dalej niż 12 hex od ciebie. Jeśli cel zda
+    rzut obronny, nie możesz na nim powtarzać próby zastraszenia przez najbliższe 24 godziny.'

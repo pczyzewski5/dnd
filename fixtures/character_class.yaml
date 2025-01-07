@@ -26,3 +26,10 @@ App\Entity\CharacterClass:
     __construct:
       - 10
       - ranger
+
+  character_class_wild_magic_sorcerer:
+    __construct:
+      - 6
+      - wild magic sorcerer
+      - ~
+      - ['@requirement_sorcerer_class_proficiency']

@@ -6,6 +6,7 @@ namespace App\Builder;
 
 use App\Builder\SkillBuilder\BelQuathSong;
 use App\Builder\SkillBuilder\FeatLucky;
+use App\Builder\SkillBuilder\IntimidatingPresence;
 use App\Builder\SkillBuilder\Rage;
 use App\Builder\SkillBuilder\AbstractSkillFinisher;
 use App\Builder\SkillBuilder\SneakAttack;
@@ -28,6 +29,8 @@ class SkillsBuilder
 
     private Abilities $abilities;
 
+    private int $proficiencyBonus;
+
     /** @var Level[] */
     private array $levels;
 
@@ -42,7 +45,8 @@ class SkillsBuilder
             new Rage(),
             new FeatLucky(),
             new BelQuathSong(),
-            new SneakAttack()
+            new SneakAttack(),
+            new IntimidatingPresence()
         ];
     }
 
@@ -56,6 +60,13 @@ class SkillsBuilder
     public function setAbilities(Abilities $abilities): self
     {
         $this->abilities = $abilities;
+
+        return $this;
+    }
+
+    public function setProficiencyBonus(int $proficiencyBonus): self
+    {
+        $this->proficiencyBonus = $proficiencyBonus;
 
         return $this;
     }
@@ -118,6 +129,7 @@ class SkillsBuilder
                 if ($finisher->supports($skill)) {
                     $skill = $finisher->setup(
                         $this->abilities,
+                        $this->proficiencyBonus,
                         $skillIndex,
                         $levels
                     )->finish($skill);

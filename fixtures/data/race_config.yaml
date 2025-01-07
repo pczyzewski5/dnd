@@ -56,3 +56,20 @@ parameters:
          "speed_in_meters": 7.5,
          "darkvision_in_meters": 0
      }'
+
+  tiefling_config:
+    '{
+         "asi": [
+             {
+                 "ability": "int",
+                 "value": 1
+             },
+             {
+                 "ability": "cha",
+                 "value": 2
+             }
+         ],
+         "languages": ["common", "infernal"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+     }'

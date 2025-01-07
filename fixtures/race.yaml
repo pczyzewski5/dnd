@@ -22,4 +22,10 @@ App\Entity\Race:
          '@skill_brave',
          '@skill_nimble',
          '@skill_naturally_stealthy']
+  race_tiefling:
+    __construct:
+      - tiefling
+      - <{tiefling_config}>
+      - ['@skill_infernal_legacy',
+         '@skill_hellish_resistance']
  

@@ -14,6 +14,7 @@ use function str_replace;
 abstract class AbstractSkillFinisher
 {
     protected Abilities $abilities;
+    protected int $proficiencyBonus;
 
     private array $skillIndex;
     private array $levels;
@@ -24,10 +25,12 @@ abstract class AbstractSkillFinisher
 
     public function setup(
         Abilities $abilities,
+        int $proficiencyBonus,
         array $skillIndex,
         array $levels
     ): self {
         $this->abilities = $abilities;
+        $this->proficiencyBonus = $proficiencyBonus;
         $this->skillIndex = $skillIndex;
         $this->levels = $levels;
 

@@ -37,13 +37,15 @@ class CharacterCardHtmlBuilderTest extends KernelTestCase
     #[DataProvider('characterConfigProvider')]
     public function testBuild(string $json): void
     {
+        $config = $this->characterConfigDtoMapper->fromJson($json);
+
         $html = $this->testedObject->getFrontpage(
             $this->characterBuilder->build(
-                $this->characterConfigDtoMapper->fromJson($json)
+                $config
             )
         );
 
-        file_put_contents('output.html', $html);
+        file_put_contents($config->characterName . '_output.html', $html);
     }
 
     public static function characterConfigProvider(): array
@@ -54,6 +56,7 @@ class CharacterCardHtmlBuilderTest extends KernelTestCase
         return [
             'Sydda config' => [$getConfig('character_config_sydda.json')],
             'Mordimer config' => [$getConfig('character_config_mordimer.json')],
+            'Sathoris config' => [$getConfig('character_config_sathoris.json')],
         ];
     }
 }

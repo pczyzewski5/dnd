@@ -1,0 +1,110 @@
+{
+    "character_name": "Sathoris",
+    "player_name": "Wiktoria I-J",
+    "campaign_name": "Klątwa Sthrada",
+    "origin": "noble",
+    "race": "tiefling",
+    "alignment": "lawful evil",
+    "levels": [
+        {
+            "level": 1,
+            "class": "wild magic sorcerer",
+            "proficiencies": [
+                {
+                    "name": "dice game",
+                    "source": "origin"
+                },
+                {
+                    "name": "investigation",
+                    "source": "character class"
+                },
+                {
+                    "name": "arcana",
+                    "source": "character class"
+                }
+            ],
+            "languages": [
+                {
+                    "name": "undercommon",
+                    "source": "origin"
+                }
+            ],
+            "skills": [
+                "Mystic wisdom"
+            ]
+        },
+        {
+            "level": 2,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 3,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 4,
+            "class": "wild magic sorcerer",
+            "asi": [
+                {
+                    "ability": "cha",
+                    "value": 2,
+                    "source": "level"
+                }
+            ]
+        },
+        {
+            "level": 5,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 6,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 7,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 8,
+            "class": "wild magic sorcerer",
+            "feat": {
+                "name": "spell sniper",
+                "source": "level"
+            }
+        },
+        {
+            "level": 9,
+            "class": "wild magic sorcerer"
+        },
+        {
+            "level": 10,
+            "class": "wild magic sorcerer"
+        }
+    ],
+    "abilities": [
+        {
+            "ability": "str",
+            "value": 10
+        },
+        {
+            "ability": "dex",
+            "value": 12
+        },
+        {
+            "ability": "con",
+            "value": 13
+        },
+        {
+            "ability": "int",
+            "value": 14
+        },
+        {
+            "ability": "wis",
+            "value": 8
+        },
+        {
+            "ability": "cha",
+            "value": 15
+        }
+    ]
+}

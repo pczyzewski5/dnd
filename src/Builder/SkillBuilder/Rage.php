@@ -29,8 +29,13 @@ class Rage extends AbstractSkillFinisher
 
     public function finish(Skill $skill): Skill
     {
-        $count =  self::RAGE_LEVELS[$this->level]['count'];
-        $damage = self::RAGE_LEVELS[$this->level]['damage'];
+        $level = max(
+            $this->getLevel('berserker'),
+            $this->getLevel('barbarian'),
+        );
+
+        $count =  self::RAGE_LEVELS[$level]['count'];
+        $damage = self::RAGE_LEVELS[$level]['damage'];
         $resistances = $this->hasSkill('bear spirit totem')
             ? 'otrzymujesz połowę obrażeń każdego typu - prócz psychicznych'
             : 'otrzymujesz połowę obrażeń: siecznych, obuchowych oraz przebijających';

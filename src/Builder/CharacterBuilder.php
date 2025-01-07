@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Builder;
 
 use App\Calculator\ArmorClassCalculator;
+use App\Calculator\DistanceCalculator;
 use App\Calculator\HitDiceCalculator;
 use App\Calculator\HitPointsCalculator;
 use App\Calculator\InitiativeCalculator;
@@ -63,9 +64,9 @@ class CharacterBuilder
         $raceConfig = $this->getRaceConfig($race);
         $levels = $this->getLevels($config);
         $abilities = $this->getAbilities($config, $raceConfig);
-        $skills = $this->getSkills($config, $abilities, $race, $levels);
-        $proficiencies = $this->getProficiencies($config, $levels, $origin, $skills);
         $proficiencyBonus = $this->proficiencyBonusCalculator->calculate(count($levels));
+        $skills = $this->getSkills($config, $abilities, $proficiencyBonus, $race, $levels);
+        $proficiencies = $this->getProficiencies($config, $levels, $origin, $skills);
         $hitDices = $this->hitDiceCalculator->calculate($levels);
         $simpleLevels = $this->simpleLevelsCalculator->calculate($levels);
         $expertises = $this->getExpertises($config);
@@ -90,7 +91,7 @@ class CharacterBuilder
             $this->getArmorClass($abilities, $skills),
             $this->getSpeed($raceConfig, $skills),
             $this->getLanguages($config, $raceConfig),
-            $raceConfig->darkvision,
+            $raceConfig->darkvision === null ? null : DistanceCalculator::metersToHex($raceConfig->darkvision),
             $this->getAlignment($config),
             $this->getInitiative($abilities, $skills),
             $this->getAttackCount($skills),
@@ -102,7 +103,7 @@ class CharacterBuilder
     {
         $count = 1;
 
-        if ($skills->hasSkill('bonus attack')) {
+        if ($skills->hasSkill('extra attack')) {
             $count++;
         }
 
@@ -112,12 +113,14 @@ class CharacterBuilder
     private function getSkills(
         CharacterConfigDto $config,
         Abilities $abilities,
+        int $proficiencyBonus,
         Race $race,
         array $levels
     ): Skills {
         return $this->skillsBuilder
             ->setCharacterConfigDto($config)
             ->setAbilities($abilities)
+            ->setProficiencyBonus($proficiencyBonus)
             ->setLevels($levels)
             ->setRace($race)
             ->build();

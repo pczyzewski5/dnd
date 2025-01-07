@@ -50,9 +50,30 @@ parameters:
          ],
          "level": 1
      }'
+  requirement_sorcerer_class_proficiency_config:
+    '{
+         "source": "character class",
+         "required_count": 2,
+         "pool": [
+             "arcana",
+             "deception",
+             "insight",
+             "intimidation",
+             "persuasion",
+             "religion",
+             "investigation"
+         ],
+         "level": 1
+     }'
   requirement_race_single_language_config:
     '{
          "source": "race",
+         "required_count": 1,
+         "level": 1
+     }'
+  requirement_origin_single_language_config:
+    '{
+         "source": "origin",
          "required_count": 1,
          "level": 1
      }'

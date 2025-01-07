@@ -58,13 +58,13 @@ App\Entity\Skill:
   skill_expertise_I:
     __construct:
       - skill expertise I
-      - <{skill_expertise_I_desc}>
+      - <{expertise_I_desc}>
       - []
       - ['@requirement_skill_expertise_I']
   skill_expertise_II:
     __construct:
       - skill expertise II
-      - <{skill_expertise_II_desc}>
+      - <{expertise_II_desc}>
       - []
       - ['@requirement_skill_expertise_II']
   skill_sneak_attack:
@@ -137,4 +137,48 @@ App\Entity\Skill:
   skill_archery_fighting_style:
     __construct:
       - archery fighting style
-      - <{skill_archery_fighting_style_desc}>
+      - <{archery_fighting_style_desc}>
+  skill_intimidating_presence:
+    __construct:
+      - intimidating presence
+      - <{intimidating_presence_desc}>
+  skill_infernal_legacy:
+    __construct:
+      - infernal legacy
+      - <{infernal_legacy_desc}>
+  skill_hellish_resistance:
+    __construct:
+      - hellish resistance
+      - <{hellish_resistance_desc}>
+  skill_font_of_magic:
+    __construct:
+      - font of magic
+      - <{font_of_magic_desc}>
+  skill_metamagic:
+    __construct:
+      - metamagic
+      - <{metamagic_desc}>
+  feat_spell_sniper:
+    __construct:
+      - spell sniper
+      - <{feat_spell_sniper_desc}>
+  skill_sathoris_spellcasting:
+    __construct:
+      - spellcasting
+      - <{sathoris_spellcasting_desc}>
+  skill_wild_magic_surge:
+    __construct:
+      - wild magic surge
+      - <{wild_magic_surge_desc}>
+  skill_tides_of_chaos:
+    __construct:
+      - tides of chaos
+      - <{tides_of_chaos_desc}>
+  skill_bend_luck:
+    __construct:
+      - bend luck
+      - <{bend_luck_desc}>
+  skill_mystic_wisdom:
+    __construct:
+      - mystic wisdom
+      - <{mystic_wisdom_desc}>
