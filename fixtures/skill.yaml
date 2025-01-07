@@ -182,3 +182,7 @@ App\Entity\Skill:
     __construct:
       - mystic wisdom
       - <{mystic_wisdom_desc}>
+  feat_war_caster:
+    __construct:
+      - feat war caster
+      - <{feat_war_caster_desc}>

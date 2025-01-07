@@ -33,3 +33,13 @@ App\Entity\CharacterClass:
       - wild magic sorcerer
       - ~
       - ['@requirement_sorcerer_class_proficiency']
+
+  character_class_druid:
+    __construct:
+      - 8
+      - druid
+
+  character_class_circle_of_moon_druid:
+    __construct:
+      - 8
+      - circle of moon druid

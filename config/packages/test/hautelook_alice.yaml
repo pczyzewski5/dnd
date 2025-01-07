@@ -1,2 +1,2 @@
 hautelook_alice:
-    fixtures_path: [fixtures, fixtures/data, fixtures/data/level]
+    fixtures_path: [fixtures, fixtures/data, fixtures/data/level, fixtures/data/level/druid]

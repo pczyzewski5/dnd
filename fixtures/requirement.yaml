@@ -31,6 +31,10 @@ App\Entity\Requirement:
     __construct:
       - language
       - <{requirement_origin_single_language_config}>
+  requirement_origin_two_languages:
+    __construct:
+      - language
+      - <{requirement_origin_two_languages_config}>
   requirement_asi_or_feat_level_4:
     __construct:
       - asi or feat

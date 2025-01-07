@@ -28,4 +28,9 @@ App\Entity\Race:
       - <{tiefling_config}>
       - ['@skill_infernal_legacy',
          '@skill_hellish_resistance']
+
+  race_wood_elf:
+    __construct:
+      - wood elf
+      - <{wood_elf_config}>
  

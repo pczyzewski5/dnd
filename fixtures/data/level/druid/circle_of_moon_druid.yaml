@@ -1,0 +1,37 @@
+App\Entity\Level:
+  level_2_circle_of_moon_druid:
+    __construct:
+      - 2
+      - '@character_class_circle_of_moon_druid'
+  level_3_circle_of_moon_druid:
+    __construct:
+      - 3
+      - '@character_class_circle_of_moon_druid'
+  level_4_circle_of_moon_druid:
+    __construct:
+      - 4
+      - '@character_class_circle_of_moon_druid'
+  level_5_circle_of_moon_druid:
+    __construct:
+      - 5
+      - '@character_class_circle_of_moon_druid'
+  level_6_circle_of_moon_druid:
+    __construct:
+      - 6
+      - '@character_class_circle_of_moon_druid'
+  level_7_circle_of_moon_druid:
+    __construct:
+      - 7
+      - '@character_class_circle_of_moon_druid'
+  level_8_circle_of_moon_druid:
+    __construct:
+      - 8
+      - '@character_class_circle_of_moon_druid'
+  level_9_circle_of_moon_druid:
+    __construct:
+      - 9
+      - '@character_class_circle_of_moon_druid'
+  level_10_circle_of_moon_druid:
+    __construct:
+      - 10
+      - '@character_class_circle_of_moon_druid'

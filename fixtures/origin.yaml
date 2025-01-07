@@ -12,3 +12,8 @@ App\Entity\Origin:
       - noble
       - ['@proficiency_history', '@proficiency_persuasion']
       - ['@requirement_origin_single_language']
+  origin_sage:
+    __construct:
+      - sage
+      - ['@proficiency_arcana', '@proficiency_history']
+      - ['@requirement_origin_two_languages']

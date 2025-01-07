@@ -73,3 +73,20 @@ parameters:
          "speed_in_meters": 9,
          "darkvision_in_meters": 18
      }'
+
+  wood_elf_config:
+    '{
+         "ASI": [
+             {
+                 "ability": "dex",
+                 "value": 2
+             },
+             {
+                 "ability": "wis",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "elvish"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+     }'

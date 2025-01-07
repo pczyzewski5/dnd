@@ -1,0 +1,97 @@
+{
+    "character_name": "Anwen",
+    "player_name": "Kasia",
+    "campaign_name": "Klątwa Sthrada",
+    "origin": "sage",
+    "race": "wood elf",
+    "alignment": "neutral good",
+    "levels": [
+        {
+            "level": 1,
+            "class": "druid",
+            "languages": [
+                {
+                    "name": "sylvan",
+                    "source": "origin"
+                },
+                {
+                    "name": "primordial",
+                    "source": "race"
+                }
+            ]
+        },
+        {
+            "level": 2,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 3,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 4,
+            "class": "circle of moon druid",
+            "asi": [
+                {
+                    "ability": "wis",
+                    "value": 2,
+                    "source": "level"
+                }
+            ]
+        },
+        {
+            "level": 5,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 6,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 7,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 8,
+            "class": "circle of moon druid",
+            "feat": {
+                "name": "feat war caster",
+                "source": "level"
+            }
+        },
+        {
+            "level": 9,
+            "class": "circle of moon druid"
+        },
+        {
+            "level": 10,
+            "class": "circle of moon druid"
+        }
+    ],
+    "abilities": [
+        {
+            "ability": "str",
+            "value": 8
+        },
+        {
+            "ability": "dex",
+            "value": 12
+        },
+        {
+            "ability": "con",
+            "value": 14
+        },
+        {
+            "ability": "int",
+            "value": 13
+        },
+        {
+            "ability": "wis",
+            "value": 15
+        },
+        {
+            "ability": "cha",
+            "value": 10
+        }
+    ]
+}

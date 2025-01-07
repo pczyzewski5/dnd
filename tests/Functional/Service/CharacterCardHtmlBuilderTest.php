@@ -57,6 +57,7 @@ class CharacterCardHtmlBuilderTest extends KernelTestCase
             'Sydda config' => [$getConfig('character_config_sydda.json')],
             'Mordimer config' => [$getConfig('character_config_mordimer.json')],
             'Sathoris config' => [$getConfig('character_config_sathoris.json')],
+            'Anwen config' => [$getConfig('character_config_anwen.json')],
         ];
     }
 }
