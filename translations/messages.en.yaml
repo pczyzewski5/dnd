@@ -70,13 +70,17 @@ land vehicles: pojazdy lądowe
 tinker tools: narzędzia majsterkowicza
 
 hand crossbows: kusze ręczne
-long swords: miecze długie
+longswords: miecze długie
 rapiers: rapiery
-short swords: miecze krótkie
+shortswords: miecze krótkie
+shortbows: łuki krótkie
+longbows: łuki długie
 thieves tools: narzędzia złodzieja
 poisoner kit: zestaw truciciela
 disguise kit: zestaw do charakteryzacji
 halfling: niziołczy
+
+
 
 sage: mędrzec
 wood elf: leśny elf

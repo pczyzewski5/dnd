@@ -76,13 +76,29 @@ parameters:
 
   wood_elf_config:
     '{
-         "ASI": [
+         "asi": [
              {
                  "ability": "dex",
                  "value": 2
              },
              {
                  "ability": "wis",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "elvish"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+     }'
+  high_elf_config:
+    '{
+         "asi": [
+             {
+                 "ability": "dex",
+                 "value": 2
+             },
+             {
+                 "ability": "int",
                  "value": 1
              }
          ],

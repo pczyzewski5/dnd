@@ -22,6 +22,7 @@ App\Entity\Race:
          '@skill_brave',
          '@skill_nimble',
          '@skill_naturally_stealthy']
+
   race_tiefling:
     __construct:
       - tiefling
@@ -33,4 +34,15 @@ App\Entity\Race:
     __construct:
       - wood elf
       - <{wood_elf_config}>
- 
+      - ['@skill_keen_senses',
+         '@skill_fey_ancestry',
+         '@skill_trance']
+
+  race_high_elf:
+    __construct:
+      - high elf
+      - <{high_elf_config}>
+      - ['@skill_keen_senses',
+         '@skill_fey_ancestry',
+         '@skill_trance',
+         '@skill_elf_weapon_training']

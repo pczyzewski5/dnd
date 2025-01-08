@@ -107,17 +107,17 @@ App\Entity\Proficiency:
     __construct:
       - hand crossbows
       - weapon
-  proficiency_long_swords:
+  proficiency_longswords:
     __construct:
-      - long swords
+      - longswords
       - weapon
   proficiency_rapiers:
     __construct:
       - rapiers
       - weapon
-  proficiency_short_swords:
+  proficiency_shortswords:
     __construct:
-      - short swords
+      - shortswords
       - weapon
   proficiency_thieves_tools:
     __construct:
@@ -159,3 +159,11 @@ App\Entity\Proficiency:
     __construct:
       - dice game
       - other
+  proficiency_shortbow:
+    __construct:
+      - shortbows
+      - weapon
+  proficiency_longbow:
+    __construct:
+      - longbows
+      - weapon

@@ -186,3 +186,24 @@ App\Entity\Skill:
     __construct:
       - feat war caster
       - <{feat_war_caster_desc}>
+  skill_keen_senses:
+    __construct:
+      - keen senses
+      - <{keen_senses_desc}>
+  skill_fey_ancestry:
+    __construct:
+      - fey ancestry
+      - <{fey_ancestry_desc}>
+  skill_trance:
+    __construct:
+      - trance
+      - <{trance_desc}>
+      - ['@proficiency_perception']
+  skill_elf_weapon_training:
+    __construct:
+      - elf weapon training
+      - <{elf_weapon_training_desc}>
+      - ['@proficiency_longswords',
+         '@proficiency_shortswords',
+         '@proficiency_shortbow',
+         '@proficiency_longbow']
