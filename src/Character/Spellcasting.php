@@ -23,5 +23,11 @@ class Spellcasting
             $this->spellSaveDc = 15;
             $this->spellsKnown = 13;
         }
+
+        if ($characterName === 'Mordimer Madderdin') {
+            $this->spellAttackMod = 5;
+            $this->spellSaveDc = 13;
+            $this->spellsKnown = 2;
+        }
     }
 }

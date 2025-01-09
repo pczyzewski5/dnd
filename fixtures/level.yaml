@@ -131,3 +131,4 @@ App\Entity\Level:
     __construct:
       - 2
       - '@character_class_ranger'
+      - ['@skill_mordimer_spellcasting']

@@ -106,7 +106,7 @@ class CharacterBuilder
 
     private function getSpellcasting(CharacterConfigDto $config): ?Spellcasting
     {
-        if (in_array($config->characterName, ['Sathoris', 'Anwen'])) {
+        if (in_array($config->characterName, ['Sathoris', 'Anwen', 'Mordimer Madderdin'])) {
             return new Spellcasting($config->characterName);
         }
 

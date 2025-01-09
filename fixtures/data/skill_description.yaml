@@ -443,6 +443,23 @@ parameters:
           <td></td>
         </tr>
     </table>'
+  mordimer_spellcasting_desc:
+    '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
+    odpoczynku. 
+    <table>
+        <tr>
+          <td></td>
+          <td>I</td>
+        </tr>
+        <tr>
+          <td><strong>max</strong></td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td><strong>użyte</strong></td>
+          <td></td>
+        </tr>
+    </table>'
   anwen_spellcasting_desc:
     '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
     odpoczynku. 

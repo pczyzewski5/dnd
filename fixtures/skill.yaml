@@ -182,6 +182,10 @@ App\Entity\Skill:
     __construct:
       - anwen spellcasting
       - <{anwen_spellcasting_desc}>
+  skill_mordimer_spellcasting:
+    __construct:
+      - mordimer spellcasting
+      - <{mordimer_spellcasting_desc}>
   skill_druidic:
     __construct:
       - druidic
