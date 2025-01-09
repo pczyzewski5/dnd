@@ -3,3 +3,4 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_druid'
+      - ['@skill_druidic', '@skill_anwen_spellcasting']

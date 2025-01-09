@@ -3,6 +3,7 @@ App\Entity\Level:
     __construct:
       - 2
       - '@character_class_circle_of_moon_druid'
+      - ['@skill_wild_shape', '@skill_combat_wild_shape', '@skill_circle_forms', '@skill_bonus_cantrip', '@skill_bonus_language']
   level_3_circle_of_moon_druid:
     __construct:
       - 3
@@ -19,6 +20,7 @@ App\Entity\Level:
     __construct:
       - 6
       - '@character_class_circle_of_moon_druid'
+      - ['@skill_primal_strike']
   level_7_circle_of_moon_druid:
     __construct:
       - 7

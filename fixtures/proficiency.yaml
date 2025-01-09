@@ -27,6 +27,10 @@ App\Entity\Proficiency:
     __construct:
       - dex
       - saving throw
+  proficiency_wisdom:
+    __construct:
+      - wis
+      - saving throw
   proficiency_constitution:
     __construct:
       - con
@@ -91,6 +95,10 @@ App\Entity\Proficiency:
     __construct:
       - survival
       - ability skill
+  proficiency_religion:
+    __construct:
+      - religion
+      - ability skill
   proficiency_tinker_tools:
     __construct:
       - tinker tools
@@ -146,6 +154,50 @@ App\Entity\Proficiency:
   proficiency_quarterstaffs:
     __construct:
       - quarterstaffs
+      - weapon
+  proficiency_mace:
+    __construct:
+      - mace
+      - weapon
+  proficiency_rod:
+    __construct:
+      - rod
+      - weapon
+  proficiency_javelin:
+    __construct:
+      - javelin
+      - weapon
+  proficiency_club:
+    __construct:
+      - club
+      - weapon
+  proficiency_sling:
+    __construct:
+      - sling
+      - weapon
+  proficiency_scimitar:
+    __construct:
+      - scimitar
+      - weapon
+  proficiency_herbalism_kit:
+    __construct:
+      - herbalism kit
+      - other
+  proficiency_sickle:
+    __construct:
+      - sickle
+      - weapon
+  proficiency_dagger:
+    __construct:
+      - dagger
+      - weapon
+  proficiency_dart:
+    __construct:
+      - dart
+      - weapon
+  proficiency_spear:
+    __construct:
+      - spear
       - weapon
   proficiency_light_crossbow:
     __construct:

@@ -42,9 +42,6 @@
     "wis": 15,
     "cha": 10
   },
-  "asi": {
-    "wis": 2
-  },
   "proficiencies": [
     "history",
     "perception",
@@ -59,5 +56,4 @@
   "expert_proficiencies": [],
   "languages": ["druid", "dwarf", "sylvan", "primordial"],
   "extra_skills": [],
-  "feats": ["war caster"]
 }

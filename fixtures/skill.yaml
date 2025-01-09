@@ -138,10 +138,22 @@ App\Entity\Skill:
     __construct:
       - archery fighting style
       - <{archery_fighting_style_desc}>
+  skill_combat_wild_shape:
+    __construct:
+      - combat wild shape
+      - <{combat_wild_shape_desc}>
   skill_intimidating_presence:
     __construct:
       - intimidating presence
       - <{intimidating_presence_desc}>
+  skill_circle_forms:
+    __construct:
+      - circle forms
+      - <{circle_forms_desc}>
+  skill_primal_strike:
+    __construct:
+      - primal strike
+      - <{primal_strike_desc}>
   skill_infernal_legacy:
     __construct:
       - infernal legacy
@@ -164,8 +176,16 @@ App\Entity\Skill:
       - <{feat_spell_sniper_desc}>
   skill_sathoris_spellcasting:
     __construct:
-      - spellcasting
+      - sathoris spellcasting
       - <{sathoris_spellcasting_desc}>
+  skill_anwen_spellcasting:
+    __construct:
+      - anwen spellcasting
+      - <{anwen_spellcasting_desc}>
+  skill_druidic:
+    __construct:
+      - druidic
+      - <{druidic_desc}>
   skill_wild_magic_surge:
     __construct:
       - wild magic surge
@@ -178,6 +198,10 @@ App\Entity\Skill:
     __construct:
       - bend luck
       - <{bend_luck_desc}>
+  skill_wild_shape:
+    __construct:
+      - wild shape
+      - <{wild_shape_desc}>
   skill_mystic_wisdom:
     __construct:
       - mystic wisdom
@@ -194,6 +218,14 @@ App\Entity\Skill:
     __construct:
       - fey ancestry
       - <{fey_ancestry_desc}>
+  skill_bonus_cantrip:
+    __construct:
+      - bonus cantrip
+      - <{bonus_cantrip_desc}>
+  skill_bonus_language:
+    __construct:
+      - bonus language
+      - <{bonus_language_desc}>
   skill_trance:
     __construct:
       - trance

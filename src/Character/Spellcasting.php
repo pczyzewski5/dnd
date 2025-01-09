@@ -17,5 +17,11 @@ class Spellcasting
             $this->spellSaveDc = 16;
             $this->spellsKnown = 11;
         }
+
+        if ($characterName === 'Anwen') {
+            $this->spellAttackMod = 7;
+            $this->spellSaveDc = 15;
+            $this->spellsKnown = 13;
+        }
     }
 }

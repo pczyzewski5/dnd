@@ -17,6 +17,7 @@ class LanguageDto
         choices: [
             'origin',
             'race',
+            'skill'
         ]
     )]
     public readonly mixed $source;

@@ -69,7 +69,7 @@ parameters:
   brutal_critical_desc:
     '<b>Brutalne obrażenia</b> - podczas trafienia krytycznego możesz rzucić
     dodatkową kością obrażeń.'
-  cantrip_desc:
+  bonus_cantrip_desc:
     '<b>Dodatkowa sztuczka</b> - znasz dodatkową sztuczkę.'
   circle_forms_desc:
     '<b>Zwierzęce formy kręgu</b> - ignorujesz kolumnę maks. SW w tabeli formy
@@ -105,7 +105,9 @@ parameters:
     one 2k8 za komórkę I kręgu, plus 1k8 za każdy krąg powyżej I, aż do maksimum
     6k8. Jeśli cel jest nieumarłym lub czartem, obrażenia zwiększają się o 1k8.'
   druidic_desc:
-    'druidic'
+    '<b>Język druidów</b> - znasz tajemny język druidów, możesz w nim mówić oraz pozostawiać ukryte wiadomości.
+    Automatycznie dostrzegą je wszyscy znający ten język. Inni mogą je zauważyć po udanym teście percepcji,
+    ale nie odczytają ich bez pomocy magii.'
   dueling_desc:
     '<b>Fechtunek</b> - gdy dzierżysz broń białą w jednej dłoni otrzymujesz
     +2 do obrażeń zadawanych tą bronią.'
@@ -119,7 +121,7 @@ parameters:
     '<b>Krasnoludzka odporność</b> - zyskujesz ułatwienie w rzutach obronnych
     przeciw truciznom i odporność na obrażenia od trucizn.'
   elf_weapon_training_desc:
-    '<b>Elfia szkoła walki</b> - masz biegłość w używaniu krótkiego i długiego
+    '<b>Elficka szkoła walki</b> - masz biegłość w używaniu krótkiego i długiego
     łuku oraz miecza długiego i krótkiego.'
   evasion_desc:
     '<b>Odskok (PHB 79)</b> - po udanym rzucie obronnym na zręczność nie otrzymujesz
@@ -413,6 +415,35 @@ parameters:
     używasz dwóch broni naraz, jeśli nie użyjesz ukradkowego ataku podczas pierwszego
     ataku, bo np. nie trafisz, to możesz go użyć przy ataku drugą ręką.</li></ul>'
   sathoris_spellcasting_desc:
+    '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
+    odpoczynku. 
+    <table>
+        <tr>
+          <td></td>
+          <td>I</td>
+          <td>II</td>
+          <td>III</td>
+          <td>IV</td>
+          <td>V</td>
+        </tr>
+        <tr>
+          <td><strong>max</strong></td>
+          <td>4</td>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td><strong>użyte</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+    </table>'
+  anwen_spellcasting_desc:
     '<b>Rzucanie czarów</b> - zużyte komórki czarów odnawiają się po długim
     odpoczynku. 
     <table>

@@ -9,6 +9,84 @@
         {
             "level": 1,
             "class": "druid",
+            "proficiencies": [
+                {
+                    "name": "herbalism kit",
+                    "source": "origin"
+                },
+                {
+                    "name": "light armors",
+                    "source": "character class"
+                },
+                {
+                    "name": "medium armors",
+                    "source": "character class"
+                },
+                {
+                    "name": "shields",
+                    "source": "character class"
+                },
+                {
+                    "name": "mace",
+                    "source": "character class"
+                },
+                {
+                    "name": "rod",
+                    "source": "character class"
+                },
+                {
+                    "name": "javelin",
+                    "source": "character class"
+                },
+                {
+                    "name": "club",
+                    "source": "character class"
+                },
+                {
+                    "name": "sling",
+                    "source": "character class"
+                },
+                {
+                    "name": "scimitar",
+                    "source": "character class"
+                },
+                {
+                    "name": "sickle",
+                    "source": "character class"
+                },
+                {
+                    "name": "dagger",
+                    "source": "character class"
+                },
+                {
+                    "name": "dart",
+                    "source": "character class"
+                },
+                {
+                    "name": "spear",
+                    "source": "character class"
+                },
+                {
+                    "name": "nature",
+                    "source": "character class"
+                },
+                {
+                    "name": "religion",
+                    "source": "character class"
+                },
+                {
+                    "name": "dart",
+                    "source": "character class"
+                },
+                {
+                    "name": "int",
+                    "source": "character class"
+                },
+                {
+                    "name": "wis",
+                    "source": "character class"
+                }
+            ],
             "languages": [
                 {
                     "name": "sylvan",
@@ -16,6 +94,14 @@
                 },
                 {
                     "name": "primordial",
+                    "source": "race"
+                },
+                {
+                    "name": "druidic",
+                    "source": "skill"
+                },
+                {
+                    "name": "dwarf",
                     "source": "race"
                 }
             ]
