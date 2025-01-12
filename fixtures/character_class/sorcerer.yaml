@@ -4,4 +4,4 @@ App\Entity\CharacterClass:
       - 6
       - wild magic sorcerer
       - ~
-      - ['@requirement_sorcerer_class_proficiency']
+      - [ '@requirement_sorcerer_class_proficiency' ]

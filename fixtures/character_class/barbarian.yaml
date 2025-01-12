@@ -4,7 +4,17 @@ App\Entity\CharacterClass:
       - 12
       - barbarian
       - ~
-      - ['@requirement_barbarian_class_proficiency']
+      - [ '@requirement_barbarian_class_proficiency' ]
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_martial_weapons',
+        '@proficiency_strength',
+        '@proficiency_constitution'
+      ]
+
   character_class_berserker:
     __construct:
       - 12

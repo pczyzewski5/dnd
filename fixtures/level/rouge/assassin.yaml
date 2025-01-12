@@ -3,33 +3,31 @@ App\Entity\Level:
     __construct:
       - 3
       - '@character_class_assassin'
-      - ['@skill_assassin_proficiencies', '@skill_assassinate']
+      - [ '@skill_assassin_proficiencies', '@skill_assassinate' ]
   level_4_assassin:
     __construct:
       - 4
       - '@character_class_assassin'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_4']
+      - [ ]
+      - [ '@requirement_asi_or_feat_level_4' ]
   level_5_assassin:
     __construct:
       - 5
       - '@character_class_assassin'
-      - ['@skill_uncanny_dodge']
+      - [ '@skill_uncanny_dodge' ]
   level_6_assassin:
     __construct:
       - 6
       - '@character_class_assassin'
-      - ['@skill_expertise_II']
+      - [ '@skill_expertise_II' ]
   level_7_assassin:
     __construct:
       - 7
       - '@character_class_assassin'
-      - ['@skill_evasion']
+      - [ '@skill_evasion' ]
   level_8_assassin:
     __construct:
       - 8
       - '@character_class_assassin'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_8']
+      - [ ]
+      - [ '@requirement_asi_or_feat_level_8' ]

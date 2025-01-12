@@ -4,15 +4,6 @@ App\Entity\Level:
       - 1
       - '@character_class_barbarian'
       - [ '@skill_rage', '@skill_unarmored_defense' ]
-      - [
-        '@proficiency_light_armors',
-        '@proficiency_medium_armors',
-        '@proficiency_shields',
-        '@proficiency_simple_weapons',
-        '@proficiency_martial_weapons',
-        '@proficiency_strength',
-        '@proficiency_constitution'
-      ]
   level_2_barbarian:
     __construct:
       - 2
@@ -22,8 +13,6 @@ App\Entity\Level:
     __construct:
       - 4
       - '@character_class_barbarian'
-      - [ ]
-      - [ ]
       - [ ]
       - [ '@requirement_asi_or_feat_level_4' ]
   level_5_barbarian:
@@ -40,7 +29,6 @@ App\Entity\Level:
     __construct:
       - 8
       - '@character_class_barbarian'
-      - [ ]
       - [ ]
       - [ '@requirement_asi_or_feat_level_8' ]
   level_9_barbarian:

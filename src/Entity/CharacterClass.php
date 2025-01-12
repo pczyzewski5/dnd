@@ -14,6 +14,8 @@ use function array_walk;
 #[ORM\Entity(repositoryClass: CharacterClassRepository::class)]
 class CharacterClass
 {
+    use CollectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer', nullable: false, options: ['unsigned' => false])]
@@ -34,23 +36,26 @@ class CharacterClass
     #[ORM\JoinColumn(name: 'character_class_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $requirements;
 
+    #[ORM\ManyToMany(targetEntity: Proficiency::class)]
+    #[ORM\JoinTable(name: 'pivot_proficiency_to_character_class')]
+    #[ORM\JoinColumn(name: 'character_class_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $proficiencies;
+
     public function __construct(
         int $hitDice,
         string $name,
         ?self $baseClass = null,
-        ?array $requirements = []
+        ?array $requirements = [],
+        ?array $proficiencies = [],
     ) {
         $this->hitDice = $hitDice;
         $this->name = $name;
         $this->baseClass = $baseClass;
         $this->requirements = new ArrayCollection();
+        $this->proficiencies = new ArrayCollection();
 
-        array_walk(
-            $requirements,
-            fn (Requirement $requirement)
-            => $this->requirements->contains($requirement)
-                ?: $this->requirements->add($requirement)
-        );
+        $this->addToCollection($requirements, $this->requirements);
+        $this->addToCollection($proficiencies, $this->proficiencies);
     }
 
     public function getHitDice(): int

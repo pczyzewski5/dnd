@@ -3,11 +3,10 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_ranger'
-      - ['@skill_favored_enemy', '@skill_canny']
-      - []
-      - ['@requirement_fighting_style_ranger']
+      - [ '@skill_favored_enemy', '@skill_canny' ]
+      - [ '@requirement_fighting_style_ranger' ]
   level_2_ranger:
     __construct:
       - 2
       - '@character_class_ranger'
-      - ['@skill_mordimer_spellcasting']
+      - [ '@skill_mordimer_spellcasting' ]

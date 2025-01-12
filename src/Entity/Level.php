@@ -15,6 +15,8 @@ use function array_walk;
 #[ORM\UniqueConstraint(name: 'unique_level_class', columns: ['level', 'character_class_id'])]
 class Level
 {
+    use CollectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer', nullable: false, options: ['unsigned' => false])]
@@ -32,11 +34,6 @@ class Level
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $skills;
 
-    #[ORM\ManyToMany(targetEntity: Proficiency::class)]
-    #[ORM\JoinTable(name: 'pivot_proficiency_to_level')]
-    #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private Collection $proficiencies;
-
     #[ORM\ManyToMany(targetEntity: Requirement::class)]
     #[ORM\JoinTable(name: 'pivot_requirement_to_level')]
     #[ORM\JoinColumn(name: 'level_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
@@ -45,34 +42,16 @@ class Level
     public function __construct(
         int $level,
         CharacterClass $characterClass,
-        ?array $skills = [],
-        ?array $proficiencies = [],
-        ?array $requirements = []
+        array $skills = [],
+        array $requirements = []
     ) {
         $this->level = $level;
         $this->characterClass = $characterClass;
         $this->skills = new ArrayCollection();
-        $this->proficiencies = new ArrayCollection();
         $this->requirements = new ArrayCollection();
 
-        array_walk(
-            $skills,
-            fn (Skill $skill)
-            => $this->skills->contains($skill)
-                ?: $this->skills->add($skill)
-        );
-        array_walk(
-            $proficiencies,
-            fn (Proficiency $proficiency)
-            => $this->proficiencies->contains($proficiency)
-                ?: $this->proficiencies->add($proficiency)
-        );
-        array_walk(
-            $requirements,
-            fn (Requirement $requirement)
-            => $this->requirements->contains($requirement)
-                ?: $this->requirements->add($requirement)
-        );
+        $this->addToCollection($skills, $this->skills);
+        $this->addToCollection($requirements, $this->requirements);
     }
 
     public function getLevel(): int
@@ -88,10 +67,5 @@ class Level
     public function getSkills(): Collection
     {
         return $this->skills;
-    }
-
-    public function getProficiencies(): Collection
-    {
-        return $this->proficiencies;
     }
 }

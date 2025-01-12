@@ -3,32 +3,23 @@ App\Entity\Level:
     __construct:
       - 1
       - '@character_class_wild_magic_sorcerer'
-      - ['@skill_sathoris_spellcasting', '@skill_wild_magic_surge', '@skill_tides_of_chaos']
-      - [
-        '@proficiency_daggers',
-        '@proficiency_darts',
-        '@proficiency_slings',
-        '@proficiency_quarterstaffs',
-        '@proficiency_light_crossbow',
-        '@proficiency_constitution',
-        '@proficiency_charisma']
+      - [ '@skill_sathoris_spellcasting', '@skill_wild_magic_surge', '@skill_tides_of_chaos' ]
   level_2_wild_magic_sorcerer:
     __construct:
       - 2
       - '@character_class_wild_magic_sorcerer'
-      - ['@skill_font_of_magic']
+      - [ '@skill_font_of_magic' ]
   level_3_wild_magic_sorcerer:
     __construct:
       - 3
       - '@character_class_wild_magic_sorcerer'
-      - ['@skill_metamagic']
+      - [ '@skill_metamagic' ]
   level_4_wild_magic_sorcerer:
     __construct:
       - 4
       - '@character_class_wild_magic_sorcerer'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_4']
+      - [ ]
+      - [ '@requirement_asi_or_feat_level_4' ]
   level_5_wild_magic_sorcerer:
     __construct:
       - 5
@@ -37,7 +28,7 @@ App\Entity\Level:
     __construct:
       - 6
       - '@character_class_wild_magic_sorcerer'
-      - ['@skill_bend_luck']
+      - [ '@skill_bend_luck' ]
   level_7_wild_magic_sorcerer:
     __construct:
       - 7
@@ -46,9 +37,8 @@ App\Entity\Level:
     __construct:
       - 8
       - '@character_class_wild_magic_sorcerer'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_8']
+      - [ ]
+      - [ '@requirement_asi_or_feat_level_8' ]
   level_9_wild_magic_sorcerer:
     __construct:
       - 9

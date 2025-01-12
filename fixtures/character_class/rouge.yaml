@@ -4,7 +4,19 @@ App\Entity\CharacterClass:
       - 8
       - rouge
       - ~
-      - ['@requirement_rouge_class_proficiency']
+      - [ '@requirement_rouge_class_proficiency' ]
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_simple_weapons',
+        '@proficiency_hand_crossbows',
+        '@proficiency_longswords',
+        '@proficiency_rapiers',
+        '@proficiency_shortswords',
+        '@proficiency_thieves_tools',
+        '@proficiency_dexterity',
+        '@proficiency_intelligence',
+        '@proficiency_thieves_tools'
+      ]
   character_class_assassin:
     __construct:
       - 8

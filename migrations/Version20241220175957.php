@@ -55,18 +55,6 @@ final class Version20241220175957 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
-            CREATE TABLE pivot_proficiency_to_level (
-                proficiency_id INT NOT NULL,
-                level_id INT NOT NULL,
-                PRIMARY KEY (proficiency_id, level_id),
-                CONSTRAINT FK_PPTL_PROFICIENCY FOREIGN KEY (proficiency_id) REFERENCES proficiency (id) ON DELETE CASCADE,
-                CONSTRAINT FK_PPTL_LEVEL FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE CASCADE
-            );
-            SQL
-        );
-
-        $this->addSql(
-            <<<SQL
             CREATE TABLE requirement (
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL,

@@ -45,6 +45,18 @@ final class Version20241230085419 extends AbstractMigration
 
         $this->addSql(
             <<<SQL
+            CREATE TABLE pivot_proficiency_to_character_class (
+                proficiency_id INT NOT NULL,
+                character_class_id INT NOT NULL,
+                PRIMARY KEY (proficiency_id, character_class_id),
+                CONSTRAINT FK_PPTCS_PROFICIENCY FOREIGN KEY (proficiency_id) REFERENCES proficiency (id) ON DELETE CASCADE,
+                CONSTRAINT FK_PPTCS_CHARACTER_CLASS FOREIGN KEY (character_class_id) REFERENCES character_class (id) ON DELETE CASCADE
+            );
+            SQL
+        );
+
+        $this->addSql(
+            <<<SQL
             CREATE TABLE pivot_requirement_to_skill (
                 requirement_id INT NOT NULL,
                 skill_id INT NOT NULL,
