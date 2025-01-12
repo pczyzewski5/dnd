@@ -1,0 +1,29 @@
+App\Entity\Proficiency:
+  proficiency_dice_game:
+    __construct:
+      - dice game
+      - other
+  proficiency_disguise_kit:
+    __construct:
+      - disguise kit
+      - other
+  proficiency_herbalism_kit:
+    __construct:
+      - herbalism kit
+      - other
+  proficiency_land_vehicles:
+    __construct:
+      - land vehicles
+      - other
+  proficiency_poisoner_kit:
+    __construct:
+      - poisoner kit
+      - other
+  proficiency_thieves_tools:
+    __construct:
+      - thieves tools
+      - other
+  proficiency_tinker_tools:
+    __construct:
+      - tinker tools
+      - other

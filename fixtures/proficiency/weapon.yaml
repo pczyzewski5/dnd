@@ -1,0 +1,93 @@
+App\Entity\Proficiency:
+  proficiency_club:
+    __construct:
+      - club
+      - weapon
+  proficiency_dagger:
+    __construct:
+      - dagger
+      - weapon
+  proficiency_daggers:
+    __construct:
+      - daggers
+      - weapon
+  proficiency_dart:
+    __construct:
+      - dart
+      - weapon
+  proficiency_darts:
+    __construct:
+      - darts
+      - weapon
+  proficiency_hand_crossbows:
+    __construct:
+      - hand crossbows
+      - weapon
+  proficiency_javelin:
+    __construct:
+      - javelin
+      - weapon
+  proficiency_light_crossbow:
+    __construct:
+      - light crossbows
+      - weapon
+  proficiency_longbow:
+    __construct:
+      - longbows
+      - weapon
+  proficiency_longswords:
+    __construct:
+      - longswords
+      - weapon
+  proficiency_mace:
+    __construct:
+      - mace
+      - weapon
+  proficiency_martial_weapons:
+    __construct:
+      - martial weapons
+      - weapon
+  proficiency_quarterstaffs:
+    __construct:
+      - quarterstaffs
+      - weapon
+  proficiency_rapiers:
+    __construct:
+      - rapiers
+      - weapon
+  proficiency_rod:
+    __construct:
+      - rod
+      - weapon
+  proficiency_scimitar:
+    __construct:
+      - scimitar
+      - weapon
+  proficiency_shortbow:
+    __construct:
+      - shortbows
+      - weapon
+  proficiency_shortswords:
+    __construct:
+      - shortswords
+      - weapon
+  proficiency_sickle:
+    __construct:
+      - sickle
+      - weapon
+  proficiency_simple_weapons:
+    __construct:
+      - simple weapons
+      - weapon
+  proficiency_sling:
+    __construct:
+      - sling
+      - weapon
+  proficiency_slings:
+    __construct:
+      - slings
+      - weapon
+  proficiency_spear:
+    __construct:
+      - spear
+      - weapon

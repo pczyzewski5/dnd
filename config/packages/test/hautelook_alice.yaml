@@ -2,6 +2,7 @@ hautelook_alice:
     fixtures_path:
         - fixtures
         - fixtures/data
+        - fixtures/proficiency
         - fixtures/level/barbarian
         - fixtures/level/druid
         - fixtures/level/ranger

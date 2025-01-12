@@ -1,0 +1,13 @@
+App\Entity\Proficiency:
+  proficiency_light_armors:
+    __construct:
+      - light armors
+      - armor
+  proficiency_medium_armors:
+    __construct:
+      - medium armors
+      - armor
+  proficiency_shields:
+    __construct:
+      - shields
+      - armor

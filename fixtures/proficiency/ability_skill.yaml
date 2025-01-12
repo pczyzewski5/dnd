@@ -1,0 +1,65 @@
+App\Entity\Proficiency:
+  proficiency_acrobatics:
+    __construct:
+      - acrobatics
+      - ability skill
+  proficiency_animal_handling:
+    __construct:
+      - animal handling
+      - ability skill
+  proficiency_arcana:
+    __construct:
+      - arcana
+      - ability skill
+  proficiency_athletics:
+    __construct:
+      - athletics
+      - ability skill
+  proficiency_deception:
+    __construct:
+      - deception
+      - ability skill
+  proficiency_history:
+    __construct:
+      - history
+      - ability skill
+  proficiency_insight:
+    __construct:
+      - insight
+      - ability skill
+  proficiency_intimidation:
+    __construct:
+      - intimidation
+      - ability skill
+  proficiency_investigation:
+    __construct:
+      - investigation
+      - ability skill
+  proficiency_nature:
+    __construct:
+      - nature
+      - ability skill
+  proficiency_perception:
+    __construct:
+      - perception
+      - ability skill
+  proficiency_performance:
+    __construct:
+      - performance
+      - ability skill
+  proficiency_persuasion:
+    __construct:
+      - persuasion
+      - ability skill
+  proficiency_religion:
+    __construct:
+      - religion
+      - ability skill
+  proficiency_stealth:
+    __construct:
+      - stealth
+      - ability skill
+  proficiency_survival:
+    __construct:
+      - survival
+      - ability skill

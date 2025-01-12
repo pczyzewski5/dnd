@@ -1,0 +1,25 @@
+App\Entity\Proficiency:
+  proficiency_charisma:
+    __construct:
+      - cha
+      - saving throw
+  proficiency_constitution:
+    __construct:
+      - con
+      - saving throw
+  proficiency_dexterity:
+    __construct:
+      - dex
+      - saving throw
+  proficiency_intelligence:
+    __construct:
+      - int
+      - saving throw
+  proficiency_strength:
+    __construct:
+      - str
+      - saving throw
+  proficiency_wisdom:
+    __construct:
+      - wis
+      - saving throw
