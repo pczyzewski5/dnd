@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: RaceRepository::class)]
 class Race
 {
+    use CollectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer', nullable: false, options: ['unsigned' => false])]
@@ -44,19 +46,8 @@ class Race
         $this->skills = new ArrayCollection();
         $this->requirements = new ArrayCollection();
 
-        array_walk(
-            $skills,
-            fn (Skill $skill)
-            => $this->skills->contains($skill)
-                ?: $this->skills->add($skill)
-        );
-
-        array_walk(
-            $requirements,
-            fn (Requirement $requirement)
-            => $this->requirements->contains($requirement)
-                ?: $this->requirements->add($requirement)
-        );
+        $this->addToCollection($skills, $this->skills);
+        $this->addToCollection($requirements, $this->requirements);
     }
 
     public function getName(): string

@@ -14,6 +14,8 @@ use function array_walk;
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 class Skill
 {
+    use CollectionTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer', nullable: false, options: ['unsigned' => false])]
@@ -46,18 +48,8 @@ class Skill
         $this->proficiencies = new ArrayCollection();
         $this->requirements = new ArrayCollection();
 
-        array_walk(
-            $proficiencies,
-            fn (Proficiency $proficiency)
-            => $this->proficiencies->contains($proficiency)
-                ?: $this->proficiencies->add($proficiency)
-        );
-        array_walk(
-            $requirements,
-            fn (Requirement $requirement)
-            => $this->requirements->contains($requirement)
-                ?: $this->requirements->add($requirement)
-        );
+        $this->addToCollection($proficiencies, $this->proficiencies);
+        $this->addToCollection($requirements, $this->requirements);
     }
 
     public function getName(): string
