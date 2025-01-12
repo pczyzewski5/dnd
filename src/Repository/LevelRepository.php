@@ -6,7 +6,6 @@ namespace App\Repository;
 
 use App\Entity\CharacterClass;
 use App\Entity\Level;
-use App\Enum\CharacterClassEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,21 +20,28 @@ class LevelRepository extends ServiceEntityRepository
         parent::__construct($registry, Level::class);
     }
 
+    public function findByLevelAndCharacterClass(
+        int $level,
+        string $characterClass
+    ): ?Level {
+        return $this->createQueryBuilder('l')
+            ->join('l.characterClass', 'cc')
+            ->where('cc.name = :name')
+            ->andWhere('l.level = :level')
+            ->setParameter('name', $characterClass)
+            ->setParameter('level', $level)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     public function getByLevelAndCharacterClass(
         int $level,
         string $characterClass
     ): Level {
-        try {
-            return $this->createQueryBuilder('l')
-                ->join('l.characterClass', 'cc')
-                ->where('cc.name = :name')
-                ->andWhere('l.level = :level')
-                ->setParameter('name', $characterClass)
-                ->setParameter('level', $level)
-                ->getQuery()
-                ->getSingleResult()
-            ;
-        } catch (NoResultException $e) {
+        $result = $this->findByLevelAndCharacterClass($level, $characterClass);
+
+        if (null === $result) {
             throw new \Exception(
                 sprintf(
                     'Missing level record for level %s %s.',
@@ -44,5 +50,7 @@ class LevelRepository extends ServiceEntityRepository
                 )
             );
         }
+
+        return $result;
     }
 }

@@ -22,10 +22,12 @@ use App\Character\Spellcasting;
 use App\Dto\CharacterConfigDto;
 use App\Dto\LevelConfigDto;
 use App\Dto\RaceConfigDto;
+use App\Entity\CharacterClass;
 use App\Entity\Level;
 use App\Entity\Origin;
 use App\Entity\Race;
 use App\Enum\AlignmentEnum;
+use App\Repository\CharacterClassRepository;
 use App\Repository\LevelRepository;
 use App\Repository\OriginRepository;
 use App\Repository\RaceRepository;
@@ -35,6 +37,8 @@ use function array_merge;
 use function count;
 use function in_array;
 use function ob_flush;
+use function sprintf;
+use function var_dump;
 
 class CharacterBuilder
 {
@@ -57,6 +61,7 @@ class CharacterBuilder
         private readonly HitDiceCalculator $hitDiceCalculator,
         private readonly SimpleLevelsCalculator $simpleLevelsCalculator,
         private readonly SkillsBuilder $skillsBuilder,
+        private readonly CharacterClassRepository $characterClassRepository
     ) {
     }
 
@@ -198,11 +203,34 @@ class CharacterBuilder
     private function getLevels(CharacterConfigDto $config): array
     {
         return array_map(
-            fn (LevelConfigDto $dto): Level => $this->levelRepository
-                ->getByLevelAndCharacterClass(
+            function (LevelConfigDto $dto): Level {
+                $level = $this->levelRepository->findByLevelAndCharacterClass(
                     $dto->level,
                     $dto->class
-                ),
+                );
+
+                if ($level === null) {
+                    /** @var CharacterClass $class */
+                    $class = $this->characterClassRepository->findOneBy(['name' => $dto->class]);
+                    $class = $class->getBaseClass();
+
+                    if ($class === null) {
+                        throw new \Exception(
+                            sprintf(
+                                'Character class %s has no base character class.',
+                                $dto->class
+                            )
+                        );
+                    }
+
+                    $level = $this->levelRepository->getByLevelAndCharacterClass(
+                        $dto->level,
+                        $class->getName()
+                    );
+                }
+
+                return $level;
+            },
             $config->levelConfigs
         );
     }

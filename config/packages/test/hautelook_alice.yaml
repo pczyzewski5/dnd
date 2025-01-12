@@ -3,6 +3,7 @@ hautelook_alice:
         - fixtures
         - fixtures/data
         - fixtures/proficiency
+        - fixtures/character_class
         - fixtures/level/barbarian
         - fixtures/level/druid
         - fixtures/level/ranger

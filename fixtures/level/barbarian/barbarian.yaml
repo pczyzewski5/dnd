@@ -22,7 +22,7 @@ App\Entity\Level:
     __construct:
       - 4
       - '@character_class_barbarian'
-      - [ '@skill_reckless_attack', '@skill_danger_sense' ]
+      - [ ]
       - [ ]
       - [ ]
       - [ '@requirement_asi_or_feat_level_4' ]
