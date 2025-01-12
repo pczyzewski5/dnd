@@ -347,10 +347,6 @@ parameters:
     niż na 6 hex. Nie może podejmować reakcji, może używać akcji uników
     lub sprintu. Jeśli prawdziwą postać istoty skrywa iluzja, zmiennokształtność
     albo inny efekt, to natura istoty zostaje ujawniona. </li></ul>'
-  oath_of_the_ancients_paladin_spells_desc:
-    '<b>Zaklęcia przysięgi</b> - znasz następujące zaklęcia: <span style="color:
-      gray;">{{ oathSpells|join(", ') }}</span>. Te zaklęcia są zawsze przygotowane
-    i nie wliczają się do limitu przygotowanych czarów.'
   oath_of_the_devotion_paladin_channel_divinity_desc:
     '<b>Akty wiary</b> - możesz wykonać jeden akt wiary, użycie odnawia się
     po krótkim lub długim odpoczynku.'
