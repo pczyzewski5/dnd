@@ -3,43 +3,14 @@ App\Entity\Level:
     __construct:
       - 3
       - '@character_class_berserker'
-      - ['@skill_frenzy', '@skill_exhaustion']
-  level_4_berserker:
-    __construct:
-      - 4
-      - '@character_class_berserker'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_4']
-  level_5_berserker:
-    __construct:
-      - 5
-      - '@character_class_berserker'
-      - ['@skill_extra_attack', '@skill_fast_movement']
+      - [ '@skill_frenzy', '@skill_exhaustion' ]
   level_6_berserker:
     __construct:
       - 6
       - '@character_class_berserker'
-      - ['@skill_mindless_rage']
-  level_7_berserker:
-    __construct:
-      - 7
-      - '@character_class_berserker'
-      - ['@skill_feral_instinct']
-  level_8_berserker:
-    __construct:
-      - 8
-      - '@character_class_berserker'
-      - []
-      - []
-      - ['@requirement_asi_or_feat_level_8']
-  level_9_berserker:
-    __construct:
-      - 9
-      - '@character_class_berserker'
-      - ['@skill_brutal_critical']
+      - [ '@skill_mindless_rage' ]
   level_10_berserker:
     __construct:
       - 10
       - '@character_class_berserker'
-      - ['@skill_intimidating_presence']
+      - [ '@skill_intimidating_presence' ]
