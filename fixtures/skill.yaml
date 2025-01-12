@@ -59,14 +59,14 @@ App\Entity\Skill:
     __construct:
       - skill expertise I
       - <{expertise_I_desc}>
-      - []
-      - ['@requirement_skill_expertise_I']
+      - [ ]
+      - [ '@requirement_skill_expertise_I' ]
   skill_expertise_II:
     __construct:
       - skill expertise II
       - <{expertise_II_desc}>
-      - []
-      - ['@requirement_skill_expertise_II']
+      - [ ]
+      - [ '@requirement_skill_expertise_II' ]
   skill_sneak_attack:
     __construct:
       - sneak attack
@@ -91,7 +91,10 @@ App\Entity\Skill:
     __construct:
       - assassin proficiencies
       - <{assassin_proficiencies_desc}>
-      - ['@proficiency_poisoner_kit', '@proficiency_disguise_kit']
+      - [
+        '@proficiency_poisoner_kit',
+        '@proficiency_disguise_kit'
+      ]
   skill_assassinate:
     __construct:
       - assassinate
@@ -132,8 +135,8 @@ App\Entity\Skill:
     __construct:
       - canny
       - <{canny_desc}>
-      - []
-      - ['@requirement_skill_canny_expertise']
+      - [ ]
+      - [ '@requirement_skill_canny_expertise' ]
   skill_archery_fighting_style:
     __construct:
       - archery fighting style
@@ -234,12 +237,14 @@ App\Entity\Skill:
     __construct:
       - trance
       - <{trance_desc}>
-      - ['@proficiency_perception']
+      - [ '@proficiency_perception' ]
   skill_elf_weapon_training:
     __construct:
       - elf weapon training
       - <{elf_weapon_training_desc}>
-      - ['@proficiency_longswords',
-         '@proficiency_shortswords',
-         '@proficiency_shortbow',
-         '@proficiency_longbow']
+      - [
+        '@proficiency_longswords',
+        '@proficiency_shortswords',
+        '@proficiency_shortbow',
+        '@proficiency_longbow'
+      ]

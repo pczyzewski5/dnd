@@ -2,18 +2,18 @@ App\Entity\Origin:
   origin_hero_folk:
     __construct:
       - folk hero
-      - ['@proficiency_animal_handling', '@proficiency_survival']
+      - [ '@proficiency_animal_handling', '@proficiency_survival' ]
   origin_acolyte_mod:
     __construct:
       - acolyte mod
-      - ['@proficiency_persuasion', '@proficiency_performance']
+      - [ '@proficiency_persuasion', '@proficiency_performance' ]
   origin_noble:
     __construct:
       - noble
-      - ['@proficiency_history', '@proficiency_persuasion']
-      - ['@requirement_origin_single_language']
+      - [ '@proficiency_history', '@proficiency_persuasion' ]
+      - [ '@requirement_origin_single_language' ]
   origin_sage:
     __construct:
       - sage
-      - ['@proficiency_arcana', '@proficiency_history']
-      - ['@requirement_origin_two_languages']
+      - [ '@proficiency_arcana', '@proficiency_history' ]
+      - [ '@requirement_origin_two_languages' ]
