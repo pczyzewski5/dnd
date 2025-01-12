@@ -1,2 +1,9 @@
 hautelook_alice:
-    fixtures_path: [fixtures, fixtures/data, fixtures/data/level, fixtures/data/level/druid]
+    fixtures_path:
+        - fixtures
+        - fixtures/data
+        - fixtures/level/barbarian
+        - fixtures/level/druid
+        - fixtures/level/ranger
+        - fixtures/level/rouge
+        - fixtures/level/sorcerer

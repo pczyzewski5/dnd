@@ -1,0 +1,20 @@
+App\Entity\Level:
+  level_1_barbarian:
+    __construct:
+      - 1
+      - '@character_class_barbarian'
+      - ['@skill_rage', '@skill_unarmored_defense']
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_martial_weapons',
+        '@proficiency_strength',
+        '@proficiency_constitution'
+      ]
+  level_2_barbarian:
+    __construct:
+      - 2
+      - '@character_class_barbarian'
+      - ['@skill_reckless_attack', '@skill_danger_sense']
