@@ -1,0 +1,23 @@
+App\Entity\Requirement:
+  requirement_barbarian_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_barbarian_character_class_proficiency_config}>
+  requirement_rouge_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_rouge_character_class_proficiency_config}>
+  requirement_sorcerer_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_sorcerer_character_class_proficiency_config}>
+  requirement_druid_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_druid_character_class_proficiency_config}>
+  requirement_ranger_character_class_fighting_style:
+    __construct:
+      - fighting style
+      - <{requirement_ranger_character_class_fighting_style_config}>
+
+

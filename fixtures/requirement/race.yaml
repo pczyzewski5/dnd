@@ -1,0 +1,13 @@
+App\Entity\Requirement:
+  requirement_human_variant_race_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_human_variant_race_proficiency_config}>
+  requirement_human_variant_race_feat:
+    __construct:
+      - feat
+      - <{requirement_human_variant_race_feat_config}>
+  requirement_human_variant_race_asi:
+    __construct:
+      - asi
+      - <{requirement_human_variant_race_asi_config}>

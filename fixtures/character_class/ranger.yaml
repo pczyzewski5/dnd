@@ -9,5 +9,5 @@ App\Entity\CharacterClass:
       ]
       - [
         # '@requirement_ranger_class_proficiency', dorobić obsługę multi klas
-        '@requirement_ranger_fighting_style'
+        '@requirement_ranger_character_class_fighting_style'
       ]

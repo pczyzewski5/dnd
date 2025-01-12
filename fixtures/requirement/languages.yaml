@@ -1,0 +1,13 @@
+App\Entity\Requirement:
+  requirement_race_single_language:
+    __construct:
+      - language
+      - <{requirement_race_single_language_config}>
+  requirement_origin_single_language:
+    __construct:
+      - language
+      - <{requirement_origin_single_language_config}>
+  requirement_origin_two_languages:
+    __construct:
+      - language
+      - <{requirement_origin_two_languages_config}>

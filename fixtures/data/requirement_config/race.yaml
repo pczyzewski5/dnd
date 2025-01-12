@@ -5,20 +5,20 @@ parameters:
          "required_count": 1,
          "level": 1
     }'
-  requirement_human_variant_proficiency_config:
+  requirement_human_variant_race_proficiency_config:
     '{
            "source": "race",
            "required_count": 1,
            "pool": [],
            "level": 1
     }'
-  requirement_human_variant_asi_config:
+  requirement_human_variant_race_asi_config:
     '{
            "source": "race",
            "two_different": true,
            "level": 1
     }'
-  requirement_human_variant_feat_config:
+  requirement_human_variant_race_feat_config:
     '{
            "source": "race",
            "level": 1

@@ -1,0 +1,9 @@
+App\Entity\Requirement:
+  requirement_asi_or_feat_level_4:
+    __construct:
+      - asi or feat
+      - <{requirement_asi_or_feat_level_4_config}>
+  requirement_asi_or_feat_level_8:
+    __construct:
+      - asi or feat
+      - <{requirement_asi_or_feat_level_8_config}>

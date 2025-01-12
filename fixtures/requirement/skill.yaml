@@ -1,0 +1,13 @@
+App\Entity\Requirement:
+  requirement_skill_expertise_I:
+    __construct:
+      - expertise
+      - <{requirement_skill_expertise_I_config}>
+  requirement_skill_expertise_II:
+    __construct:
+      - expertise
+      - <{requirement_skill_expertise_II_config}>
+  requirement_skill_canny_expertise:
+    __construct:
+      - expertise
+      - <{requirement_skill_canny_expertise_config}>

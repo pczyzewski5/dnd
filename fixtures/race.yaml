@@ -12,8 +12,8 @@ App\Entity\Race:
       - [
         '@requirement_human_variant_race_proficiency',
         '@requirement_race_single_language',
-        '@requirement_human_variant_asi',
-        '@requirement_human_variant_feat'
+        '@requirement_human_variant_race_asi',
+        '@requirement_human_variant_race_feat'
       ]
 
   race_lightfoot_halfling:
