@@ -3,6 +3,27 @@ App\Entity\CharacterClass:
     __construct:
       - 8
       - druid
+      - ~
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_clubs',
+        '@proficiency_daggers',
+        '@proficiency_darts',
+        '@proficiency_javelins',
+        '@proficiency_maces',
+        '@proficiency_quarterstaffs',
+        '@proficiency_scimitars',
+        '@proficiency_sickles',
+        '@proficiency_slings',
+        '@proficiency_spears',
+        '@proficiency_herbalism_kit',
+        '@proficiency_intelligence',
+        '@proficiency_wisdom',
+      ]
+      - [ '@requirement_druid_character_class_proficiency' ]
+
   character_class_circle_of_moon_druid:
     __construct:
       - 8

@@ -3,3 +3,11 @@ App\Entity\CharacterClass:
     __construct:
       - 10
       - ranger
+      - ~
+      - [
+        # '@missing_ranger_proficiencies' dorobić obsługę multi klas
+      ]
+      - [
+        # '@requirement_ranger_class_proficiency', dorobić obsługę multi klas
+        '@requirement_ranger_fighting_style'
+      ]

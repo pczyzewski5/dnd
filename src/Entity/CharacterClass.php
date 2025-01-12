@@ -31,31 +31,31 @@ class CharacterClass
     #[ORM\JoinColumn(nullable: true)]
     private ?self $baseClass;
 
-    #[ORM\ManyToMany(targetEntity: Requirement::class)]
-    #[ORM\JoinTable(name: 'pivot_requirement_to_character_class')]
-    #[ORM\JoinColumn(name: 'character_class_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private Collection $requirements;
-
     #[ORM\ManyToMany(targetEntity: Proficiency::class)]
     #[ORM\JoinTable(name: 'pivot_proficiency_to_character_class')]
     #[ORM\JoinColumn(name: 'character_class_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $proficiencies;
 
+    #[ORM\ManyToMany(targetEntity: Requirement::class)]
+    #[ORM\JoinTable(name: 'pivot_requirement_to_character_class')]
+    #[ORM\JoinColumn(name: 'character_class_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $requirements;
+
     public function __construct(
         int $hitDice,
         string $name,
         ?self $baseClass = null,
-        ?array $requirements = [],
         ?array $proficiencies = [],
+        ?array $requirements = [],
     ) {
         $this->hitDice = $hitDice;
         $this->name = $name;
         $this->baseClass = $baseClass;
-        $this->requirements = new ArrayCollection();
         $this->proficiencies = new ArrayCollection();
+        $this->requirements = new ArrayCollection();
 
-        $this->addToCollection($requirements, $this->requirements);
         $this->addToCollection($proficiencies, $this->proficiencies);
+        $this->addToCollection($requirements, $this->requirements);
     }
 
     public function getHitDice(): int

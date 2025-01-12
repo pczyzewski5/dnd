@@ -60,7 +60,7 @@ class ProficienciesBuilder
         return new Proficiencies(
             array_merge(
                 $this->getProficienciesFromLevelConfigs($this->levelConfigs),
-                $this->getProficienciesFromLevels($this->levels),
+//                $this->getProficienciesFromLevels($this->levels),
                 $this->getProficienciesFromOrigin($this->origin),
                 $this->getProficienciesFromSkills($this->skills),
             )

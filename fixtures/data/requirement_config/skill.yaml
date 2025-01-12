@@ -1,0 +1,19 @@
+parameters:
+  requirement_skill_expertise_I_config:
+    '{
+          "required_count": 2,
+          "level": 1,
+          "class": "rouge"
+    }'
+  requirement_skill_expertise_II_config:
+    '{
+          "required_count": 2,
+          "level": 6,
+          "class": "assassin"
+    }'
+  requirement_skill_canny_expertise_config:
+    '{
+          "required_count": 1,
+          "level": 1,
+          "class": "ranger"
+    }'

@@ -1,19 +1,11 @@
 App\Entity\Proficiency:
-  proficiency_club:
+  proficiency_clubs:
     __construct:
-      - club
-      - weapon
-  proficiency_dagger:
-    __construct:
-      - dagger
+      - clubs
       - weapon
   proficiency_daggers:
     __construct:
       - daggers
-      - weapon
-  proficiency_dart:
-    __construct:
-      - dart
       - weapon
   proficiency_darts:
     __construct:
@@ -23,15 +15,15 @@ App\Entity\Proficiency:
     __construct:
       - hand crossbows
       - weapon
-  proficiency_javelin:
+  proficiency_javelins:
     __construct:
-      - javelin
+      - javelins
       - weapon
-  proficiency_light_crossbow:
+  proficiency_light_crossbows:
     __construct:
       - light crossbows
       - weapon
-  proficiency_longbow:
+  proficiency_longbows:
     __construct:
       - longbows
       - weapon
@@ -39,9 +31,9 @@ App\Entity\Proficiency:
     __construct:
       - longswords
       - weapon
-  proficiency_mace:
+  proficiency_maces:
     __construct:
-      - mace
+      - maces
       - weapon
   proficiency_martial_weapons:
     __construct:
@@ -55,15 +47,15 @@ App\Entity\Proficiency:
     __construct:
       - rapiers
       - weapon
-  proficiency_rod:
+  proficiency_rods:
     __construct:
-      - rod
+      - rods
       - weapon
-  proficiency_scimitar:
+  proficiency_scimitars:
     __construct:
-      - scimitar
+      - scimitars
       - weapon
-  proficiency_shortbow:
+  proficiency_shortbows:
     __construct:
       - shortbows
       - weapon
@@ -71,23 +63,19 @@ App\Entity\Proficiency:
     __construct:
       - shortswords
       - weapon
-  proficiency_sickle:
+  proficiency_sickles:
     __construct:
-      - sickle
+      - sickles
       - weapon
   proficiency_simple_weapons:
     __construct:
       - simple weapons
       - weapon
-  proficiency_sling:
-    __construct:
-      - sling
-      - weapon
   proficiency_slings:
     __construct:
       - slings
       - weapon
-  proficiency_spear:
+  proficiency_spears:
     __construct:
-      - spear
+      - spears
       - weapon

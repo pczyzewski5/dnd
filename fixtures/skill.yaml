@@ -245,6 +245,6 @@ App\Entity\Skill:
       - [
         '@proficiency_longswords',
         '@proficiency_shortswords',
-        '@proficiency_shortbow',
-        '@proficiency_longbow'
+        '@proficiency_shortbows',
+        '@proficiency_longbows'
       ]

@@ -4,4 +4,13 @@ App\Entity\CharacterClass:
       - 6
       - wild magic sorcerer
       - ~
-      - [ '@requirement_sorcerer_class_proficiency' ]
+      - [
+        '@proficiency_daggers',
+        '@proficiency_darts',
+        '@proficiency_slings',
+        '@proficiency_quarterstaffs',
+        '@proficiency_light_crossbows',
+        '@proficiency_constitution',
+        '@proficiency_charisma'
+      ]
+      - [ '@requirement_sorcerer_character_class_proficiency' ]

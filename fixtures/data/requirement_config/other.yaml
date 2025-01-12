@@ -1,0 +1,24 @@
+parameters:
+  requirement_origin_single_language_config:
+    '{
+         "source": "origin",
+         "required_count": 1,
+         "level": 1
+    }'
+  requirement_origin_two_languages_config:
+    '{
+         "source": "origin",
+         "required_count": 2,
+         "level": 1
+    }'
+  requirement_asi_or_feat_level_4_config:
+    '{
+         "source": "level",
+         "level": 4
+    }'
+  requirement_asi_or_feat_level_8_config:
+    '{
+         "source": "level",
+         "level": 8
+    }'
+

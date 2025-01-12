@@ -30,7 +30,7 @@ parameters:
          "languages": ["common"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 0
-     }'
+    }'
 
   human_variant_config:
     '{
@@ -38,7 +38,7 @@ parameters:
          "languages": ["common"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 0
-     }'
+    }'
 
   lightfoot_halfling_config:
     '{
@@ -55,7 +55,7 @@ parameters:
          "languages": ["common", "halfling"],
          "speed_in_meters": 7.5,
          "darkvision_in_meters": 0
-     }'
+    }'
 
   tiefling_config:
     '{
@@ -72,7 +72,7 @@ parameters:
          "languages": ["common", "infernal"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 18
-     }'
+    }'
 
   wood_elf_config:
     '{
@@ -89,7 +89,7 @@ parameters:
          "languages": ["common", "elvish"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 18
-     }'
+    }'
   high_elf_config:
     '{
          "asi": [
@@ -105,4 +105,4 @@ parameters:
          "languages": ["common", "elvish"],
          "speed_in_meters": 9,
          "darkvision_in_meters": 18
-     }'
+    }'

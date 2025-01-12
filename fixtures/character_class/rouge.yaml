@@ -4,7 +4,6 @@ App\Entity\CharacterClass:
       - 8
       - rouge
       - ~
-      - [ '@requirement_rouge_class_proficiency' ]
       - [
         '@proficiency_light_armors',
         '@proficiency_simple_weapons',
@@ -17,6 +16,8 @@ App\Entity\CharacterClass:
         '@proficiency_intelligence',
         '@proficiency_thieves_tools'
       ]
+      - [ '@requirement_rouge_character_class_proficiency' ]
+
   character_class_assassin:
     __construct:
       - 8

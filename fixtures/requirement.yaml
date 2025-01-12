@@ -11,18 +11,22 @@ App\Entity\Requirement:
     __construct:
       - feat
       - <{requirement_human_variant_feat_config}>
-  requirement_barbarian_class_proficiency:
+  requirement_barbarian_character_class_proficiency:
     __construct:
       - proficiency
-      - <{requirement_barbarian_class_proficiency_config}>
-  requirement_rouge_class_proficiency:
+      - <{requirement_barbarian_character_class_proficiency_config}>
+  requirement_rouge_character_class_proficiency:
     __construct:
       - proficiency
-      - <{requirement_rouge_class_proficiency_config}>
-  requirement_sorcerer_class_proficiency:
+      - <{requirement_rouge_character_class_proficiency_config}>
+  requirement_sorcerer_character_class_proficiency:
     __construct:
       - proficiency
-      - <{requirement_sorcerer_class_proficiency_config}>
+      - <{requirement_sorcerer_character_class_proficiency_config}>
+  requirement_druid_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_druid_character_class_proficiency_config}>
   requirement_race_single_language:
     __construct:
       - language
@@ -55,7 +59,7 @@ App\Entity\Requirement:
     __construct:
       - expertise
       - <{requirement_skill_canny_expertise_config}>
-  requirement_fighting_style_ranger:
+  requirement_ranger_fighting_style:
     __construct:
       - fighting style
-      - <{requirement_fighting_style_ranger_config}>
+      - <{requirement_ranger_character_class_fighting_style_config}>
