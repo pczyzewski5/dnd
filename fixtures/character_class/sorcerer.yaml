@@ -1,0 +1,7 @@
+App\Entity\CharacterClass:
+  character_class_wild_magic_sorcerer:
+    __construct:
+      - 6
+      - wild magic sorcerer
+      - ~
+      - ['@requirement_sorcerer_class_proficiency']

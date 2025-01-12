@@ -1,0 +1,12 @@
+App\Entity\CharacterClass:
+  character_class_barbarian:
+    __construct:
+      - 12
+      - barbarian
+      - ~
+      - ['@requirement_barbarian_class_proficiency']
+  character_class_berserker:
+    __construct:
+      - 12
+      - berserker
+      - '@character_class_barbarian'

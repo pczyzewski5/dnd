@@ -1,0 +1,12 @@
+App\Entity\CharacterClass:
+  character_class_rouge:
+    __construct:
+      - 8
+      - rouge
+      - ~
+      - ['@requirement_rouge_class_proficiency']
+  character_class_assassin:
+    __construct:
+      - 8
+      - assassin
+      - '@character_class_rouge'

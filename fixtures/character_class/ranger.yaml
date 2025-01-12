@@ -1,0 +1,5 @@
+App\Entity\CharacterClass:
+  character_class_ranger:
+    __construct:
+      - 10
+      - ranger
