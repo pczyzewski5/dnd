@@ -1,10 +1,9 @@
 hautelook_alice:
     fixtures_path:
         - fixtures
-        - fixtures/data
-        - fixtures/data/requirement_config
         - fixtures/proficiency
         - fixtures/requirement
+        - fixtures/race
         - fixtures/character_class
         - fixtures/level/barbarian
         - fixtures/level/druid

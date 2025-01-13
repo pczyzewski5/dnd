@@ -1,0 +1,29 @@
+parameters:
+  lightfoot_halfling_config:
+    '{
+         "asi": [
+             {
+                 "ability": "dex",
+                 "value": 2
+             },
+             {
+                 "ability": "cha",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "halfling"],
+         "speed_in_meters": 7.5,
+         "darkvision_in_meters": 0
+    }'
+
+App\Entity\Race:
+  race_lightfoot_halfling:
+    __construct:
+      - lightfoot halfling
+      - <{lightfoot_halfling_config}>
+      - [
+        '@skill_lucky',
+        '@skill_brave',
+        '@skill_nimble',
+        '@skill_naturally_stealthy'
+      ]

@@ -1,0 +1,55 @@
+parameters:
+  wood_elf_config:
+    '{
+         "asi": [
+             {
+                 "ability": "dex",
+                 "value": 2
+             },
+             {
+                 "ability": "wis",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "elvish"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+    }'
+  high_elf_config:
+    '{
+         "asi": [
+             {
+                 "ability": "dex",
+                 "value": 2
+             },
+             {
+                 "ability": "int",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "elvish"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+    }'
+
+App\Entity\Race:
+  race_wood_elf:
+    __construct:
+      - wood elf
+      - <{wood_elf_config}>
+      - [
+        '@skill_keen_senses',
+        '@skill_fey_ancestry',
+        '@skill_trance'
+      ]
+
+  race_high_elf:
+    __construct:
+      - high elf
+      - <{high_elf_config}>
+      - [
+        '@skill_keen_senses',
+        '@skill_fey_ancestry',
+        '@skill_trance',
+        '@skill_elf_weapon_training'
+      ]
