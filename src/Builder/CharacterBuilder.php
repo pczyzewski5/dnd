@@ -206,19 +206,19 @@ class CharacterBuilder
             function (LevelConfigDto $dto): Level {
                 $level = $this->levelRepository->findByLevelAndCharacterClass(
                     $dto->level,
-                    $dto->class
+                    $dto->characterClass
                 );
 
                 if ($level === null) {
                     /** @var CharacterClass $class */
-                    $class = $this->characterClassRepository->findOneBy(['name' => $dto->class]);
+                    $class = $this->characterClassRepository->findOneBy(['name' => $dto->characterClass]);
                     $class = $class->getBaseClass();
 
                     if ($class === null) {
                         throw new \Exception(
                             sprintf(
                                 'Character class %s has no base character class.',
-                                $dto->class
+                                $dto->characterClass
                             )
                         );
                     }

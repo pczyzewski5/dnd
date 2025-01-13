@@ -36,7 +36,9 @@ final class Version20241220175957 extends AbstractMigration
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(255) NOT NULL UNIQUE,
                 config VARCHAR(510) NOT NULL,
-                PRIMARY KEY (id)
+                base_race_id INT DEFAULT NULL,
+                PRIMARY KEY (id),
+                CONSTRAINT IDX_BASE_RACE FOREIGN KEY (base_race_id) REFERENCES race (id) ON DELETE SET NULL
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
             SQL
         );

@@ -10,12 +10,10 @@ use App\Exception\RequirementException;
 
 use function array_diff;
 use function array_filter;
-use function array_walk;
 use function count;
 use function implode;
 use function sprintf;
 use function ucfirst;
-use function var_dump;
 
 class Proficiency extends AbstractChecker
 {
@@ -60,7 +58,7 @@ class Proficiency extends AbstractChecker
         if ($actualCount !== $requiredCount) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    '%s require to pick exactly %s proficiencies. You have chosen %s.',
+                    '%s require to pick exactly %s proficiency. You have chosen %s.',
                     ucfirst($source),
                     $requiredCount,
                     $actualCount
@@ -81,7 +79,7 @@ class Proficiency extends AbstractChecker
         if (!empty(array_diff($chosen, $pool))) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    '%s require to pick proficiencies from: %s.',
+                    'MOVE ME TO CONFIG %s require to pick proficiencies from: %s.',
                     ucfirst($source),
                     implode(', ', $pool)
                 )

@@ -24,7 +24,7 @@ class FightingStyle extends AbstractChecker
         $pool = $this->getConfigValue('pool');
 
         $chosen = array_intersect(
-            $this->getClassLevelConfig($level, $class)->skills,
+            $this->getLevelConfig($level, $class)->skills,
             $pool
         );
 

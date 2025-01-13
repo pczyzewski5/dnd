@@ -564,8 +564,19 @@ parameters:
     W następnych turach możesz w ramach swojej akcji przedłużać działanie efektu o kolejną turę. Efekt kończy się,
     jeśli przerażona istota zakończy swoją turę poza zasięgiem wzroku lub dalej niż 12 hex od ciebie. Jeśli cel zda
     rzut obronny, nie możesz na nim powtarzać próby zastraszenia przez najbliższe 24 godziny.'
-
+  fleet_of_foot_desc:
+    '<b>fof</b> - fill me.'
+  mask_of_the_wild_desc:
+    '<b>motw</b> - fill me.'
 App\Entity\Skill:
+  skill_fleet_of_foot:
+    __construct:
+      - fleet of foot
+      - <{fleet_of_foot_desc}>
+  skill_mask_of_the_wild:
+    __construct:
+      - mask_of_the_wild
+      - <{mask_of_the_wild_desc}>
   skill_rage:
     __construct:
       - rage

@@ -6,13 +6,17 @@ namespace App\Service\Requirement;
 
 use App\Dto\CharacterConfigDto;
 use App\Service\Requirement\Checker\AbstractChecker;
-use App\Service\Requirement\Checker\Asi;
 use App\Service\Requirement\Checker\AsiOrFeat;
 use App\Service\Requirement\Checker\Expertise;
 use App\Service\Requirement\Checker\Feat;
 use App\Service\Requirement\Checker\FightingStyle;
 use App\Service\Requirement\Checker\Language;
 use App\Service\Requirement\Checker\Proficiency;
+use App\Service\Requirement\Checker\TwoDifferentAsi;
+use App\Service\Requirement\Checker\WizardCantrip;
+use Exception;
+
+use function sprintf;
 
 class RequirementCheckerService
 {
@@ -24,11 +28,12 @@ class RequirementCheckerService
         $this->checkers = [
             new Proficiency(),
             new Language(),
-            new Asi(),
+            new TwoDifferentAsi(),
             new Feat(),
             new AsiOrFeat(),
             new Expertise(),
-            new FightingStyle()
+            new FightingStyle(),
+            new WizardCantrip()
         ];
     }
 
@@ -42,8 +47,14 @@ class RequirementCheckerService
                     $checker->setRequirement($requirement)
                         ->setCharacterConfig($dto)
                         ->check();
+
+                    return;
                 }
             }
+
+            throw new Exception(
+                sprintf('Checker for %s, not found.', $requirement->getName())
+            );
         }
     }
 }

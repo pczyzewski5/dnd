@@ -1,20 +1,24 @@
 parameters:
   requirement_human_variant_race_proficiency_config:
     '{
-           "source": "race",
            "required_count": 1,
+           "source": "human variant race",
            "pool": [],
            "level": 1
     }'
   requirement_human_variant_race_feat_config:
     '{
-           "source": "race",
+           "source": "human variant race",
            "level": 1
     }'
   requirement_human_variant_race_asi_config:
     '{
-           "source": "race",
-           "two_different": true,
+           "source": "human variant race",
+           "level": 1
+    }'
+  requirement_high_elf_race_config:
+    '{
+           "source": "high elf race",
            "level": 1
     }'
 
@@ -29,5 +33,9 @@ App\Entity\Requirement:
       - <{requirement_human_variant_race_feat_config}>
   requirement_human_variant_race_asi:
     __construct:
-      - asi
+      - two different asi
       - <{requirement_human_variant_race_asi_config}>
+  requirement_high_elf_race_cantrip:
+    __construct:
+      - wizard cantrip
+      - <{requirement_high_elf_race_config}>

@@ -9,12 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class AsiConfigDto extends AbilityConfigDto
 {
     #[Assert\NotBlank]
-    #[Assert\Choice(
-        choices: [
-            'race',
-            'level'
-        ]
-    )]
     public readonly mixed $source;
 
     public function __construct(

@@ -89,7 +89,7 @@ class LevelConfigDtoMapperTest extends KernelTestCase
 
         $actual = $this->testedObject->fromArray($data);
 
-        $this->assertSame($expected->class, $actual->class);
+        $this->assertSame($expected->characterClass, $actual->characterClass);
         $this->assertIsArray($actual->proficiencies);
         $this->assertIsArray($actual->skills);
     }
@@ -104,7 +104,7 @@ class LevelConfigDtoMapperTest extends KernelTestCase
 
         $actual = $this->testedObject->fromArray($data);
 
-        $this->assertSame($expected->class, $actual->class);
+        $this->assertSame($expected->characterClass, $actual->characterClass);
         $this->assertIsArray($actual->proficiencies);
         $this->assertIsArray($actual->skills);
     }

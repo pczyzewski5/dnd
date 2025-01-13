@@ -35,16 +35,22 @@ class Race
     #[ORM\JoinColumn(name: 'race_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private Collection $requirements;
 
+    #[ORM\ManyToOne(targetEntity: self::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?self $baseRace;
+
     public function __construct(
         string $name,
         string $config,
         ?array $skills = [],
-        ?array $requirements = []
+        ?array $requirements = [],
+        ?self $baseRace = null,
     ) {
         $this->name = $name;
         $this->config = $config;
         $this->skills = new ArrayCollection();
         $this->requirements = new ArrayCollection();
+        $this->baseRace = $baseRace;
 
         $this->addToCollection($skills, $this->skills);
         $this->addToCollection($requirements, $this->requirements);
@@ -63,5 +69,10 @@ class Race
     public function getSkills(): Collection
     {
         return $this->skills;
+    }
+
+    public function getBaseRace(): ?self
+    {
+        return $this->baseRace;
     }
 }

@@ -23,4 +23,5 @@ App\Entity\Race:
       - <{tiefling_config}>
       - [
         '@skill_infernal_legacy',
-        '@skill_hellish_resistance' ]
+        '@skill_hellish_resistance'
+      ]

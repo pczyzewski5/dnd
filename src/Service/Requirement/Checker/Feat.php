@@ -27,7 +27,7 @@ class Feat extends AbstractChecker
         if (null === $level->feat || $level->feat->source !== $source) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    '%s require to pick feat.',
+                    'MOVE ME TO CONFIG  %s require to pick feat.',
                     ucfirst($source),
                 )
             );

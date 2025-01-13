@@ -31,7 +31,7 @@ class AsiOrFeat extends AbstractChecker
         if ($feat === null && [] === $level->asi) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    '%s require to pick feat or ability score increase.',
+                    'MOVE ME TO CONFIG  %s require to pick feat or ability score increase.',
                     ucfirst($source),
                 )
             );

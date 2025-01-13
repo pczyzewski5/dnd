@@ -26,9 +26,9 @@ class RaceService
 
         return new RaceConfigDto(
             $this->getAsi($config),
-            $config['languages'],
-            $config['speed_in_meters'],
-            $config['darkvision_in_meters']
+            $config['languages'] ?? [],
+            $config['speed_in_meters'] ?? 99,
+            $config['darkvision_in_meters'] ?? 99
         );
     }
 

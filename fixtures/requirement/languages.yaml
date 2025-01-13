@@ -1,7 +1,13 @@
 parameters:
-  requirement_race_single_language_config:
+  requirement_high_elf_race_extra_language_config:
     '{
-         "source": "race",
+         "source": "high elf race",
+         "required_count": 1,
+         "level": 1
+    }'
+  requirement_human_race_extra_language_config:
+    '{
+         "source": "human race",
          "required_count": 1,
          "level": 1
     }'
@@ -19,10 +25,14 @@ parameters:
     }'
 
 App\Entity\Requirement:
-  requirement_race_single_language:
+  requirement_high_elf_race_extra_language:
     __construct:
       - language
-      - <{requirement_race_single_language_config}>
+      - <{requirement_high_elf_race_extra_language_config}>
+  requirement_human_race_extra_language:
+    __construct:
+      - language
+      - <{requirement_human_race_extra_language_config}>
   requirement_origin_single_language:
     __construct:
       - language

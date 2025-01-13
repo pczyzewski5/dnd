@@ -47,7 +47,7 @@ class RequirementExtractorService
         /** @var LevelConfigDto $config */
         foreach ($dto->levelConfigs as $config) {
             $result = array_merge(
-                $this->repository->findCharacterClassRequirements($config->class),
+                $this->repository->findCharacterClassRequirements($config->characterClass),
                 $result
             );
         }
@@ -69,7 +69,7 @@ class RequirementExtractorService
             $result = array_merge(
                 $this->repository->findLevelRequirements(
                     $config->level,
-                    $config->class
+                    $config->characterClass
                 ),
                 $result
             );
@@ -87,7 +87,7 @@ class RequirementExtractorService
             $result = array_merge(
                 $this->repository->findSkillRequirements(
                     $config->level,
-                    $config->class
+                    $config->characterClass
                 ),
                 $result
             );

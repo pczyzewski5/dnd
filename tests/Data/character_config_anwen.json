@@ -21,12 +21,12 @@
             ],
             "languages": [
                 {
-                    "name": "sylvan",
-                    "source": "origin"
+                    "name": "primordial",
+                    "source": "high elf race"
                 },
                 {
-                    "name": "primordial",
-                    "source": "race"
+                    "name": "sylvan",
+                    "source": "origin"
                 },
                 {
                     "name": "druidic",
@@ -35,6 +35,12 @@
                 {
                     "name": "dwarf",
                     "source": "race"
+                }
+            ],
+            "cantrips": [
+                {
+                    "name": "cantrip name",
+                    "source": "cantrip source"
                 }
             ]
         },

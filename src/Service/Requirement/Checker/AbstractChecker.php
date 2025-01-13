@@ -24,17 +24,15 @@ abstract class AbstractChecker
 
     abstract public function check(): void;
 
-    public function setCharacterConfig(
-        CharacterConfigDto $characterConfigDto
-    ): self {
+    public function setCharacterConfig(CharacterConfigDto $characterConfigDto): self
+    {
         $this->characterConfigDto = $characterConfigDto;
 
         return $this;
     }
 
-    public function setRequirement(
-        Requirement $requirement
-    ): self {
+    public function setRequirement(Requirement $requirement): self
+    {
         $result = json_decode($requirement->getConfig(), true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -46,36 +44,45 @@ abstract class AbstractChecker
         return $this;
     }
 
-    protected function getLevelConfig(int $level): LevelConfigDto
+    protected function getLevelConfig(int $level, string $characterClass = null): LevelConfigDto
     {
         return current(
             array_filter(
                 $this->characterConfigDto->levelConfigs,
-                fn (LevelConfigDto $levelConfig): bool
-                => $levelConfig->level === $level
+                static function (LevelConfigDto $levelConfig) use ($level, $characterClass): bool {
+                    return null === $characterClass
+                        ? $level === $levelConfig->level
+                        : $level === $levelConfig->level && $characterClass === $levelConfig->characterClass;
+                }
             )
         );
     }
 
-    protected function getClassLevelConfig(int $level, string $class): LevelConfigDto
+    protected function getConfigValue(string $key, bool $isRequired = true): mixed
     {
-        return current(
-            array_filter(
-                $this->characterConfigDto->levelConfigs,
-                fn (LevelConfigDto $levelConfig): bool
-                => $levelConfig->level === $level && $levelConfig->class === $class
-            )
-        );
-    }
+        $value = $this->requirementConfig[$key] ?? null;
 
-    protected function getConfigValue(string $key): string|array|bool|int
-    {
-        if (array_key_exists($key, $this->requirementConfig)) {
-            return $this->requirementConfig[$key];
+        if (true === $isRequired && $value === null) {
+            throw new Exception(
+                sprintf('Value for: %s, not found in requirement config.', $key)
+            );
         }
 
-        throw new Exception(
-            sprintf('Value for: %s, not found in requirement config.', $key)
-        );
+        return $value;
+    }
+
+    protected function getAsi(
+        LevelConfigDto $levelConfig,
+        string $source
+    ): array {
+        $result = [];
+
+        foreach ($levelConfig->asi as $asi) {
+            if ($asi->source === $source) {
+                $result[$asi->ability] += $asi->value;
+            }
+        }
+
+        return $result;
     }
 }

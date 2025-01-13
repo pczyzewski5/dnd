@@ -13,13 +13,6 @@ class LanguageDto
     public readonly mixed $name;
 
     #[Assert\NotBlank]
-    #[Assert\Choice(
-        choices: [
-            'origin',
-            'race',
-            'skill'
-        ]
-    )]
     public readonly mixed $source;
 
     public function __construct(

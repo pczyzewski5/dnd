@@ -18,12 +18,13 @@ class Expertise extends AbstractChecker
         return 'expertise' === $requirement->getName();
     }
 
-    public function check(): void {
+    public function check(): void
+    {
         $requiredCount = $this->getConfigValue('required_count');
         $level = $this->getConfigValue('level');
         $class = $this->getConfigValue('class');
 
-        $expertises = $this->getClassLevelConfig($level, $class)->expertises;
+        $expertises = $this->getLevelConfig($level, $class)->expertises;
 
         $this->checkCount(
             count($expertises),
@@ -40,8 +41,7 @@ class Expertise extends AbstractChecker
         if ($actualCount !== $requiredCount) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    // message zrobić w encji requirementa?
-                    'You need to pick exactly %s expert proficiencies at level %s. You have chosen %s.',
+                    'MOVE ME TO CONFIG  You need to pick exactly %s expert proficiencies at level %s. You have chosen %s.',
                     $requiredCount,
                     $level,
                     $actualCount

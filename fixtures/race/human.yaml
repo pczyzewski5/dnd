@@ -51,7 +51,7 @@ App\Entity\Race:
       - [ ]
       - [
         '@requirement_human_variant_race_proficiency',
-        '@requirement_race_single_language',
+        '@requirement_human_race_extra_language',
         '@requirement_human_variant_race_asi',
         '@requirement_human_variant_race_feat'
       ]

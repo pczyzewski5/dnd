@@ -13,14 +13,6 @@ class ProficiencyDto
     public readonly mixed $name;
 
     #[Assert\NotBlank]
-    #[Assert\Choice(
-        choices: [
-            'origin',
-            'character class',
-            'race',
-            'multiclass'
-        ]
-    )]
     public readonly mixed $source;
 
     public function __construct(

@@ -28,7 +28,7 @@
                 },
                 {
                     "name": "stealth",
-                    "source": "race"
+                    "source": "human variant race"
                 }
             ],
             "skills": [
@@ -41,19 +41,19 @@
             "languages": [
                 {
                     "name": "elf",
-                    "source": "race"
+                    "source": "human race"
                 }
             ],
             "asi": [
                 {
                     "ability": "str",
                     "value": 1,
-                    "source": "race"
+                    "source": "human variant race"
                 },
                 {
                     "ability": "con",
                     "value": 1,
-                    "source": "race"
+                    "source": "human variant race"
                 }
             ]
         },
