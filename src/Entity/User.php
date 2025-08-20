@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Entity;
+namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\User\Query;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
-use App\User\Entity\User;
 
 class GetUsersHandler
 {

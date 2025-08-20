@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
+use App\Entity\User;
 use App\Form\CreateCalendarForm;
-use App\User\Entity\User;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class CreateCalendarFormDataTransformer implements DataTransformerInterface

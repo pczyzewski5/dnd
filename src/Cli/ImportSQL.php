@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:import-sql')]
 class ImportSQL extends Command
 {
-    private const DATA_DIR = '/data/application/migrations/data/';
+    private const DATA_DIR = __DIR__ . '/../../migrations/data/';
 
     private Connection $connection;
 
@@ -26,7 +26,11 @@ class ImportSQL extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (\is_dir(self::DATA_DIR) === false) {
-            \var_dump('error');exit;
+            $output->writeln(
+                \sprintf('Error, data dir: %s, does not exist.', self::DATA_DIR)
+            );
+
+            return Command::FAILURE;
         }
 
         $files = \array_diff(

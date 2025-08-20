@@ -59,3 +59,6 @@ generate-migration:
 
 migration:
 	docker-compose exec php ./bin/console doctrine:migrations:migrate
+
+deploy:
+	dep deploy small

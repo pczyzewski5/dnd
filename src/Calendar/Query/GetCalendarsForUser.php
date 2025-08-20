@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Calendar\Query;
 
-use App\User\Entity\User;
+use App\Entity\User;
 
 class GetCalendarsForUser
 {

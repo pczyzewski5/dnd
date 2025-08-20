@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
+use App\Entity\User;
 use App\Form\CalendarAnswerForm;
-use App\User\Entity\User;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
