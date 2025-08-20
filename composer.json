@@ -88,6 +88,6 @@
         "phpunit/phpunit": "^10",
         "symfony/debug-bundle": "6.4.*",
         "symfony/test-pack": "^1.0",
-        "symfony/web-profiler-bundle": "6.4.0"
+        "symfony/web-profiler-bundle": "6.4.*"
     }
 }
