@@ -1,0 +1,61 @@
+{
+  "character_name": "Pike",
+  "player_name": "Kasia",
+  "campaign_name": "Ghosts of Saltmarsh",
+  "origin": "acolyte",
+  "race": "sea elf",
+  "alignment": "chaotic good",
+  "levels": [
+    {
+      "level": 1,
+      "class": "tempest domain cleric",
+      "proficiencies": [
+        {
+          "name": "history",
+          "source": "character class"
+        },
+        {
+          "name": "medicine",
+          "source": "character class"
+        }
+      ],
+      "languages": [
+        {
+          "name": "draconic",
+          "source": "origin"
+        },
+        {
+          "name": "celestial",
+          "source": "origin"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "ability": "str",
+      "value": 14
+    },
+    {
+      "ability": "dex",
+      "value": 12
+    },
+    {
+      "ability": "con",
+      "value": 13
+    },
+    {
+      "ability": "int",
+      "value": 10
+    },
+    {
+      "ability": "wis",
+      "value": 15
+    },
+    {
+      "ability": "cha",
+      "value": 8
+    }
+  ],
+  "meta": "<div>\n  <h3>Tło fabularne – W służbie Deep Sashelasa</h3>\n  <div>\n    <p>Pike dorastała w podwodnym mieście Krynica Morska, położonym wśród raf i pradawnych ruin. Miasto było duchowym centrum elfów morskich, a w jego sercu wznosiła się monumentalna świątynia Deep Sashelasa, boga oceanów i mądrości. To tam Pike, od najmłodszych lat wrażliwa na głosy fal i pieśń prądów, została przyjęta na drogę kapłanki.</p>\n  </div>\n\n  <h3>Wizja</h3>\n  <div>\n    <p>Podczas rytuału w świątyni Pike miała wizję. Wody nad Krynicą spieniły się, a z otchłani wypłynęły cienie wężowych potworów. W tej wizji przemówił do niej sam Deep Sashelas, ostrzegając:</p>\n    <p>„Nadchodzi fala zagłady. Krynica zatonię w ciemności, jeśli Serce Oceanu nie zostanie odnalezione. Tobie powierzam tę misję – bo tylko ty słyszysz moje wezwanie.”</p>\n    <p>Kiedy Pike ocknęła się z transu, zrozumiała, że to nie był zwykły sen. Była to przepowiednia i rozkaz od samego boga.</p>\n  </div>\n\n  <h3>Serce Oceanu</h3>\n  <div>\n    <p>Legenda głosi, że Serce Oceanu jest pradawnym artefaktem stworzonym w erze, gdy morza były młode. To krystalowa perła pulsująca mocą samego oceanu. Artefakt ten miał zdolność:</p>\n    <ul>\n      <li>wzmacniać bariery ochronne wokół morskich miast,</li>\n      <li>odpychać potwory z głębin,</li>\n      <li>a nawet dawać wybranym możliwość kontrolowania przypływów i burz.</li>\n    </ul>\n    <p>Przed tysiącami lat zaginął, a jego moc rozproszyła się w odmętach. Nieliczni wierzą, że spoczywa w zatopionych ruinach starożytnej cywilizacji albo w legowisku ogromnego potwora morskiego.</p>\n  </div>\n\n  <h3>Motywacja Pike</h3>\n  <div>\n    <p>Dla Pike jej misja ma dwa oblicza:</p>\n    <ol>\n      <li><b>Obowiązek wobec boga i ludu</b> – wie, że tylko odnalezienie Serca Oceanu może uratować Krynicę Morską przed katastrofą.</li>\n      <li><b>Osobista wiara</b> – wizje nie są dla niej przekleństwem, ale błogosławieństwem. Czuje, że Deep Sashelas wybrał ją spośród wielu.</li>\n    </ol>\n  </div>\n\n  <h3>Osobowość Pike</h3>\n  <div>\n    <ul>\n      <li><b>Cechy:</b> „Każda fala niesie tajemnicę – słucham morza, by zrozumieć wolę Sashelasa.”</li>\n      <li><b>Ideały:</b> „Wszystko, co robię, robię dla mojego ludu i boga.”</li>\n      <li><b>Więzi:</b> „Krynica Morska to mój dom. Jeśli zginie, zginie też moja dusza.”</li>\n      <li><b>Słabości:</b> „Moja wiara w wizje jest niezlomna – nawet jeśli inni nazwą mnie szaloną.”</li>\n    </ul>\n  </div>\n\n  <h3>Własne słowa Pike</h3>\n  <div>\n    <p>„Nazywam się Pike, córka oceanu i kapłanka Deep Sashelasa. Pochodzę z Krynicy Morskiej – miasta, które wkrótce może utonąć w ciemności. Bóg obdarzył mnie wizją i powierzył misję odnalezienia Serca Oceanu, pradawnego artefaktu zdolnego ocalić mój lud. Nie jestem tu, by rządzić ani by się chować. Jestem tu, by walczyć – z potworami, z burzą i z losem samym w sobie. Jeśli wasze serca biją w rytmie przygody, być może nasze drogi popłyną razem… ku przeznaczeniu.”</p>\n  </div>\n\n  <h3>Krótki opis Pike</h3>\n  <div>\n    <p>Przed wami staje elfka morska o jasnoniebieskiej skórze i srebrzystych włosach. Jej czarne oczy przypominają głębiny oceanu, a turkusowe tatuaże na dłoniach i twarzy migoczą w słońcu. Ubrana w szaty z alg i korali, z włócznią i tarczą ozdobioną symbolem Deep Sashelasa, emanuje aurą tajemniczej kapłanki morza.</p>\n <p> Wiek: 69, wzrost: 169 cm, waga: 50 kg, oczy: czarne, skóra: niebieska, włosy: srebrne.</p>  </div>\n</div>\n"
+}

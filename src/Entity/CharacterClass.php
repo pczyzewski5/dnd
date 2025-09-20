@@ -72,4 +72,16 @@ class CharacterClass
     {
         return $this->baseClass;
     }
+
+    public function gerProficiencies(): Collection
+    {
+        $baseClass = $this->getBaseClass();
+
+        return new ArrayCollection(
+            array_merge(
+                $baseClass ? $baseClass->gerProficiencies()->toArray() : [],
+                $this->proficiencies->toArray()
+            )
+        );
+    }
 }

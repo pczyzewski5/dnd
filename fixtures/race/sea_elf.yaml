@@ -1,0 +1,30 @@
+parameters:
+  sea_elf_config:
+    '{
+         "asi": [
+             {
+                 "ability": "str",
+                 "value": 2
+             },
+             {
+                 "ability": "wis",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "elven", "aquan"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+    }'
+
+App\Entity\Race:
+  race_sea_elf:
+    __construct:
+      - "sea elf"
+      - <{sea_elf_config}>
+      - [
+        '@skill_keen_senses',
+        '@skill_fey_ancestry',
+        '@skill_trance',
+        '@skill_child_of_the_sea',
+        '@skill_friend_of_the_sea'
+      ]

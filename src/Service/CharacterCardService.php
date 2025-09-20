@@ -23,8 +23,10 @@ class CharacterCardService
 {
     private Environment $twig;
 
-    public function __construct(Environment $twig)
-    {
+    public function __construct(
+        private readonly AbilityService $abilityService,
+        Environment $twig
+    ){
         $this->twig = $twig;
     }
 
@@ -40,7 +42,7 @@ class CharacterCardService
             'resistancesImmunitiesSection' => (new ResistancesImmunitiesSectionBuilder($character, $this->twig))->build(),
             'proficienciesLanguagesSection' => (new ProficienciesLanguagesSectionBuilder($character, $this->twig))->build(),
             'savingThrowsSection' => (new SavingThrowsSectionBuilder($character, $this->twig))->build(),
-            'abilitySkillsSection' => (new AbilitySkillsSectionBuilder($character, $this->twig))->build(),
+            'abilitySkillsSection' => (new AbilitySkillsSectionBuilder($this->abilityService, $character, $this->twig))->build(),
             'abilitiesSection' => (new AbilitiesSectionBuilder($character, $this->twig))->build(),
             'titleSection' => (new TitleSectionBuilder($character, $this->twig))->build(),
             'dealtDmgSection' => (new DealtDmgBuilder($character, $this->twig))->build(),
@@ -54,7 +56,7 @@ class CharacterCardService
     public function getBackpage(Character $character, $opaqueStats = false): string
     {
         $context = [
-            'simpleCharacterStats' => (new SimpleCharacterStatsBuilder($character, $this->twig))->build(),
+            'meta' => $character->meta,
         ];
 
         return $this->twig->render('character_card/character_card_backpage.html.twig', $context);

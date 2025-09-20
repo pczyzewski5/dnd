@@ -3,6 +3,13 @@ services:
         autowire: true
         autoconfigure: true
 
+    App\MonsterManual\Infrastructure\Http\Controller\:
+      resource: '../src/MonsterManual/Infrastructure/Http/Controller'
+      tags: ['controller.service_arguments']
+
+    App\MonsterManual\Application\:
+      resource: '../src/MonsterManual/Application'
+
     App\Character\Query\:
       resource: '../src/Character/Query'
 
@@ -16,9 +23,35 @@ services:
       resource: '../src/Controller'
       public: true
 
+    App\DevService\ProjectDir:
+        arguments:
+          $projectDir: '%kernel.project_dir%'
+
     App\Service\:
-        resource: '../src/Service'
-        public: truehttps://chatgpt.com/c/68cee830-3a34-8328-a519-9865667130dclol
+      resource: '../src/Service'
+      public: true
+
+    App\Calendar\:
+      resource: '../src/Calendar'
+      exclude:
+        - '../src/Calendar/Query'
+        - '../src/Calendar/Command'
+        - '../src/Calendar/Entity'
+        - '../src/Calendar/Exception'
+        - '../src/Calendar/CalendarService.php'
+      public: true
+
+    App\User\:
+      resource: '../src/User'
+      exclude:
+        - '../src/User/Query'
+        - '../src/User/Command'
+        - '../src/User/Entity'
+      public: true
+
+    App\Form\:
+      resource: '../src/Form'
+      public: true
 
     App\Calculator\:
         resource: '../src/Calculator'

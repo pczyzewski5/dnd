@@ -104,6 +104,7 @@ class CharacterBuilder
             $this->getInitiative($abilities, $skills),
             $this->getAttackCount($skills),
             $this->getResistances($skills),
+            $config->meta,
             $this->getSpellcasting($config),
         // spellcasting do implementacji
         );
@@ -111,7 +112,7 @@ class CharacterBuilder
 
     private function getSpellcasting(CharacterConfigDto $config): ?Spellcasting
     {
-        if (in_array($config->characterName, ['Sathoris', 'Anwen', 'Mordimer Madderdin'])) {
+        if (in_array($config->characterName, ['Pike', 'Sathoris', 'Anwen', 'Mordimer Madderdin'])) {
             return new Spellcasting($config->characterName);
         }
 
@@ -124,6 +125,14 @@ class CharacterBuilder
 
         if ($skills->hasSkill('hellish resistance')) {
             $result[] = 'fire';
+        }
+
+        if ($skills->hasSkill('child of the sea')) {
+            $result[] = 'cold';
+        }
+
+        if ($skills->hasSkill('guardian of the depths')) {
+            $result[] = 'cold';
         }
 
         return $result;

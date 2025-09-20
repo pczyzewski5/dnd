@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Encounter;
 
-use App\Monster\Entity\Monster;
+use App\MonsterManual\Infrastructure\Persistance\Entity\Monster;
 
 class EncounterParticipantFactory
 {

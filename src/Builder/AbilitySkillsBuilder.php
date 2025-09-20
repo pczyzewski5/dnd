@@ -9,6 +9,7 @@ use App\Character\AbilitySkill;
 use App\Character\Proficiencies;
 use App\Enum\AbilitySkillEnum;
 
+use App\Service\AbilityService;
 use function array_map;
 use function in_array;
 
@@ -18,6 +19,12 @@ class AbilitySkillsBuilder
     private int $proficiencyBonus;
     private Abilities $abilities;
     private array $expertises;
+
+    public function __construct(
+        private readonly AbilityService $abilityService,
+    )
+    {
+    }
 
     public function setProficiencies(Proficiencies $proficiencies): self
     {
@@ -52,13 +59,19 @@ class AbilitySkillsBuilder
         return array_map(
             function (AbilitySkillEnum $abilitySkillEnum) {
                 $ability = $this->abilities->getByAbilityEnum(
-                    $abilitySkillEnum->getAbilityEnum()
+                    $this->abilityService->getAbilityForAbilitySkill($abilitySkillEnum)
                 );
 
                 $hasProficiency = in_array(
                     $abilitySkillEnum->value,
                     $this->proficiencies
                 );
+
+                if ($abilitySkillEnum->value === AbilitySkillEnum::INTIMIDATION->value
+                    && $this->abilities->str->modifier > $ability->modifier
+                ) {
+                    $ability = $this->abilities->str;
+                }
 
                 $value = $hasProficiency
                     ? $ability->modifier + $this->proficiencyBonus

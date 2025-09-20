@@ -17,6 +17,7 @@ class FeatDto
         choices: [
             'race',
             'level',
+            'human variant race'
         ]
     )]
     public readonly mixed $source;

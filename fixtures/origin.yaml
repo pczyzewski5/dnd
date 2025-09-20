@@ -1,4 +1,16 @@
 App\Entity\Origin:
+  origin_outlander:
+    __construct:
+      - outlander
+      - [ '@proficiency_athletics', '@proficiency_survival' ]
+  origin_marine:
+    __construct:
+      - marine
+      - [ '@proficiency_athletics', '@proficiency_survival', '@proficiency_water_vehicles', '@proficiency_land_vehicles' ]
+  origin_guild_artisan:
+    __construct:
+      - guild artisan
+      - [ '@proficiency_insight', '@proficiency_persuasion' ]
   origin_hero_folk:
     __construct:
       - folk hero
@@ -16,4 +28,9 @@ App\Entity\Origin:
     __construct:
       - sage
       - [ '@proficiency_arcana', '@proficiency_history' ]
+      - [ '@requirement_origin_two_languages' ]
+  origin_acolyte:
+    __construct:
+      - acolyte
+      - [ '@proficiency_insight', '@proficiency_religion' ]
       - [ '@requirement_origin_two_languages' ]

@@ -31,7 +31,8 @@ class Character
         public readonly int $initiative,
         public readonly int $attackCount,
         public readonly array $resistances,
-        public readonly ?Spellcasting $spellcasting
+        public readonly string $meta,
+        public readonly ?Spellcasting $spellcasting,
     ) {
     }
 }

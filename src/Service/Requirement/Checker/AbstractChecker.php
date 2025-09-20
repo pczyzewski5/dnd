@@ -79,7 +79,7 @@ abstract class AbstractChecker
 
         foreach ($levelConfig->asi as $asi) {
             if ($asi->source === $source) {
-                $result[$asi->ability] += $asi->value;
+                $result[$asi->ability] = ($result[$asi->ability] ?? 0) + $asi->value;
             }
         }
 

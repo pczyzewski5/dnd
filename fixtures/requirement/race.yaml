@@ -21,8 +21,17 @@ parameters:
            "source": "high elf race",
            "level": 1
     }'
+  requirement_triton_motu_race_asi_config:
+    '{
+           "source": "triton motu race",
+           "level": 1
+    }'
 
 App\Entity\Requirement:
+  requirement_triton_motu_race_asi:
+    __construct:
+      - one by two and different by one asi
+      - <{requirement_triton_motu_race_asi_config}>
   requirement_human_variant_race_proficiency:
     __construct:
       - proficiency

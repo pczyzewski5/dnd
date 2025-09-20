@@ -1,0 +1,24 @@
+App\Entity\CharacterClass:
+  character_class_cleric:
+    __construct:
+      - 8
+      - cleric
+      - ~
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_wisdom',
+        '@proficiency_charisma'
+      ]
+      - [ '@requirement_cleric_character_class_proficiency' ]
+  character_class_tempest_domain_cleric:
+    __construct:
+      - 8
+      - tempest domain cleric
+      - '@character_class_cleric'
+      - [
+        '@proficiency_heavy_armors',
+        '@proficiency_martial_weapons',
+      ]

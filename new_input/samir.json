@@ -1,0 +1,80 @@
+{
+  "character_name": "Samir Omada",
+  "player_name": "Janek",
+  "campaign_name": "Ghosts of Saltmarsh",
+  "origin": "marine",
+  "race": "human variant",
+  "alignment": "lawful neutral",
+  "levels": [
+    {
+      "level": 1,
+      "class": "fighter",
+      "proficiencies": [
+        {
+          "name": "persuasion",
+          "source": "human variant race"
+        },
+        {
+          "name": "perception",
+          "source": "character class"
+        },
+        {
+          "name": "intimidation",
+          "source": "character class"
+        }
+      ],
+      "skills": [
+        "protection fighting style"
+      ],
+      "feat": {
+        "name": "feat polearm master",
+        "source": "human variant race"
+      },
+      "asi": [
+        {
+          "ability": "str",
+          "value": 1,
+          "source": "human variant race"
+        },
+        {
+          "ability": "con",
+          "value": 1,
+          "source": "human variant race"
+        }
+      ],
+      "languages": [
+        {
+          "name": "kebab",
+          "source": "human variant race"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "ability": "str",
+      "value": 15
+    },
+    {
+      "ability": "dex",
+      "value": 14
+    },
+    {
+      "ability": "con",
+      "value": 13
+    },
+    {
+      "ability": "int",
+      "value": 10
+    },
+    {
+      "ability": "wis",
+      "value": 8
+    },
+    {
+      "ability": "cha",
+      "value": 12
+    }
+  ],
+  "meta": "<div>\n  <h3>Tło fabularne </h3>\n  <div>\n    <p>Wychował się w Amn w stolicy Athkatlrze. Jego młodzieńcze życie nie wyróżniało się od każdego innego młodego brudasa, uwielbiał: kebaby, shishe, okoliczne kamieniowanie niewiernych żon, przeleciał z owce lub dwie, wdawał się w bójki lecz nigdy nie wybił się ponad przeciętność. Jego ojca pochłonęło morze jak miał 3lata, matka nigdy nie chciała o nim mówić. Od dziecka miał zamiłowanie do morza a szczególnie uwielbiał przesiadywać w dokach miasta  (największy port dorównujący waterdeep i baldursgate)  i przypatrywać się jak statki wpływają  do portu.</p><p> Jego nienawiść do magii była mu wpajana od dziecka  poprzez historie o dawnych szalonych magach, wojnach gdzie magia siała zniszczenia na ludności cywilnej i zostawiała po sobie jedynie pogorzeliska. Athkatlra jest rządzona przez Konklawe  radę sześciu czarodziejów którzy sprawują całą władzę w Amn i też nad tym kto może władać magią  , Samir uważał że skoncentrowana władza nad magią to mniejsze zło ….. do czasu  dududdu duuuuuu.</p><p> \nGdy miał 20 lat zaciągnął  się do armii. Został przydzielony do straży portowej. Następne 20 lat służył jako służba celna towarów  i statków wprowadzanych do portu. Życie było dobre spokojne, mimo że nie miał żony (bo żadna go nie chciała ) dorobił się ładnego domu i żył szczęśliwie . Lecz pewnego dnia na małym statku do portu przybyła grupa poszukiwaczy przygód (w drużynie było 2 magów), nie chcieli poddać się kontroli celnej  gdy statek Samira i jego kompanów przypłynęli na rutynową kontrolę, doszło do sprzeczki (Samir ja zainicjował  poprzez żarty o magiach) ,chwilę potem statek Samira wraz z jego kompanami został roztrzaskany na kawałki za pomocą salwy kul ognia.</p><p> Samir ocalał jako jedyny, magowie zostali złapani i stanęli przed sądem wraz z Samirem jako świadkiem, sędzią był jeden z członków Konklawe, z uwagi na to jaką silną magią posługiwali i potencjalnie stanowili siłę  do wykorzystania w machinacjach Konklawe poszukiwacze przygód zostali uniewinnieni i wcieleni do służb  konklawe. Samir nie wytrzymał i poleciał wiązanką po sędzi który od razu kazał go aresztować i skazał go na ukamieniowanie.</p><p> Samir wiedząc co go czeka wyskoczył przez okno  sądu (do dziś kuleje na prawą nogę) i zbiegł  zabierając swój przybytek i ukrywając się przed Konklawe. Zbiegł z miasta, potem usłyszał od żebraków że  matka została ukamieniowana w zamian za niego. Wiedząc że wracając do miasta czeka go śmierć  pojechał do baldurs gate i wsiadł na pierwszy statek prowadzący na zachód wydając prawie wszystkie swoje oszczędności. Poprzysiągł że na nowym kontynencie zdobędzie fundusze, umiejętności  i uzbrojenie wystarczające aby móc wrócić i dokonać zemsty.</p>\n <p> Wiek: 40, wzrost: 175 cm, waga: 120 kg, oczy: czarne, skóra: murzyn pustynny, włosy: czarne.</p>  </div>\n</div>\n"
+}

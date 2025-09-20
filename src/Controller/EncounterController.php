@@ -7,14 +7,13 @@ namespace App\Controller;
 use App\Encounter\Encounter;
 use App\Encounter\EncounterCache;
 use App\Encounter\EncounterParticipantFactory;
-use App\Monster\Entity\Monster;
+use App\MonsterManual\Infrastructure\Persistance\Entity\Monster;
 use App\Service\EntityService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
-
 use function base64_decode;
 
 class EncounterController extends AbstractController

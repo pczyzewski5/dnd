@@ -7,9 +7,9 @@
         width: inherit;
         height: inherit;
     }
+
     #ability-skills-container {
-    {{ backgroundColor() }}
-        width: 135px;
+    {{ backgroundColor() }} width: 135px;
         height: 336px;
         font-size: 10px;
         display: flex;
@@ -19,22 +19,27 @@
         left: 15px;
         top: 12px;
     }
+
     .ability-skill {
         display: flex;
         flex-wrap: wrap;
     }
+
     .ability-skill div {
         display: flex;
-        align-items:center;
-        justify-content:center;
+        align-items: center;
+        justify-content: center;
 
     }
+
     .ability-skill div:nth-child(1) {
     {{ backgroundColor() }}
     }
+
     .ability-skill div:nth-child(2) {
     {{ backgroundColor() }}
     }
+
     .ability-skill div:nth-child(3) {
     {{ backgroundColor() }}
     }
@@ -46,8 +51,16 @@
             {% for abilitySkill in abilitySkills %}
                 <div class="ability-skill">
                     <div>{{ printMode ? false|dot : abilitySkill.hasProficiency|dot }}</div>
-                    <div class="opaque">&nbsp;&nbsp;{{ printMode ? '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : abilitySkill.value|value }}&nbsp;&nbsp;</div>
-                    <div>{{ abilitySkill.enum.value|trans }} ({{ abilitySkill.enum.getAbilityEnum().value|trans }})</div>
+                    <div class="opaque">
+                        &nbsp;&nbsp;{{ printMode ? '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : abilitySkill.value|value }}&nbsp;&nbsp;
+                    </div>
+                    <div>{{ abilitySkill.enum.value|trans }}
+                        {% if abilitySkill.enum.value is same as 'intimidation' %}
+                            (str | cha)
+                        {% else %}
+                            ({{ abilityService.getAbilityForAbilitySkill(abilitySkill.enum).value|trans }})
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         </div>

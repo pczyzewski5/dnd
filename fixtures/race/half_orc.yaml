@@ -1,0 +1,28 @@
+parameters:
+  half_orc_config:
+    '{
+         "asi": [
+             {
+                 "ability": "str",
+                 "value": 2
+             },
+             {
+                 "ability": "con",
+                 "value": 1
+             }
+         ],
+         "languages": ["common", "orc"],
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18
+    }'
+
+App\Entity\Race:
+  race_half_orc:
+    __construct:
+      - half orc
+      - <{half_orc_config}>
+      - [
+        '@skill_relentless_endurance',
+        '@skill_savage_attacks',
+        '@skill_menacing'
+      ]

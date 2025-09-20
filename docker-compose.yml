@@ -19,8 +19,10 @@ services:
     build: ./docker/php
     expose:
       - 9000
+      - 9003
     volumes:
       - .:/var/www
+      - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     links:
       - mysql
     working_dir: /var/www

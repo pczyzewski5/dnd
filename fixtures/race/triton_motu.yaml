@@ -1,0 +1,23 @@
+parameters:
+  triton_motu_config:
+    '{
+         "speed_in_meters": 9,
+         "darkvision_in_meters": 18,
+         "languages": ["common"]
+    }'
+
+App\Entity\Race:
+  race_triton_motu:
+    __construct:
+      - "triton motu"
+      - <{triton_motu_config}>
+      - [
+        '@skill_amphibious',
+        '@skill_control_air_and_water',
+        '@skill_emissary_of_the_sea',
+        '@skill_guardian_of_the_depths'
+      ]
+      - [
+        '@requirement_triton_motu_race_asi',
+        '@requirement_triton_motu_race_extra_language'
+      ]

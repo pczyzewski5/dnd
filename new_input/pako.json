@@ -1,0 +1,51 @@
+{
+  "character_name": "Pako",
+  "player_name": "Bartek N",
+  "campaign_name": "Ghosts of Saltmarsh",
+  "origin": "outlander",
+  "race": "half orc",
+  "alignment": "lawful neutral",
+  "levels": [
+    {
+      "level": 1,
+      "class": "blood hunter",
+      "proficiencies": [
+        {
+          "name": "acrobatics",
+          "source": "character class"
+        },
+        {
+          "name": "investigation",
+          "source": "character class"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "ability": "str",
+      "value": 15
+    },
+    {
+      "ability": "dex",
+      "value": 12
+    },
+    {
+      "ability": "con",
+      "value": 13
+    },
+    {
+      "ability": "int",
+      "value": 14
+    },
+    {
+      "ability": "wis",
+      "value": 10
+    },
+    {
+      "ability": "cha",
+      "value": 8
+    }
+  ],
+  "meta": "<div>\n  <h3>Tło fabularne </h3>\n  <div>\n    <p>Urodziłem się ze związku kobiety i orka, a więc jestem półorkiem. Ojciec – wojownik, którego imienia nawet nie poznałem – opuścił wioskę zaraz po moim narodzeniu. Matka, ludzka zielarka, nie chciała wychowywać mnie sama wśród nieufnych i porywczych orków. Zostawiła mnie więc pod opieką starszej kobiety z wioski – samotnej wdowy o dobrym sercu. To ona dała mi dach nad głową i talerz strawy, choć nigdy nie mogła zastąpić rodziców.\nMoje dzieciństwo naznaczyła samotność. Inne dzieci trzymały się ode mnie z daleka – byłem „dziwakiem”, którego spojrzenie zbyt długo zatrzymywało się na martwych ptakach czy lisach leżących w lesie. Fascynowało mnie to, co kryje się po drugiej stronie życia. Bawiłem się martwymi stworzeniami, później zacząłem badać je dokładniej – kroić, zaglądać do wnętrza, obserwować, jak ciało zmienia się w czasie. Dla innych byłem odrażający. Dla mnie – był to pierwszy krok do zrozumienia tajemnicy istnienia.\nGdy moja opiekunka zmarła, poczułem coś pomiędzy żalem a ciekawością. Zamiast opłakiwać ją jak reszta wioski, spróbowałem zrozumieć, czym naprawdę jest śmierć. Zacząłem badać jej ciało – i to był mój błąd. Zostałem przyłapany. Wściekłość i strach wioski zwróciły się przeciwko mnie. Kamienie, krzyki, groźby… musiałem uciekać, inaczej skończyłbym powieszony.\n</p>\n<p>\nTo wtedy pojawił się nieznajomy – mężczyzna o bliznach na twarzy i krwi płonącej od alchemicznych mikstur. Ocalił mnie, a później zdradził, kim jest Bloodhunterem z Zakonu Likantropa, śledzący mnie w ukryciu od lat. Widział w mojej obsesji nad śmiercią coś, co inni uznali za szaleństwo – zalążek siły, którą można ukształtować. Zabrał mnie i poddał surowemu szkoleniu.\nTak rozpoczęła się moja nowa droga. Nauczyłem się, jak ujarzmić własną krew, by stała się bronią. Poznałem rytuały i klątwy, które pozwalają walczyć z tym, czego zwykli ludzie się lękają. Każda rana, którą odniosłem, była lekcją. Każda ofiara – materiałem do badań.\nTeraz, gdy ukończyłem podstawowe szkolenie, podróżuję przez świat. Tropię rzadkie potwory, by zbadać i wykorzystać ich szczątki. Z krwi i kości tworzę eliksiry, z trucizn – lekarstwa, a z kości – narzędzia do rytuałów. To, co dla innych jest ohydne, dla mnie jest wiedzą i mocą.\nMoim największym marzeniem jest zmierzyć się z legendą – Krakenem, uosobieniem tajemnicy głębin. Nie dla chwały, lecz dla zrozumienia – czym naprawdę jest taki byt i jakie sekrety kryje jego ciało.\n</p>\n<ul>\n<li>Obsesyjna ciekawość – nie potrafi odwrócić wzroku od śmierci, rozkładu i potworów; musi wiedzieć „jak to działa”.</li>\n<li>Chłodny i zdystansowany – trudno mu okazywać emocje, zamiast tego analizuje i obserwuje.</li>\n<li>Pragmatyczny – nie cofa się przed użyciem metod, które inni uważają za odrażające.</li>\n<li>Skryty – niechętnie mówi o swojej przeszłości, woli, by ludzie oceniali go po czynach.</li>\n</ul>\n<p>\nWyznawane bóstwo:\nPako składa modły Kelemvorowi, Władcy Umarłych, wierząc, że to on kierował jego losem od dzieciństwa. W śmierci nie widzi tragedii, lecz naturalny proces, który można badać i rozumieć.\n</p>\n<p>Cel:</p>\n<ul>\n<li>Zrozumieć istotę życia i śmierci poprzez badania nad potworami.</li>\n<li>Zdobyć potęgę i wiedzę, aby zmierzyć się z Krakenem.</li>\n<li>Udowodnić, że to, co inni uznają za „szaleństwo”, jest ścieżką do prawdy.</li>\n</ul>\n  </div>\n</div>\n"
+}

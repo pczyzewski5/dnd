@@ -8,10 +8,11 @@ use App\Entity\User;
 use App\Form\CalendarAnswerForm;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Uid\Uuid;
 
 class AnswerCalendarFormDataTransformer implements DataTransformerInterface
 {
-    private string $loggedUserId;
+    private Uuid $loggedUserId;
 
     public function __construct(TokenStorageInterface $tokenStorage)
     {
@@ -21,7 +22,8 @@ class AnswerCalendarFormDataTransformer implements DataTransformerInterface
     public function transform(mixed $value): ?array
     {
         foreach ($value[CalendarAnswerForm::CALENDAR_PARTICIPANTS] as $participant) {
-           if ($participant['id'] === $this->loggedUserId) {
+           $participantId = Uuid::fromBinary($participant['id']);
+            if ($participantId->equals($this->loggedUserId)) {
                if (null !== $participant['will_attend']) {
                    $value[CalendarAnswerForm::WILL_ATTEND_FIELD] = \json_encode($participant['will_attend']);
                }

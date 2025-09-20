@@ -38,7 +38,8 @@ class CharacterConfigDtoMapper extends AbstractMapper
             ),
             $this->abilityConfigDtoMapper->manyFromArray(
                 $this->getArray($data, 'abilities')
-            )
+            ),
+            $this->getValueOrNull($data, 'meta'),
         );
 
         $this->validate($dto);

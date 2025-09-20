@@ -23,7 +23,6 @@ class AbilityConfigDto
 
     #[Assert\NotBlank]
     #[Assert\Type('integer')]
-    #[Assert\Range(min: 1, max: 20)]
     public readonly mixed $value;
 
     public function __construct(

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\ItemCard\Exception;
 
-use App\DND\Exception\ValidationException;
 
-class ItemCardNotFoundException extends ValidationException
+
+class ItemCardNotFoundException
 {
     public static function notFound(string $id): self
     {

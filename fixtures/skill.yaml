@@ -1,4 +1,22 @@
 parameters:
+  magical_tinkering_desc:
+    '<b>Magiczne majsterkowanie</b> - nauczyłeś się, jak tchnąć iskrę magii w zwyczajne przedmioty.
+    Aby użyć tej zdolności, musisz mieć w ręku narzędzia złodziejskie albo rzemieślnicze.
+    Następnie dotykasz Małego niemagicznego przedmiotu w ramach akcji i nadajesz mu jedną z poniższych właściwości magicznych:
+    <ul>
+    <li>przedmiot emituje jasne światło w promieniu 1 hex i przyćmione światło na następnym hexie,</li>
+    <li>gdy stworzenie stuknie w przedmiot, emituje on nagraną wiadomość słyszalną w promieniu 2 hex,
+    wypowiadasz tę wiadomość, kiedy nadajesz przedmiotowi tę właściwość, a nagranie może mieć maksymalnie 6 sekund,</li>
+    <li>przedmiot nieustannie emituje wybrany przez ciebie zapach lub bezsłowny dźwięk (wiatr, fale, ćwierkanie itp),
+    wybrane zjawisko jest dostrzegalne w promieniu 2 hex,</li>
+    <li>na jednej z powierzchni przedmiotu pojawia się statyczny efekt wizualny, może to być obraz,
+     do 25 słów tekstu, linie i kształty, albo mieszanka tych elementów.</li>
+    </ul>
+    Wybrana właściwość trwa w nieskończoność. W ramach akcji możesz dotknąć przedmiotu i zakończyć właściwość wcześniej.
+    Możesz nadać tę magię wielu przedmiotom, dotykając po jednym przy każdym użyciu tej cechy,
+    choć pojedynczy przedmiot może mieć tylko jedną właściwość naraz. Maksymalna liczba przedmiotów,
+    które możesz utrzymywać naraz, równa się twojemu modyfikatorowi Inteligencji.
+    Jeśli spróbujesz przekroczyć maksymalny limit, najstarsza właściwość natychmiast znika, a nowa zostaje nałożona.'
   extra_attack_desc:
     '<b>Dodatkowy atak</b> - zyskujesz dodatkowy atak.'
   acid_breath_desc:
@@ -203,6 +221,12 @@ parameters:
     masz ułatwienie w rzutach obronnych na kondycję koniecznych do utrzymania koncentracji
     na zaklęciu,</li><li>jesteś w stanie zapewnić komponent somatyczny do czaru,
     nawet jeśli trzymasz broń lub tarczę w jednej lub obu rękach.</li></ul>'
+  feat_polearm_master_desc:
+    '<b>Mistrz broni drzewcowej</b> - gdy dzierżysz halabardę, glewię, pikę, włócznię lub laską bojową, zyskujesz następujące umiejętności:
+    <ul><li>po wykonaniu akcji ataku, możesz użyć akcji dodatkowej, aby wykonać atak wręcz
+    drugim końcem broni. Ten atak używa tego samego modyfikatora cechy, co główny atak. 
+    Kość obrażeń dla tego ataku to k4 (obuchowe),</li><li>gdy przeciwnik wejdzie w zasięg twojej broni,
+    to możesz wykonać przeciwko niemu atak okazyjny.</li></ul>'
   feinting_attack_desc:
     '<b>Finta</b> - możesz wydać jedną kość przewagi w ramach akcji dodatkowej
     w swojej turze, by wykonać fintę, markując atak na wybranego przeciwnika znajdującego
@@ -216,7 +240,7 @@ parameters:
   fey_ancestry_desc:
     '<b>Rodowód Fey</b> - masz ułatwienie w rzutach obronnych przeciw zauroczeniu
     i magia nie może cię uśpić.'
-  fighting_style_protection_desc:
+  protection_fighting_style_desc:
     '<b>Defensywny styl walki</b> - gdy nosisz pancerz, zyskujesz +1 do KP.'
   font_of_magic_desc:
     '<b>Punkty zaklinania</b> - posiadasz 10 punktów zaklinania,
@@ -383,7 +407,7 @@ parameters:
     trafieniu dodajesz kość przewagi do rzutu na obrażenia.'
   second_wind_desc:
     '<b>Drugi oddech</b> - w ramach akcji dodatkowej możesz odzyskać PW w
-    liczbie równej 1k10+{{ bonus_hp }}, zdolność odnawia się po krótkim odpoczynku.'
+    liczbie równej 1k10+{{ level }}, zdolność odnawia się po krótkim odpoczynku.'
   shove_desc:
     '<b>Odepchnięcie / powalenie (PHB 195)</b> - <ul><li>w ramach akcji
     ataku, albo jako jeden z ataków jeśli posiadasz ich parę - możesz odepchnąć
@@ -568,7 +592,116 @@ parameters:
     '<b>fof</b> - fill me.'
   mask_of_the_wild_desc:
     '<b>motw</b> - fill me.'
+  sea_elf_weapon_training_desc:
+    '<b>Szkolenie bojowe morskich elfów</b> - masz biegłość we władaniu włócznią,
+    trójzębem, lekką kuszą oraz siecią.'
+  child_of_the_sea_desc:
+    '<b>Dziecko morza</b> - twoja szybkość pływania wynosi 6 hex,
+    możesz oddychać zarówno w wodzie jak i na powierzchni, zyskujesz odporność na zimno.'
+  friend_of_the_sea_desc:
+    '<b>Przyjaciel morza</b> - możesz komunikować proste wiadomości stworzeniom,
+     które posiadają wrodzoną szybkość pływania, lecz sam tych stworzeń nie rozumiesz.'
+  wrath_of_the_storm_desc:
+    '<b>Gniew Burzy</b> - kiedy stworzenie w odległości 1 hex, które widzisz, 
+    zada ci obrażenia atakiem, możesz użyć swojej reakcji, aby zmusić je do 
+    rzutu obronnego na zręczność. W razie porażki otrzymuje 2k8 obrażeń od 
+    błyskawic lub grzmotu (twój wybór), w razie sukcesu połowę. 
+    Ilość użyć: {{ count }}. Wszystkie użycia odnawiają się po długim odpoczynku.'
+  amphibious_desc:
+    '<b>Amfibia</b> – możesz oddychać na powietrzu jak i w wodzie.'
+  control_air_and_water_desc:
+    '<b>Kontrola powietrza i wody</b> – raz na długi odpoczynek możesz za darmo rzucić jeden z nastepujących czarów:
+      <ul><li>Mglista Chmura,</li>
+      <li>od 3. poziomu Podmuch Wiatru,</li>
+      <li>od 5. poziomu Chodzenie po Wodzie,</li></ul> 
+      Możesz użyć również odpowiedniej komórki czarów, jeśli takową posiadasz. 
+      Przy wyborze tej rasy określ, czy twoją cechą czarowania jest inteligencja, mądrość czy charyzma.'
+  emissary_of_the_sea_desc:
+    '<b>Poseł morza</b> – możesz komunikować proste wiadomości stworzeniom,
+    które posiadają wrodzoną szybkość pływania, lecz sam tych stworzeń nie rozumiesz.'
+  guardian_of_the_depths_desc:
+    '<b>Strażnik głębin</b> – posiadasz odporność na obrażenia od zimna.'
+  menacing_desc:
+    '<b>Groźny</b> - zyskujesz biegłość w zastraszaniu.'
+  relentless_endurance_desc:
+    '<b>Nieustępliwa wytrwałość</b> - gdy twoje punkty życia zostaną zredukowane do 0, ale nie zostaniesz zabity natychmiast, możesz zamiast tego spaść do 1 punktu życia. Nie możesz użyć tej cechy ponownie, dopóki nie zakończysz długiego odpoczynku.'
+  savage_attacks_desc:
+    '<b>Dziki atak</b> - gdy trafisz krytycznie atakiem bronią do walki wręcz, możesz rzucić jedną z kości obrażeń tej broni jeszcze raz i dodać wynik do dodatkowych obrażeń trafienia krytycznego.'
+  hunters_bane_desc:
+    '<b>Przekleństwo łowcy</b> - masz przewagę w testach mądrości (sztuka przetrwania), aby tropić istoty typu: fey, fiends oraz nieumarłych, jak również w testach inteligencji przy przypominaniu sobie informacji o nich.</br> Jeśli aktywnie tropisz jeden z tych typów stworzeń, nie możesz zostać zaskoczony przez żadne z nich. Możesz tropić tylko jeden typ istot naraz.'
+  crimson_rite_desc:
+    '<b>Ryt burzy</b> - jako akcja dodatkowa możesz nasycić jedną broń energią błyskawic,
+    efekt trwa aż do końca następnego krótkiego lub długiego odpoczynku. Gdy ryt jest aktywny, ataki tą
+    bronią zadają dodatkowe 1k4 obrażeń od błyskawic. Te obrażenia traktowane są jako magiczne, jeśli broń
+    opuści twoją dłoń, ryt znika natychmiast.</br>
+    Aktywacja rytu powoduje redukcje twoich maksymalnych punkty życia o wartość równą poziomowi postaci.
+    Utracone punkty życia maksymalnego wracają dopiero, gdy ryt wygaśnie i nie mogą
+    być w inny sposób odzyskane. Gdy ryt wygasa, nie odzyskujesz żadnych punktów życia
+    w ramach przywracania wartości maksymalnych.</br>
+    Możesz użyć Rytu Krwi na wielu broniach, ale każde dodatkowe nałożenie kosztuje
+    dodatkową utratę punktów życia.'
 App\Entity\Skill:
+  skill_hunters_bane:
+    __construct:
+      - hunters bane
+      - <{hunters_bane_desc}>
+  skill_crimson_rite:
+    __construct:
+      - crimson rite
+      - <{crimson_rite_desc}>
+  skill_menacing:
+    __construct:
+      - menacing
+      - <{menacing_desc}>
+      - [ '@proficiency_intimidation' ]
+  skill_relentless_endurance:
+    __construct:
+      - relentless endurance
+      - <{relentless_endurance_desc}>
+  skill_savage_attacks:
+    __construct:
+      - savage attacks
+      - <{savage_attacks_desc}>
+  skill_magical_tinkering:
+    __construct:
+      - magical tinkering
+      - <{magical_tinkering_desc}>
+  skill_amphibious:
+    __construct:
+      - amphibious
+      - <{amphibious_desc}>
+  skill_control_air_and_water:
+    __construct:
+      - control air and water
+      - <{control_air_and_water_desc}>
+  skill_emissary_of_the_sea:
+    __construct:
+      - emissary of the sea
+      - <{emissary_of_the_sea_desc}>
+  skill_guardian_of_the_depths:
+    __construct:
+      - guardian of the depths
+      - <{guardian_of_the_depths_desc}>
+  skill_wrath_of_the_storm:
+    __construct:
+      - wrath of the storm
+      - <{wrath_of_the_storm_desc}>
+  skill_sea_elf_weapon_training:
+    __construct:
+      - sea elf weapon training
+      - <{sea_elf_weapon_training_desc}>
+  skill_child_of_the_sea:
+    __construct:
+      - child of the sea
+      - <{child_of_the_sea_desc}>
+  skill_second_wind:
+    __construct:
+      - second wind
+      - <{second_wind_desc}>
+  skill_friend_of_the_sea:
+    __construct:
+      - friend of the sea
+      - <{friend_of_the_sea_desc}>
   skill_fleet_of_foot:
     __construct:
       - fleet of foot
@@ -719,6 +852,10 @@ App\Entity\Skill:
     __construct:
       - archery fighting style
       - <{archery_fighting_style_desc}>
+  skill_protection_fighting_style:
+    __construct:
+      - protection fighting style
+      - <{protection_fighting_style_desc}>
   skill_combat_wild_shape:
     __construct:
       - combat wild shape
@@ -795,6 +932,10 @@ App\Entity\Skill:
     __construct:
       - feat war caster
       - <{feat_war_caster_desc}>
+  feat_polearm_master:
+    __construct:
+      - feat polearm master
+      - <{feat_polearm_master_desc}>
   skill_keen_senses:
     __construct:
       - keen senses

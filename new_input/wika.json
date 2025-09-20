@@ -1,0 +1,73 @@
+{
+  "character_name": "Goldie",
+  "player_name": "Wika",
+  "campaign_name": "Ghosts of Saltmarsh",
+  "origin": "guild artisan",
+  "race": "triton motu",
+  "alignment": "chaotic neutral",
+  "levels": [
+    {
+      "level": 1,
+      "class": "artificer",
+      "proficiencies": [
+        {
+          "name": "cartographers tools",
+          "source": "character class"
+        },
+        {
+          "name": "nature",
+          "source": "character class"
+        },
+        {
+          "name": "sleight of hands",
+          "source": "character class"
+        }
+      ],
+      "asi": [
+        {
+          "ability": "int",
+          "value": 2,
+          "source": "triton motu race"
+        },
+        {
+          "ability": "con",
+          "value": 1,
+          "source": "triton motu race"
+        }
+      ],
+      "languages": [
+        {
+          "name": "primordial",
+          "source": "triton motu race"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "ability": "str",
+      "value": 8
+    },
+    {
+      "ability": "dex",
+      "value": 13
+    },
+    {
+      "ability": "con",
+      "value": 15
+    },
+    {
+      "ability": "int",
+      "value": 14
+    },
+    {
+      "ability": "wis",
+      "value": 12
+    },
+    {
+      "ability": "cha",
+      "value": 10
+    }
+  ],
+  "meta": "<div>\n  <h3>Tło fabularne </h3>\n  <div>\n    <p>Goldie przyszła na świat jako córka władcy podmorskiego królestwa. Jej spokojne dzieciństwo brutalnie przerwał atak wodnego potwora, dzikiego, nieokiełznanego tworu natury. W chaosie i zniszczeniu jej opiekunce resztkami sił udało się ukryć ją w jaskini na powierzchni. \nTam znalazł ją starszy naukowiec. Wynalazca, który zafascynowany rzadkim stworzeniem, zabrał przestraszoną i straumatyzowaną dziewczynkę do siebie. Początkowo traktował ją jak okaz do badań: testował, obserwował. Z czasem jednak zaczął dostrzegać w niej coś więcej, potencjał. Można nawet powiedzieć, że obdarzył ją cieniem troski. Uczył ją, dzielił się swoją wiedzą i opieką. Ona chłonęła wszystko – przerosła mistrza.\nDorastała w cieniu ludzi, w których wzbudzała lęk. Ukrywała swoją naturę, zakrywała płetwy, uszy, swoje kompleksy, ale nie dało się tego tłumić wiecznie. Gdy była już dorosła, postanowiła odejść. Tego dnia coś się w niej zmieniło, gotowa pokazać światu do czego jest zdolna, nie pamiętając skąd pochodzi ani nie wiedząc dokąd zmierza, odeszła z jedynego bezpiecznego miejsca które znała. Zostawiając za sobą jedynie list i skrycie dumnego opiekuna którego mogłaby nazwać ojcem.</p>  </div>\n</div>\n"
+}

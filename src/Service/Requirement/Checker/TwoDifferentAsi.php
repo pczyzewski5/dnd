@@ -30,8 +30,9 @@ class TwoDifferentAsi extends AbstractChecker
         );
 
         $errorMsg = sprintf(
-            '%s require to increase two different abilities by one point.',
-            ucfirst($source)
+            '%s require to increase two different abilities by one point at %s level.',
+            ucfirst($source),
+            $level
         );
 
         count($asi) === 2 || throw RequirementException::requirementNotMet($errorMsg);

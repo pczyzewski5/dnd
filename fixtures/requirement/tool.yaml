@@ -1,0 +1,13 @@
+parameters:
+  requirement_one_artisan_tool_config:
+    '{
+         "source": "character class",
+         "required_count": 1,
+         "level": 1
+    }'
+
+App\Entity\Requirement:
+  requirement_one_artisan_tool:
+    __construct:
+      - one artisan tool
+      - <{requirement_one_artisan_tool_config}>

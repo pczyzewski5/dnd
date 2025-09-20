@@ -1,0 +1,6 @@
+App\Entity\Level:
+  level_1_artificer:
+    __construct:
+      - 1
+      - '@character_class_artificer'
+      - [ '@skill_magical_tinkering' ]

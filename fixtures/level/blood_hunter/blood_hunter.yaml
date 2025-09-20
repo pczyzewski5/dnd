@@ -1,0 +1,6 @@
+App\Entity\Level:
+  level_1_blood_hunter:
+    __construct:
+      - 1
+      - '@character_class_blood_hunter'
+      - [ '@skill_hunters_bane', '@skill_crimson_rite' ]

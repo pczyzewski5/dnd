@@ -4,30 +4,43 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Calendar\CalendarHelper;
-use App\Calendar\Command\CreateCalendar;
-use App\Calendar\Command\CreateCalendarHandler;
-use App\Calendar\Command\CreateCalendarParticipants;
-use App\Calendar\Command\CreateCalendarParticipantsHandler;
-use App\Calendar\Command\DeleteCalendar;
-use App\Calendar\Command\GetDatesForCalendar;
-use App\Calendar\Command\GetDatesForCalendarHandler;
-use App\Calendar\Command\UpdateCalendarParticipantResponse;
-use App\Calendar\Query\GetCalendarHelper;
-use App\Calendar\Query\GetCalendarsForUser;
-use App\Calendar\Query\GetCalendarsForUserHandler;
+use App\Calendar\Application\Command\CreateCalendar;
+use App\Calendar\Application\Command\CreateCalendarParticipants;
+use App\Calendar\Application\Command\DeleteCalendar;
+use App\Calendar\Application\Command\GetDatesForCalendar;
+use App\Calendar\Application\Command\UpdateCalendarParticipantResponse;
+use App\Calendar\Application\Handler\CreateCalendarHandler;
+use App\Calendar\Application\Handler\CreateCalendarParticipantsHandler;
+use App\Calendar\Application\Handler\DeleteCalendarHandler;
+use App\Calendar\Application\Handler\GetCalendarHelperHandler;
+use App\Calendar\Application\Handler\GetCalendarsForUserHandler;
+use App\Calendar\Application\Handler\GetDatesForCalendarHandler;
+use App\Calendar\Application\Handler\UpdateCalendarParticipantResponseHandler;
+use App\Calendar\Application\Query\GetCalendarHelper;
+use App\Calendar\Application\Query\GetCalendarsForUser;
 use App\Entity\User;
 use App\Form\CalendarAnswerForm;
 use App\Form\CreateCalendarForm;
+use App\User\Handler\GetUsersHandler;
 use App\User\Query\GetUsers;
-use App\User\Query\GetUsersHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 class CalendarController extends AbstractController
 {
+    public function __construct(
+        private readonly GetCalendarHelperHandler $getCalendarHelperHandler,
+        private readonly UpdateCalendarParticipantResponseHandler $updateCalendarParticipantResponseHandler,
+        private readonly GetDatesForCalendarHandler $getDatesForCalendarHandler,
+        private readonly GetCalendarsForUserHandler $getCalendarsForUserHandler,
+        private readonly DeleteCalendarHandler $deleteCalendarHandler,
+    )
+    {
+    }
+
     #[Route('/calendar/create', 'calendar_create', methods: [Request::METHOD_GET, Request::METHOD_POST])]
     public function create(
         Request $request,
@@ -82,9 +95,8 @@ class CalendarController extends AbstractController
 
     public function answer(Request $request): Response
     {
-        $calendarId = $request->get('id');
-        /** @var CalendarHelper $calendarHelper */
-        $calendarHelper = $this->queryBus->handle(
+        $calendarId = Uuid::fromString($request->get('id'));
+        $calendarHelper = $this->getCalendarHelperHandler->__invoke(
             new GetCalendarHelper($calendarId)
         );
 
@@ -94,7 +106,7 @@ class CalendarController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->commandBus->handle(
+            $this->updateCalendarParticipantResponseHandler->handle(
                 new UpdateCalendarParticipantResponse(
                     $calendarId,
                     $this->getUser()->getId(),
@@ -107,7 +119,7 @@ class CalendarController extends AbstractController
             return $this->redirectToRoute('calendar_answer', ['id' => $calendarId]);
         }
 
-        $datesForCalendar = $this->commandBus->handle(
+        $datesForCalendar = $this->getDatesForCalendarHandler->handle(
             new GetDatesForCalendar(
                 $calendarHelper->getCalendar()
             )
@@ -124,7 +136,7 @@ class CalendarController extends AbstractController
     public function list(GetCalendarsForUserHandler $getCalendarsForUserHandler): Response
     {
         return $this->render('calendar/list.html.twig', [
-            'calendars' => $getCalendarsForUserHandler->handle(
+            'calendars' => $this->getCalendarsForUserHandler->handle(
                 new GetCalendarsForUser($this->getUser())
             )
         ]);
@@ -132,7 +144,7 @@ class CalendarController extends AbstractController
 
     public function delete(Request $request): Response
     {
-        $this->commandBus->handle(
+        $this->deleteCalendarHandler->handle(
             new DeleteCalendar(
                 $request->get('id')
             )

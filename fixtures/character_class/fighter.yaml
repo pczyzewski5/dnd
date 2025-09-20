@@ -1,0 +1,15 @@
+App\Entity\CharacterClass:
+  character_class_fighter:
+    __construct:
+      - 10
+      - fighter
+      - ~
+      - [
+        '@proficiency_all_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_martial_weapons',
+        '@proficiency_strength',
+        '@proficiency_constitution'
+      ]
+      - [ '@requirement_fighter_character_class_proficiency' ]

@@ -2,7 +2,6 @@ security:
     enable_authenticator_manager: true
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-
     providers:
         user_provider:
             id: App\Service\UserService
@@ -10,30 +9,23 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
             lazy: true
             provider: user_provider
-            remember_me: true
             form_login:
                 use_referer: true
                 login_path: login
                 check_path: login
             logout:
                 path: logout
-
-        secured_area:
-            form_login:
-                enable_csrf: true
-
     role_hierarchy:
         ROLE_ADMIN: ROLE_DM
         ROLE_DM: ROLE_PLAYER
         ROLE_PLAYER: ROLE_USER
-
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/underDev, roles: PUBLIC_ACCESS }
         - { path: ^/dm, roles: ROLE_DM }
         - { path: ^/player, roles: ROLE_PLAYER }
         - { path: ^/calendar, roles: ROLE_PLAYER }

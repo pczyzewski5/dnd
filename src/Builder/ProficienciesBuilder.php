@@ -7,6 +7,7 @@ namespace App\Builder;
 use App\Character\Proficiencies;
 use App\Character\Skills;
 use App\Dto\ProficiencyDto;
+use App\Entity\Level;
 use App\Entity\Origin;
 
 use App\Repository\ProficiencyRepository;
@@ -60,13 +61,16 @@ class ProficienciesBuilder
         return new Proficiencies(
             array_merge(
                 $this->getProficienciesFromLevelConfigs($this->levelConfigs),
-//                $this->getProficienciesFromLevels($this->levels),
+                $this->getProficienciesFromLevels($this->levels),
                 $this->getProficienciesFromOrigin($this->origin),
                 $this->getProficienciesFromSkills($this->skills),
             )
         );
     }
 
+    /**
+     * It takes proficiencies from json level config.
+     */
     private function getProficienciesFromLevelConfigs(array $levelConfigs): array
     {
         $result = [];
@@ -86,9 +90,10 @@ class ProficienciesBuilder
     {
         $proficiencies = [];
 
+        /** @var Level $level */
         foreach ($levels as $level) {
             $proficiencies = array_merge(
-                $level->getProficiencies()->toArray(),
+                $level->getCharacterClass()->gerProficiencies()->toArray(),
                 $proficiencies
             );
         }

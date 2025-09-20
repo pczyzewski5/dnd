@@ -1,0 +1,6 @@
+App\Entity\Level:
+  level_1_fighter:
+    __construct:
+      - 1
+      - '@character_class_fighter'
+      - [ '@skill_second_wind' ]

@@ -16,9 +16,8 @@ class RequirementProcessorService
 
     public function process(CharacterConfigDto $dto): void
     {
-        $this->requirementChecker->check(
-            $this->requirementExtractor->extract($dto),
-            $dto
-        );
+        $requirements = $this->requirementExtractor->extract($dto);
+
+        $this->requirementChecker->check($requirements, $dto);
     }
 }

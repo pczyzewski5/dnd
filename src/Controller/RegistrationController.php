@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\Exception\UserAlreadyExistsException;
 use App\Form\RegisterUserForm;
 use App\User\Command\RegisterUser;
-use App\User\Command\RegisterUserHandler;
+use App\User\Handler\RegisterUserHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

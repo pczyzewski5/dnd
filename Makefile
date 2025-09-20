@@ -50,6 +50,14 @@ init-test-db:
 	docker-compose exec php ./bin/console doctrine:cache:clear-metadata --env=test
 	docker-compose exec php ./bin/console doctrine:migrations:migrate -n --env=test
 
+tail-mysql-logs:
+	docker exec -it dnd-mysql mysql -u root -proot -e 'SET GLOBAL general_log_file = "/var/lib/mysql/general_log.log";'
+	docker exec -it dnd-mysql mysql -u root -proot -e 'SET GLOBAL general_log = "ON";'
+	docker exec -it dnd-mysql tail -f /var/lib/mysql/general_log.log
+
+fixtures-dev:
+	docker exec -it dnd-mysql bin/console hautelook:fixtures:load -e dev -n -vvv
+
 ##################################################################################################################
 # MIGRATION
 ##################################################################################################################

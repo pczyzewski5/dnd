@@ -15,9 +15,8 @@ abstract class AbstractSkillFinisher
 {
     protected Abilities $abilities;
     protected int $proficiencyBonus;
-
+    protected array $levels;
     private array $skillIndex;
-    private array $levels;
 
     abstract public function supports(Skill $skill): bool;
 

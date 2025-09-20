@@ -7,6 +7,14 @@ App\Entity\Proficiency:
     __construct:
       - medium armors
       - armor
+  proficiency_heavy_armors:
+    __construct:
+      - heavy armors
+      - armor
+  proficiency_all_armors:
+    __construct:
+      - all armors
+      - armor
   proficiency_shields:
     __construct:
       - shields

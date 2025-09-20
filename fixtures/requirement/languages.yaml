@@ -1,4 +1,10 @@
 parameters:
+  requirement_triton_motu_race_extra_language_config:
+    '{
+         "source": "triton motu race",
+         "required_count": 1,
+         "level": 1
+    }'
   requirement_high_elf_race_extra_language_config:
     '{
          "source": "high elf race",
@@ -8,6 +14,12 @@ parameters:
   requirement_human_race_extra_language_config:
     '{
          "source": "human race",
+         "required_count": 1,
+         "level": 1
+    }'
+  requirement_human_variant_race_extra_language_config:
+    '{
+         "source": "human variant race",
          "required_count": 1,
          "level": 1
     }'
@@ -25,6 +37,10 @@ parameters:
     }'
 
 App\Entity\Requirement:
+  requirement_triton_motu_race_extra_language:
+    __construct:
+      - language
+      - <{requirement_triton_motu_race_extra_language_config}>
   requirement_high_elf_race_extra_language:
     __construct:
       - language
@@ -33,6 +49,10 @@ App\Entity\Requirement:
     __construct:
       - language
       - <{requirement_human_race_extra_language_config}>
+  requirement_human_variant_race_extra_language:
+    __construct:
+      - language
+      - <{requirement_human_variant_race_extra_language_config}>
   requirement_origin_single_language:
     __construct:
       - language

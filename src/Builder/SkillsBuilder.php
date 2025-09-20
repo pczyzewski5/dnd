@@ -11,8 +11,10 @@ use App\Builder\SkillBuilder\IntimidatingPresence;
 use App\Builder\SkillBuilder\MysticWisdom;
 use App\Builder\SkillBuilder\Rage;
 use App\Builder\SkillBuilder\AbstractSkillFinisher;
+use App\Builder\SkillBuilder\SecondWind;
 use App\Builder\SkillBuilder\SneakAttack;
 use App\Builder\SkillBuilder\TidesOfChaos;
+use App\Builder\SkillBuilder\WrathOfTheStorm;
 use App\Character\Abilities;
 use App\Character\SkillFactory;
 use App\Character\Skills;
@@ -52,7 +54,9 @@ class SkillsBuilder
             new IntimidatingPresence(),
             new FontOfMagic(),
             new MysticWisdom(),
-            new TidesOfChaos()
+            new TidesOfChaos(),
+            new WrathOfTheStorm(),
+            new SecondWind()
         ];
     }
 

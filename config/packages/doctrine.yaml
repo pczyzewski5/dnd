@@ -1,11 +1,11 @@
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        host: '%env(MYSQL_HOST)%'
-        port: '%env(MYSQL_PORT)%'
-        dbname: '%env(MYSQL_DATABASE)%'
-        user: '%env(MYSQL_USER)%'
-        password: '%env(MYSQL_PASSWORD)%'
+        host: '%env(DATABASE_HOST)%'
+        port: '%env(DATABASE_PORT)%'
+        dbname: '%env(DATABASE_NAME)%'
+        user: '%env(DATABASE_USER)%'
+        password: '%env(DATABASE_PASSWORD)%'
         charset: 'UTF8'
         server_version: '8.0'
         options:
@@ -28,4 +28,19 @@ doctrine:
               is_bundle: false
               dir: '%kernel.project_dir%/src/PlayerCharacter/Entity'
               prefix: 'App\PlayerCharacter\Entity'
-              alias: PalyerCharacter
+              alias: PlayerCharacter
+
+            Calendar:
+              type: attribute
+              is_bundle: false
+              dir: '%kernel.project_dir%/src/Calendar/Entity'
+              prefix: 'App\Calendar\Entity'
+              alias: Calendar
+
+#docelowo zmienic na App: i co daje prefix oraz alias
+            Modules:
+              type: attribute
+              is_bundle: false
+              dir: '%kernel.project_dir%/src'
+              prefix: 'App'
+              alias: App

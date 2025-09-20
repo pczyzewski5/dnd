@@ -25,10 +25,11 @@ class Language extends AbstractChecker
         $requiredCount = $this->getConfigValue('required_count');
         $source = $this->getConfigValue('source');
         $level = $this->getConfigValue('level');
+        $level = $this->getLevelConfig($level)->languages;
 
         $count = count(
             array_filter(
-                $this->getLevelConfig($level)->languages,
+                $level,
                 fn (LanguageDto $dto) => $dto->source === $source
             )
         );

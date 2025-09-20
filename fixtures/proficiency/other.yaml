@@ -7,6 +7,14 @@ App\Entity\Proficiency:
     __construct:
       - disguise kit
       - other
+  proficiency_cartographers_tools:
+    __construct:
+      - cartographers tools
+      - other
+  proficiency_alchemist_supplies:
+    __construct:
+      - alchemist supplies
+      - other
   proficiency_herbalism_kit:
     __construct:
       - herbalism kit
@@ -14,6 +22,10 @@ App\Entity\Proficiency:
   proficiency_land_vehicles:
     __construct:
       - land vehicles
+      - other
+  proficiency_water_vehicles:
+    __construct:
+      - water vehicles
       - other
   proficiency_poisoner_kit:
     __construct:

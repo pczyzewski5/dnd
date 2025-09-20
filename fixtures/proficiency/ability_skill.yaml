@@ -63,3 +63,11 @@ App\Entity\Proficiency:
     __construct:
       - survival
       - ability skill
+  proficiency_medicine:
+    __construct:
+      - medicine
+      - ability skill
+  proficiency_sleight_of_hans:
+    __construct:
+      - sleight of hands
+      - ability skill

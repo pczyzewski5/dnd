@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\Type\UploadImageType;
-use App\Monster\Entity\Monster;
-use App\Monster\Entity\MonsterFactory;
+use App\MonsterManual\Infrastructure\Persistance\Entity\Monster;
+use App\MonsterManual\Infrastructure\Persistance\Entity\MonsterFactory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

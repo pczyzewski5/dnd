@@ -1,0 +1,6 @@
+App\Entity\Level:
+  level_1_tempest_domain_cleric:
+    __construct:
+      - 1
+      - '@character_class_tempest_domain_cleric'
+      - [ '@skill_wrath_of_the_storm' ]

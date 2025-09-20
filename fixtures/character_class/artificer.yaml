@@ -1,0 +1,20 @@
+App\Entity\CharacterClass:
+  character_class_artificer:
+    __construct:
+      - 8
+      - artificer
+      - ~
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_thieves_tools',
+        '@proficiency_tinker_tools',
+        '@proficiency_intelligence',
+        '@proficiency_constitution'
+      ]
+      - [
+        '@requirement_artificer_character_class_proficiency',
+        '@requirement_one_artisan_tool'
+      ]

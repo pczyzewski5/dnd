@@ -6,8 +6,10 @@ namespace App\Service\Requirement\Checker;
 
 use App\Dto\ProficiencyDto;
 use App\Entity\Requirement;
+use App\Enum\AbilitySkillEnum;
 use App\Exception\RequirementException;
 
+use App\Service\AbilitySkillService;
 use function array_diff;
 use function array_filter;
 use function count;
@@ -17,25 +19,34 @@ use function ucfirst;
 
 class Proficiency extends AbstractChecker
 {
+    public function __construct(
+        private readonly AbilitySkillService $abilitySkillService,
+    )
+    {
+    }
+
     public function supports(Requirement $requirement): bool
     {
         return 'proficiency' === $requirement->getName();
     }
 
-    public function check(): void {
+    public function check(): void
+    {
         $requiredCount = $this->getConfigValue('required_count');
         $source = $this->getConfigValue('source');
         $level = $this->getConfigValue('level');
         $pool = $this->getConfigValue('pool');
+        $levelConfig = $this->getLevelConfig($level);
 
         $chosen = array_filter(
-            $this->getLevelConfig($level)->proficiencies,
-            fn (ProficiencyDto $dto): bool => $dto->source === $source
+            $levelConfig->proficiencies,
+            fn(ProficiencyDto $dto): bool => $dto->source === $source
         );
         $chosen = array_map(
-            fn (ProficiencyDto $dto) => $dto->name,
+            fn(ProficiencyDto $dto) => $dto->name,
             $chosen
         );
+        $chosen = $this->abilitySkillService->extractAbilitySkills($chosen);
 
         $this->checkCount(
             $source,
@@ -52,9 +63,10 @@ class Proficiency extends AbstractChecker
 
     private function checkCount(
         string $source,
-        int $actualCount,
-        int $requiredCount
-    ): void {
+        int    $actualCount,
+        int    $requiredCount
+    ): void
+    {
         if ($actualCount !== $requiredCount) {
             throw RequirementException::requirementNotMet(
                 sprintf(
@@ -69,9 +81,10 @@ class Proficiency extends AbstractChecker
 
     private function checkChosen(
         string $source,
-        array $chosen,
-        array $pool
-    ): void {
+        array  $chosen,
+        array  $pool
+    ): void
+    {
         if (empty($pool)) {
             return;
         }
@@ -79,7 +92,7 @@ class Proficiency extends AbstractChecker
         if (!empty(array_diff($chosen, $pool))) {
             throw RequirementException::requirementNotMet(
                 sprintf(
-                    'MOVE ME TO CONFIG %s require to pick proficiencies from: %s.',
+                    '%s require to pick proficiencies from: %s.',
                     ucfirst($source),
                     implode(', ', $pool)
                 )

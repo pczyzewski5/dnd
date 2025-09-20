@@ -1,0 +1,17 @@
+hautelook_alice:
+  fixtures_path:
+    - fixtures
+    - fixtures/proficiency
+    - fixtures/requirement
+    - fixtures/race
+    - fixtures/character_class
+    - fixtures/level/barbarian
+    - fixtures/level/druid
+    - fixtures/level/ranger
+    - fixtures/level/rouge
+    - fixtures/level/sorcerer
+    - fixtures/level/cleric
+    - fixtures/level/fighter
+    - fixtures/level/artificer
+    - fixtures/level/blood_hunter
+  root_dirs: [ '%kernel.project_dir%' ]

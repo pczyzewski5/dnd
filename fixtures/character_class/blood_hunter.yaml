@@ -1,0 +1,19 @@
+App\Entity\CharacterClass:
+  character_class_blood_hunter:
+    __construct:
+      - 10
+      - blood hunter
+      - ~
+      - [
+        '@proficiency_light_armors',
+        '@proficiency_medium_armors',
+        '@proficiency_shields',
+        '@proficiency_simple_weapons',
+        '@proficiency_martial_weapons',
+        '@proficiency_alchemist_supplies',
+        '@proficiency_strength',
+        '@proficiency_wisdom'
+      ]
+      - [
+        '@requirement_blood_hunter_character_class_proficiency',
+      ]

@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Calendar\Application\Handler;
+
+use App\Calendar\Application\Command\GetDatesForCalendar;
+
+class GetDatesForCalendarHandler
+{
+    public function handle(GetDatesForCalendar $command): array
+    {
+        $calendar = [];
+
+        $startDate = null === $command->getCalendar()
+            ? new \DateTimeImmutable('first day of this month')
+            : \DateTimeImmutable::createFromFormat('Y-m-d', $command->getCalendar());
+
+        $finishDate = $startDate->modify('last day of next month');
+
+        $interval = new \DateInterval('P1D');
+        $period = new \DatePeriod($startDate, $interval, $finishDate, \DatePeriod::INCLUDE_END_DATE);
+
+        foreach ($period as $dateTime) {
+            $calendar
+            [$dateTime->format('Y')]
+            [$dateTime->format('M')]
+            [$dateTime->format('W')]
+            [$dateTime->format('D')]
+                = $dateTime;
+        }
+
+        return $calendar;
+    }
+}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use App\Dto\Validator as CustomAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CharacterConfigDto
@@ -40,7 +41,12 @@ class CharacterConfigDto
     #[Assert\Valid]
     #[Assert\NotBlank]
     #[Assert\Type(type: 'array')]
+    #[CustomAssert\AbilityConfigs]
     public readonly mixed $abilityConfigs;
+
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'string')]
+    public readonly mixed $meta;
 
     public function __construct(
         mixed $characterName,
@@ -51,6 +57,7 @@ class CharacterConfigDto
         mixed $alignment,
         mixed $levelConfigs,
         mixed $abilityConfigs,
+        mixed $meta
     ) {
         $this->characterName = $characterName;
         $this->playerName = $playerName;
@@ -60,5 +67,6 @@ class CharacterConfigDto
         $this->alignment = $alignment;
         $this->levelConfigs = $levelConfigs;
         $this->abilityConfigs = $abilityConfigs;
+        $this->meta = $meta;
     }
 }

@@ -1,4 +1,62 @@
 parameters:
+  requirement_blood_hunter_character_class_proficiency_config:
+    '{
+         "source": "character class",
+         "required_count": 2,
+         "pool": [
+             "acrobatics",
+             "athletics",
+             "arcana",
+             "insight",
+             "survival",
+             "investigation"
+             ],
+             "level": 1
+    }'
+  requirement_artificer_character_class_proficiency_config:
+    '{
+         "source": "character class",
+         "required_count": 2,
+         "pool": [
+             "arcana",
+             "history",
+             "investigation",
+             "medicine",
+             "nature",
+             "perception",
+             "sleight of hands"
+         ],
+         "level": 1
+    }'
+  requirement_fighter_character_class_proficiency_config:
+    '{
+         "source": "character class",
+         "required_count": 2,
+         "pool": [
+             "acrobatics",
+             "animal handling",
+             "athletics",
+             "history",
+             "insight",
+             "intimidation",
+             "perception",
+             "survival"
+         ],
+         "level": 1
+    }'
+  requirement_cleric_character_class_proficiency_config:
+    '{
+         "source": "character class",
+         "required_count": 2,
+         "pool": [
+             "history",
+             "insight",
+             "medicine",
+             "persuasion",
+             "religion"
+         ],
+         "level": 1
+    }'
   requirement_barbarian_character_class_proficiency_config:
     '{
          "source": "character class",
@@ -72,6 +130,22 @@ parameters:
     }'
 
 App\Entity\Requirement:
+  requirement_blood_hunter_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_blood_hunter_character_class_proficiency_config}>
+  requirement_artificer_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_artificer_character_class_proficiency_config}>
+  requirement_cleric_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_cleric_character_class_proficiency_config}>
+  requirement_fighter_character_class_proficiency:
+    __construct:
+      - proficiency
+      - <{requirement_fighter_character_class_proficiency_config}>
   requirement_barbarian_character_class_proficiency:
     __construct:
       - proficiency
