@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\PlayerCharacter\Entity;
 
-use App\PlayerCharacter\PlayerCharacterRepository;
+use App\PlayerCharacter\Repository\PlayerCharacterRepository;
 use Doctrine\ORM\Mapping;
 use Symfony\Component\Uid\Uuid;
 

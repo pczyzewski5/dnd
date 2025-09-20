@@ -3,13 +3,22 @@ services:
         autowire: true
         autoconfigure: true
 
+    App\Character\Query\:
+      resource: '../src/Character/Query'
+
+    App\PlayerCharacter\Repository\:
+      resource: '../src/PlayerCharacter/Repository'
+
+    App\PlayerCharacter\Entity\:
+      resource: '../src/PlayerCharacter/Entity'
+
     App\Controller\:
       resource: '../src/Controller'
       public: true
 
     App\Service\:
         resource: '../src/Service'
-        public: true
+        public: truehttps://chatgpt.com/c/68cee830-3a34-8328-a519-9865667130dclol
 
     App\Calculator\:
         resource: '../src/Calculator'

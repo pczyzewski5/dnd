@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\PlayerCharacter;
+namespace App\PlayerCharacter\Repository;
 
 use App\PlayerCharacter\Entity\PlayerCharacter;
-use App\Exception\RepositoryException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;

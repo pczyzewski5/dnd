@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Character\Query\GetCharacterCardBackHtmlQuery;
-use App\Character\Query\GetCharacterCardHtml;
 use App\Character\Query\GetCharacterCardFrontHtmlQuery;
 use App\Character\Query\GetCharactersByOwner;
 use App\Character\Query\GetCharactersByOwnerHandler;
-use App\Form\MonsterForm;
 use App\Form\PlayerCharacterForm;
 use App\PlayerCharacter\Entity\PlayerCharacter;
 use App\Service\EntityService;
@@ -18,8 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
-
-use function var_dump;
 
 class CharacterCardController extends AbstractController
 {

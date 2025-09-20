@@ -6,7 +6,7 @@ namespace App\Character\Query;
 
 use App\Character\Character;
 use App\Character\CharacterFactory;
-use App\PlayerCharacter\PlayerCharacterRepository;
+use App\PlayerCharacter\Repository\PlayerCharacterRepository;
 
 class GetCharactersByOwnerHandler
 {

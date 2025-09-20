@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PlayerCharacter;
+namespace App\PlayerCharacter\Persister;
 
 use App\Exception\PersisterException;
 use Doctrine\DBAL\Types\Types;
